@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140">
+<filter id="w" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="2" result="n"/><feMorphology in="SourceGraphic" operator="dilate" radius="12" result="d"/><feDisplacementMap in="d" in2="n" scale="34" result="v"/><feGaussianBlur in="v" stdDeviation="11"/></filter>
+<filter id="h"><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>
+<path d="M103.1 45.7L104.0 51.8L100.4 60.4L111.1 66.7L123.2 67.6L123.2 67.6L121.3 81.9L110.9 87.7L93.3 83.3L88.2 97.4L76.9 98.5L72.8 93.0L59.5 104.7L48.0 106.3L37.8 98.9L37.8 98.9L29.6 83.7L18.3 89.1L18.7 73.5L36.0 54.0L35.3 45.2L46.0 48.3L52.6 42.4L52.6 42.4L72.8 42.6L77.7 35.1L103.1 45.7Z" fill="#A2B6CF" fill-opacity=".1" filter="url(#w)" transform="translate(6 7)"/>
+<path d="M103.1 45.7L104.0 51.8L100.4 60.4L111.1 66.7L123.2 67.6L123.2 67.6L121.3 81.9L110.9 87.7L93.3 83.3L88.2 97.4L76.9 98.5L72.8 93.0L59.5 104.7L48.0 106.3L37.8 98.9L37.8 98.9L29.6 83.7L18.3 89.1L18.7 73.5L36.0 54.0L35.3 45.2L46.0 48.3L52.6 42.4L52.6 42.4L72.8 42.6L77.7 35.1L103.1 45.7Z" fill="none" stroke="#0A2552" stroke-width=".8" stroke-opacity=".55" stroke-linejoin="round" filter="url(#h)"/>
+<circle cx="94.0" cy="41.7" r="1.8" fill="#0A2552" fill-opacity=".6"/><circle cx="94.0" cy="41.7" r="5" fill="none" stroke="#0A2552" stroke-width=".6" stroke-opacity=".45"/>
+</svg>

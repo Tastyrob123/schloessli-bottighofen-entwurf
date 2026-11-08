@@ -1,0 +1,147 @@
+/* Markenbuch · Wirtschaft am Schlössli (Das Hausbuch). Kleid wie das Werkzeug: Nacht mit der Punkt-Tapete, Kalk und Papier, Seehimmel; Open Sans, Instrument Sans, DM Mono.
+   Im Druck (Als PDF sichern) je Kapitel eine A4-Seite quer. Bewegung keine: ein Buch zum Nachschlagen. */
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:300 800;font-display:swap;src:url('../../assets/fonts/OpenSans-var.woff2') format('woff2')}
+@font-face{font-family:'Hand';font-weight:500;font-display:swap;src:url('../../assets/fonts/Caveat-500.woff') format('woff')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-display:swap;src:url('../../assets/fonts/InstrumentSans-normal-400_600.woff2') format('woff2')}
+@font-face{font-family:'DM Mono';font-weight:400;font-display:swap;src:url('../../assets/fonts/DMMono-normal-400.woff2') format('woff2')}
+:root{--nacht:#0b1d3d;--blau:#0a234c;--hellgold:#a2b6cf;--gold:#0f3678;--papier:#e7ecf3;--blatt:#f3f6f9;--leinen:#d0dae7;--tinte:#041023;--stahl:#0a2552;--linie:rgba(4,16,35,.12);--leise:rgba(4,16,35,.64);
+  --titel:'Open Sans',Arial,sans-serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,Menlo,monospace;--tap:url(../../assets/svg/tapete-a-dunkel.svg);--tap-p:url(../../assets/svg/tapete-a-hell.svg)}
+*,*::before,*::after{box-sizing:border-box}
+body.bu{margin:0;color:var(--tinte);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;background:linear-gradient(rgba(231,236,243,.5),rgba(231,236,243,.5)),var(--tap-p) 0 0/168px 168px,var(--papier)}
+img{display:block;max-width:100%}a{color:inherit}figure{margin:0}
+h1,h2,h3{font-family:var(--titel);font-weight:400;margin:0}
+em{font-style:normal;color:var(--gold)}
+.bu-kopf{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:20px;min-height:64px;padding:8px clamp(14px,2vw,26px);color:#fff;background:var(--tap) 0 0/168px 168px,var(--nacht);box-shadow:inset 0 -1px 0 rgba(162,182,207,.22)}
+.bu-kopf__m{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.bu-kopf__m img{width:18px}
+.bu-kopf__m b{display:block;font:400 1.2rem/1 var(--titel)}.bu-kopf__m small{display:block;margin-top:4px;font:400 9.6px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(162,182,207,.78)}
+.bu-inhalt{flex:1;display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.bu-inhalt a{padding:6px 10px;border-radius:999px;text-decoration:none;font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.bu-inhalt a:hover{color:var(--hellgold);background:rgba(255,255,255,.06)}
+.bu-pdf{flex:none;height:42px;padding:0 18px;border:0;border-radius:999px;cursor:pointer;font:500 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--tinte);background:linear-gradient(180deg,#c5d2e1,#a2b6cf 30%,#c5d2e1 62%,#113d88);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -2px 0 rgba(0,0,0,.28)}
+.bu-titel{display:flex;flex-direction:column;align-items:center;gap:14px;padding:clamp(60px,9vw,120px) 20px;text-align:center;color:#fff;background:var(--tap) 0 0/168px 168px,var(--nacht)}
+.bu-titel img{width:52px}
+.bu-titel h1{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05}
+.bu-titel em{color:var(--hellgold)}
+.bu-titel p{margin:0;font:400 11px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:rgba(162,182,207,.8)}
+main{max-width:1180px;margin:0 auto;padding:0 clamp(16px,3vw,40px) 80px}
+.bu-k{margin-top:clamp(40px,6vw,80px);padding:clamp(24px,3.4vw,52px);border-radius:30px;background:linear-gradient(180deg,#f2f5f8,var(--blatt));box-shadow:inset 0 0 0 1px var(--linie),0 30px 50px -36px rgba(4,16,35,.5);scroll-margin-top:84px}
+.bu-k--d{color:#fff;background:var(--tap) 0 0/168px 168px,var(--nacht)}
+.bu-k--d .bu-k__h p,.bu-k--d .bu-liste li{color:rgba(255,255,255,.82)}
+.bu-k__h{max-width:760px;margin-bottom:clamp(20px,2.6vw,36px)}
+.bu-k__nr{display:block;font:500 11px var(--mono);letter-spacing:.2em;color:var(--stahl)}
+.bu-k--d .bu-k__nr{color:var(--hellgold)}
+.bu-k__h h2{margin:8px 0 10px;font-size:clamp(1.9rem,3.4vw,3rem);line-height:1.08}
+.bu-k__h p{margin:0;color:var(--leise)}
+.bu-zwei{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:center}
+.bu-foto img{width:100%;border-radius:20px;aspect-ratio:3/2;object-fit:cover}
+.bu-text p{margin:0 0 14px}
+.bu-liste{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.bu-liste li{padding-left:22px;position:relative}
+.bu-liste li::before{content:'';position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--gold)}
+.bu-liste--zwei{margin-top:22px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.bu-liste--nein li{color:var(--leise);text-decoration:line-through;text-decoration-color:rgba(253,153,100,.6)}
+.bu-zeichen{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px;align-items:center}
+.bu-schutz{position:relative;display:grid;place-items:center;padding:30px 26px;border-radius:22px;background:var(--tap) 0 0/168px 168px,var(--nacht)}
+.bu-schutz img{width:34%}
+.bu-schutz small{margin-top:22px;color:var(--hellgold)!important;font:400 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stahl);text-align:center}
+.bu-tafeln{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.bu-tafel{margin:0;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--linie)}
+.bu-tafel img{height:96px;width:auto;max-width:80%;margin:18px auto;object-fit:contain}
+.bu-tafel figcaption{padding:8px 12px 10px;font:500 9.6px var(--mono);letter-spacing:.14em;text-transform:uppercase;background:var(--blatt);color:var(--tinte)}
+.bu-tafel--dunkel{background:var(--tap) 0 0/168px 168px,var(--nacht)}.bu-tafel--hell{background:var(--papier)}.bu-tafel--gruen{background:#113d88}
+.bu-nie{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.bu-nie figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px;border-radius:18px;background:var(--papier);position:relative}
+.bu-nie figure::after{content:'';position:absolute;right:14px;top:14px;width:18px;height:18px;background:linear-gradient(45deg,transparent 45%,#b16b46 45%,#b16b46 55%,transparent 55%),linear-gradient(-45deg,transparent 45%,#b16b46 45%,#b16b46 55%,transparent 55%)}
+.bu-nie img{height:70px;width:auto}
+.bu-nie figcaption{font:500 9.6px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--leise)}
+.bu-rahmen{display:block;padding:8px;border:2px solid var(--tinte)}
+.bu-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.bu-logos .bu-tafel img{height:auto;width:84%;max-width:84%;margin:26px auto}
+.bu-tafel--breit{grid-column:1/-1}.bu-tafel--breit img{width:60%!important}
+.bu-gruppe{margin-bottom:28px}.bu-gruppe h3{font-size:1.3rem}.bu-gruppe>p{margin:4px 0 14px;color:var(--leise)}
+.bu-farben{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.bu-farbe{margin:0;border-radius:18px;overflow:hidden;background:var(--blatt);box-shadow:inset 0 0 0 1px var(--linie)}
+.bu-farbe>span{display:block;height:84px}
+.bu-farbe figcaption{display:grid;gap:2px;padding:10px 12px 12px}
+.bu-farbe b{font:400 1rem var(--titel)}.bu-farbe code{font:500 11px var(--mono)}.bu-farbe small{font-size:.76rem;color:var(--leise)}
+.bu-woher{font-style:italic}
+.bu-zw{margin:34px 0 6px;font-size:1.4rem}.bu-satz{margin:0 0 18px;color:var(--leise)}
+.bu-hers{display:grid;gap:18px}
+.bu-her{margin:0;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;align-items:center}
+.bu-her__b{position:relative;border-radius:18px;overflow:hidden}
+.bu-her__b img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.bu-lupe{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px #fff,0 6px 14px rgba(0,0,0,.5)}
+.bu-lupe i{position:absolute;left:50%;top:calc(100% + 8px);translate:-50% 0;padding:3px 8px;border-radius:6px;background:var(--nacht);color:var(--hellgold);font:500 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;font-style:normal;white-space:nowrap}
+.bu-her figcaption b{font:400 1.2rem var(--titel)}.bu-her figcaption p{margin:4px 0 10px;color:var(--leise)}
+.bu-her ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.bu-her li{display:grid;grid-template-columns:24px 1fr;gap:2px 10px;align-items:center}
+.bu-her li span{grid-row:span 2;width:24px;height:24px;border-radius:6px;box-shadow:0 0 0 1px var(--linie)}
+.bu-her li b{font:500 11px var(--mono);letter-spacing:.06em}.bu-her li small{font-size:.78rem;color:var(--leise)}
+.bu-paare{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.bu-paare li{display:grid;grid-template-columns:56px 1fr;gap:2px 12px;align-items:center;padding:10px;border-radius:16px;background:var(--papier)}
+.bu-paar{grid-row:span 2;display:grid;place-items:center;width:56px;height:56px;border-radius:12px;font:400 1.4rem var(--titel);box-shadow:0 0 0 1px var(--linie)}
+.bu-paare b{font:400 .98rem var(--titel)}.bu-paare small{font-size:.78rem;color:var(--leise)}
+.bu-schriften{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.bu-schrift{display:grid;gap:4px;padding:18px 22px;border-radius:18px;background:var(--papier)}
+.bu-schrift__p{font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.15;color:var(--nacht);overflow-wrap:anywhere}
+.bu-schrift b{font:400 1rem var(--titel)}.bu-schrift small{color:var(--leise)}
+.f-a{font-family:var(--titel);font-weight:400}.f-a4{font-family:var(--titel);font-weight:400}.f-s{font-family:var(--sans)}.f-m,.f-m5{font-family:var(--mono);text-transform:uppercase;letter-spacing:.17em;font-size:clamp(1rem,1.6vw,1.3rem)!important}.f-m5{font-weight:500}
+.bu-tapeten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bu-tapete{margin:0;min-height:220px;display:flex;align-items:flex-end;border-radius:20px;background-size:56px 56px;box-shadow:inset 0 0 0 1px var(--linie)}
+.bu-tapete.bu-tafel--dunkel{background-color:var(--nacht)}.bu-tapete.bu-tafel--tief{background-color:#041023}.bu-tapete.bu-tafel--hell{background-color:var(--papier)}
+.bu-tapete figcaption{margin:10px;padding:6px 10px;border-radius:8px;background:var(--blatt);font:500 9.6px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.bu-bilder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bu-bilder figure{margin:0}.bu-bilder img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;box-shadow:0 18px 30px -20px #000}
+.bu-ton{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.bu-ton h3{font-size:1.2rem;margin-bottom:10px}
+.bu-fuss{max-width:1180px;margin:0 auto;padding:0 clamp(16px,3vw,40px) 60px;color:var(--leise);font-size:.88rem}
+@media (max-width:900px){.bu-inhalt{display:none}.bu-zwei,.bu-zeichen,.bu-her,.bu-ton{grid-template-columns:minmax(0,1fr)}.bu-tafeln{grid-template-columns:repeat(3,minmax(0,1fr))}.bu-nie{grid-template-columns:repeat(2,minmax(0,1fr))}.bu-tapeten,.bu-bilder{grid-template-columns:repeat(2,minmax(0,1fr))}.bu-liste--zwei{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.bu-kopf{gap:10px}.bu-kopf__m small{display:none}.bu-pdf{padding:0 12px;font-size:9.5px}.bu-tafeln{grid-template-columns:repeat(2,minmax(0,1fr))}.bu-tapeten,.bu-bilder{grid-template-columns:minmax(0,1fr)}.bu-logos{grid-template-columns:minmax(0,1fr)}.bu-paare{grid-template-columns:minmax(0,1fr)}.bu-farben{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@page{size:A4 landscape;margin:12mm}
+@media print{
+  body.bu{background:#fff;font-size:11pt}
+  .bu-kopf,.bu-fuss{display:none}
+  .bu-titel,.bu-k--d,.bu-tafel--dunkel,.bu-tapete,.bu-tafel--gruen,.bu-lupe,.bu-paar,.bu-farbe>span{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bu-titel{min-height:180mm;justify-content:center;break-after:page}
+  main{max-width:none;padding:0}
+  .bu-k{margin:0;box-shadow:none;border-radius:0;break-before:page;break-inside:avoid-page;padding:0}
+  .bu-k--d{padding:8mm}
+  .bu-k__h h2{font-size:24pt}
+  .bu-her__b img,.bu-foto img{max-height:70mm}
+  .bu-hers{gap:6mm}.bu-her{break-inside:avoid}
+}
+
+/* Ruedihus: das Vorbild der Tapete als Foto */
+.bu-tapete--foto{position:relative;overflow:hidden;background:var(--nacht)}.bu-tapete--foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.bu-tapete--foto figcaption{position:relative}
+
+/* Auftritte (Robert 18.10.2026, 17:46; Zeiten 18:17): los bei einem Fünftel im Bild, 0,85 s ohne Überschwingen, 40 px und 1,04 → 1, Reihen 0,12 s */
+@keyframes buHoch{from{transform:translateY(40px) scale(1.04)}}
+@keyframes buTanne{from{transform:translateY(40px) scale(1.04)}}
+@keyframes buZoom{from{transform:scale(1.04)}}
+@keyframes buFuell{from{clip-path:inset(0 100% 0 0)}}
+@keyframes buTapete{from{transform:translateY(40px) scale(1.04);background-position:0 -40px}}
+@media screen and (prefers-reduced-motion:no-preference){
+  html.bu-bew [data-bw="blatt"]:not(.da),html.bu-bew [data-bw="hoch"]:not(.da){transform:translateY(40px) scale(1.04)}
+  html.bu-bew [data-bw="blatt"].da,html.bu-bew [data-bw="hoch"].da{animation:buHoch .85s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--bw-i,0) * 120ms)}
+  html.bu-bew [data-bw="tanne"]:not(.da){transform:translateY(40px) scale(1.04)}
+  html.bu-bew [data-bw="tanne"].da{animation:buTanne .85s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--bw-i,0) * 120ms)}
+  html.bu-bew .bu-foto[data-bw]{overflow:hidden;border-radius:20px}
+  html.bu-bew .bu-bilder figure[data-bw]{overflow:hidden;border-radius:16px;box-shadow:0 18px 30px -20px #000}
+  html.bu-bew .bu-bilder figure[data-bw] img{box-shadow:none}
+  html.bu-bew [data-bw="zoom"]:not(.da) img{transform:scale(1.04)}
+  html.bu-bew [data-bw="zoom"].da img{animation:buZoom .85s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--bw-i,0) * 120ms)}
+  html.bu-bew [data-bw="farben"]:not(.da) .bu-farbe>span{clip-path:inset(0 100% 0 0)}
+  html.bu-bew [data-bw="farben"].da .bu-farbe>span{animation:buFuell .85s cubic-bezier(.22,.61,.36,1) calc(var(--i,0) * 120ms) both}
+  html.bu-bew [data-bw="tapete"]:not(.da){transform:translateY(40px) scale(1.04)}
+  html.bu-bew [data-bw="tapete"].da{animation:buTapete .85s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--bw-i,0) * 120ms)}
+}
+
+/* Schlössli (19.10.2026): Titel in Open Sans 400 in gesperrten Versalien wie die Website (.t2), Betonung nur über Farbe */
+h1,h2{text-transform:uppercase;letter-spacing:.14em;font-weight:400}h3{font-weight:400;letter-spacing:.06em}
+.f-t{font-family:var(--titel);font-weight:400;text-transform:uppercase;letter-spacing:.14em}.f-s{font-family:var(--sans)}.f-m{font-family:var(--mono);text-transform:uppercase;letter-spacing:.16em;font-size:.8em}.f-h{font-family:'Hand',cursive;font-size:1.5em}
+.bu-tapete--foto{background:var(--papier)}.bu-tapete--foto img{object-fit:contain;padding:18%}
+.bu-k--d em{color:var(--hellgold)}
+.bu-logos{align-items:start}
+.bu-zeichen .bu-tafeln{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:480px){.bu-zeichen .bu-tafeln{grid-template-columns:repeat(2,minmax(0,1fr))}}

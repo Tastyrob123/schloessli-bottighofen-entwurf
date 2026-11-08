@@ -1,0 +1,1974 @@
+/* Wirtschaft am Schlössli · Gestaltung der ganzen Website (Station 07, 19.10.2026).
+   Ein Block je Teil, jede Zeile mit Kommentar davor. Farbwelt A «Stuhl und See» aus dem bestätigten Markenbuch (marke.json),
+   Titel Open Sans 400 in Versalien (aus der Wortmarke gemessen), Lauftext Instrument Sans, kleine Marken DM Mono.
+   Die tragende Idee des Konzepts: Der Horizont des Sees ist eine feine Linie über die ganze Breite; jedes Foto liegt mit seinem
+   eigenen Horizont (oder seiner Unterkante) auf ihr, Titel sitzen mit der Grundlinie auf ihr. Masse in cqw rechnen die Lage ohne Skript. */
+
+/* ---------- Schriften (eigener Server, Ersatzschrift gleich gross, damit nie Arial aufblitzt) ---------- */
+@font-face{font-family:'Open Sans';src:url(../fonts/OpenSans-var.woff2) format('woff2');font-weight:300 800;font-stretch:75% 100%;font-display:block}
+@font-face{font-family:'Instrument Sans';src:url(../fonts/InstrumentSans-normal-400_600.woff2) format('woff2');font-weight:400 600;font-display:swap}
+@font-face{font-family:'DM Mono';src:url(../fonts/DMMono-normal-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Lauf Ersatz';src:local('Helvetica Neue'),local('Arial');size-adjust:98%}
+
+/* ---------- Farben und Masse ---------- */
+:root{
+  --nacht:#0b1d3d;--tief:#0A234C;--stuhl:#113d88;--kalk:#E7ECF3;--kalk2:#D0DAE7;--papier:#F3F6F9;
+  --himmel:#A2B6CF;--himmel-h:#C5D2E1;--himmel-t:#0F3678;--tinte:#041023;--titel-h:#0A2552;--punkt:#FD9964;
+  --titel:'Open Sans','Lauf Ersatz',Arial,sans-serif;--lauf:'Instrument Sans','Lauf Ersatz',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,Menlo,monospace;
+  --rand:clamp(20px,4.6vw,76px);--polster:clamp(84px,9.4vw,156px);--rund:clamp(18px,2.2vw,30px);--rund-k:clamp(12px,1.4vw,18px);
+  --e1:cubic-bezier(.16,1,.3,1);--knopf:cubic-bezier(.32,.72,0,1);
+  --tap-d:url(../svg/tapete-a-dunkel.svg);--tap-h:url(../svg/tapete-a-hell.svg)
+}
+
+/* ---------- Grundlage ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:0}
+body{margin:0;background:var(--kalk);color:var(--tinte);font:400 18px/1.64 var(--lauf);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--stuhl);outline-offset:3px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.innen{max-width:1400px;margin:0 auto;padding-inline:var(--rand);container-type:inline-size;position:relative}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;line-height:1.5}
+main>section,main>footer{position:relative}
+main>section:not(.fenster){overflow-x:clip}
+
+/* Flächen: dunkel mit Punkt-Tapete, hell mit Punkt-Tapete, hell ruhig (Tapete im Wechsel, sichtbar aber zart) */
+.f-dunkel{background-color:var(--nacht);background-image:var(--tap-d);background-size:168px;color:#E9EEF3}
+.f-tapete{background-color:var(--kalk);background-image:var(--tap-h);background-size:168px}
+.f-hell{background-color:var(--papier)}
+.teil{padding-block:var(--polster);overflow-x:clip}
+
+/* ---------- Titel: Versalien der Wortmarke, Betonung nur über Farbe ---------- */
+.t2{font:400 clamp(1.8rem,3.2vw,3rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:var(--titel-h);text-wrap:balance}
+.t2 em{font-style:normal;color:var(--himmel-t)}
+.f-dunkel .t2{color:#F2F5F8}
+.f-dunkel .t2 em{color:var(--himmel)}
+/* Titel sitzen mit der Grundlinie auf der Linie (Open Sans: Grundlinie 0,17 em über der Unterkante der Zeile bei Zeilenhöhe 1,12) */
+.auf-linie{margin-bottom:calc(-.172em + 4px)}
+.lauf{max-width:58ch}
+.lauf+.lauf{margin-top:1em}
+.f-dunkel .lauf{color:rgba(233,238,243,.9)}
+.zitat{font:400 clamp(1.02rem,1.25vw,1.2rem)/1.5 var(--lauf);quotes:"«" "»"}
+.zitat q::before{content:open-quote}.zitat q::after{content:close-quote}
+.zitat cite{display:block;font:400 11.5px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;font-style:normal;margin-top:8px;color:var(--himmel-t)}
+.f-dunkel .zitat cite{color:var(--himmel-h)}
+
+/* ---------- Die Linie (Horizont des Sees) ---------- */
+/* eine feine Linie über die ganze Breite des Bildschirms; liegt in einem ruhenden Rahmen, nie im bewegten Bild */
+.hz{position:absolute;left:-100vw;right:-100vw;height:1px;background:var(--himmel-t);opacity:.42;pointer-events:none;transform-origin:0 50%}
+.f-dunkel .hz,.auftakt .hz{background:var(--himmel);opacity:.8}
+/* Rahmen, der das Foto trägt: so gross wie das Foto, die Linie sitzt auf dessen Horizont (--hz) */
+.anl{position:relative;margin:0;align-self:start}
+.anl>.hz{top:calc(var(--hz)*100%)}
+.anl>figure{margin:0}
+/* Fotos: runde Kante, weicher Schatten, kleines echtes Abbild als Grund */
+.foto{margin:0;position:relative;border-radius:var(--rund);overflow:hidden;background:#0B1F41 center/cover no-repeat;box-shadow:0 42px 70px -46px rgba(4,16,35,.55)}
+.foto img{width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.f-dunkel .foto{box-shadow:0 46px 80px -46px rgba(0,0,0,.85)}
+.steht{display:flex;align-items:flex-end}
+
+/* ---------- Auftritt: deckend von unten, satt an den Platz (kein Warten, kein Nachfedern), Foto zoomt im Rahmen ---------- */
+.js [data-r="bild"]{transform:translateY(var(--weg,clamp(56px,6.4vw,96px)));transition:transform 1.5s var(--e1)}
+.js [data-r="bild"] img{transform:scale(1.08);transition:transform 2.5s var(--e1)}
+.js [data-r="bild"].da{transform:none}
+.js [data-r="bild"].da img{transform:none}
+.js [data-r="text"]{transform:translateY(30px);transition:transform 1.5s var(--e1);transition-delay:calc(var(--i,0)*110ms)}
+.js [data-r="text"].da{transform:none}
+/* Überschriften steigen zeilenweise aus dem Schlitz (Zeilen nach dem echten Umbruch, setzt haus.js) */
+.js [data-schlitz]:not(.geteilt){visibility:hidden}
+[data-schlitz] .z{display:block;overflow:clip;overflow-clip-margin:.18em;padding-bottom:.04em}
+[data-schlitz] .z>span{display:inline-block;transform:translateY(112%);transition:transform 1.3s var(--e1);transition-delay:calc(var(--zi,0)*95ms)}
+[data-schlitz].da .z>span{transform:none}
+/* ohne Bewegung (Systemwunsch, ?nomotion) */
+@media (prefers-reduced-motion:reduce){.js [data-r],.js [data-r] img,[data-schlitz] .z>span{transform:none!important;transition:none!important}.js .hz{transform:none!important}}
+html.ruhig [data-r],html.ruhig [data-r] img,html.ruhig [data-schlitz] .z>span{transform:none!important;transition:none!important}
+
+/* ---------- Knöpfe: Pille mit rundem Knauf, Tiefe und Glanz ---------- */
+.knopf{position:relative;display:inline-flex;align-items:center;gap:18px;height:54px;padding:0 6px 0 26px;border-radius:27px;overflow:hidden;border:0;cursor:pointer;
+  font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;color:var(--tinte);
+  background:linear-gradient(180deg,#EAEFF5,#C5D2E1 58%,#A9BAD0);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(4,16,35,.14),0 20px 32px -20px rgba(4,16,35,.55);
+  transition:transform .5s var(--knopf),box-shadow .5s var(--knopf)}
+.knopf::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
+.knopf:hover{transform:translateY(-2px)}
+.knopf:hover::after{transform:translateX(120%);transition:transform .9s var(--e1)}
+.knopf:active{transform:translateY(1px) scale(.985)}
+.knopf .kn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(180deg,var(--stuhl),var(--tief) 70%,var(--nacht));color:#E6ECF2;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 12px -6px rgba(0,0,0,.6)}
+.knopf .pf{width:16px;height:10px;stroke:currentColor;fill:none;stroke-width:1.3}
+.knopf--dunkel{color:#F2F5F8;background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 45%,var(--tief));box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -2px 0 rgba(0,0,0,.3),0 22px 34px -20px rgba(0,0,0,.7)}
+.knopf--dunkel .kn{background:linear-gradient(180deg,#EAEFF5,var(--himmel-h) 60%,var(--himmel));color:var(--tinte)}
+.knopf--klein{height:44px;padding-left:20px;gap:14px}
+.knopf--klein .kn{width:34px;height:34px}
+.leise{display:inline-block;font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:8px 0 7px;border-bottom:1px solid currentColor;background:none;border-top:0;border-left:0;border-right:0;cursor:pointer}
+.knoepfe{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
+
+/* ---------- Leiste: helle Insel aus Kalk über dem Himmel, Eck-Knöpfe; verschwindet beim Hinunterscrollen ---------- */
+.leiste{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--rand) 0;pointer-events:none;transition:transform .6s var(--e1)}
+.leiste>*{pointer-events:auto}
+.leiste.weg{transform:translateY(-130%)}
+.insel{display:flex;align-items:center;gap:clamp(14px,1.8vw,28px);height:52px;padding:0 24px 0 14px;border-radius:26px;
+  background:linear-gradient(180deg,rgba(243,246,249,.97),rgba(226,233,241,.97));box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(4,16,35,.08),0 18px 34px -22px rgba(4,16,35,.55)}
+.insel__z{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinte)}
+.insel__z svg{width:auto;height:34px}
+.insel__z b{font:400 12.5px/1 var(--titel);letter-spacing:.2em;text-transform:uppercase}
+.insel nav{display:flex;gap:clamp(12px,1.6vw,24px)}
+.insel nav a{position:relative;font:400 11.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--tinte);padding:6px 0}
+.insel nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--stuhl);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--e1)}
+.insel nav a:hover::after,.insel nav a[aria-current]::after{transform:scaleX(1)}
+.ecke{min-width:0}
+.ecke .knopf{height:46px;padding-left:20px;gap:14px}
+.ecke .knopf .kn{width:36px;height:36px}
+.menu-taste{display:none;align-items:center;gap:10px;height:40px;padding:0 4px 0 12px;border:0;border-radius:20px;background:none;cursor:pointer;font:400 11.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase}
+.menu-taste i{display:grid;gap:5px}
+.menu-taste i::before,.menu-taste i::after{content:"";display:block;width:18px;height:1px;background:currentColor}
+/* Menü am Handy: Vollbild mit grossen Titelzeilen */
+.menue{position:fixed;inset:0;z-index:60;background:var(--nacht) var(--tap-d) 0 0/168px;color:#F2F5F8;display:flex;flex-direction:column;justify-content:center;padding:90px var(--rand) 40px;transform:translateY(-100%);transition:transform .7s var(--e1);visibility:hidden}
+.menue.offen{transform:none;visibility:visible}
+.menue a{display:block;font:400 clamp(1.5rem,7vw,2.4rem)/1.5 var(--titel);letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.menue .zu{position:absolute;top:20px;right:var(--rand);background:none;border:0;cursor:pointer;color:#F2F5F8}
+.menue .mono{margin-top:28px;color:var(--himmel-h)}
+@media (max-width:1180px){.insel nav{display:none}.menu-taste{display:inline-flex}.leiste .ecke--l{display:none}.insel{padding-right:10px}}
+@media (max-width:520px){.insel__z b{display:none}.ecke .knopf{padding-left:16px;font-size:11px;letter-spacing:.12em}}
+
+/* ---------- Auftakt: der Blick vom Stuhl, der Name auf dem Horizont ---------- */
+/* Höhe ein Bildschirm (nie fest), Foto ganz, nicht hineingezoomt; die Linie verlängert den Horizont des Fotos */
+.auftakt{--hh:max(100svh,600px);--ver:.66680;--hzf:.305;position:relative;height:var(--hh);background:var(--nacht);overflow:clip;container-type:inline-size}
+.auftakt picture,.auftakt picture img{position:absolute;inset:0;width:100%;height:100%}
+.auftakt picture img{object-fit:cover;object-position:50% 50%;transform-origin:50% 40%}
+/* Horizont im Bild bei «cover»: Bildmitte plus Abstand des Horizonts von der Bildmitte in der dargestellten Höhe */
+.auftakt{--hzy:calc(var(--hh)/2 + (var(--hzf) - .5) * max(100cqw * var(--ver), var(--hh)))}
+.auftakt .hz{top:var(--hzy);left:0;right:0;z-index:2}
+.auftakt__name{position:absolute;left:var(--rand);bottom:calc(var(--hh) - var(--hzy));z-index:3;color:var(--tinte);margin:0}
+.auftakt__name .z{display:block;overflow:clip;overflow-clip-margin:.2em}
+.auftakt__name .z>span{display:block;white-space:nowrap;font:400 clamp(2.1rem,4.3vw,4.9rem)/1.08 var(--titel);text-transform:uppercase;letter-spacing:.24em;margin-right:-.24em}
+.auftakt__name .z:last-child>span{margin-bottom:calc(-.15em + 6px)}
+.auftakt__unter{position:absolute;left:var(--rand);top:calc(var(--hzy) + 16px);z-index:3;display:grid;gap:4px;color:var(--tinte)}
+.auftakt__unter .mono{font-size:12.5px}
+/* Reservation als runde Platte mit Tiefe, unten in der Mitte; nichts darunter */
+.platte{display:flex;align-items:center;gap:clamp(16px,2.2vw,30px);padding:10px 10px 10px clamp(20px,2.4vw,32px);border-radius:40px;
+  background:linear-gradient(180deg,rgba(246,248,251,.98),rgba(222,229,239,.98));box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(4,16,35,.08),0 30px 50px -26px rgba(4,16,35,.7)}
+.platte__t{display:grid;gap:2px}
+.platte__t b{font:400 13px/1.2 var(--titel);letter-spacing:.2em;text-transform:uppercase}
+.platte__t span{font-size:14.5px;line-height:1.35;color:#24344E}
+.auftakt .platte{position:absolute;left:50%;bottom:max(6vh,28px);z-index:4;translate:-50% 0;white-space:nowrap}
+/* Bewegung: die Seite geht auf, das Foto zoomt, die Linie zieht sich auf, der Name steigt aus der Linie, die Platte schwebt */
+.js .auftakt picture img{transform:scale(1.06);transition:transform 2.6s var(--e1)}
+.js .auftakt .hz{transform:scaleX(0);transition:transform 1.7s var(--e1) .15s}
+.js .auftakt__name .z>span{transform:translateY(110%);transition:transform 1.4s var(--e1)}
+.js .auftakt__name .z:nth-child(1)>span{transition-delay:.55s}
+.js .auftakt__name .z:nth-child(2)>span{transition-delay:.65s}
+.js .auftakt__unter{transform:translateY(16px);transition:transform 1.4s var(--e1) .8s}
+.js .auftakt .platte{transform:translateY(90px);transition:transform 1.5s var(--e1) .7s}
+.auf .auftakt picture img,.auf .auftakt .hz,.auf .auftakt__name .z>span,.auf .auftakt__unter,.auf .auftakt .platte{transform:none}
+@media (max-width:760px){
+  .auftakt{--ver:1.33360}
+  .auftakt__name .z>span{font-size:clamp(1.5rem,8.2vw,2.6rem);letter-spacing:.2em;margin-right:-.2em}
+  .auftakt .platte{left:var(--rand);right:var(--rand);translate:none;white-space:normal;flex-wrap:wrap;justify-content:center;gap:12px 22px;padding:16px;border-radius:30px}
+  .auftakt .platte__t{width:100%;text-align:center}
+  .platte__t span{font-size:13.5px}
+}
+
+
+/* ---------- Terrasse: das Zitat des Pächters auf dem Horizont des Platanen-Fotos ---------- */
+.ter__g{display:grid;grid-template-columns:42cqw 52cqw;column-gap:6cqw;grid-template-rows:calc(42cqw * 1.3332 * .433) auto}
+.ter__bild{grid-column:1;grid-row:1/3;--hz:.433}
+.ter__bild .foto{aspect-ratio:2500/3333}
+.ter__t{grid-column:2;grid-row:1;align-self:end}
+.ter__u{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 30cqw;column-gap:3cqw;align-items:end;padding-top:clamp(18px,2vw,30px)}
+.ter__von{grid-column:1/3;margin-bottom:clamp(22px,2.6vw,40px);color:var(--himmel-t)}
+.ter__stimmen{display:grid;gap:clamp(18px,2vw,26px);align-self:start}
+.ter__lounge{aspect-ratio:1761/1180}
+@media (max-width:900px){
+  .ter__g{display:block}
+  .ter__t{margin-bottom:28px}
+  .ter__u{display:block;padding-top:22px}
+  .ter__stimmen{margin-bottom:30px}
+}
+
+/* ---------- Fenster: Bild und Satz stehen still, die Seite zieht darüber (Bauart ohne Beschneiden, wie GBR «Fenster ohne Beschneiden») ---------- */
+.fenster{height:min(66vh,640px);color:#fff;background:transparent}
+.fenster::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--nacht)}
+.fenster__f{position:absolute;left:0;right:0;top:-100lvh;bottom:-100lvh;pointer-events:none}
+.fenster__f>img{position:sticky;top:0;z-index:-1;display:block;width:100%;height:100lvh;max-width:none;object-fit:cover;margin-bottom:-100lvh}
+.fenster__s{position:sticky;top:50lvh;z-index:-1;height:0;display:flex;justify-content:center;align-items:center}
+.fenster__s p{position:relative;flex:none;max-width:min(22ch,86vw);text-align:center;font:400 clamp(1.55rem,3.4vw,3.2rem)/1.16 var(--titel);text-transform:uppercase;letter-spacing:.12em;text-wrap:balance}
+/* weicher Hof hinter dem Satz, Dunkel ins Bild gerechnet, läuft natürlich aus */
+.fenster__s p::before{content:"";position:absolute;inset:-60% -30%;z-index:-1;background:radial-gradient(closest-side,rgba(3,11,24,.55),rgba(3,11,24,.32) 52%,rgba(3,11,24,0))}
+.fenster__s p .z>span{text-shadow:0 1px 2px rgba(3,11,24,.5),0 4px 22px rgba(3,11,24,.45)}
+/* deckende Nachbarn liegen über dem Fensterbild */
+main>section:not(.fenster),main>footer{z-index:auto}
+@media (max-width:860px){.fenster{height:54svh}}
+
+/* ---------- Lästermeile: die Schwelle von drinnen (dunkel) nach draussen (hell) über dem echten Fliesenband ---------- */
+.lm{padding-top:var(--polster);padding-bottom:0;background:var(--papier);overflow-x:clip}
+.lm::before,.lm::after{content:"";position:absolute;top:0;bottom:0;width:50%}
+.lm::before{left:0;background:var(--nacht) var(--tap-d) 0 0/168px}
+.lm::after{right:0;background:var(--kalk) var(--tap-h) 0 0/168px}
+.lm>*{position:relative;z-index:1}
+.lm__titel{display:flex;justify-content:center;margin-bottom:clamp(40px,4.4vw,72px)}
+.lm__titel h2{position:relative;display:grid;font:400 clamp(2.4rem,5.8vw,5.6rem)/1.1 var(--titel);text-transform:uppercase;letter-spacing:.16em;margin-right:-.16em}
+.lm__titel h2>span{grid-area:1/1}
+.lm__titel h2>.links{color:#F2F5F8;clip-path:inset(-20% calc(50% + .08em) -20% -20%)}
+.lm__titel h2>.rechts{color:var(--titel-h);clip-path:inset(-20% -20% -20% calc(50% - .08em))}
+.lm__g{display:grid;grid-template-columns:1fr 1fr;column-gap:10cqw;align-items:end}
+.lm__drinnen{color:#E9EEF3;display:grid;gap:clamp(30px,3.4vw,52px)}
+.lm__drinnen .lauf{max-width:34ch;color:rgba(233,238,243,.9)}
+.lm__bilder{display:flex;align-items:flex-end;gap:2cqw}
+.lm__regal{width:27cqw;aspect-ratio:1920/1280}
+.lm__bar{width:15cqw;aspect-ratio:900/600}
+.lm__draussen{display:grid;grid-template-columns:17cqw 1fr;column-gap:3cqw;align-items:end}
+.lm__schild{aspect-ratio:2500/3334}
+.tapas h3{font:400 13px/1.3 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t);margin:0 0 10px}
+.tapas h3:not(:first-child){margin-top:22px}
+.tapas ul{list-style:none;margin:0;padding:0}
+.tapas li{display:grid;grid-template-columns:1fr auto;column-gap:14px;padding:7px 0;border-bottom:1px solid rgba(15,54,120,.16)}
+.tapas li b{font:400 13.5px/1.35 var(--titel);letter-spacing:.12em;text-transform:uppercase;font-weight:400}
+.tapas li span{font:400 13px/1.35 var(--mono);color:var(--himmel-t)}
+.tapas li small{grid-column:1/3;font-size:14px;line-height:1.4;color:#35455D}
+.f-dunkel .tapas h3{color:var(--himmel)}
+.f-dunkel .tapas li{border-color:rgba(162,182,207,.22)}
+.f-dunkel .tapas li span{color:var(--himmel-h)}
+.f-dunkel .tapas li small{color:rgba(233,238,243,.75)}
+.fliesen{height:clamp(92px,10.5vw,160px);background:#424340 url(../img/fliesen-1200.webp?v=0c8a92e1) repeat-x 0 50%/auto 100%;margin-top:0;box-shadow:inset 0 10px 18px -12px rgba(0,0,0,.45)}
+.lm__fuss{height:clamp(48px,4.4vw,72px)}
+.lm__mob-fliesen{display:none;margin:clamp(40px,8vw,60px) calc(-1 * var(--rand)) 0}
+@media (max-width:900px){
+  .lm{background:var(--nacht) var(--tap-d) 0 0/168px;padding-top:var(--polster)}
+  .lm::before,.lm::after{display:none}
+  .lm__titel{justify-content:flex-start}
+  .lm__titel h2{font-size:clamp(1.9rem,9.6vw,3rem);letter-spacing:.12em}
+  .lm__titel h2>.rechts{display:none}
+  .lm__titel h2>.links{clip-path:none}
+  .lm__g{display:block}
+  .lm__regal{width:62%}.lm__bar{width:38%}
+  .lm__bilder{gap:12px}
+  .lm__draussen{background:var(--kalk) var(--tap-h) 0 0/168px;margin-inline:calc(-1 * var(--rand));padding:clamp(56px,10vw,84px) var(--rand) 0;grid-template-columns:1fr;row-gap:30px}
+  .lm__schild{width:64%}
+  .lm__mob-fliesen{display:block}
+  .lm__band{display:none}
+  .lm .lm__fuss{background:var(--kalk) var(--tap-h) 0 0/168px}
+}
+
+/* ---------- Karte: vier Teller stehen auf der Linie wie eine Küste, darunter die Karte je Land ---------- */
+.ka__kopf{display:grid;grid-template-columns:1fr 1fr;column-gap:8cqw;align-items:end;margin-bottom:clamp(44px,5vw,80px)}
+.ka__kopf .zitat{max-width:46ch;justify-self:end}
+.ka__ufer{position:relative;display:grid;grid-template-columns:repeat(4,1fr);column-gap:3cqw;align-items:end}
+.ka__ufer>.hz{bottom:0}
+.ka__teller:nth-child(1){aspect-ratio:3/3.9}
+.ka__teller:nth-child(2){aspect-ratio:3/3.1}
+.ka__teller:nth-child(3){aspect-ratio:3/4.3}
+.ka__teller:nth-child(4){aspect-ratio:3/3.5}
+.ka__laender{display:grid;grid-template-columns:repeat(4,1fr);column-gap:3cqw;padding-top:clamp(26px,2.6vw,40px)}
+.land h3{font:400 clamp(1rem,1.35vw,1.25rem)/1.2 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h);margin:0 0 14px;min-height:2.4em}
+.land ul{list-style:none;margin:0;padding:0}
+.land li{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding:9px 0 10px;border-top:1px solid rgba(15,54,120,.16)}
+.land li b{font:400 13px/1.35 var(--titel);letter-spacing:.11em;text-transform:uppercase}
+.land li span{font:400 13px/1.35 var(--mono);color:var(--himmel-t);text-align:right}
+.land li small{grid-column:1/3;font-size:14.5px;line-height:1.42;color:#35455D;margin-top:3px}
+.ka__mittag{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:clamp(24px,3vw,48px);margin-top:clamp(44px,5vw,72px);padding:clamp(22px,2.4vw,30px) clamp(22px,2.6vw,36px);border-radius:var(--rund);background:linear-gradient(180deg,#F6F8FB,#E2E9F1);box-shadow:inset 0 1px 0 #fff,0 26px 46px -32px rgba(4,16,35,.5)}
+.ka__mittag h3{font:400 15px/1.3 var(--titel);letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.ka__mittag h3 span{display:block;font:400 12px/1.5 var(--mono);letter-spacing:.14em;color:var(--himmel-t);margin-top:4px}
+.ka__gaenge{display:flex;flex-wrap:wrap;gap:6px 28px;margin:0;padding:0;list-style:none}
+.ka__gaenge li{font-size:15.5px;line-height:1.4}
+.ka__gaenge li b{font-weight:500}
+.ka__weiter{display:flex;justify-content:center;margin-top:clamp(36px,4vw,56px)}
+@media (max-width:980px){
+  .ka__kopf{grid-template-columns:1fr;row-gap:22px}.ka__kopf .zitat{justify-self:start}
+  .ka__ufer{grid-template-columns:repeat(2,1fr);row-gap:0}
+  .ka__ufer .ka__teller:nth-child(n){aspect-ratio:4/4.6}
+  .ka__laender{grid-template-columns:1fr 1fr;row-gap:36px}
+  .ka__mittag{grid-template-columns:1fr;row-gap:14px}
+}
+@media (max-width:560px){.ka__laender{grid-template-columns:1fr}.land h3{min-height:0}}
+
+/* ---------- Küche: der Titel ist die Auszeichnung, Moni Huber steht auf der Linie ---------- */
+.ku__oben{position:relative;display:grid;grid-template-columns:40cqw 20cqw 32cqw;column-gap:4cqw;align-items:end}
+.ku__oben>.hz{bottom:0}
+.ku__sauce{aspect-ratio:1043/1270}
+.ku__moni{aspect-ratio:2441/3661}
+.ku__unten{display:grid;grid-template-columns:40cqw 1fr;column-gap:4cqw;padding-top:clamp(26px,2.8vw,42px)}
+.ku__preise{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;column-gap:clamp(22px,3vw,48px);row-gap:18px;align-self:start}
+.preis{display:grid;gap:4px;padding-left:clamp(14px,1.4vw,20px);border-left:1px solid rgba(162,182,207,.35)}
+.preis b{font:400 clamp(1.05rem,1.5vw,1.4rem)/1.25 var(--titel);letter-spacing:.1em;text-transform:uppercase;color:#F2F5F8}
+.preis span{font:400 11.5px/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--himmel-h)}
+.ku__team{margin-top:clamp(56px,6vw,96px)}
+.ku__team .foto{aspect-ratio:2500/1667;max-width:84cqw;margin-inline:auto}
+.ku__team p{max-width:62ch;margin:clamp(22px,2.4vw,34px) auto 0;text-align:center;color:rgba(233,238,243,.9)}
+@media (max-width:900px){
+  .ku__oben{grid-template-columns:1fr 1fr;row-gap:26px}
+  .ku__oben h2{grid-column:1/3}
+  .ku__unten{grid-template-columns:1fr;row-gap:30px}
+  .ku__preise{grid-template-columns:1fr}
+  .ku__team .foto{max-width:none}
+}
+
+/* ---------- Keller: Abzüge vom Abend (Robert 19.10.2026, Fassung 3 aus _varianten/keller-runde2.html) ---------- */
+/* Zwei Spalten: links Titel, Zahl und Jonas mit seinem Satz, rechts der Stapel; die Knöpfe mittig darunter */
+.ke__g{display:grid;grid-template-columns:1fr 1.2fr;column-gap:4cqw;align-items:center}
+/* Linke Spalte: Titel, Zahl, Jonas untereinander mit Luft */
+.ke__l{display:grid;gap:clamp(28px,3vw,44px);align-self:start;padding-top:clamp(8px,1vw,16px)}
+/* Jonas gross, daneben sein Satz */
+.ke__jonas{display:grid;grid-template-columns:16cqw 1fr;gap:3cqw;align-items:center;margin-top:clamp(8px,1vw,16px)}
+.ke__jonas .foto{aspect-ratio:3/4}
+.ke__jonas .foto img{object-position:50% 22%}
+.ke__zit .zitat{margin:0}
+/* Der Satz zum Weinberater, darunter der Nachweis mit dem kleinen GaultMillau-Zeichen */
+.ke__satz{margin:clamp(18px,2vw,26px) 0 0;font:400 15.5px/1.45 var(--lauf);color:var(--tinte)}
+.ke__von{display:flex;align-items:center;gap:14px;margin:14px 0 0}
+.ke__von img{height:46px;width:auto}
+.ke__von span{font:400 13px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+/* Weinberater und Weinkarte mittig unter beiden Spalten */
+.ke__knopf{grid-column:1/-1;justify-self:center;display:flex;align-items:center;gap:30px;margin-top:clamp(56px,6vw,96px)}
+/* Der Stapel: sechs Abzüge mit weissem Rand, leicht verdreht übereinander */
+.ke__stapel{position:relative;aspect-ratio:1/1.12}
+.ke__ab{position:absolute;margin:0;border:10px solid #fff;border-bottom-width:34px;border-radius:6px;background-color:#fff;background-size:cover;box-shadow:0 30px 50px -28px rgba(10,30,70,.5),0 6px 14px -8px rgba(10,30,70,.25)}
+/* Das Foto füllt den Rahmen, ohne dessen Höhe zu verändern (sonst wächst der Abzug über sein Seitenverhältnis hinaus) */
+.ke__ab img{position:absolute;inset:0;width:100%;height:100%;border-radius:2px;object-position:var(--pos,50% 50%)}
+.ke__ab--a{width:52%;aspect-ratio:4/3;left:-2%;top:2%;rotate:-6deg;z-index:1}
+.ke__ab--b{width:34%;aspect-ratio:3/4;right:0;top:-2%;rotate:6deg;z-index:2}
+.ke__ab--c{width:33%;aspect-ratio:3/4;left:0;bottom:4%;rotate:4deg;z-index:2}
+.ke__ab--d{width:31%;aspect-ratio:3/4;right:2%;bottom:0;rotate:-5deg;z-index:3}
+.ke__ab--e{width:28%;aspect-ratio:3/4;left:32%;bottom:-3%;rotate:-3deg;z-index:5}
+.ke__ab--f{width:44%;aspect-ratio:3/4;left:30%;top:14%;rotate:1.5deg;z-index:4}
+/* Jeder Abzug fliegt einzeln von weit unten herein, deckend von Anfang an, nur transform; Auslöser ist der Stapel (.da) */
+.js .ke__stapel .ke__ab{transform:translateY(clamp(280px,42vh,520px));transition:transform 1.7s cubic-bezier(.22,1,.36,1) var(--d,0ms)}
+.js .ke__stapel .ke__ab img{transform:scale(1.08);transition:transform 2s cubic-bezier(.22,1,.36,1) var(--d,0ms)}
+.js .ke__stapel.da .ke__ab,.js .ke__stapel.da .ke__ab img{transform:none}
+.ke__ab--a{--d:0ms}.ke__ab--b{--d:180ms}.ke__ab--f{--d:360ms}.ke__ab--c{--d:540ms}.ke__ab--e{--d:720ms}.ke__ab--d{--d:900ms}
+@media (prefers-reduced-motion:reduce){.js .ke__stapel .ke__ab,.js .ke__stapel .ke__ab img{transform:none!important;transition:none!important}}
+html.ruhig .ke__stapel .ke__ab,html.ruhig .ke__stapel .ke__ab img{transform:none!important;transition:none!important}
+@media (max-width:900px){
+  .ke__g{grid-template-columns:1fr;row-gap:44px}
+  .ke__jonas{grid-template-columns:38vw 1fr;gap:18px}
+  .ke__stapel{width:100%}
+  .ke__ab{border-width:6px;border-bottom-width:20px}
+  .ke__knopf{margin-top:20px;flex-wrap:wrap;justify-content:center;gap:18px}
+}
+
+/* ---------- Besen: die Geschichte des Ortes als grosse Fussnote an der Linie ---------- */
+.be{padding-block:clamp(96px,10vw,170px)}
+.be__g{position:relative;display:grid;grid-template-columns:58cqw 1fr;column-gap:6cqw}
+.be__oben{grid-column:1/3;position:relative;padding-bottom:0}
+.be__oben>.hz{bottom:0}
+.be__t{font:400 clamp(2.2rem,5.2vw,5rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:var(--titel-h);max-width:16ch;text-wrap:balance}
+.be__t em{font-style:normal;color:var(--himmel-t)}
+.be__alt{grid-column:1;padding-top:clamp(26px,2.8vw,44px);padding-right:4cqw}
+.be__alt q{display:block;font:300 clamp(1.5rem,2.9vw,2.7rem)/1.3 var(--titel);color:var(--himmel-t);quotes:"«" "»";letter-spacing:.01em}
+.be__alt q::before{content:open-quote}.be__alt q::after{content:close-quote}
+.be__alt cite{display:block;margin-top:18px;font:400 11.5px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--titel-h)}
+.be__text{grid-column:2;padding-top:clamp(26px,2.8vw,44px);display:grid;gap:.9em;font-size:clamp(1.08rem,1.35vw,1.3rem);line-height:1.58}
+@media (max-width:900px){.be__g{display:block}.be__text{padding-top:26px}}
+
+/* ---------- Feiern: zwei Linien wie zwei Etagen, auf jeder steht die 26 ---------- */
+.fe__kopf{display:grid;grid-template-columns:1fr 1fr;column-gap:8cqw;align-items:end;margin-bottom:clamp(40px,4.6vw,72px)}
+.fe__kopf .lauf{justify-self:end;max-width:40ch}
+.fe__kopf .lauf b{font-weight:500;color:#F2F5F8}
+.etage{position:relative;display:grid;grid-template-columns:1fr 22cqw;column-gap:6cqw;align-items:end}
+.etage>.hz{bottom:0}
+.etage+.fe__mitte{padding-block:clamp(26px,3vw,44px)}
+.etage__zahl{display:flex;align-items:flex-end;gap:clamp(14px,1.6vw,24px)}
+.etage__zahl b{font:300 clamp(4.4rem,10vw,9.6rem)/.86 var(--titel);letter-spacing:.04em;color:#F2F5F8;margin-bottom:calc(-.06em + 4px)}
+.etage__zahl span{font:400 12px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h);padding-bottom:10px}
+.etage .foto{aspect-ratio:3/3.7}
+.fe__mitte{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:6cqw}
+.fe__mitte .lauf{max-width:46ch}
+.wahl2{display:flex;gap:14px;flex-wrap:wrap}
+.js .etage--zwei>.hz{transform:scaleX(0);transition:transform 1.7s var(--e1) .1s}
+.js .etage--zwei.da>.hz{transform:none}
+.fe__unten{display:flex;justify-content:center;margin-top:clamp(40px,4.4vw,64px)}
+@media (max-width:900px){
+  .fe__kopf,.fe__mitte{grid-template-columns:1fr;row-gap:22px}.fe__kopf .lauf{justify-self:start}
+  .etage{grid-template-columns:1fr 40%;column-gap:16px}
+  .etage__zahl{flex-direction:column;align-items:flex-start;gap:8px}
+  .etage__zahl span{padding-bottom:0}
+}
+
+/* ---------- Abend: derselbe Platz am Abend, aus dessen Horizont die Linie mit Reservation und Zeiten läuft ---------- */
+.ab__g{display:grid;grid-template-columns:50cqw 42cqw;column-gap:8cqw;grid-template-rows:calc(42cqw * 1.3332 * .565) auto}
+.ab__t{grid-column:1;grid-row:1;align-self:end}
+.ab__bild{grid-column:2;grid-row:1/3;--hz:.565}
+.ab__bild .foto{aspect-ratio:2500/3333}
+.ab__u{grid-column:1;grid-row:2;padding-top:clamp(26px,2.8vw,40px);align-self:start}
+.tafel{border-radius:var(--rund);padding:clamp(24px,2.6vw,38px);background:linear-gradient(180deg,#F8FAFC,#E4EAF2);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(4,16,35,.06),0 34px 56px -38px rgba(4,16,35,.6)}
+.tafel__g{display:grid;grid-template-columns:1fr 1fr;gap:22px clamp(22px,3vw,40px);margin-bottom:clamp(24px,2.6vw,34px)}
+.tafel h3{font:400 12px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t);margin:0 0 6px}
+.tafel p,.tafel li{font-size:15.5px;line-height:1.5}
+.tafel ul{list-style:none;margin:0;padding:0}
+@media (max-width:900px){.ab__g{display:block}.ab__t{margin-bottom:26px}.ab__u{padding-top:26px}.tafel__g{grid-template-columns:1fr}}
+
+/* ---------- Fuss: ruhig, Punkt-Tapete, die Familie als eine Zeile ---------- */
+.fuss{padding:clamp(72px,8vw,120px) 0 0;overflow-x:clip}
+.fuss__oben{display:grid;grid-template-columns:auto 1fr;column-gap:clamp(36px,6vw,96px);align-items:start}
+.fuss__logo{width:clamp(120px,11vw,160px);filter:invert(1);opacity:.94}
+.fuss__sp{display:grid;grid-template-columns:repeat(4,1fr);column-gap:clamp(20px,2.6vw,40px)}
+.fuss h3{font:400 11.5px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h);margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid rgba(162,182,207,.25)}
+.fuss p,.fuss li{font-size:15px;line-height:1.6;color:rgba(233,238,243,.88)}
+.fuss ul{list-style:none;margin:0;padding:0}
+.fuss li a{text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.fuss li a::before{content:"";width:5px;height:5px;border-top:1px solid var(--himmel);border-right:1px solid var(--himmel);transform:rotate(45deg)}
+.fuss li a:hover{color:#fff}
+.fuss__familie{margin-top:clamp(44px,5vw,72px);padding:22px 0;border-top:1px solid rgba(162,182,207,.25);border-bottom:1px solid rgba(162,182,207,.25);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.fuss__familie p{font:400 clamp(.95rem,1.2vw,1.1rem)/1.4 var(--titel);letter-spacing:.14em;text-transform:uppercase;color:#F2F5F8}
+.fuss__familie a{color:var(--himmel)}
+.fuss__unten{margin-top:0;padding:18px 0 22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font:400 11px/1.5 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:rgba(197,210,225,.7)}
+.fuss__unten a{text-decoration:none}
+@media (max-width:980px){.fuss__oben{grid-template-columns:1fr;row-gap:36px}.fuss__sp{grid-template-columns:1fr 1fr;row-gap:34px}}
+
+/* ---------- Seitenkopf der Unterseiten: Foto in voller Farbe rechts, Titel auf der Linie ---------- */
+.kopf{--hh:max(100svh,560px);position:relative;min-height:var(--hh);display:grid;grid-template-columns:1fr 1fr;overflow-x:clip}
+.kopf__t{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--rand) 0;padding-bottom:calc(var(--hh) * (1 - var(--hzk)))}
+.kopf__t h1{font:400 clamp(2.1rem,4.6vw,4.6rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:var(--titel-h);text-wrap:balance;margin-bottom:calc(-.172em + 4px)}
+.kopf__t h1 em{font-style:normal;color:var(--himmel-t)}
+.kopf__unter{position:absolute;left:var(--rand);right:var(--rand);top:calc(var(--hh) * var(--hzk) + 20px);display:grid;gap:14px;max-width:46ch}
+.kopf>.hz{top:calc(var(--hh) * var(--hzk));left:0;right:0}
+.kopf__bild{position:relative;margin:0;overflow:hidden;border-radius:0 0 0 var(--rund)}
+.kopf__bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.js .kopf__bild img{transform:scale(1.06);transition:transform 2.6s var(--e1)}
+.js .kopf .hz{transform:scaleX(0);transition:transform 1.7s var(--e1) .15s}
+.auf .kopf__bild img,.auf .kopf .hz{transform:none}
+.f-dunkel.kopf .kopf__t h1{color:#F2F5F8}
+.f-dunkel.kopf .kopf__t h1 em{color:var(--himmel)}
+@media (max-width:860px){
+  .kopf{grid-template-columns:1fr;grid-template-rows:auto;min-height:0}
+  .kopf__t{padding:110px var(--rand) 0;justify-content:flex-start}
+  .kopf__t h1{margin-bottom:22px;font-size:clamp(1.55rem,7.4vw,2.6rem);letter-spacing:.1em;overflow-wrap:anywhere}
+  .kopf__unter{position:static;padding:0 var(--rand) 34px}
+  .kopf>.hz{display:none}
+  .kopf__bild{border-radius:0;height:56svh}
+}
+.kopf--klein{min-height:0;grid-template-columns:1fr;padding:150px 0 clamp(50px,6vw,80px)}
+.kopf--klein .kopf__t{padding:0 var(--rand);display:block}
+.kopf--klein .kopf__t h1{margin-bottom:0}
+
+/* Kopf der Weinkarte «Glas am See» mit der Leiste der fünf Arten (Robert 19.10.2026). Der Titel sitzt auf dem gemessenen Seehorizont (hz) des Bildes, bei jeder Fenstergrösse. */
+.wkopf{position:relative;height:max(100svh,600px);overflow:clip;container-type:inline-size;background:var(--kalk)}
+.wkopf__bild,.wkopf__t{--hh:max(100svh,600px);--hz:.485;--v:1.5;--t:.42;--bw:max(100cqw,var(--hh) / var(--v));--bh:calc(var(--bw) * var(--v));--top:clamp(calc(var(--hh) - var(--bh)),calc(var(--t) * var(--hh) - var(--hz) * var(--bh)),0px)}
+.wkopf__bild{position:absolute;left:50%;top:var(--top);width:var(--bw);height:var(--bh);margin:0;translate:-50% 0}
+.wkopf__bild img{display:block;width:100%;height:100%}
+.wkopf__t{position:absolute;left:var(--rand);right:var(--rand);top:calc(var(--top) + var(--hz) * var(--bh));translate:0 -50%;text-align:center}
+.wkopf__t h1{margin:0;font:400 clamp(2rem,6.2vw,5.6rem)/1.1 var(--titel);text-transform:uppercase;letter-spacing:.2em;margin-right:-.2em;color:var(--titel-h)}
+.wkopf__t h1 em{font-style:normal;color:var(--himmel-t)}
+.wkopf__leiste{position:absolute;left:var(--rand);right:var(--rand);bottom:clamp(28px,6svh,56px);display:flex;gap:8px}
+.wkopf__leiste a{flex:var(--w) 0 0;min-width:120px;min-height:96px;background:var(--papier);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;color:var(--titel-h);text-decoration:none;box-shadow:0 18px 30px -22px rgba(4,16,35,.45)}
+.wkopf__leiste a:nth-child(2){background:var(--titel-h);color:#F2F5F8}
+.wkopf__leiste a:nth-child(4){background:var(--himmel-h)}
+.wkopf__leiste b{font:400 13px/1 var(--titel);letter-spacing:.16em;text-transform:uppercase}
+.wkopf__leiste small{font:400 24px/1 var(--mono)}
+@media (max-width:860px){
+  .wkopf__leiste{flex-wrap:wrap;gap:6px}
+  .wkopf__leiste a{flex:var(--w) 1 92px;min-width:0;min-height:74px;padding:12px 14px;border-radius:12px}
+  .wkopf__leiste b{font-size:11px;letter-spacing:.12em}
+  .wkopf__leiste small{font-size:19px}
+}
+
+/* ---------- Unterseiten: Bausteine ---------- */
+.ab-satz{display:grid;grid-template-columns:1fr 1fr;column-gap:8cqw;align-items:end;margin-bottom:clamp(36px,4vw,60px)}
+@media (max-width:900px){.ab-satz{grid-template-columns:1fr;row-gap:20px}}
+.karte-ganz .land h3{min-height:0}
+.karte-ganz .ka__laender{padding-top:0;row-gap:48px}
+.karte-fuss{margin-top:clamp(36px,4vw,56px);display:grid;gap:4px;font-size:13.5px;line-height:1.55;color:#35455D}
+.zweier{display:grid;grid-template-columns:38cqw 1fr;column-gap:6cqw;align-items:center}
+.zweier .foto{aspect-ratio:3/3.7}
+@media (max-width:900px){.zweier{grid-template-columns:1fr;row-gap:30px}}
+.drucken{display:flex;justify-content:center;gap:20px;margin-top:clamp(40px,4vw,60px)}
+/* Speisekarte im Wechsel (karte.html #laender, seit 19.10.2026, Fassung 04): je Land ein ganzes Foto, abwechselnd links und rechts */
+.kw{display:grid;grid-template-columns:4fr 7fr;column-gap:6cqw;align-items:center}
+.kw+.kw{margin-top:clamp(64px,8vw,120px)}
+.kw--r{grid-template-columns:7fr 4fr}.kw--r .kw__bild{order:2}
+.kw__bild{width:100%}
+.karte-ganz .kw__t h3{font:300 clamp(1.7rem,2.8vw,2.6rem)/1.1 var(--titel);letter-spacing:.18em;margin-bottom:clamp(18px,2vw,26px)}
+.kw__t ul{display:grid;grid-template-columns:1fr 1fr;column-gap:3cqw;align-items:start}
+@media (max-width:900px){.kw,.kw--r{grid-template-columns:1fr;row-gap:28px}.kw--r .kw__bild{order:0}.kw__bild{width:min(100%,460px)}}
+@media (max-width:600px){.kw__t ul{grid-template-columns:1fr}}
+@media print{.kw__bild{display:none!important}.kw,.kw--r{display:block}.kw+.kw{margin-top:18pt}}
+
+/* Weinkarte: Gruppen als Reiter (nichts springt, die Fläche bleibt), Regionen, Erzeuger, Flaschen */
+.wk__reiter{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:clamp(36px,4vw,56px)}
+.wk__reiter a{font:400 11.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;text-decoration:none;padding:14px 18px;border-radius:24px;background:linear-gradient(180deg,#F6F8FB,#DCE4EE);box-shadow:inset 0 1px 0 #fff,0 10px 20px -14px rgba(4,16,35,.5)}
+.wk__gruppe{scroll-margin-top:30px}
+.wk__gruppe+.wk__gruppe{margin-top:clamp(64px,7vw,110px)}
+.wk__gruppe>h2{margin-bottom:clamp(24px,2.6vw,38px)}
+.wk__region{break-inside:avoid;margin-bottom:28px}
+.wk__regionen{columns:2;column-gap:clamp(30px,5cqw,80px)}
+.wk__region>h3{font:400 13px/1.3 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t);margin:0 0 6px;padding-bottom:8px;border-bottom:1px solid rgba(15,54,120,.25)}
+.wk__erz{break-inside:avoid;padding:10px 0 4px}
+.wk__erz>h4{margin:0 0 4px;font:500 15.5px/1.35 var(--lauf)}
+.wk__w{display:grid;grid-template-columns:3.6em 1fr auto;column-gap:10px;font-size:14.5px;line-height:1.45;padding:3px 0}
+.wk__w i{font-style:normal;font-family:var(--mono);font-size:12.5px;color:#4E5D73;padding-top:1px}
+.wk__w span{font-family:var(--mono);font-size:12.5px;white-space:nowrap;text-align:right;color:var(--titel-h)}
+.wk__w small{grid-column:2/4;font-size:13px;color:#4E5D73}
+@media (max-width:820px){.wk__regionen{columns:1}}
+
+/* Feiern-Seite: die drei Bankettmenüs nebeneinander, Säle offen */
+.menues{display:grid;grid-template-columns:repeat(3,1fr);column-gap:3cqw;row-gap:30px}
+.menue-k{border-radius:var(--rund);padding:clamp(24px,2.6vw,36px);background:linear-gradient(180deg,#F8FAFC,#E4EAF2);box-shadow:inset 0 1px 0 #fff,0 30px 50px -36px rgba(4,16,35,.55)}
+.menue-k h3{font:400 clamp(1.1rem,1.5vw,1.4rem)/1.2 var(--titel);letter-spacing:.18em;text-transform:uppercase;margin:0 0 4px}
+.menue-k>span{font:400 12px/1.5 var(--mono);letter-spacing:.14em;color:var(--himmel-t)}
+.menue-k ol{list-style:none;margin:18px 0 0;padding:0}
+.menue-k li{padding:10px 0;border-top:1px solid rgba(15,54,120,.16)}
+.menue-k li b{display:block;font:400 12.5px/1.4 var(--titel);letter-spacing:.11em;text-transform:uppercase}
+.menue-k li small{font-size:14px;line-height:1.4;color:#35455D}
+@media (max-width:900px){.menues{grid-template-columns:1fr}}
+
+/* Events: der nächste Termin gross, die vergangenen als Rückblick */
+.naechst{display:grid;grid-template-columns:1fr 1fr;column-gap:8cqw;align-items:start}
+.naechst__datum{font:300 clamp(3rem,8vw,7rem)/.95 var(--titel);letter-spacing:.04em;color:#F2F5F8}
+.naechst__datum span{display:block;font:400 12px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h);margin-top:16px}
+.rueck{list-style:none;margin:0;padding:0}
+.rueck li{display:grid;grid-template-columns:22cqw 1fr;column-gap:6cqw;padding:clamp(22px,2.4vw,34px) 0;border-top:1px solid rgba(15,54,120,.2)}
+.rueck h3{font:400 clamp(1rem,1.4vw,1.25rem)/1.3 var(--titel);letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px}
+.rueck .mono{color:var(--himmel-t)}
+@media (max-width:900px){.naechst,.rueck li{grid-template-columns:1fr;row-gap:16px}}
+
+/* Team: Menschen im Porträt, ohne Porträt nur Name und Aufgabe */
+.leute{display:grid;grid-template-columns:repeat(3,1fr);column-gap:3cqw;row-gap:40px}
+.mensch .foto{aspect-ratio:2441/3661}
+.mensch h3{font:400 clamp(1rem,1.4vw,1.25rem)/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;margin:18px 0 2px}
+.mensch p{font:400 12px/1.5 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--himmel-t)}
+.leute2{display:flex;gap:clamp(30px,5vw,80px);margin-top:clamp(40px,4vw,60px);padding-top:26px;border-top:1px solid rgba(15,54,120,.2)}
+@media (max-width:820px){.leute{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.leute{grid-template-columns:1fr}}
+
+/* Kontakt: Zeiten, Anfahrt mit Karte, Reservation */
+.ko__g{display:grid;grid-template-columns:1fr 1fr;column-gap:6cqw;row-gap:40px;align-items:start}
+.lage{border-radius:var(--rund);overflow:hidden;aspect-ratio:4/3;background:#cfd8e3;box-shadow:0 34px 56px -38px rgba(4,16,35,.6)}
+.lage iframe{width:100%;height:100%;border:0;display:block}
+.lage button{all:unset;cursor:pointer;display:grid;place-items:center;width:100%;height:100%;text-align:center;font:400 12px/1.6 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--titel-h);background:linear-gradient(180deg,#E8EDF3,#CFD8E5)}
+.ko__bild{aspect-ratio:4/4.4;margin-top:26px}
+@media (max-width:900px){.ko__g{grid-template-columns:1fr}}
+
+/* Rechtstexte im Wortlaut des Hauses */
+.recht{max-width:78ch}
+.recht h2{font:400 clamp(1.1rem,1.6vw,1.5rem)/1.3 var(--titel);letter-spacing:.14em;text-transform:uppercase;margin:2.2em 0 .8em;color:var(--titel-h)}
+.recht h3{font:500 1rem/1.4 var(--lauf);margin:1.8em 0 .5em}
+.recht p,.recht li{font-size:16.5px;line-height:1.62}
+.recht p+p{margin-top:.8em}
+.recht ol,.recht ul{padding-left:1.4em}
+.recht li+li{margin-top:.5em}
+.recht a{color:var(--himmel-t)}
+
+/* ---------- Fenster auf der Seite: Reservation, Anfrage, Gutschein (nie das Mailprogramm) ---------- */
+dialog.fe{border:0;padding:0;margin:auto;width:min(720px,calc(100vw - 24px));max-height:calc(100dvh - 24px);border-radius:var(--rund);background:var(--papier) var(--tap-h) 0 0/168px;color:var(--tinte);box-shadow:0 60px 120px -40px rgba(0,0,0,.6);overflow:auto}
+dialog.fe::backdrop{background:rgba(3,11,24,.62)}
+dialog.fe[open]{animation:fe-auf .7s var(--e1)}
+@keyframes fe-auf{from{transform:translateY(40px)}}
+.fe__kopf2{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px 0 clamp(24px,3vw,36px)}
+.fe__kopf2 h2{font:400 clamp(1.1rem,1.8vw,1.5rem)/1.2 var(--titel);letter-spacing:.16em;text-transform:uppercase}
+.fe__zu{width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;background:linear-gradient(180deg,#fff,#DCE4EE);box-shadow:inset 0 1px 0 #fff,0 8px 16px -10px rgba(4,16,35,.5);flex:none}
+.fe__zu svg{width:14px;height:14px;stroke:var(--tinte);stroke-width:1.4}
+.fe__inhalt{padding:20px clamp(24px,3vw,36px) clamp(26px,3vw,36px)}
+.fe__inhalt>p{margin-bottom:18px;max-width:56ch}
+.fe--breit{width:min(980px,calc(100vw - 24px))}
+.fe__frame{height:min(72dvh,720px);border-radius:var(--rund-k);overflow:hidden;background:#fff;box-shadow:inset 0 0 0 1px rgba(15,54,120,.15)}
+.fe__frame iframe{width:100%;height:100%;border:0;display:block}
+.felder{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+.feld{display:grid;gap:6px;position:relative}
+.feld--ganz{grid-column:1/3}
+.feld label,.feld>span{font:400 11.5px/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--himmel-t)}
+.feld input,.feld textarea,.feld .wahl-k{font:400 16px/1.4 var(--lauf);color:var(--tinte);width:100%;padding:13px 16px;border:0;border-radius:14px;background:linear-gradient(180deg,#DCE3ED,#E9EEF4);box-shadow:inset 0 2px 4px rgba(4,16,35,.12),inset 0 -1px 0 rgba(255,255,255,.9);text-align:left}
+.feld textarea{min-height:110px;resize:vertical}
+.feld input:focus,.feld textarea:focus,.feld .wahl-k:focus{outline:none;box-shadow:inset 0 2px 4px rgba(4,16,35,.12),0 0 0 2px rgba(17,61,136,.45)}
+.wahl-k{cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.wahl-k::after{content:"";width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-3px)}
+.wahl-l{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:5;display:none;max-height:260px;overflow:auto;padding:8px;border-radius:16px;background:#F8FAFC;box-shadow:0 0 0 1px rgba(15,54,120,.18),0 26px 40px -20px rgba(4,16,35,.55)}
+.wahl-l.offen{display:block}
+.wahl-l button{display:block;width:100%;text-align:left;padding:11px 14px;border:0;border-radius:10px;background:none;cursor:pointer;font:400 15px/1.3 var(--lauf)}
+.wahl-l button:hover{background:#E4EAF2}
+.wahl-l button[aria-selected=true]{background:var(--tief);color:#fff}
+.kal{padding:12px}
+.kal__k{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font:400 13px/1 var(--titel);letter-spacing:.16em;text-transform:uppercase}
+.kal__k button{width:34px;height:34px;padding:0;text-align:center;border-radius:50%}
+.kal__g{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.kal__g span{font:400 10.5px/2.2 var(--mono);text-align:center;color:#4E5D73}
+.kal__g button{padding:9px 0;text-align:center;border-radius:10px;font-size:14px}
+.kal__g button:disabled{opacity:.3;cursor:default;background:none}
+.fe__senden{display:flex;justify-content:flex-end;gap:16px;align-items:center;margin-top:22px;flex-wrap:wrap}
+.fe__hinweis{font-size:13px;line-height:1.5;color:#4E5D73;margin-top:14px}
+.fe__danke{display:none;padding:10px 0 4px}
+.fe__danke h3{font:400 1.1rem/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px}
+.fe.gesendet .fe__form{display:none}
+.fe.gesendet .fe__danke{display:block}
+.betraege{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:620px){.felder{grid-template-columns:1fr}.feld--ganz{grid-column:auto}}
+
+/* ---------- 404 ---------- */
+.nicht{min-height:100svh;display:grid;place-items:center;text-align:center;padding:120px var(--rand)}
+.nicht h1{font:400 clamp(2rem,5vw,4rem)/1.15 var(--titel);text-transform:uppercase;letter-spacing:.14em;margin-bottom:24px}
+
+/* ---------- Druck: die Karte zum Mitnehmen ---------- */
+@media print{
+  .leiste,.menue,.fuss,.kopf__bild,.drucken,dialog,.fenster,.knopf,.ka__weiter{display:none!important}
+  body{background:#fff;font-size:11pt}
+  .f-dunkel,.f-tapete,.f-hell,.lm{background:#fff!important;color:#000!important}
+  .kopf{min-height:0;display:block}.kopf__t{padding:0 0 12pt!important}.kopf__unter{position:static}.kopf .hz{display:none}
+  .teil{padding-block:12pt}
+  .js [data-r],.js [data-r] img,[data-schlitz] .z>span{transform:none!important}
+  .js [data-schlitz]{visibility:visible!important}
+  .land{break-inside:avoid}
+}
+
+/* ---------- Kleine Handys (320 bis 400 px): nichts ragt über den Rand ---------- */
+.tafel__g .ganz{grid-column:1/-1}
+@media (max-width:600px){
+  .t2,.kopf__t h1{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+  .wk__w{grid-template-columns:3em 1fr}
+  .wk__w span{grid-column:2;text-align:left;white-space:normal}
+  .naechst__datum{font-size:clamp(2.3rem,12vw,3.4rem)}
+  .fuss__sp{grid-template-columns:1fr}
+}
+@media (max-width:400px){
+  .ecke .knopf{font-size:0;letter-spacing:0;gap:0;padding-left:5px;width:46px}
+  .insel{padding-right:6px}
+}
+
+/* ---------- Hafen: das Haus von aussen; zwei Fotos legen mit ihren Horizonten an derselben Linie an, der Titel sitzt rechts auf ihr ---------- */
+.ha__g{display:grid;grid-template-columns:50cqw 22cqw 20cqw;column-gap:4cqw;grid-template-rows:calc(50cqw * .66667 * .647) auto}
+.ha__haus{grid-column:1;grid-row:1/3;--hz:.647}
+.ha__haus .foto{aspect-ratio:3840/2560}
+.ha__hafen{grid-column:2;grid-row:1/3;margin-top:calc(50cqw * .66667 * .647 - 22cqw * .66680 * .495)}
+.ha__hafen .foto{aspect-ratio:2560/1707}
+.ha__t{grid-column:3;grid-row:1;align-self:end}
+.ha__u{grid-column:3;grid-row:2;padding-top:clamp(24px,2.6vw,40px);display:grid;gap:22px;align-self:start}
+@media (max-width:900px){
+  .ha__g{display:grid;grid-template-columns:1fr;grid-template-rows:auto;row-gap:26px}
+  .ha__haus,.ha__hafen,.ha__t,.ha__u{grid-column:1;grid-row:auto;margin-top:0}
+  .ha__t{order:-1}
+  .ha__hafen{width:72%;justify-self:end}
+}
+/* Namensnennung freier Bilder: klein unter dem Foto */
+.nachweis{margin-top:10px;font:400 10.5px/1.45 var(--mono);letter-spacing:.08em;color:#55647A}
+.nachweis a{text-decoration:none;border-bottom:1px solid rgba(85,100,122,.4)}
+.f-dunkel .nachweis{color:rgba(197,210,225,.62)}
+.nachweis--zeile{display:inline;margin:0}
+/* Besen: das Luftbild steht auf der Linie neben dem Titel */
+.be__oben{display:flex;justify-content:space-between;align-items:flex-end;gap:4cqw}
+.be__luft{width:34cqw;flex:none;aspect-ratio:3840/2685}
+.be__bildzeile{grid-column:2;padding-top:14px;font-size:14.5px;line-height:1.5;color:#35455D}
+@media (max-width:900px){.be__oben{flex-direction:column;align-items:flex-start;gap:24px}.be__luft{width:100%;order:-1}}
+/* Lunch-Zeile mit dem Foto aus der Küche */
+.ka__mittag{grid-template-columns:auto auto 1fr auto}
+.ka__suppe{width:clamp(76px,7vw,104px);aspect-ratio:4/5;border-radius:var(--rund-k);box-shadow:0 18px 28px -18px rgba(4,16,35,.5)}
+@media (max-width:980px){.ka__mittag{grid-template-columns:auto 1fr}.ka__mittag .ka__gaenge,.ka__mittag .leise{grid-column:1/-1}}
+/* Events: Foto zum Anlass im Rückblick */
+.rueck__bild{width:min(180px,100%);aspect-ratio:4/5;margin-top:14px;border-radius:var(--rund-k)}
+.nachweis--fenster{position:absolute;right:var(--rand);bottom:10px;margin:0;color:rgba(255,255,255,.82);text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.nachweis--fenster a{border-color:rgba(255,255,255,.4)}
+
+/* ---------- Die Linie, ruhiger (Robert 19.10.2026: «schöne Idee, aber die sehen aus wie so eine Störung», auf allen Seiten) ----------
+   Die Linie läuft nie mehr quer über den ganzen Bildschirm und nie über ein Foto: sie beginnt an der Kante des Fotos,
+   reicht bis zum Ende des Titels und läuft weich aus. Fotos liegen über ihr. Am Handy nur dort, wo ein Titel auf ihr sitzt. */
+.hz{--c:var(--himmel-t);left:0;right:0;opacity:.5;background:linear-gradient(90deg,transparent,var(--c) 12%,var(--c) 88%,transparent)}
+.f-dunkel .hz{--c:var(--himmel);opacity:.7}
+.hz--rechts{background:linear-gradient(90deg,var(--c),var(--c) 62%,transparent)}
+.hz--links{background:linear-gradient(270deg,var(--c),var(--c) 62%,transparent)}
+.anl>figure{position:relative;z-index:1}
+.ter__bild>.hz{left:100%;right:auto;width:calc(6cqw + 46cqw)}
+.ha__haus>.hz{left:100%;right:auto;width:calc(4cqw + 22cqw + 4cqw + 20cqw)}
+.ha__hafen>.hz{display:none}
+.ab__bild>.hz{right:100%;left:auto;width:calc(8cqw + 44cqw)}
+.auftakt .hz{--c:#0A2552;left:var(--rand);right:auto;width:min(58vw,880px);opacity:.5}
+.kopf>.hz{left:var(--rand);right:auto;width:calc(50% - 2 * var(--rand))}
+@media (max-width:900px){.anl>.hz{display:none}}
+@media (max-width:760px){.auftakt .hz{width:calc(100vw - 2 * var(--rand))}}
+
+/* ======================================================================================================================
+   Runde 2 (Robert 19.10.2026, 16:59–17:02): Lästermeile, Schatten im Fenster, Karte, Lunch, Küche, Keller, Besen, Feiern, Abend
+   ====================================================================================================================== */
+
+/* ---------- Lästermeile: die Naht liegt genau zwischen «Läster» (weiss, drinnen) und «meile.» (Tinte, draussen) ---------- */
+.lm__titel{display:grid;grid-template-columns:1fr 1fr;margin:0 0 clamp(36px,4vw,64px);font:400 clamp(2.6rem,6.4vw,6.4rem)/1.08 var(--titel);text-transform:uppercase;letter-spacing:.16em}
+.lm__titel>.links{justify-self:end;color:#F2F5F8;padding-right:.08em}
+.lm__titel>.rechts{justify-self:start;color:var(--titel-h);padding-left:.08em;margin-right:-.16em}
+.lm__titel>.links .z,.lm__titel>.rechts .z{text-align:inherit}
+.lm__g{grid-template-columns:1fr 1fr;column-gap:8cqw;align-items:stretch}
+.lm__drinnen{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(22px,2.4vw,34px)}
+.lm__zitat{max-width:22ch;font:300 clamp(1.5rem,2.5vw,2.35rem)/1.32 var(--titel);color:#F2F5F8;quotes:"«" "»";text-wrap:balance}
+.lm__zitat q::before{content:open-quote}.lm__zitat q::after{content:close-quote}
+.lm__zitat cite{display:block;margin-top:16px;font:400 11.5px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--himmel-h)}
+.lm__drinnen .lauf{max-width:38ch;font-size:clamp(1rem,1.2vw,1.15rem);color:rgba(233,238,243,.86)}
+.lm__bilder{margin-top:auto;display:flex;align-items:flex-end;justify-content:center;gap:2cqw;position:relative;z-index:2;margin-bottom:calc(-1 * clamp(26px,3vw,46px))}
+.lm__regal{width:25cqw}.lm__bar{width:16cqw}
+.lm__draussen{display:flex;flex-direction:column;gap:clamp(26px,3vw,44px)}
+.tapas--zwei{display:grid;grid-template-columns:1fr 1fr;column-gap:3cqw}
+.tapas--zwei .tap__g h3{margin-top:0}
+.lm__bilder--r{justify-content:center}
+.lm__ig{width:13cqw;aspect-ratio:360/560}
+.lm__schild{width:18cqw;aspect-ratio:2500/3334}
+.lm__band{position:relative;z-index:1}
+.lm__luft{width:9cqw;aspect-ratio:360/560}
+.lm__band-w{position:relative}
+.lm__mehr{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.lm__mehr .knopf{pointer-events:auto}
+.lm .foto{box-shadow:0 34px 60px -30px rgba(0,0,0,.55),0 10px 22px -12px rgba(0,0,0,.35)}
+@media (max-width:900px){
+  .lm__titel{display:block;font-size:clamp(2rem,10vw,3.2rem);letter-spacing:.12em}
+  .lm__titel>.rechts{color:var(--himmel);padding-left:0}
+  .lm__titel>span{display:inline}
+  .lm__drinnen{text-align:left;align-items:flex-start}
+  .lm__bilder{margin-bottom:0;justify-content:flex-start}
+  .lm__regal{width:60%}.lm__bar{width:38%}
+  .lm__draussen{background:var(--kalk) var(--tap-h) 0 0/168px;margin:clamp(40px,8vw,60px) calc(-1 * var(--rand)) 0;padding:clamp(48px,10vw,72px) var(--rand) 0}
+  .tapas--zwei{grid-template-columns:1fr;row-gap:24px}
+  .lm__ig{width:38%}.lm__schild{width:56%}.lm__luft{display:none}
+  .lm__band{display:block}
+}
+
+/* ---------- Fenster: der Hof hinter dem Satz läuft weich und weit in das Bild aus, keine sichtbare Fläche ---------- */
+.fenster__s p::before{inset:-110% -55%;background:radial-gradient(closest-side,rgba(3,11,24,.34),rgba(3,11,24,.27) 22%,rgba(3,11,24,.17) 44%,rgba(3,11,24,.08) 66%,rgba(3,11,24,.025) 84%,rgba(3,11,24,0))}
+.fenster__s p .z>span{text-shadow:0 1px 2px rgba(3,11,24,.45),0 3px 14px rgba(3,11,24,.38),0 8px 40px rgba(3,11,24,.3)}
+/* Fenster «Auszeit»: ein Schatten über das ganze Bild (Robert 19.10.2026, 19:3x), als Helligkeit im Foto selbst, keine Fläche darüber */
+/* Fenster «Alpen» bekommt denselben Schatten (Robert 19.10.2026, mit dem Säntis-Bild) */
+#fenster-hafen .fenster__f>img,#fenster-alpen .fenster__f>img{filter:brightness(.74)}
+
+/* ---------- Karte: jede Spalte wie eine gedruckte Menükarte, mittig, Name in Versalien, Preis klein darunter ---------- */
+.mks{column-gap:3cqw;padding-top:clamp(34px,3.4vw,52px)}
+.mk{text-align:center}
+.mk h3{font:400 clamp(1.05rem,1.5vw,1.4rem)/1.25 var(--titel);letter-spacing:.24em;text-transform:uppercase;color:var(--titel-h);margin:0;min-height:2.5em;display:flex;align-items:flex-end;justify-content:center}
+.mk__strich{display:block;width:34px;height:1px;margin:16px auto 22px;background:var(--himmel-t);opacity:.6;transform:scaleX(0);transition:transform 1.4s var(--e1) .25s}
+.mk.da .mk__strich,.ruhig .mk__strich{transform:none}
+.mk ul{list-style:none;margin:0;padding:0;display:grid;gap:clamp(18px,1.8vw,26px)}
+.mk li{display:grid;gap:5px;justify-items:center}
+.mk li b{font:400 13.5px/1.35 var(--titel);letter-spacing:.17em;text-transform:uppercase;color:var(--tinte)}
+.mk li small{font-size:15px;line-height:1.45;color:#3E4D63;max-width:26ch}
+.mk li span{font:400 12.5px/1.4 var(--mono);letter-spacing:.08em;color:var(--himmel-t)}
+.mk li span i{font-style:normal;margin-left:10px;padding-left:10px;border-left:1px solid rgba(15,54,120,.3)}
+.mk__fuss{text-align:center;margin-top:clamp(30px,3vw,44px)}
+@media (max-width:980px){.mks{grid-template-columns:1fr 1fr;row-gap:44px}}
+@media (max-width:560px){.mks{grid-template-columns:1fr}.mk h3{min-height:0}}
+
+/* ---------- Karte, Fassung 14 (19.10.2026): Klassiker gross links, drei Länder rechts je mit Bild ---------- */
+.ka14{display:grid;grid-template-columns:41cqw 1fr;column-gap:6cqw;align-items:start}
+.ka14__bild{aspect-ratio:4/4.4;margin-bottom:clamp(28px,2.8vw,40px)}
+.ka14__drei{display:grid;gap:clamp(40px,4vw,60px)}
+.ka14__land{display:grid;grid-template-columns:clamp(150px,16cqw,230px) 1fr;column-gap:clamp(24px,2.8cqw,40px);align-items:start}
+.ka14__klein{aspect-ratio:3/4;border-radius:var(--rund-k)}
+.ka14__h{font:400 clamp(1.1rem,1.5vw,1.4rem)/1.25 var(--titel);letter-spacing:.22em;text-transform:uppercase;color:var(--titel-h);margin:0 0 clamp(14px,1.4vw,20px)}
+.ka14__l{list-style:none;margin:0;padding:0;display:grid;gap:clamp(12px,1.2vw,16px)}
+.ka14__gr .ka14__l{gap:clamp(14px,1.4vw,18px)}
+.ka14__l li{display:grid;grid-template-columns:auto 1fr auto;column-gap:10px;align-items:baseline}
+.ka14__l b{font:400 14px/1.35 var(--titel);letter-spacing:.15em;text-transform:uppercase;color:var(--tinte)}
+.ka14__l span{font:400 13px/1.35 var(--mono);letter-spacing:.06em;color:var(--himmel-t);text-align:right;white-space:nowrap}
+.ka14__l small{grid-column:1/-1;margin-top:3px;font-size:15px;line-height:1.45;color:#3E5A63}
+@media (max-width:980px){
+  .ka14{grid-template-columns:1fr;row-gap:clamp(48px,8vw,64px)}
+  .ka14__bild{aspect-ratio:4/3.4}
+  .ka14__land{grid-template-columns:clamp(110px,26vw,200px) 1fr}
+}
+@media (max-width:560px){.ka14__l b{font-size:13px;letter-spacing:.12em}.ka14__l li{column-gap:8px}}
+
+/* ---------- Lunch: eine dunkle Platte mit grossem Foto, das Menü wie im Druck des Hauses mit drei Sternen dazwischen ---------- */
+.lu{position:relative;display:grid;grid-template-columns:38cqw 1fr;margin-top:clamp(56px,6vw,96px);border-radius:var(--rund);overflow:hidden;background:var(--nacht) var(--tap-d) 0 0/168px;color:#EEF2F5;
+  box-shadow:0 60px 90px -60px rgba(4,16,35,.75),0 24px 40px -30px rgba(4,16,35,.45)}
+.lu__bild{margin:0;position:relative;min-height:clamp(380px,34cqw,520px);background:#0B1F41 center/cover}
+.lu__bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.lu__t{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(40px,5vw,72px) clamp(26px,4vw,64px)}
+.lu__kopf{display:grid;gap:8px;margin-bottom:clamp(22px,2.6vw,36px)}
+.lu__kopf span{font:400 11.5px/1.5 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--himmel-h)}
+.lu__kopf b{font:400 clamp(1.8rem,3.2vw,3rem)/1.1 var(--titel);letter-spacing:.16em;text-transform:uppercase;font-weight:400;color:#F2F5F8}
+.lu__gaenge{display:grid;justify-items:center;gap:14px}
+.lu__gang{display:grid;gap:4px}
+.lu__gang b{font:400 clamp(1.05rem,1.4vw,1.3rem)/1.3 var(--titel);letter-spacing:.12em;text-transform:uppercase;font-weight:400}
+.lu__gang small{font-size:15.5px;color:rgba(233,238,243,.78)}
+.lu__stern{font-size:11px;letter-spacing:.6em;color:var(--himmel);opacity:.8}
+.lu__k{justify-content:center;margin-top:clamp(26px,3vw,40px)}
+.lu .leise{color:#F2F5F8}
+.js .lu.da .lu__bild img{transform:none}
+@media (max-width:900px){.lu{grid-template-columns:1fr}.lu__bild{min-height:62vw}}
+
+/* ---------- Küche: das Zitat gross über allem, die Zahlen steigen, Bilder aus der Küche neben dem Team ---------- */
+.ku__gross{max-width:28ch;font:300 clamp(1.7rem,3.3vw,3.2rem)/1.26 var(--titel);color:#F2F5F8;text-wrap:balance;margin-bottom:12px}
+.ku__von{color:var(--himmel-h);margin-bottom:clamp(40px,5vw,80px)}
+.ku__unten{grid-template-columns:40cqw 1fr;align-items:start}
+.ku__preise{grid-template-columns:repeat(3,auto);column-gap:clamp(24px,3.4vw,56px)}
+.preis b{display:flex;align-items:baseline;gap:4px;font:300 clamp(2.8rem,5.4vw,5.2rem)/1 var(--titel);letter-spacing:.02em;color:#F2F5F8}
+.preis b small{font-size:.36em;color:var(--himmel-h);letter-spacing:.06em}
+.preis--wort b{font:400 clamp(1.05rem,1.6vw,1.5rem)/1.3 var(--titel);letter-spacing:.12em;text-transform:uppercase;max-width:12ch;padding-top:.4em}
+.ku__reihe{display:grid;grid-template-columns:14cqw 14cqw 14cqw 1fr;column-gap:2cqw;align-items:end;margin-top:clamp(60px,7vw,110px)}
+.ku__ig{aspect-ratio:9/14}
+.ku__reihe .ku__ig:nth-child(2){margin-bottom:clamp(30px,4vw,60px)}
+.ku__team{margin:0 0 0 2cqw}
+.ku__team .foto{max-width:none;margin:0;aspect-ratio:2500/1667}
+.ku__team p{text-align:left;margin:20px 0 0;max-width:52ch}
+@media (max-width:900px){.ku__reihe{grid-template-columns:1fr 1fr 1fr;row-gap:30px;column-gap:10px}.ku__team{grid-column:1/-1;margin:0}.ku__reihe .ku__ig:nth-child(2){margin-bottom:0}.ku__preise{grid-template-columns:1fr 1fr}}
+
+/* ---------- Keller: die Zahl der Weine steigt ---------- */
+.ke__zahl{display:grid;gap:8px;max-width:30ch}
+.ke__zahl b{font:300 clamp(3.4rem,6.6vw,6.4rem)/.95 var(--titel);letter-spacing:.02em;color:var(--titel-h)}
+.ke__zahl span{font-size:15.5px;line-height:1.5;color:#35455D}
+.zitat--gross{font:300 clamp(1.15rem,1.6vw,1.5rem)/1.45 var(--titel);color:var(--tinte);max-width:30ch}
+
+/* ---------- Besen: Luftbild gross auf der Linie, Titel daneben, die Klage von damals als Inschrift über die Breite ---------- */
+.be__oben{display:grid;grid-template-columns:52cqw 1fr;column-gap:6cqw;align-items:end}
+.be__luft{width:auto;aspect-ratio:3840/2685}
+.be__kopf{padding-bottom:0}
+.be__jahr{color:var(--himmel-t);margin-bottom:18px}
+.be__bildzeile{margin-top:14px;font-size:13.5px;color:#4E5D73}
+.be__inschrift{margin:clamp(54px,6vw,96px) auto clamp(40px,4.4vw,70px);padding:clamp(30px,3.4vw,52px) 0;max-width:62rem;text-align:center;border-top:1px solid rgba(15,54,120,.28);border-bottom:1px solid rgba(15,54,120,.28)}
+.be__inschrift p{font:300 clamp(1.7rem,3.6vw,3.4rem)/1.25 var(--titel);color:var(--titel-h);text-wrap:balance}
+.be__inschrift cite{display:block;margin-top:20px;font-style:normal;color:var(--himmel-t)}
+.be__text{display:grid;grid-template-columns:repeat(3,1fr);column-gap:4cqw;font-size:clamp(1rem,1.2vw,1.12rem);line-height:1.62;padding-top:0}
+.be__text p:nth-child(2){font:400 clamp(1.1rem,1.5vw,1.4rem)/1.4 var(--titel);letter-spacing:.06em;color:var(--titel-h);text-align:center;align-self:center}
+@media (max-width:900px){.be__oben{display:flex;flex-direction:column;align-items:stretch;gap:24px}.be__text{grid-template-columns:1fr;row-gap:18px}}
+
+/* ---------- Feiern: je Etage eine Bühne auf ihrer Linie, darunter die drei Menüs der Jahreszeiten ---------- */
+.fe__satz{justify-self:end;max-width:24ch;font:300 clamp(1.3rem,2vw,1.9rem)/1.35 var(--titel);color:#F2F5F8;text-wrap:balance}
+.etagen{display:grid;gap:clamp(40px,4.4vw,70px)}
+.etage{grid-template-columns:20cqw 1fr 18cqw;column-gap:4cqw;align-items:end;padding-bottom:0}
+.etage__zahl{flex-direction:column;align-items:flex-start;gap:6px}
+.etage__zahl b{font:200 clamp(5rem,11vw,10.5rem)/.82 var(--titel)}
+.etage__t{display:grid;gap:10px;justify-items:start;padding-bottom:clamp(18px,2vw,30px)}
+.etage__t h3{font:400 clamp(1.3rem,2vw,1.9rem)/1.2 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:#F2F5F8;margin:0}
+.etage__t p{color:rgba(233,238,243,.82);margin-bottom:8px}
+.etage__bild{aspect-ratio:4/4.6}
+.jzs{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(60px,7vw,110px)}
+.jz{padding:0 clamp(18px,2.4vw,40px);text-align:center;border-left:1px solid rgba(162,182,207,.22)}
+.jz:first-child{border-left:0}
+.jz h3{font:400 13px/1.3 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-h);margin:0 0 10px}
+.jz__preis{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:18px}
+.jz__preis b{font:200 clamp(3rem,5.4vw,5rem)/1 var(--titel);color:#F2F5F8}
+.jz__preis span{font:400 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h)}
+.jz ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.jz li{font:400 12.5px/1.45 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:rgba(233,238,243,.86)}
+.fe__hinweis{margin:clamp(34px,3.6vw,56px) auto 0;text-align:center;max-width:62ch}
+.fe__unten{justify-content:center}
+@media (max-width:900px){.etage{grid-template-columns:1fr 1fr;row-gap:18px}.etage__bild{grid-column:2;grid-row:1/3}.jzs{grid-template-columns:1fr;row-gap:36px}.jz{border-left:0;border-top:1px solid rgba(162,182,207,.22);padding-top:28px}.fe__satz{justify-self:start}}
+
+/* ---------- Abend: die Woche und der Tag als Linien, die sich füllen ---------- */
+.ab__u{display:grid;gap:clamp(26px,2.8vw,40px)}
+.woche{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.woche li{display:grid;gap:10px;justify-items:start}
+.woche b{font:400 13px/1 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h)}
+.wo__balken{display:block;width:100%;height:3px;border-radius:2px;background:rgba(15,54,120,.14);position:relative;overflow:hidden}
+.wo__balken::after{content:"";position:absolute;inset:0;background:var(--stuhl);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.2s var(--e1);transition-delay:calc(var(--i)*90ms + .2s)}
+.woche.da li.auf .wo__balken::after,.ruhig .woche li.auf .wo__balken::after{transform:none}
+.woche small{font:400 11px/1.4 var(--mono);letter-spacing:.06em;color:#4E5D73}
+.woche li.zu b{color:#8A96A7}
+.tag{display:grid;gap:12px}
+.tag__achse{position:relative;height:18px;margin-left:9.5em}
+.tag__achse span{position:absolute;top:0;transform:translateX(-50%);font:400 10.5px/1 var(--mono);color:#4E5D73}
+.tag__achse span:first-child{transform:none}.tag__achse span:last-child{transform:translateX(-100%)}
+.tag__zeile{display:grid;grid-template-columns:9.5em 1fr;align-items:center}
+.tag__zeile b{font:400 12.5px/1 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h);font-weight:400}
+.tag__bahn{position:relative;height:12px;border-radius:6px;background:rgba(15,54,120,.1)}
+.tag__bahn i{position:absolute;top:0;bottom:0;border-radius:6px;background:linear-gradient(90deg,var(--stuhl),#1A4D9F);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.4s var(--e1) .35s}
+.tag__bahn i.lang{background:linear-gradient(90deg,var(--himmel),var(--himmel-h))}
+.tag.da .tag__bahn i,.ruhig .tag__bahn i{transform:none}
+.ab__ferien{font-size:15px;color:#35455D}
+.ab__ferien b{font:400 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t);margin-right:10px;font-weight:400}
+@media (max-width:560px){.woche{gap:4px}.woche small{font-size:9.5px}.tag__achse{margin-left:7em}.tag__zeile{grid-template-columns:7em 1fr}}
+
+/* Runde 2, Nachschliff nach eigener Durchsicht */
+.ku__links{align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+.ku__gross{font-size:clamp(1.5rem,2.6vw,2.6rem);max-width:20ch}
+.ku__von{margin-bottom:0}
+.lm__regal{width:28cqw}.lm__bar{width:16cqw}
+.woche b{font-size:14px}
+.woche small{font-size:12.5px;line-height:1.35}
+.tag__achse span{font-size:11.5px}
+.tag__achse{height:20px}
+@media (max-width:900px){.ku__links{gap:26px}.ku__oben .ku__links{grid-column:1/3}}
+.preis b>span{font:inherit;letter-spacing:inherit;color:inherit;text-transform:none}
+[data-zahl]{display:inline-block;font-variant-numeric:tabular-nums}
+.woche{grid-template-columns:repeat(7,minmax(0,1fr))}
+.ku__preise{grid-template-columns:repeat(3,minmax(0,auto))}
+@media (max-width:600px){
+  .woche small{font-size:10.5px;overflow-wrap:anywhere}
+  .woche b{font-size:12px;letter-spacing:.12em}
+  .ku__preise{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .preis b{font-size:clamp(2.2rem,11vw,3rem)}
+  .preis--wort{grid-column:1/-1}
+}
+/* Handy zuletzt: stellt die einspaltigen Fassungen wieder her, die spätere Regeln am Rechner überschreiben */
+@media (max-width:900px){
+  .ku__unten{grid-template-columns:1fr;row-gap:30px}
+  .lm__regal{width:60%}.lm__bar{width:38%}
+  .ku__gross{max-width:none}
+}
+.fenster__f{overflow-x:clip}
+.nachweis--fenster{top:12px;bottom:auto}
+@media (max-width:900px){
+  .lm__titel{font-size:clamp(1.55rem,8.4vw,2.6rem);white-space:nowrap}
+  .lm__titel>span{display:inline-block}
+}
+@media (max-width:600px){.tag__achse span:nth-child(2),.tag__achse span:nth-child(4){display:none}}
+
+/* ---------- Auftakt «Am Tisch» (19.10.2026, Fassung 07.6): Teller von oben, Prägung im Abstand um den Rand ----------
+   Ein bewegtes Element: der Schriftring dreht beim Scrollen langsam mit (haus.js, nur transform). Teller und Worte stehen. */
+.auftakt--teller{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:clamp(24px,3vw,56px);padding:0 var(--rand);color:#fff}
+.auftakt--teller .tl{--d:min(64svh,44vw,760px);position:relative;width:var(--d);height:var(--d);margin-top:clamp(40px,6svh,70px)}
+.auftakt--teller .tl picture,.auftakt--teller .tl picture img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%}
+.auftakt--teller .tl picture img{object-fit:cover;object-position:50% 48%}
+.auftakt--teller .tl__ring{position:absolute;left:50%;top:50%;width:136%;height:136%;margin:-68% 0 0 -68%;overflow:visible;pointer-events:none}
+.auftakt--teller .tl__ring text{fill:#fff;font:400 22px var(--mono);letter-spacing:.4em}
+.auftakt--teller .tw{margin:0;display:grid;gap:14px;margin-top:clamp(40px,6svh,70px)}
+.auftakt--teller .tw--r{justify-items:end;text-align:right}
+.auftakt--teller .tw .z{display:block;overflow:clip;overflow-clip-margin:.2em}
+.auftakt--teller .tw .z>span{display:block;font:300 clamp(3.2rem,7.4vw,7.6rem)/1 var(--titel);font-stretch:88%;letter-spacing:-.01em;white-space:nowrap}
+.auftakt--teller .tw .mono{font-size:12.5px;opacity:.75}
+.js .auftakt--teller .tw .z>span{transform:translateY(110%);transition:transform 1.4s var(--e1) .55s}
+.js .auftakt--teller .tw--r .z>span{transition-delay:.7s}
+.js .auftakt--teller .tl__ring{transform:rotate(-14deg);transition:transform 2.2s var(--e1) .2s}
+.js .auftakt--teller .tw .mono{transform:translateY(14px);transition:transform 1.4s var(--e1) .85s}
+.auf .auftakt--teller .tw .z>span,.auf .auftakt--teller .tw .mono{transform:none}
+.auf .auftakt--teller .tl__ring{transform:none}
+.auftakt--teller .tl__ring.frei{transition:none}
+@media (max-width:760px){
+  .auftakt--teller{grid-template-columns:1fr;grid-template-rows:1fr auto 1fr;justify-items:center;padding-top:76px}
+  .auftakt--teller .tl{--d:min(74vw,46svh);margin:0}
+  .auftakt--teller .tw,.auftakt--teller .tw--r{justify-items:center;text-align:center;margin:0}
+  .auftakt--teller .tw--l{align-self:end;margin-bottom:clamp(44px,9vw,64px)}
+  .auftakt--teller .tw--r{align-self:start;margin-top:clamp(44px,9vw,64px)}
+  .auftakt--teller .tw .z>span{font-size:clamp(2.6rem,13vw,4rem)}
+  .auftakt--teller .tl__ring text{font-size:30px;letter-spacing:.3em}
+}
+
+/* Tischläufer aus Leinen quer unter dem Teller (Robert 19.10.2026, Fläche 14). Steht still, liegt unter Teller und Worten.
+   Mitte = Tellermitte (Raster zentriert, Teller und Worte tragen denselben Abstand oben, daher + halber Abstand). */
+.auftakt--teller{--lauf-h:calc(var(--d-t,min(64svh,44vw,760px)) * .58)}
+.auftakt--teller::before{content:"";position:absolute;left:0;right:0;z-index:0;height:var(--lauf-h);top:calc(50% + clamp(20px,3svh,35px) - var(--lauf-h) / 2);background:#e6e1d6 url(../img/leinen.webp?v=217b91f9) 0 0/480px;box-shadow:0 1px 0 rgba(255,255,255,.06),0 -1px 0 rgba(0,0,0,.25)}
+.auftakt--teller>*{position:relative;z-index:1}
+.auftakt--teller>h1.vh{position:absolute!important}
+.auftakt--teller .tw{color:var(--tinte)}
+.auftakt--teller .tw .mono{opacity:.7}
+@media (max-width:760px){
+  .auftakt--teller{--lauf-h:calc(min(74vw,46svh) * .5)}
+  .auftakt--teller::before{top:50%;margin-top:calc(var(--lauf-h) / -2 + 38px)}
+  .auftakt--teller .tw{color:#fff}
+}
+
+/* ======================================================================================================================
+   Runde 4 (Robert 19.10.2026, 17:33–17:34): Terrasse mit Führer-Zeichen, Gesicht und Bildreihe; Hafen neu über die ganze Breite;
+   Lästermeile: Bilder stehen ganz auf den Fliesen, nichts wird abgeschnitten
+   ====================================================================================================================== */
+.ter__g{grid-template-rows:calc(42cqw * 1.3332 * .433) auto}
+.ter__t{grid-column:2;grid-row:1;align-self:end}
+.ter__t .ter__von{margin-bottom:18px}
+.ter__stimmen{grid-column:2;grid-row:2;align-self:start;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,34px);padding-top:clamp(28px,3vw,46px)}
+.stimme{margin:0;display:grid;gap:14px;align-content:start;padding:clamp(20px,2.2vw,30px);border-radius:var(--rund);background:linear-gradient(180deg,#FBFDFD,#E8EDF3);box-shadow:inset 0 1px 0 #fff,0 30px 50px -40px rgba(4,16,35,.55)}
+.stimme img{height:clamp(56px,5.4vw,78px);width:auto}
+.stimme blockquote{margin:0;font:300 clamp(1.05rem,1.4vw,1.3rem)/1.4 var(--titel);color:var(--tinte);quotes:"«" "»"}
+.stimme q::before{content:open-quote}.stimme q::after{content:close-quote}
+.stimme figcaption{font:400 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t)}
+.ter__reihe{display:grid;grid-template-columns:44cqw 22cqw 18cqw;column-gap:4cqw;justify-content:start;align-items:end;margin-top:clamp(56px,6vw,96px)}
+.ter__lounge{aspect-ratio:1761/1180}
+.ter__mensch{margin:0}
+.ter__lukas{aspect-ratio:2441/3661}
+.ter__mensch figcaption{display:grid;gap:2px;margin-top:14px}
+.ter__mensch b{font:400 13px/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;font-weight:400;color:var(--titel-h)}
+.ter__mensch span{font:400 11px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--himmel-t)}
+.ter__luft{aspect-ratio:9/15;margin-bottom:clamp(40px,5vw,80px)}
+@media (max-width:900px){.ter__stimmen{grid-template-columns:1fr;padding-top:28px}.ter__reihe{grid-template-columns:1fr 1fr;row-gap:20px;column-gap:14px}.ter__lounge{grid-column:1/-1}.ter__luft{margin-bottom:0}}
+
+/* Hafen: das Haus über die ganze Breite (ganzes Foto, nicht gezoomt), der Titel sitzt auf dem Horizont des Sees */
+.ha2{position:relative;overflow-x:clip}
+.ha2__bild{position:relative;width:100%;aspect-ratio:3840/2560;background:#0B1F41 center/cover;container-type:inline-size}
+.ha2__bild>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ha2__bild>.hz{--c:#fff;top:64.7%;left:0;right:auto;width:42%;opacity:.8}
+.ha2__t{position:absolute;left:var(--rand);bottom:35.3%;margin:0 0 calc(-.172em + 4px);font:400 clamp(2.2rem,5.4vw,5.6rem)/1.08 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:#fff;text-wrap:balance;max-width:9ch}
+.ha2__t em{font-style:normal;color:var(--himmel-h)}
+.ha2__t .z>span{text-shadow:0 1px 2px rgba(3,11,24,.5),0 4px 18px rgba(3,11,24,.45),0 10px 46px rgba(3,11,24,.35)}
+.ha2__unten{position:relative;padding:0 0 var(--polster)}
+.ha2__g{display:grid;grid-template-columns:30cqw 1fr 1fr;column-gap:5cqw;align-items:start}
+.ha2__karte{margin-top:calc(-1 * clamp(90px,12vw,200px));position:relative;z-index:2}
+.ha2__hafen{aspect-ratio:2560/1707}
+.ha2__satz{font:300 clamp(1.3rem,2vw,1.9rem)/1.35 var(--titel);color:#F2F5F8;padding-top:clamp(30px,3vw,48px)}
+.ha2__g>.zitat{padding-top:clamp(34px,3.4vw,54px)}
+@media (max-width:900px){.ha2__bild{aspect-ratio:4/5;max-height:none}.ha2__bild>img{object-position:62% 50%}.ha2__bild>.hz{width:70%}.ha2__g{grid-template-columns:1fr;row-gap:20px}.ha2__karte{width:78%}}
+
+/* Lästermeile: Bilder stehen ganz über dem Fliesenband (kein Überlappen mehr, nichts abgeschnitten) */
+.lm__bilder{margin-bottom:clamp(26px,3vw,44px)}
+.lm .innen{position:relative;z-index:2}
+
+/* ---------- Terrasse und Hafen in einem Teil (Robert 19.10.2026, Fassung 8 aus Runde 4) ----------
+   Ein dunkler Grund ohne Teilung. Oben der Satz des Pächters, darunter das Haus breit (Ausschnitt 100:42, Horizont bei 73,3 %)
+   und links die Platanen, deren Horizont auf gleicher Höhe liegt (Versatz = 74cqw*.42*.7333 - 22cqw*1.3332*.433).
+   Der Satz zur Lage steht direkt unter dem Haus, unten die drei Stimmen nebeneinander, zwei mit dem Zeichen des Führers. */
+.thb__kopf{margin-left:26cqw;display:grid;gap:14px;margin-bottom:clamp(22px,2.4vw,38px)}
+.thb__von{color:var(--himmel)}
+.thb__kopf .t2{font-size:clamp(1.7rem,2.7vw,2.7rem)}
+.thb__g{display:grid;grid-template-columns:22cqw 74cqw;column-gap:4cqw;align-items:start}
+.thb__platanen{grid-column:1;grid-row:1;aspect-ratio:2500/3333;margin-top:calc(74cqw * .42 * .7333 - 22cqw * 1.3332 * .433)}
+.thb__haus{grid-column:2;grid-row:1/3}
+.thb__hausbild{aspect-ratio:100/42}
+.thb__hausbild img{object-position:50% 50%}
+.thb__satz{margin-top:clamp(20px,2.2vw,32px);max-width:44ch;font:400 clamp(1.15rem,1.6vw,1.5rem)/1.45 var(--lauf)}
+.thb__hafen{grid-column:1;grid-row:2;margin-top:clamp(26px,2.8vw,44px);font-size:clamp(1.5rem,2vw,2rem)}
+.thb__stimmen{grid-column:1/3;grid-row:3;display:grid;grid-template-columns:repeat(3,1fr);column-gap:4cqw;margin-top:clamp(56px,6vw,96px);align-items:start}
+.thb__stimme{margin:0;display:grid;grid-template-rows:clamp(64px,6vw,88px) auto;row-gap:clamp(18px,2vw,28px)}
+.thb__stimme img{height:100%;width:auto;align-self:end}
+.thb__stimme--ohne blockquote{grid-row:2}
+.thb__stimme blockquote{margin:0}
+.thb__stimme .zitat cite{color:var(--himmel-h)}
+@media (max-width:900px){
+  .thb__kopf{margin-left:0}
+  .thb__g{display:flex;flex-direction:column}
+  .thb__haus{order:1}.thb__platanen{order:2;width:62%;margin:34px 0 0 auto;align-self:flex-end}.thb__hafen{order:3}.thb__stimmen{order:4}
+  .thb__hafen{margin-top:34px}
+  .thb__stimmen{grid-template-columns:1fr;row-gap:40px;margin-top:56px}
+  .thb__stimme{grid-template-rows:auto auto}
+  .thb__stimme img{height:64px}
+  .thb__stimme--ohne blockquote{grid-row:auto}
+}
+/* Hafen: weicher Hof hinter dem Titel, läuft weit ins Foto aus (das Foto steht still) */
+.ha2__t::before{content:"";position:absolute;inset:-70% -45% -55% -35%;z-index:-1;background:radial-gradient(closest-side,rgba(3,11,24,.46),rgba(3,11,24,.34) 30%,rgba(3,11,24,.18) 58%,rgba(3,11,24,.05) 82%,rgba(3,11,24,0));pointer-events:none}
+.ha2__t{z-index:1}
+@media (max-width:900px){.ha2__t{font-size:clamp(1.9rem,9vw,2.8rem);max-width:none}.ha2__karte{margin-top:-60px}}
+
+/* Fläche aus dem Leder des Platztellers (Robert 19.10.2026), gleicher Ton, gleiche Narbung, gleicher Massstab wie im Tellerfoto:
+   Kachel = 600 von 4096 Bildpunkten des Tellerfotos, also 0,1465 × Tellerbreite. Zweite Lage dieselbe Narbung gedreht und grösser
+   («soft-light»), damit sich die Kachel nicht sichtbar wiederholt. Steht still (Regel 55). Quelle: website/leder.py */
+.auftakt--teller{--d-t:min(64svh,44vw,760px);--kachel:calc(var(--d-t) * .1465);background-color:var(--nacht);background-image:url(../img/leder-narbe.webp?v=5959c183),url(../img/leder-nacht.webp?v=3cc4b40f);background-size:calc(var(--kachel) * 1.618),var(--kachel);background-blend-mode:soft-light,normal}
+@media (max-width:760px){.auftakt--teller{--d-t:min(74vw,46svh)}}
+/* Auftakt «Am Tisch.»: Am und Tisch mittig in ihren Bereichen links und rechts vom Teller (Robert 19.10.2026, 17:52) */
+@media (min-width:761px){.auftakt--teller .tw,.auftakt--teller .tw--r{justify-self:center;justify-items:center;text-align:center}}
+
+/* Hafen: Stimmen nur noch als kleine Anmerkungen unter dem grossen Bild, «Direkt im Hafen.» grösser, Hausbild höher (Robert 19.10.2026, 18:05) */
+@media (min-width:901px){
+  .thb__hausbild{aspect-ratio:100/50}
+  .thb__platanen{margin-top:calc(74cqw * .5 * .696 - 22cqw * 1.3332 * .433)}
+  .thb__hafen{font-size:clamp(2.1rem,3.2vw,3.3rem);margin-top:clamp(34px,3.6vw,56px)}
+  .thb__stimmen{grid-column:2;grid-row:3;column-gap:3cqw;margin-top:clamp(34px,3.4vw,52px);padding-top:clamp(22px,2.2vw,32px);border-top:1px solid color-mix(in srgb,var(--himmel) 22%,transparent)}
+  .thb__stimme{grid-template-rows:clamp(34px,3vw,44px) auto;row-gap:12px}
+  .thb__stimme .zitat{font-size:clamp(.86rem,.95vw,.95rem);line-height:1.5}
+  .thb__stimme .zitat cite{font-size:10px;margin-top:6px}
+}
+/* Hafen: Stimmen näher ans Bild, Logos und Texte mittig, «Direkt im Hafen.» schliesst unten bündig mit den Stimmen ab (Robert 19.10.2026, 18:07) */
+@media (min-width:901px){
+  .thb__haus{grid-row:1}
+  .thb__hafen{grid-row:2;align-self:end;margin:0;line-height:1.05}
+  .thb__stimmen{grid-row:2}
+  .thb__stimmen{margin-top:clamp(22px,2.2vw,34px);padding-top:clamp(26px,2.6vw,38px)}
+  .thb__stimme{justify-items:center;text-align:center}
+  .thb__stimme img{justify-self:center}
+  .thb__stimme .zitat{max-width:30ch}
+  .thb__stimme .zitat cite{letter-spacing:.2em}
+}
+
+/* Auftakt «Am Tisch.» Farbwelt «Ton in Ton» (Robert 19.10.2026, Fassung 02 aus _varianten/farben-12.html): Grund, Leder und Schrift im dunklen
+   Blau des Platztellers (#0b1d3d, 218°), damit Teller und Fläche ein Farbton sind. Ring weiss, Läufer Leinen wie bisher. */
+.auftakt--teller{--ton:#0b1d3d;background-color:var(--ton);background-image:url(../img/leder-narbe.webp?v=5959c183),url(../img/leder-ton.webp?v=eb80ebc9)}
+@media (min-width:761px){.auftakt--teller .tw{color:var(--ton)}}
+
+/* ---------- Willkommen als Brief (Robert 19.10.2026, 18:18, Fassung 01 aus _varianten/willkommen.html) ----------
+   Ersetzt «Terrasse und Hafen». Links drei Bilder: der leere Stuhl gross, darunter Platanen und Abend klein nebeneinander.
+   Rechts der Brief auf hellem Papier: Willkommen, Lage, Küche, Anlass, unterschrieben von Pächter, Küchenchefin und Gastgeber. */
+.wb__g{display:grid;grid-template-columns:5fr 6fr;gap:clamp(40px,4.4vw,72px);align-items:center}
+.wb__bilder{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.2vw,18px)}
+.wb__gross{grid-column:1/3;aspect-ratio:4/4.3}
+.wb__gross img{object-position:50% 70%}
+.wb__klein{aspect-ratio:4/3.4}
+.wb__brief{background:#FBFAF6;border-radius:var(--rund);padding:clamp(40px,4.4vw,72px);box-shadow:0 40px 70px -50px rgba(4,27,35,.5)}
+.wb__brief .t2{margin-bottom:clamp(14px,1.4vw,22px)}
+.wb__brief .lauf{margin-top:1em;font-size:clamp(16px,1.2vw,18px)}
+.wb__sig{display:flex;flex-wrap:wrap;gap:18px clamp(24px,2.6vw,40px);margin-top:clamp(28px,2.8vw,42px);padding-top:clamp(18px,1.8vw,26px);border-top:1px solid var(--kalk2)}
+.wb__sig b{display:block;font:400 clamp(20px,1.6vw,24px)/1.2 'Snell Roundhand','Savoye LET','Apple Chancery',cursive;color:var(--titel-h)}
+.wb__sig i{font:400 11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--himmel-t)}
+.wb__k{margin-top:clamp(28px,2.8vw,40px)}
+@media (max-width:900px){
+  .wb__g{grid-template-columns:1fr}
+  .wb__gross{aspect-ratio:4/4.4}
+  .wb__brief{padding:32px 24px}
+}
+
+/* Lästermeile: Fliesenband unten schmaler (Robert 19.10.2026, 18:4x) */
+.lm__band{height:clamp(64px,6.6vw,100px)}
+
+/* Linien hinter den Bildern ganz weg (Robert 19.10.2026, 18:25) */
+.hz{display:none!important}
+
+/* ---------- Küche als Blatt mit Briefkopf (Robert 19.10.2026, 18:4x, Fassung 1 aus _varianten/kueche-blatt-10.html) ----------
+   Helles Blatt in der Mitte, Moni rund im Kopf; links und rechts je zwei Bilder, die beim Scrollen gegeneinander laufen (haus.js Teil 10, nur transform). */
+.ku2{display:grid;grid-template-columns:17cqw 1fr 17cqw;column-gap:5cqw;align-items:center;padding:clamp(40px,4vw,70px) 0}
+.ku2__gg{display:grid;gap:3cqw;will-change:transform}
+.ku2__seite--l .ku2__gg{justify-items:end}.ku2__seite--r .ku2__gg{justify-items:start}
+.ku2__a{width:15cqw;aspect-ratio:3/4}.ku2__b{width:12cqw;aspect-ratio:4/5}
+.ku2__c{width:17cqw;aspect-ratio:4/5}.ku2__d{width:13cqw;aspect-ratio:3/4}
+.ku2__blatt{position:relative;margin-top:90px;background:#FBFAF6;color:var(--tinte);border-radius:var(--rund);padding:0 clamp(36px,4vw,64px) clamp(36px,4vw,60px);display:grid;justify-items:center;text-align:center;gap:16px;box-shadow:0 50px 80px -50px rgba(0,0,0,.75)}
+.ku2__rund{width:180px;height:180px;margin-top:-90px;border-radius:50%;overflow:hidden;border:6px solid #FBFAF6;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.ku2__rund .foto{width:100%;height:100%;border-radius:0;box-shadow:none}.ku2__rund img{object-position:50% 24%}
+.ku2__kopf,.ku2__von{color:var(--himmel-t);margin:0}
+.ku2__blatt .t2{color:var(--titel-h)}.ku2__blatt .t2 em{color:var(--himmel-t)}
+.ku2__q{font:300 clamp(1.3rem,2vw,1.9rem)/1.3 var(--titel);margin:6px 0 0;max-width:30ch}
+.ku2__weg{color:var(--tinte);margin:0;max-width:46ch}
+.ku2__preise{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,28px);border-top:1px solid color-mix(in srgb,var(--himmel-t) 25%,transparent);padding-top:24px;margin-top:8px}
+.ku2__preise>div{display:grid;gap:8px;justify-items:center;align-content:start}
+.ku2__preise b{display:flex;align-items:baseline;font:200 clamp(2.8rem,4.4vw,4.2rem)/1 var(--titel);color:var(--tinte)}
+.ku2__preise b>span{font:inherit}
+.ku2__preise b small{font-size:.38em;margin-left:.2em;opacity:.7}
+.ku2__preise b.w{font:400 clamp(1rem,1.3vw,1.25rem)/1.2 var(--titel);text-transform:uppercase;letter-spacing:.14em;min-height:2.6em;align-items:center}
+.ku2__preise span{font:400 11px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+@media (max-width:900px){
+  .ku2{grid-template-columns:1fr 1fr;column-gap:14px;row-gap:28px}
+  .ku2__blatt{grid-column:1/-1;grid-row:1;padding:0 22px 30px}
+  .ku2__seite{grid-row:2}.ku2__gg{gap:14px;transform:none!important}
+  .ku2__a,.ku2__b,.ku2__c,.ku2__d{width:100%}
+  .ku2__preise{grid-template-columns:1fr;gap:18px}
+}
+#kueche .ku2__weg{color:var(--tinte);opacity:1}
+/* Küche: je Seite vier gleich grosse Bilder als laufender Streifen, am Abschnittsrand abgeschnitten (Robert 19.10.2026, 18:5x) */
+#kueche{overflow:clip}
+.ku2__f{width:15cqw;aspect-ratio:4/5}
+.ku2__gg{gap:2cqw}
+@media (max-width:900px){.ku2__f{width:100%}.ku2__seite .ku2__f:nth-child(n+3){display:none}}
+
+/* ---------- Küche eingefasst (Robert 19.10.2026, 18:46): das Blatt in der Mitte, rundum Bilder wie die Rivage-Kacheln;
+   die beiden Bilder darüber sind unten innen kreisrund um Monis Bild ausgespart (Abstand = Fuge). ---------- */
+.ku3{--g:2cqw;--k:96px;display:grid;grid-template-columns:22cqw 1fr 1fr 22cqw;grid-template-rows:14cqw auto 15cqw;gap:var(--g);padding:clamp(30px,3vw,56px) 0}
+.ku3 .foto{height:100%}
+.ku3__l{grid-column:1;grid-row:1/4}.ku3__r{grid-column:4;grid-row:1/4}
+.ku3__o1{grid-column:2;grid-row:1;-webkit-mask:radial-gradient(circle at calc(100% + var(--g) / 2) calc(100% + var(--g)),#0000 calc(var(--k) + var(--g)),#000 calc(var(--k) + var(--g) + 1px));mask:radial-gradient(circle at calc(100% + var(--g) / 2) calc(100% + var(--g)),#0000 calc(var(--k) + var(--g)),#000 calc(var(--k) + var(--g) + 1px))}
+.ku3__o2{grid-column:3;grid-row:1;-webkit-mask:radial-gradient(circle at calc(var(--g) / -2) calc(100% + var(--g)),#0000 calc(var(--k) + var(--g)),#000 calc(var(--k) + var(--g) + 1px));mask:radial-gradient(circle at calc(var(--g) / -2) calc(100% + var(--g)),#0000 calc(var(--k) + var(--g)),#000 calc(var(--k) + var(--g) + 1px))}
+.ku3__u1{grid-column:2;grid-row:3}.ku3__u2{grid-column:3;grid-row:3}
+.ku3__blatt{grid-column:2/4;grid-row:2;position:relative;background:#FBFAF6;color:var(--tinte);border-radius:var(--rund);padding:calc(var(--k) + 22px) clamp(32px,3.6vw,60px) clamp(32px,3.4vw,54px);display:grid;justify-items:center;text-align:center;gap:14px;box-shadow:0 50px 80px -50px rgba(0,0,0,.75)}
+.ku3__rund{position:absolute;left:50%;top:calc(var(--k) * -1);margin-left:calc(var(--k) * -1);width:calc(var(--k) * 2);height:calc(var(--k) * 2);border-radius:50%;overflow:hidden;border:6px solid #FBFAF6;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.ku3__rund .foto{width:100%;height:100%;border-radius:0;box-shadow:none}.ku3__rund img{object-position:50% 24%}
+.ku3__blatt .t2{color:var(--titel-h)}.ku3__blatt .t2 em{color:var(--himmel-t)}
+#kueche .ku3 .ku2__weg{color:var(--tinte)}
+@media (max-width:900px){
+  .ku3{--k:70px;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:12px}
+  .ku3__blatt{grid-column:1/-1;grid-row:1;margin-top:var(--k);padding:calc(var(--k) + 16px) 22px 30px}
+  .ku3__l,.ku3__r,.ku3__o1,.ku3__o2,.ku3__u1,.ku3__u2{grid-column:auto;grid-row:auto;-webkit-mask:none;mask:none;aspect-ratio:4/5;height:auto}
+  .ku3__o1,.ku3__o2{display:none}
+  .ku3 .ku2__preise{grid-template-columns:1fr;gap:18px}
+}
+/* Küche: links und rechts je drei Bilder ungleich gestapelt (Robert 19.10.2026, 18:5x) */
+.ku3__l,.ku3__r{display:grid;gap:var(--g);min-height:0}
+.ku3__l{grid-template-rows:.75fr 1.35fr 1fr}.ku3__r{grid-template-rows:1.15fr .7fr 1.25fr}
+.ku3__l .foto,.ku3__r .foto{height:100%;min-height:0}
+.ku3__lukas img{object-position:50% 22%}.ku3__team img{object-position:50% 55%}
+.ku3__o2 img{object-position:50% 45%}
+@media (max-width:900px){.ku3__l,.ku3__r{display:contents}.ku3__l .foto,.ku3__r .foto{aspect-ratio:4/5;height:auto}.ku3__u1,.ku3__u2{display:none}}
+@media (min-width:901px){.ku3__l,.ku3__r{contain:size}.ku3__blatt{align-content:center}}
+/* Küche: die drei Auszeichnungen auf einer Höhe und mittig, Werte in gleich hoher Zeile, Unterzeilen auf einer Linie (Robert 19.10.2026, 19:0x) */
+.ku2__preise{--zh:clamp(2.8rem,4.4vw,4.2rem);align-items:start}
+.ku2__preise>div{grid-template-rows:var(--zh) auto;row-gap:14px;justify-items:center;text-align:center}
+.ku2__preise b,.ku2__preise b.w{height:var(--zh);min-height:0;display:flex;align-items:center;justify-content:center;text-align:center}
+.ku2__preise b{align-items:center}
+.ku2__preise b small{align-self:flex-end;margin-bottom:.35em}
+.ku2__preise>div>span{max-width:22ch;letter-spacing:.14em}
+@media (max-width:900px){.ku2__preise>div{grid-template-rows:auto auto}.ku2__preise b,.ku2__preise b.w{height:auto}}
+
+/* ===== Feiern: Bankettmenüs als gedruckte Karten (Robert 19.10.2026, Fassung 2 aus _varianten/feiern-15.html, «Karten mit 3D-Effekt und Schein
+   wie in den Werkzeugen, richtig edel im Stil des Hauses»). Papier mit Korn und Licht von oben links, Foto oben, Siegel mit dem Zeiger an der Naht,
+   doppelte Linie im Blatt, ein einziger Farbpunkt. Neigen zur Maus und Lichtstreif nur über transform (haus.js Teil 11). ===== */
+.mk-kopf{display:grid;justify-items:center;text-align:center}
+/* Kopf mittig (Robert 19.10.2026: «einfach eine geile Überschriftzeile, das Logo darüber, elegant wie in einem richtig guten Hotel», die grosse Fassung davor war «viel zu übertrieben») */
+.mk-kopf__zeichen{display:block;color:var(--himmel-h)}
+.mk-kopf__t{margin:22px 0 0;font:300 clamp(1.7rem,2.9vw,2.8rem)/1.15 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:#F2F5F8;padding-left:.2em}
+.mk-kopf__t em{font-style:normal;color:var(--himmel)}
+.mk-kopf__satz{margin:22px auto 0;max-width:62ch;font-size:15px;color:rgba(233,238,243,.72)!important}
+.mk-tisch{position:relative;margin:clamp(50px,5vw,90px) calc(var(--rand) * -.55) 0;padding:clamp(44px,4.4cqw,76px) 2.4cqw clamp(54px,5cqw,90px);border-radius:var(--rund);
+  background:url(../img/leder-ton.webp?v=eb80ebc9) center/600px,var(--ton);display:grid;grid-template-columns:repeat(3,1fr);gap:2.2cqw;align-items:stretch;
+  box-shadow:inset 0 2px 34px rgba(0,0,0,.55),inset 0 0 0 1px rgba(162,182,207,.08),0 40px 70px -50px rgba(0,0,0,.9)}
+.mk{--rx:0deg;--ry:0deg;--ly:0px;--r:0deg;position:relative;perspective:1600px;display:flex}
+.mk__karte{position:relative;flex:1;display:flex;flex-direction:column;border-radius:5px;overflow:hidden;isolation:isolate;background:#F4F1EA;color:var(--tinte);
+  transform:translateY(calc(var(--ly0,0px) + var(--ly) + var(--fl,0px))) rotate(var(--r)) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:transform 1.1s var(--e1),box-shadow 1.1s var(--e1);
+  box-shadow:0 1px 1px rgba(0,0,0,.45),0 7px 12px -5px rgba(0,0,0,.55),0 24px 34px -14px rgba(0,0,0,.65),0 56px 70px -34px rgba(0,0,0,.6)}
+.mk.kipp .mk__karte{--ly:-12px;transition:transform .25s ease-out,box-shadow 1.1s var(--e1);
+  box-shadow:0 1px 1px rgba(0,0,0,.4),0 10px 16px -6px rgba(0,0,0,.55),0 34px 46px -16px rgba(0,0,0,.7),0 80px 90px -40px rgba(0,0,0,.65)}
+.mk.kipp .mk__karte{transform:translateY(calc(var(--ly0,0px) - 12px + var(--fl,0px))) rotate(0deg) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.02)}
+/* Papier: Korn und Licht von oben links (wie L'Imprimerie .papier::after) */
+.mk__karte::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:4;
+  background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,0) 38%,rgba(0,0,0,0) 70%,rgba(0,0,0,.1)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .38 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;opacity:.75}
+.mk__bild{margin:0;aspect-ratio:16/10;overflow:hidden;position:relative}
+.mk__bild img{display:block;width:100%;height:100%;object-fit:cover;transform:none!important}
+.mk__bild::after{content:'';position:absolute;inset:0;box-shadow:inset 0 -1px 0 rgba(4,16,35,.25)}
+.mk__siegel{position:relative;z-index:3;align-self:center;display:grid;place-items:center;width:62px;height:62px;margin:-31px 0 0;border-radius:50%;
+  color:var(--himmel-h);background:url(../svg/tapete-a-dunkel.svg) center/90px,var(--nacht);
+  box-shadow:0 0 0 3px #F4F1EA,0 0 0 4px rgba(4,16,35,.22),0 12px 20px -8px rgba(4,16,35,.6)}
+.mk__siegel svg{height:34px!important;filter:drop-shadow(0 1px 0 rgba(0,0,0,.4))}
+.mk__blatt{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;margin:-16px 16px 16px;padding:34px clamp(22px,2.6cqw,40px) 24px;
+  border:1px solid rgba(4,16,35,.22);outline:1px solid rgba(4,16,35,.14);outline-offset:-6px}
+.mk__haus{margin:6px 0 0;font:400 9.5px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:#6b7f9a}
+.mk__blatt h3{display:block;min-height:0;margin:18px 0 0;font:200 clamp(2rem,3cqw,2.9rem)/1 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h);padding-left:.2em}
+.mk__blatt h3 small{display:block;margin-bottom:12px;font:400 10px/1 var(--mono);letter-spacing:.34em;color:var(--stuhl)}
+.mk__zier{position:relative;display:block;width:120px;height:9px;margin:14px auto 24px}
+.mk__zier::before{content:'';position:absolute;left:0;right:0;top:4px;height:1px;background:linear-gradient(90deg,rgba(4,16,35,0),rgba(4,16,35,.4) 30%,rgba(4,16,35,.4) 70%,rgba(4,16,35,0))}
+.mk__zier::after{content:'';position:absolute;left:50%;top:0;width:7px;height:7px;margin-left:-3.5px;background:var(--punkt);rotate:45deg;box-shadow:0 0 0 4px #F4F1EA}
+.mk__blatt ol{list-style:none;margin:0;padding:0;display:grid;gap:15px;flex:1;align-content:start}
+.mk__blatt li b{display:block;font:500 11.5px/1.45 var(--titel);letter-spacing:.17em;color:var(--titel-h)}
+.mk__blatt li span{display:block;margin-top:4px;font:400 13.5px/1.45 var(--lauf);letter-spacing:0;color:#3b4c66;text-wrap:balance}
+.mk__preis{margin:26px 0 0;padding-top:20px;width:100%;border-top:1px solid rgba(4,16,35,.16);display:flex;justify-content:center;align-items:baseline;gap:12px}
+.mk__preis b{font:200 clamp(3rem,4.4cqw,4rem)/1 var(--titel);color:var(--titel-h);letter-spacing:.02em}
+.mk__preis span{font:400 10.5px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:#6b7f9a}
+.mk__fuss{margin:14px 0 0;font:400 9px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:#8b9ab0}
+/* Lichtstreif: liegt ganz ausserhalb der Karte, läuft auf jeder Karte einmal, nacheinander von links nach rechts (Robert 19.10.2026) und bleibt danach rechts draussen (keine helle Ecke im Ruhezustand) */
+.mk__glanz{position:absolute;z-index:5;top:-20%;bottom:-20%;left:0;width:55%;pointer-events:none;
+  background:linear-gradient(100deg,rgba(255,250,238,0),rgba(255,252,244,.62) 50%,rgba(255,250,238,0));transform:translateX(-200%) skewX(-16deg)}
+.mk.glanz .mk__glanz{transform:translateX(300%) skewX(-16deg);transition:transform 1.6s cubic-bezier(.45,.05,.35,1) var(--gd,0ms)}   /* Versatz je Karte aus haus.js Teil 11 */
+.mk__boden{position:absolute;left:10%;right:10%;bottom:-26px;height:30px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0));transition:transform 1.1s var(--e1),opacity 1.1s}
+.mk.kipp .mk__boden{transform:scaleX(.88);opacity:.6}
+@media (max-width:900px){
+  .mk-kopf__t{letter-spacing:.12em;padding-left:.12em;text-wrap:balance}
+  .mk-tisch{display:flex;overflow-x:auto;margin-top:40px;scroll-snap-type:x mandatory;gap:20px;margin-inline:calc(var(--rand) * -1);border-radius:0;padding:40px var(--rand) 56px;scrollbar-width:none}
+  .mk-tisch::-webkit-scrollbar{display:none}
+  .mk{flex:0 0 min(84vw,380px);scroll-snap-align:center;--r:0deg!important;--ly0:0px!important}
+}
+.mk-nachweis{margin:16px 0 0;text-align:center;font:400 10px/1.6 var(--mono);letter-spacing:.08em;color:rgba(162,182,207,.6)}
+.f-tapete .mk-nachweis,.f-tapete .mk-nachweis a{color:rgba(53,69,93,.62)}
+/* Feiern-Seite (heller Grund): Kopf wie Startseite in Tinte, Mulde und Karten mit leiserem Schatten (Robert 19.10.2026: «ein bisschen weniger schattig») */
+.f-tapete .mk-kopf__zeichen{color:var(--himmel-t)}
+.f-tapete .mk-kopf__t{color:var(--titel-h)}.f-tapete .mk-kopf__t em{color:var(--himmel-t)}
+.f-tapete .mk-kopf__satz{color:#35455D!important}
+.f-tapete .mk-tisch{box-shadow:inset 0 2px 20px rgba(0,0,0,.26),inset 0 0 0 1px rgba(162,182,207,.08),0 30px 50px -44px rgba(4,16,35,.45)}
+.f-tapete .mk__karte{box-shadow:0 1px 1px rgba(0,0,0,.25),0 6px 10px -5px rgba(0,0,0,.28),0 18px 26px -14px rgba(0,0,0,.3),0 40px 50px -30px rgba(0,0,0,.26)}
+.f-tapete .mk.kipp .mk__karte{box-shadow:0 1px 1px rgba(0,0,0,.22),0 8px 14px -6px rgba(0,0,0,.28),0 26px 36px -16px rgba(0,0,0,.34),0 56px 66px -36px rgba(0,0,0,.3)}
+.f-tapete .mk__boden{background:radial-gradient(closest-side,rgba(0,0,0,.24),rgba(0,0,0,0))}   /* Feiern-Seite: dieselben Menükarten auf hellem Grund (Robert 19.10.2026) */
+.mk-nachweis a{color:inherit}.mk-nachweis .nachweis{display:inline;margin:0}
+@media (prefers-reduced-motion:reduce){.mk__karte,.mk.kipp .mk__karte{transform:rotate(var(--r));transition:none}.mk__glanz{display:none}}
+/* Auftritt der Menükarten (Robert 20.10.2026, 23:39: «… die sollen so hochgeflogen kommen, von links nach rechts nacheinander, wenn man da reinscrollt. Schnell. Luxuriös.»)
+   Die Lederunterlage steht still, jede Karte fliegt deckend von unten herauf, Karte für Karte 120 ms später; nur transform. Ausgelöst, sobald die Unterlage
+   ein Achtel tief im Bild ist (.los, haus.js Teil 11), damit man den Flug sieht; nach der Landung (.gelandet, haus.js Teil 11) gilt wieder das Neigen zur Maus. */
+.js .mk-tisch[data-r="bild"]{transform:none;transition:none}
+.js .mk-tisch:not(.los) .mk__karte{--fl:clamp(180px,26vh,280px)}
+.js .mk-tisch.los:not(.gelandet) .mk__karte{transition:transform .9s cubic-bezier(.2,.9,.25,1) calc(var(--i,0) * 120ms),box-shadow 1.1s var(--e1)}
+html.ruhig .mk__karte{--fl:0px!important}
+@media (prefers-reduced-motion:reduce){.js .mk-tisch .mk__karte{--fl:0px!important}}
+
+/* ---------- Abend: der Tag aus Bildern (19.10.2026, ersetzt Woche und Tageslinie in #abend) ----------
+   Vier Fotos ganz, ohne Ausschnitt, gleich hoch, der Rahmen folgt dem Bild (--a), Uhrzeit an der linken Bildkante. Bilder kommen über data-r="bild". */
+.tb__titel{margin-bottom:clamp(30px,3.4vw,48px)}
+.tb__streif{display:flex;gap:clamp(10px,1.2vw,18px);align-items:flex-start}
+.tb{flex:var(--a) 1 0;min-width:0}
+.tb__bruch{display:none}
+.tb__u{font:400 13px/1 var(--mono);color:var(--himmel-t);margin-bottom:10px}
+.tb .foto{aspect-ratio:var(--a);border-radius:var(--rund-k)}
+.tb__t{margin-top:12px;font:400 11.5px/1.45 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#4E5D73}
+.tb__t b{display:block;font:400 13px/1.4 var(--titel);letter-spacing:.16em;color:var(--titel-h)}
+/* Unter den Bildern alles mittig: die Woche, die Knöpfe, die Ferien (Robert 19.10.2026) */
+.tb__fuss{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(24px,2.6vw,34px);margin-top:clamp(56px,6vw,88px)}
+.tb__woche{font-size:clamp(16px,1.3vw,19px);color:#35455D;text-wrap:balance}
+.tb__fuss .knoepfe{justify-content:center}
+.tb__ferien{margin-top:clamp(26px,2.8vw,36px);text-align:center;text-wrap:balance}
+.tb__woche span,.tb__ferien span{white-space:nowrap}.tb__woche i,.tb__ferien i{font-style:normal}
+@media (max-width:760px){.tb__woche span,.tb__ferien b,.tb__ferien span{display:block}.tb__woche i,.tb__ferien i{display:none}.tb__ferien b{margin:0 0 8px}.tb__ferien span{white-space:normal}}
+@media (max-width:760px){
+  /* zwei Paare in zwei Zeilen, je gleich hoch (Breite nach Seitenverhältnis), Umbruch über .tb__bruch */
+  .tb__streif{flex-wrap:wrap;row-gap:28px;column-gap:10px}
+  .tb__bruch{display:block;flex-basis:100%;height:0}
+}
+
+/* Küche, Auszeichnungen: Logo über jedem Wert, der Michelin-Text mit gleichem Abstand zu beiden Zahlen (Robert 19.10.2026, 19:2x).
+   Logos aus der heutigen Seite des Hauses (_quelle/website/bilder/ bf71c5…, ca77f5…); Falstaff-Logo von falstaff.com. */
+@media (min-width:901px){.ku2__preise{display:flex;justify-content:space-evenly;align-items:flex-start;padding-bottom:64px}.ku2__preise>div{flex:0 0 auto;position:relative}.ku2__preise>div>span:last-child{position:absolute;left:50%;top:calc(100% + 14px);translate:-50% 0;width:max-content;max-width:22ch}}   /* Unterzeilen bestimmen die Breite nicht, damit die Abstände zwischen den Werten gleich sind */
+.ku2__preise>div{grid-template-rows:clamp(34px,3.2vw,46px) var(--zh) auto}
+.ku2__lg{height:clamp(34px,3.2vw,46px);width:auto;display:block;object-fit:contain}
+.ku2__lg--wort{height:auto;width:clamp(72px,6.2vw,92px);align-self:center;justify-self:center}   /* Falstaff-Wortmarke, falstaff.com/static/assets/logo.svg, geladen 19.10.2026 mit Roberts Freigabe */
+@media (max-width:900px){.ku2__preise>div{grid-template-rows:auto auto auto}}
+.ku2__preise b.w{max-width:12.5em;white-space:normal}
+/* Robert 19.10.2026, 21:5x: «Favorit der Inspektoren» etwas tiefer, optisch mittig zu den Ziffern 15 und 91 */
+@media (min-width:901px){.ku2__preise b.w{translate:0 calc(var(--zh) * .12)}}
+
+/* Chronik-Wand (#besen, 19.10.2026, Robert «einbauen, Text in der blauen Kachel mittig, die Bilder sollen aufgehen»):
+   zwölf Felder auf einem Raster von 12 Spalten, Zeilenhöhe aus der Breite (cqw), damit die Wand auf jeder Breite gleich steht.
+   Auftritt: Standard der Seite, siehe unten. */
+.chw{padding-block:clamp(84px,9vw,150px)}
+.chw__wand{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:6.6cqw;gap:clamp(8px,.9cqw,14px)}
+.chw__stein{position:relative;min-width:0}
+.chw__stein .foto{position:absolute;inset:0;border-radius:6px;box-shadow:0 30px 50px -36px rgba(4,16,35,.55)}
+.chw--a .foto,.chw--c .foto{background:#efebe2!important}.chw--a img,.chw--c img{object-fit:contain}
+.chw--h img{object-position:0% 100%}
+.chw__et{position:absolute;left:12px;bottom:10px;font:400 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(6,18,38,.74);padding:5px 8px 4px;border-radius:3px;pointer-events:none}
+.chw--h .chw__et{left:auto;right:12px}
+.chw__titel{grid-column:1/5;grid-row:4/7;background:var(--nacht);border-radius:6px;padding:clamp(22px,2.6cqw,40px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.chw__titel .mono{color:var(--himmel)}.chw__titel .t2{color:#F2F5F8;font-size:clamp(1.5rem,2.6cqw,2.4rem);margin-top:16px}.chw__titel .t2 em{color:var(--himmel-h)}
+.chw--a{grid-column:1/5;grid-row:1/4}.chw--b{grid-column:5/10;grid-row:1/5}.chw--c{grid-column:10/13;grid-row:1/3}.chw--d{grid-column:10/13;grid-row:3/6}
+.chw--e{grid-column:5/8;grid-row:5/8}.chw--f{grid-column:8/10;grid-row:5/8}.chw--g{grid-column:10/13;grid-row:6/10}
+.chw--h{grid-column:1/4;grid-row:7/10}.chw--i{grid-column:4/5;grid-row:7/10}.chw--j{grid-column:5/7;grid-row:8/10}.chw--k{grid-column:7/10;grid-row:8/10}
+.chw__nw{margin-top:22px;font:400 10.5px/1.6 var(--mono);letter-spacing:.06em;color:#5d6d86;max-width:none}.chw__nw .nachweis{display:inline;font:inherit;color:inherit}
+/* Auftritt (Robert 19.10.2026, 19:38: «so reingeschwebt wie in der Küche … wenn ich nach unten scrolle, dass die so erscheinen»):
+   keine eigene Regel mehr, die Steine schweben mit dem Standard der Seite herein (.js [data-r="bild"]: von unten herauf, Foto zoomt aus 108 %). */
+@media (max-width:900px){
+  .chw__wand{grid-template-columns:1fr 1fr;grid-auto-rows:31vw;grid-auto-flow:row dense}
+  .chw__stein{grid-column:auto!important;grid-row:span 1!important}
+  .chw--g,.chw--i{grid-row:span 2!important}
+  .chw__titel{grid-column:1/-1!important;grid-row:span 1!important;order:-1;padding:22px}
+  .chw--a{grid-column:1/-1!important;grid-row:span 1!important}
+  .chw--b,.chw--c{grid-column:1/-1!important;grid-row:span 2!important}
+}
+
+/* Küchen-Blatt: Inhalt mittig, unten so viel Luft wie oben (Robert 19.10.2026, 19:2x: «alles so oberzentriert») */
+@media (min-width:901px){.ku3__blatt{padding-bottom:clamp(48px,4.4vw,64px)}}
+
+/* ---------- Karte, Lästermeile als Tischset (Robert 19.10.2026, Fassung 3 aus _varianten-laestermeile) ----------
+   Oben und unten das echte Fliesenband, dazwischen auf dem dunklen Grund ein Tischset aus Papier mit Innenrand,
+   rechts zwei Abzüge leicht schräg: der Apéro in der blauen Stunde und die Bar mit den Zementfliesen. */
+.lmk{padding:0;overflow-x:clip}
+.lmk__band{height:clamp(64px,6.6vw,100px)}
+.lmk__tisch{display:grid;grid-template-columns:1.25fr 1fr;column-gap:6cqw;align-items:center;padding-block:clamp(64px,7vw,110px)}
+.lmk__set{position:relative;background:var(--papier);color:var(--tinte);border-radius:var(--rund);padding:clamp(34px,3.6vw,56px) clamp(28px,3.8vw,60px);box-shadow:0 40px 80px -30px rgba(2,8,20,.6),0 14px 30px -18px rgba(2,8,20,.45)}
+.lmk__set::after{content:"";position:absolute;inset:12px;border:1px solid rgba(15,54,120,.18);border-radius:calc(var(--rund) - 8px);pointer-events:none}
+.lmk__set .t2{text-align:center;margin-bottom:clamp(22px,2.4vw,34px);color:var(--titel-h)}
+.lmk__set .t2 em{color:var(--himmel-t)}
+.lmk__zwei{column-gap:clamp(28px,3.2vw,48px)}
+.lmk__zeit{text-align:center;margin-top:clamp(20px,2vw,30px);font:400 11.5px/1.6 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+.lmk__fotos{position:relative;aspect-ratio:4/5}
+.lmk__fotos .foto{position:absolute;border-radius:var(--rund);box-shadow:0 40px 70px -30px rgba(0,0,0,.6),0 12px 24px -14px rgba(0,0,0,.4)}
+.lmk__apero{inset:0 18% 20% 0;transform:rotate(-2deg)}
+.lmk__bar{right:0;bottom:0;width:50%;aspect-ratio:3/2;transform:rotate(3deg)}
+@media (max-width:900px){
+  .lmk__tisch{grid-template-columns:1fr;row-gap:44px}
+  .lmk__set .tapas--zwei{grid-template-columns:1fr;row-gap:24px}
+  .lmk__fotos{aspect-ratio:1/1;width:92%;margin-inline:auto}
+}
+
+/* Tischset: Papier auf dunklem Grund, die Karte darin wieder Tinte auf hell */
+.lmk__set .tapas h3{color:var(--himmel-t)}
+.lmk__set .tapas li{border-color:rgba(15,54,120,.16)}
+.lmk__set .tapas li span{color:var(--himmel-t)}
+.lmk__set .tapas li small{color:#35455D}
+.lmk__zeit{font:400 clamp(1rem,1.15vw,1.1rem)/1.5 var(--lauf);letter-spacing:0;text-transform:none;color:#35455D;max-width:40ch;margin-inline:auto}
+
+/* Lästermeile Startseite: Fliesenband wieder unten, schmaler, und dasselbe Band oben am Abschnitt (Robert 19.10.2026, 20:09) */
+.lm{padding-top:0}
+.lm__band{height:clamp(44px,4.4vw,68px)}
+.lm__band--oben{margin-bottom:var(--polster)}
+@media (max-width:900px){.lm{padding-top:0}.lm__band--oben{display:block;margin-inline:0}}
+
+/* Lunch-Menü auf der Karte (seit 19.10.2026, Fassung 14 «Mosaik» aus _varianten/lunch-15.html, Robert: Menü edler):
+   sieben Fotos dicht in ungleichen Grössen, die Menükarte als Papier mit Doppelrahmen mittendrin */
+.lum .t2{margin:0 0 4cqw}
+.lum__m{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,clamp(160px,15cqw,240px));gap:12px}
+.lum__m .foto{height:100%;border-radius:var(--rund-k)}
+.lum__a{grid-column:1/3;grid-row:1/3}.lum__b{grid-column:3;grid-row:1}.lum__c{grid-column:4;grid-row:1/3}.lum__d{grid-column:1;grid-row:3}.lum__e{grid-column:2;grid-row:3}.lum__f{grid-column:4;grid-row:3}
+.lum__karte{grid-column:3;grid-row:2/4;background:#F6F3EC;border-radius:var(--rund-k);padding:10px;box-shadow:0 40px 60px -38px rgba(4,16,35,.55),0 2px 6px -2px rgba(4,16,35,.12)}
+.lum__rahmen{height:100%;box-sizing:border-box;border:1px solid rgba(10,37,82,.28);outline:1px solid rgba(10,37,82,.14);outline-offset:-5px;border-radius:calc(var(--rund-k) - 6px);display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px 18px 14px}
+.lum__rahmen .zeichen{color:var(--titel-h);flex:none;height:30px!important}
+.lum__titel{margin:8px 0 0;font:300 clamp(1.5rem,2.2cqw,2rem)/1 var(--titel);letter-spacing:.34em;margin-right:-.34em;text-transform:uppercase;color:var(--titel-h)}
+.lum__wo{margin:8px 0 0;font:400 9.5px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--himmel-t)}
+.lum__gaenge{margin:auto 0;display:grid;justify-items:center;gap:6px;padding:10px 0}
+.lum__gaenge p{margin:0;display:grid;gap:3px}
+.lum__gaenge b{font:400 11.5px/1.35 var(--titel);letter-spacing:.2em;text-transform:uppercase;color:var(--tinte)}
+.lum__gaenge small{font:italic 400 12.5px/1.4 var(--lauf);color:#4f5f78}
+.lum__stern{font-size:9px;line-height:1;color:var(--himmel)}
+.lum__p{margin:0;padding-top:10px;border-top:1px solid rgba(10,37,82,.2);width:78%;white-space:nowrap;display:grid;justify-items:center;gap:6px}
+.lum__p b{font:200 2.1rem/1 var(--titel);color:var(--titel-h)}.lum__p span{font:400 9.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t)}
+.lum__fuss{display:flex;flex-direction:column-reverse;align-items:center;text-align:center;gap:22px;margin-top:34px}.lum__fuss .knoepfe{justify-content:center}.lum__fuss>*{margin:0}
+@media (max-width:900px){
+  .lum__m{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:auto}
+  .lum__m>*{grid-column:auto;grid-row:auto}.lum__m .foto{aspect-ratio:1}
+  .lum__m>.lum__a,.lum__m>.lum__f{grid-column:1/-1;aspect-ratio:16/10}
+  .lum__m>.lum__karte{grid-column:1/-1}
+  .lum__rahmen{padding:26px 18px 22px}.lum__gaenge{gap:10px;padding:18px 0}
+  .lum__fuss{flex-direction:column-reverse;align-items:center}
+}
+
+/* Karte, Lästermeile: Fliesenbänder so schmal wie auf der Startseite (Robert 19.10.2026, 20:11) */
+.lmk__band{height:clamp(44px,4.4vw,68px)}
+/* Startseite, Lästermeile: Knopf sitzt halb auf den beiden Hälften, halb auf dem Fliesenband; Bilder rücken dafür etwas hoch */
+.lm__mehr{top:0;bottom:auto;height:0;align-items:center}
+.lm .lm__bilder{margin-bottom:clamp(64px,6.4vw,104px)}
+@media (max-width:900px){.lm .lm__bilder{margin-bottom:0}.lm__draussen{padding-bottom:clamp(56px,12vw,72px)}}
+.lm__band-w{z-index:3}
+
+/* Startseite, Lästermeile: Knopf im Abschnitt auf der Naht, zweifarbig (Robert 19.10.2026, 20:15).
+   Zwei gleiche Knöpfe liegen übereinander; links hell mit Tinte auf dem dunklen Grund, rechts blau mit Weiss auf dem hellen Grund.
+   Die Naht des Knopfs sitzt genau auf der Naht des Abschnitts (Knopf mittig, Hälften je 50 %). */
+.lm__mehr{position:relative;inset:auto;height:auto;display:flex;justify-content:center;pointer-events:auto;z-index:2;padding:clamp(4px,.6vw,10px) 0 clamp(52px,5.4vw,84px)}
+.lm .lm__bilder{margin-bottom:clamp(40px,4.2vw,64px)}
+.kz{display:inline-grid;text-decoration:none;border-radius:27px;transition:transform .5s var(--knopf)}
+.kz>span{grid-area:1/1}
+.kz__l{background:linear-gradient(180deg,#fff,#EEF2F7 58%,#DCE4EE);color:var(--tinte);clip-path:inset(0 50% 0 0)}
+.kz__r{clip-path:inset(0 0 0 50%)}
+.kz:hover{transform:translateY(-2px)}
+.kz:hover .knopf{transform:none}
+.kz:active{transform:translateY(1px) scale(.985)}
+@media (max-width:900px){
+  .lm__mehr{background:var(--kalk) var(--tap-h) 0 0/168px;margin-top:0}
+  .kz__l{display:none}.kz__r{clip-path:none}
+  .lm__draussen{padding-bottom:clamp(36px,8vw,52px)}
+}
+/* Knopf doch einfarbig blau (Robert 19.10.2026, 20:18): helle Hälfte aus, blaue ganz */
+.kz__l{display:none}.kz__r{clip-path:none}
+
+/* Feiern: Bankett-Rechner «Ihr Menü» (19.10.2026). Bild und Text links laufen mit der Karte rechts oben und unten bündig. */
+.bm{display:grid;grid-template-columns:.84fr 1.16fr;column-gap:clamp(36px,5cqw,90px);align-items:stretch}
+.bm__l{display:flex;flex-direction:column;min-width:0}
+.bm__f{flex:1 1 auto;min-height:clamp(260px,24vw,420px)}
+.bm__f img{width:100%;height:100%;object-fit:cover}
+.bm__text{margin-top:clamp(30px,3vw,48px)}.bm__text .t2{margin:0 0 clamp(18px,1.8vw,26px)}
+.bm__text .lauf{max-width:42ch}.bm__text .lauf+.lauf{margin-top:14px}.bm__text>:last-child{margin-bottom:0}
+.bm__karte{position:relative;min-width:0;background:var(--papier);color:var(--tinte);border-radius:var(--rund);padding:clamp(34px,3.8vw,64px) clamp(28px,3.6vw,62px) clamp(30px,3.4vw,56px);
+  box-shadow:0 60px 90px -50px rgba(0,0,0,.9),0 18px 30px -18px rgba(0,0,0,.45)}
+.bm__karte::before{content:"";position:absolute;inset:12px;border:1px solid rgba(17,61,136,.16);border-radius:calc(var(--rund) - 8px);pointer-events:none}
+.bm__kopf{display:grid;justify-items:center;text-align:center}
+.bm__zeichen{color:var(--stuhl);line-height:0}
+.bm__haus{margin:16px 0 0;font:400 10.5px/1 var(--mono);letter-spacing:.28em;text-transform:uppercase;color:#5d6f8c}
+.bm__titel{margin:12px 0 0;font:200 clamp(2.2rem,3.2vw,3rem)/1 var(--titel);letter-spacing:.36em;text-indent:.36em;text-transform:uppercase}
+.bm__saison{display:flex;justify-content:center;align-items:center;gap:clamp(18px,2.2vw,34px);margin:26px 0 8px;padding:14px 0;width:100%;border-top:1px solid rgba(4,16,35,.14);border-bottom:1px solid rgba(4,16,35,.14)}
+.bm__saison button{all:unset;cursor:pointer;position:relative;font:400 11.5px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:#7a8aa3;padding:4px 0}
+.bm__saison button::after{content:"";position:absolute;left:0;right:.24em;bottom:-15px;height:1px;background:var(--stuhl);transform:scaleX(0);transition:transform .5s var(--knopf)}
+.bm__saison button[aria-pressed=true]{color:var(--tinte)}.bm__saison button[aria-pressed=true]::after{transform:none}
+.bm__saison button:focus-visible{outline:1px solid var(--stuhl);outline-offset:6px}
+.bm__stapel{display:grid}.bm__liste{grid-area:1/1;border:0;margin:0;padding:6px 0 0;min-width:0}
+.bm__stapel>[hidden]{display:block!important;visibility:hidden}
+.bm__g{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:18px;align-items:start;padding:17px 0;border-bottom:1px solid rgba(4,16,35,.08);cursor:pointer}
+.bm__g:last-child{border-bottom:0}
+.bm__g input{position:absolute;opacity:0;width:1px;height:1px}
+.bm__box{width:20px;height:20px;margin-top:1px;border-radius:50%;border:1px solid rgba(17,61,136,.45);display:grid;place-items:center;transition:background .3s,border-color .3s}
+.bm__box::after{content:"";width:7px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .35s var(--knopf)}
+.bm__g input:checked+.bm__box{background:var(--stuhl);border-color:var(--stuhl)}.bm__g input:checked+.bm__box::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+.bm__g input:focus-visible+.bm__box{outline:1px solid var(--stuhl);outline-offset:4px}
+.bm__n b{display:block;font:500 11px/1.45 var(--titel);letter-spacing:.16em;color:var(--tinte);transition:color .3s}
+.bm__n small{display:block;margin-top:4px;font:400 13.5px/1.5 var(--lauf);color:#4a5b75;transition:color .3s}
+.bm__p{font:200 1.65rem/1 var(--titel);color:var(--tinte);font-variant-numeric:tabular-nums;transition:color .3s}
+.bm__g:has(input:not(:checked)) :is(.bm__n b,.bm__n small,.bm__p){color:#9aa7ba}
+.bm__gaeste{display:grid;grid-template-columns:auto 1fr auto;column-gap:22px;align-items:center;margin-top:18px;padding:22px 0;border-top:1px solid rgba(4,16,35,.14)}
+.bm__gaeste>span{font:400 10.5px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:#5d6f8c}
+.bm__gaeste output{font:200 2rem/1 var(--titel);min-width:2ch;text-align:right;font-variant-numeric:tabular-nums}
+.bm__gaeste input{-webkit-appearance:none;appearance:none;width:100%;height:24px;background:linear-gradient(var(--stuhl),var(--stuhl)) 0 50%/var(--v,60%) 2px no-repeat,linear-gradient(rgba(4,16,35,.16),rgba(4,16,35,.16)) 0 50%/100% 1px no-repeat;cursor:pointer;margin:0}
+.bm__gaeste input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--stuhl);border:4px solid var(--papier);box-shadow:0 0 0 1px var(--stuhl),0 6px 12px -4px rgba(4,16,35,.5)}
+.bm__gaeste input::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--stuhl);border:4px solid var(--papier);box-shadow:0 0 0 1px var(--stuhl)}
+.bm__gaeste input:focus-visible{outline:1px solid var(--stuhl);outline-offset:4px}
+.bm__summe{display:grid;grid-template-columns:auto auto 1fr;border-top:1px solid rgba(4,16,35,.14);border-bottom:1px solid rgba(4,16,35,.14)}
+.bm__summe p{margin:0;display:grid;gap:8px;align-content:end;padding:22px clamp(18px,2vw,30px)}
+.bm__summe p:first-child{padding-left:0}.bm__summe p+p{border-left:1px solid rgba(4,16,35,.1)}
+.bm__summe b{font:200 clamp(2.2rem,3vw,2.8rem)/1 var(--titel);color:var(--tinte);font-variant-numeric:tabular-nums}
+.bm__summe span{font:400 10px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#5d6f8c}.bm__summe i{font-style:normal}
+.bm__total{justify-items:end;text-align:right;padding-right:0!important}.bm__total b{font-size:clamp(2.8rem,4vw,3.8rem);color:var(--stuhl)}
+.bm__warn{margin:14px 0 0;font:400 13px/1.4 var(--lauf);color:#9b3b1f}
+.bm__an{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:30px;text-align:center}
+.bm__an small{font:400 12.5px/1.45 var(--lauf);color:#6b7b93;max-width:36ch}
+@media (max-width:900px){
+  .bm{grid-template-columns:1fr;row-gap:34px}
+  .bm__f{flex:none;min-height:0;aspect-ratio:4/3}
+  .bm__karte{padding:34px 22px 28px}.bm__karte::before{inset:8px}
+  .bm__summe{grid-template-columns:1fr 1fr}.bm__total{grid-column:1/-1;border-left:0!important;border-top:1px solid rgba(4,16,35,.1);justify-items:start;text-align:left;padding-left:0!important}
+  .bm__an .knopf{width:100%;max-width:100%;min-width:0;box-sizing:border-box;justify-content:space-between;padding-left:20px;gap:10px;font-size:11px;letter-spacing:.1em}
+}
+@media (max-width:380px){.bm__an .knopf{font-size:10px;letter-spacing:.05em;padding-left:16px}.bm__karte{padding-inline:18px}}
+
+/* ---------- Karte nach Ländern: Mittelachse (Robert 19.10.2026, Fassung 1 aus _varianten-laender) ----------
+   Eine Spalte auf der Mitte, je Gericht Name, Beschreibung, Preis untereinander; unter dem Land ein Stern; Bild wechselt links und rechts. */
+.kw{grid-template-columns:5fr 6fr;column-gap:7cqw;align-items:start}
+/* Bild schliesst oben bündig mit dem Landtitel ab (Robert 20.10.2026) */
+.kw--r{grid-template-columns:6fr 5fr}
+.karte-ganz .kw__t{text-align:center;max-width:540px;margin-inline:auto;width:100%}
+.karte-ganz .kw__t h3{margin-bottom:0;text-box-trim:trim-start;text-box-edge:cap alphabetic}
+.karte-ganz .kw__t h3::after{content:"✶";display:block;font:400 14px/1 var(--lauf);letter-spacing:0;color:var(--punkt);margin:18px 0 clamp(20px,2.2vw,30px)}
+.kw__t ul{display:block}
+.kw__t li{display:flex;flex-direction:column;align-items:center;padding:clamp(18px,1.8vw,24px) 0;border-top:0}
+.kw__t li+li{border-top:1px solid rgba(15,54,120,.12)}
+.kw__t li b{font-size:clamp(14px,1.05vw,16px)}
+.kw__t li small{order:2;margin-top:6px;font-size:clamp(15px,1.1vw,16.5px);max-width:44ch}
+.kw__t li span{order:3;margin-top:8px;text-align:center}
+@media (max-width:900px){.kw,.kw--r{grid-template-columns:1fr}.kw__bild{margin-inline:auto}}
+
+/* Feiern-Kopf «Schnitt» (Robert 19.10.2026, Fassung 41, rechte Hälfte Nachtblau wie im Vorschlag, 21:15) */
+.kopf-schnitt{position:relative;min-height:max(100svh,640px);overflow:hidden;background:var(--nacht)}
+.ks__s{position:absolute;inset:0;margin:0;overflow:hidden}.ks__s img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.ks__s--nacht{clip-path:polygon(62% 0,100% 0,100% 100%,38% 100%);background:var(--nacht)}.ks__s--nacht img{filter:grayscale(1) contrast(1.1);mix-blend-mode:luminosity;opacity:.55}
+.ks__s--tag{clip-path:polygon(0 0,62% 0,38% 100%,0 100%)}
+.ks__p{position:absolute;right:var(--rand);bottom:var(--rand);width:min(560px,calc(100% - 2 * var(--rand)));background:var(--nacht);border-radius:var(--rund);padding:44px 46px;display:grid;gap:16px;box-shadow:0 50px 90px -40px rgba(0,0,0,.8)}
+.ks__p h1{margin:0;font:400 clamp(1.9rem,3.2vw,3.2rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:#F2F5F8}.ks__p h1 em{font-style:normal;color:var(--himmel)}
+.ks__p .lauf{margin:0;color:rgba(233,238,243,.88)}.ks__p .leise{color:#E9EEF3}.ks__p .knoepfe{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:4px}
+@media (max-width:860px){
+  .kopf-schnitt{min-height:0;display:grid;padding-bottom:var(--rand)}
+  .ks__s{position:relative;grid-area:1/1;height:64svh}
+  .ks__s--nacht{clip-path:polygon(70% 0,100% 0,100% 100%,30% 100%)}.ks__s--tag{clip-path:polygon(0 0,70% 0,30% 100%,0 100%)}
+  .ks__p{position:relative;grid-area:2/1;right:auto;bottom:auto;width:auto;margin:-70px var(--rand) 0;padding:30px 26px}
+}
+
+/* Kopf der Karte «Kompass» (Robert 19.10.2026, 20:40, Fassung 16 aus _varianten/karte-kopf-15.html): links der Zeiger der Wortmarke,
+   an seinen Enden die vier Teile der Karte als feine Landkarten (landkarten.py), Stadt in Handschrift; Mitte Titel, Satz, Knopf auf einer Achse; rechts die Suppe. Nichts bewegt sich ausser dem Einschweben des Bildes. */
+@font-face{font-family:'Hand';src:url(../fonts/Caveat-500.woff) format('woff');font-weight:500;font-display:swap}
+.kko{--hh:max(100svh,640px);position:relative;min-height:var(--hh);display:grid;grid-template-columns:minmax(300px,30vw) 1fr 28vw;grid-template-rows:1fr auto;padding:96px 0 0 var(--rand);overflow-x:clip}
+.kko__rose{grid-column:1;grid-row:1/3;align-self:center;justify-self:center;position:relative;height:min(680px,calc(var(--hh) - 190px));aspect-ratio:400/680;container-type:size;margin-top:20px}
+.kko__zeiger{position:absolute;left:50%;top:50%;width:23.5cqh;translate:-50% -50%;color:var(--stuhl)}
+.kko__zeiger svg{display:block;width:100%!important;height:auto!important}
+.kko__ort{position:absolute;display:grid;justify-items:center;text-decoration:none;color:var(--titel-h)}
+.kko__ort img{display:block;width:20.6cqh;height:auto}
+.kko__ort i{display:block;width:26px;height:1px;background:currentColor;opacity:.35;margin:4px 0 10px;transition:width .5s var(--e1)}
+.kko__ort:hover i,.kko__ort:focus-visible i{width:52px}
+.kko__ort span{font:400 11px/1 var(--titel);letter-spacing:.24em;margin-right:-.24em;text-transform:uppercase;white-space:nowrap}
+.kko__ort small{font:500 17px/1 'Hand',cursive;color:var(--himmel-t);opacity:.6;margin-top:7px;padding:2px 8px;rotate:-3deg}
+.kko__ort--n{left:50%;top:-5cqh;translate:-50% 0}
+.kko__ort--s{left:50%;bottom:-3cqh;translate:-50% 0}
+.kko__ort--w{left:-6cqh;bottom:calc(50% - 11.8cqh)}
+.kko__ort--o{right:-7.4cqh;bottom:calc(50% - 11.8cqh)}
+.kko__m{grid-column:2;grid-row:1;align-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 clamp(20px,3vw,48px)}
+.kko__m h1{font:400 clamp(2rem,4.2vw,4.4rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.16em;margin:0 -.16em 22px 0;color:var(--titel-h)}
+.kko__m h1 em{font-style:normal;color:var(--himmel-t)}
+.kko__m .lauf{max-width:34ch;text-wrap:balance}
+.kko__kn{grid-column:2;grid-row:2;display:flex;justify-content:center;padding:0 0 clamp(40px,6.6svh,60px)}
+.kko__bild.kopf__bild{position:absolute;right:0;top:0;bottom:0;width:28vw}
+@media (max-width:860px){
+  .kko{display:flex;flex-direction:column;align-items:center;min-height:0;padding:110px var(--rand) 0}
+  .kko__m{order:1;padding:0}
+  .kko__m h1{font-size:clamp(1.9rem,9vw,2.8rem);margin-bottom:16px}
+  .kko__rose{order:2;height:auto;width:min(100%,380px);aspect-ratio:1;margin:46px 0 30px}
+  .kko__zeiger{width:21cqw}
+  .kko__ort img{width:25cqw}
+  .kko__ort span{font-size:10px;letter-spacing:.18em;margin-right:-.18em}
+  .kko__ort small{font-size:15px}
+  .kko__ort--n{top:-8cqw}.kko__ort--s{bottom:-12cqw}
+  .kko__ort--w{left:-3cqw;bottom:calc(50% - 19cqw)}.kko__ort--o{right:-3cqw;bottom:calc(50% - 19cqw)}
+  .kko__kn{order:3;padding:46px 0 34px}
+  .kko__bild.kopf__bild{order:4;position:relative;width:calc(100% + 2 * var(--rand));height:56svh;border-radius:0}
+}
+
+/* Bankett-Rechner umgekehrt (Robert 19.10.2026, 20:42): Grund hell, Karte Nachtblau; Bankettmenüs darunter auf Nachtblau */
+.bm-blau .bm__karte{background:var(--nacht);background-image:var(--tap-d);background-size:168px;color:#E9EEF3;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 60px 90px -50px rgba(4,16,35,.55),0 18px 30px -18px rgba(4,16,35,.35)}
+.bm-blau .bm__karte::before{border-color:rgba(162,182,207,.24)}
+.bm-blau .bm__zeichen{color:var(--himmel)}
+.bm-blau :is(.bm__haus,.bm__gaeste>span,.bm__summe span){color:var(--himmel)}
+.bm-blau .bm__titel{color:#F2F5F8}
+.bm-blau :is(.bm__saison,.bm__gaeste,.bm__summe){border-color:rgba(162,182,207,.22)}
+.bm-blau .bm__saison button{color:rgba(197,210,225,.6)}
+.bm-blau .bm__saison button[aria-pressed=true]{color:#F2F5F8}
+.bm-blau .bm__saison button::after{background:var(--himmel)}
+.bm-blau .bm__g{border-color:rgba(162,182,207,.14)}
+.bm-blau .bm__box{border-color:rgba(162,182,207,.55)}
+.bm-blau .bm__box::after{border-color:var(--tinte)}
+.bm-blau .bm__g input:checked+.bm__box{background:var(--himmel-h);border-color:var(--himmel-h)}
+.bm-blau :is(.bm__n b,.bm__p,.bm__gaeste output,.bm__summe b){color:#F2F5F8}
+.bm-blau .bm__n small{color:rgba(233,238,243,.78)}
+.bm-blau .bm__g:has(input:not(:checked)) :is(.bm__n b,.bm__n small,.bm__p){color:rgba(162,182,207,.42)}
+.bm-blau .bm__summe p+p{border-color:rgba(162,182,207,.16)}
+.bm-blau .bm__total b{color:var(--himmel-h)}
+.bm-blau .bm__gaeste input{background:linear-gradient(var(--himmel-h),var(--himmel-h)) 0 50%/var(--v,60%) 2px no-repeat,linear-gradient(rgba(162,182,207,.25),rgba(162,182,207,.25)) 0 50%/100% 1px no-repeat}
+.bm-blau .bm__gaeste input::-webkit-slider-thumb{background:var(--himmel-h);border-color:var(--nacht);box-shadow:0 0 0 1px var(--himmel-h),0 6px 12px -4px rgba(0,0,0,.6)}
+.bm-blau .bm__gaeste input::-moz-range-thumb{background:var(--himmel-h);border-color:var(--nacht);box-shadow:0 0 0 1px var(--himmel-h)}
+.bm-blau .bm__warn{color:#F4B79A}
+.bm-blau .bm__an small{color:rgba(197,210,225,.7)}
+.bm-blau .bm__f{box-shadow:0 40px 70px -46px rgba(4,16,35,.5)}
+@media (max-width:900px){.bm-blau .bm__total{border-color:rgba(162,182,207,.16)!important}}
+
+/* Team-Kopf als Bühne (19.10.2026): Bild breit oben, Titel und Satz mittig darunter */
+.kopf--buehne{display:block;min-height:0;padding:clamp(118px,9.6vw,150px) var(--rand) clamp(64px,6.4vw,110px);text-align:center}
+.kopf--buehne .kopf__bild{position:relative;width:auto;height:min(55svh,48vw);border-radius:var(--rund);margin:0}
+.kopf--buehne .kopf__bild img{object-position:50% 36%}
+.kopf--buehne .kopf__t{display:block;padding:clamp(34px,3.6vw,58px) 0 0}
+.kopf--buehne .kopf__t h1{margin:0}
+.kopf--buehne .kopf__unter{position:static;max-width:58ch;margin:clamp(16px,1.6vw,24px) auto 0;display:block}
+@media (max-width:860px){.kopf--buehne{padding-top:104px}.kopf--buehne .kopf__bild{height:auto;aspect-ratio:4/3;border-radius:var(--rund-k)}.kopf--buehne .kopf__t h1{margin:0}.kopf--buehne .kopf__unter{padding:0}}
+
+/* Namensschilder im Team (19.10.2026, edler): Emaille-Plakette in Nachtblau mit feinem Silberrahmen, Zeiger des Hauses oben, Name und Posten durch eine Haarlinie getrennt; die zwei ohne Foto mittig in einer Reihe */
+.mensch{text-align:center}
+.schild{position:relative;display:inline-flex;flex-direction:column;align-items:center;width:min(310px,100%);margin-top:26px;padding:16px 38px 15px;border-radius:5px;
+ background:linear-gradient(180deg,#132a52 0%,var(--nacht) 46%,#081630 100%);
+ box-shadow:inset 0 0 0 1px rgba(197,210,225,.55),inset 0 0 0 4px var(--nacht),inset 0 0 0 5px rgba(197,210,225,.28),inset 0 1px 0 6px rgba(255,255,255,.04),0 10px 24px -8px rgba(11,29,61,.38)}
+.schild::before{content:"";width:12px;height:20px;margin-bottom:9px;background:var(--himmel-h);-webkit-mask:url(../svg/zeiger.svg) center/contain no-repeat;mask:url(../svg/zeiger.svg) center/contain no-repeat}
+.mensch .schild h3{margin:0;color:#F2F5F8;font-weight:300;font-size:clamp(.95rem,1.2vw,1.1rem);letter-spacing:.24em;white-space:nowrap;padding-left:.24em}
+.mensch .schild p{position:relative;color:var(--himmel-h);font-size:10.5px;letter-spacing:.24em;margin-top:9px;padding-top:8px;padding-left:.24em}
+.mensch .schild p::before{content:"";position:absolute;left:50%;top:0;width:28px;margin-left:-14px;border-top:1px solid rgba(197,210,225,.45)}
+.leute2{justify-content:center;gap:clamp(24px,3vw,44px);border-top:0;padding-top:0}
+.leute2 .schild{margin-top:0}.leute2 .mensch{flex:0 1 310px}
+@media (max-width:520px){.leute2{flex-wrap:wrap;gap:16px}.schild{padding:14px 30px 13px}}
+
+/* ---------- Weinliste als Platten je Weingut (19.10.2026, Fassung 01 aus _varianten/weinliste-3d.html) ---------- */
+/* Land als Kapitel: runde Flagge, Name, Zahl der Weine rechts */
+.wl__land{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin:clamp(56px,6vw,84px) 0 30px}
+.wk__gruppe>h2+.wl__land{margin-top:0}
+.wl__lflg{flex:none;width:36px;height:36px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px #fff,0 10px 18px -8px rgba(4,16,35,.5)}
+.wl__lflg svg,.wl__flg svg{display:block;width:100%;height:100%}
+.wl__land h3{font:400 clamp(1.4rem,2.2vw,2rem)/1 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h)}
+.wl__land small{font:400 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+/* Platten in zwei Spalten, jede bleibt ganz */
+.wl__raster{columns:2;column-gap:28px}
+.wl__p{display:inline-block;width:100%;vertical-align:top;break-inside:avoid;margin:0 0 28px;padding:12px;border-radius:var(--rund);
+  background:linear-gradient(180deg,#FFFFFF,#EDF1F7);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(10,37,82,.06),0 34px 60px -38px rgba(4,16,35,.55),0 8px 18px -12px rgba(4,16,35,.22)}
+/* Kopf der Platte: Logo klein oben, Weingut gross mittig, Region darunter */
+.wl__kopf{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:22px 18px 20px}
+.wl__logo{display:block;width:auto;height:auto;max-height:44px;max-width:min(62%,210px);object-fit:contain}
+.wl__mono,.wl__flg{display:grid;place-items:center;width:44px;height:44px;border-radius:50%}
+.wl__mono{box-shadow:inset 0 0 0 1px rgba(10,37,82,.45);font:400 13px/1 var(--titel);letter-spacing:.14em;text-indent:.14em;color:var(--titel-h)}
+.wl__flg{overflow:hidden;width:34px;height:34px;box-shadow:0 0 0 3px #fff,0 8px 14px -8px rgba(4,16,35,.5)}
+.wl__kopf h4{margin:0;font:400 clamp(1.05rem,1.4vw,1.3rem)/1.3 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:var(--titel-h);text-wrap:balance}
+.wl__kopf small{font:400 11px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+/* Kuhle mit den Weinen */
+.wl__kuhle{padding:6px;border-radius:var(--rund-k);background:linear-gradient(180deg,#E3E9F1,#EAEFF5 40%,#EDF1F6);
+  box-shadow:inset 0 3px 6px -1px rgba(4,16,35,.13),inset 0 1px 0 rgba(4,16,35,.08),inset 0 0 0 1px rgba(4,16,35,.05),0 1px 0 #fff}
+/* Zeile: Jahrgang, Name, Preis; ganze Zeile öffnet die Wein-Ansicht */
+.wl__z{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:3.4em 1fr auto;gap:12px;align-items:baseline;width:100%;padding:11px 16px;border-radius:12px;transition:background-color .5s var(--e1),transform .5s var(--e1)}
+.wl__z+.wl__z{border-top:1px solid rgba(15,54,120,.09)}
+.wl__z:hover{background-color:rgba(255,255,255,.75);transform:translateX(3px)}
+.wl__z:focus-visible{outline:2px solid var(--stuhl);outline-offset:-2px}
+.wl__z i{font:400 12.5px/1 var(--mono);font-style:normal;color:#4E5D73}
+.wl__z span{font-size:15.5px;line-height:1.4;color:var(--tinte)}
+.wl__z span small{display:block;font-size:13px;color:#4E5D73;margin-top:2px}
+.wl__z em{font:400 12px/1.4 var(--mono);font-style:normal;color:#4E5D73;white-space:nowrap;text-align:right}
+.wl__z em b{font-weight:400;font-size:14px;color:var(--titel-h);margin-left:4px}
+/* nur eine Platte im Land: mittig in Spaltenbreite statt links */
+.wl__raster:has(>.wl__p:only-child){columns:1;max-width:calc(50% - 14px);margin-inline:auto}
+@media (max-width:900px){.wl__raster{columns:1}.wl__raster:has(>.wl__p:only-child){max-width:none}}
+@media (max-width:560px){
+  .wl__p{padding:8px}.wl__kopf{padding:18px 12px 16px}
+  .wl__z{grid-template-columns:2.7em 1fr auto;gap:10px;padding:10px 12px}.wl__z em{white-space:normal;max-width:7.5em}
+}
+@media print{.wl__p,.wl__kuhle{box-shadow:none;background:none}.wl__p{border:1px solid #ccd}.wl__z:hover{transform:none}}
+
+/* ===== Anlässe «Teller zuerst» (Robert 19.10.2026, Fassung 14 aus _varianten-kreuzfahrt) ===== */
+.tz{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding:0}
+.tz__bild{position:relative}
+.tz__teller{position:absolute;inset:0;border-radius:0;box-shadow:none}
+.tz__klein{position:absolute;right:-90px;bottom:12vh;width:220px;aspect-ratio:2/3;border:10px solid #fff;border-radius:0;z-index:2;box-shadow:0 40px 80px -30px rgba(4,16,35,.5),0 14px 30px -18px rgba(4,16,35,.4)}
+.tz__t{padding:20vh 6vw 14vh 9vw;display:flex;flex-direction:column;justify-content:center}
+.tz .mono{color:var(--himmel-t)}
+.tz__vier{font:200 clamp(4rem,8vw,8rem)/.92 var(--titel);letter-spacing:.02em;color:var(--titel-h);margin:14px 0 0}
+.tz__namen{display:flex;gap:18px;align-items:center;margin:26px 0 22px}
+.tz__namen i{width:40px;border-top:1px solid var(--himmel-t)}
+.tz__titel{font:400 clamp(1rem,1.3vw,1.2rem)/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h);margin:0 0 4px}
+.tz .lauf{margin-top:12px}
+.tz__zeit{margin-top:20px}
+.tzr-liste{list-style:none;margin:0;padding:0}
+.tzr{display:grid;grid-template-columns:5fr 6fr;column-gap:7cqw;align-items:center;padding:clamp(34px,4vw,64px) 0;border-top:1px solid rgba(15,54,120,.18)}
+.tzr:nth-child(even){grid-template-columns:6fr 5fr}
+.tzr:nth-child(even) .tzr__bild{order:2}
+.tzr__bild{aspect-ratio:var(--a);width:min(100%,calc(72vh * (var(--a))));border-radius:var(--rund-k)}
+.tzr:nth-child(even) .tzr__bild{justify-self:end}
+.tzr__t h3{font:200 clamp(2rem,3.6vw,3.6rem)/1.02 var(--titel);color:var(--titel-h);margin:10px 0 14px;letter-spacing:.01em}
+.tzr__t .lauf+.lauf{margin-top:10px}
+@media (max-width:900px){
+  .tz,.tzr,.tzr:nth-child(even){grid-template-columns:1fr}
+  .tz__bild{height:64vh}
+  .tz__klein{right:16px;bottom:-40px;width:130px;border-width:6px}
+  .tz__t{padding:70px 6vw 56px}
+  .tzr{row-gap:22px}.tzr:nth-child(even) .tzr__bild{order:0}
+}
+
+/* Rückblick «Kontaktbogen» (19.10.2026): Filmstreifen von Rand zu Rand, läuft ohne Halt; grosse Kachel mit Text, Pfeile darunter */
+.kbg__band{width:100%;overflow:hidden;background:var(--nacht);padding:24px 0;position:relative;
+ background-image:radial-gradient(circle at 50% 50%,#C9D7EE 2.5px,transparent 3px),radial-gradient(circle at 50% 50%,#C9D7EE 2.5px,transparent 3px);background-size:20px 12px,20px 12px;background-position:0 6px,0 calc(100% - 6px);background-repeat:repeat-x}
+.kbg__lauf{display:flex;width:max-content;animation:kbg-lauf 80s linear infinite;will-change:transform}
+.kbg__kopie{display:contents}
+.kbg.still .kbg__lauf{animation-play-state:paused}
+@keyframes kbg-lauf{to{transform:translateX(-50%)}}
+.kbg__k{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:grid;gap:7px;width:clamp(170px,16vw,250px);padding:0 4px;color:#E6ECF2}
+.kbg__k img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.kbg__k small{font:400 9.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kbg__nr{position:absolute;top:-19px;left:4px;padding:0 5px;background:var(--nacht);font:400 9px/1.4 var(--mono);color:var(--himmel-h)}
+.kbg__k:focus-visible img{outline:3px solid #fff;outline-offset:-3px}
+.kbg .innen+.kbg__band{margin-top:0}
+.kbg__buehne{display:grid;margin-top:clamp(40px,5vw,80px)}
+.kbg__s{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:clamp(30px,5vw,90px);align-items:center}
+.kbg__s[aria-hidden=true]{visibility:hidden}
+.kbg__bild{margin:0;aspect-ratio:5/4;border-radius:var(--rund-k);overflow:hidden;background-size:cover;background-position:center}
+.kbg__bild img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.kbg__datum{display:flex;align-items:flex-end;gap:18px;padding-bottom:22px;border-bottom:1px solid rgba(15,54,120,.2)}
+.kbg__datum b{font:200 clamp(64px,7.4vw,124px)/.8 var(--titel);color:var(--stuhl);letter-spacing:-.01em}
+.kbg__datum span{font:400 12px/1.6 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t);padding-bottom:4px}
+.kbg__t h3{font:200 clamp(2rem,3.4vw,3.4rem)/1.04 var(--titel);color:var(--titel-h);margin:24px 0 16px;letter-spacing:.01em}
+.kbg__t .lauf+.lauf{margin-top:10px}
+.kbg__info{margin-top:26px;border-top:1px solid rgba(15,54,120,.2)}
+.kbg__info p{display:grid;grid-template-columns:70px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid rgba(15,54,120,.2);margin:0;font-size:15px}
+.kbg__info .mono{color:var(--himmel-t);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding-top:3px}
+.kbg__mehr{margin-top:20px}
+.kbg__pfeile{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,40px);margin-top:clamp(36px,4vw,60px)}
+.kbg__p{all:unset;cursor:pointer;border-radius:50%;display:block;transition:transform .5s var(--knopf)}
+.kbg__p:active{transform:scale(.94)}
+.kbg__p .kn{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--stuhl),var(--tief) 70%,var(--nacht));color:#E6ECF2;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 22px -10px rgba(4,16,35,.55)}
+.kbg__p .pf{width:18px;height:12px;stroke:currentColor;fill:none;stroke-width:1.4}
+.kbg__p:focus-visible{outline:2px solid var(--stuhl);outline-offset:4px}
+.kbg__stand{min-width:min(320px,50vw);text-align:center;color:var(--himmel-t)}
+@media (max-width:900px){.kbg__s{grid-template-columns:1fr;row-gap:26px}.kbg__k{width:44vw}.kbg__p .kn{width:50px;height:50px}}
+@media (prefers-reduced-motion:reduce){.kbg__lauf{animation:none}.kbg__band{overflow-x:auto}}
+
+/* ---------- Kopf «Events & Termine»: Bild im Passepartout (Robert 19.10.2026, Fassung 8 aus _varianten/events-kopf-20.html, Bild Abendschiff) ----------
+   Das Foto steht gerahmt in der Seite, der Titel liegt auf einer Platte in Tapetenfarbe halb auf der unteren Bildkante, der Satz daneben. */
+.epp{position:relative;padding:clamp(110px,10vw,150px) var(--rand) clamp(60px,7vw,110px)}
+.epp__bild{position:relative;margin:0 auto;max-width:1400px;height:min(62svh,640px);min-height:340px;overflow:hidden;border-radius:var(--rund)}
+.epp__bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.epp__platte{position:relative;max-width:1400px;margin:calc(-1 * clamp(56px,6vw,96px)) auto 0;display:flex;align-items:flex-end;gap:clamp(30px,4vw,64px);pointer-events:none}
+.epp__platte h1{pointer-events:auto;background-color:var(--kalk);background-image:var(--tap-h);background-size:168px;margin-left:clamp(40px,6vw,110px);padding:clamp(18px,2vw,30px) clamp(24px,3vw,46px) 0;border-radius:var(--rund) var(--rund) 0 0;font:400 clamp(2.1rem,4.4vw,4.4rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:var(--titel-h);white-space:nowrap}
+.epp__platte h1 em{font-style:normal;color:var(--himmel-t)}
+.epp__platte .lauf{pointer-events:auto;max-width:32ch;padding-bottom:.4em}
+.epp__nw{max-width:1400px;margin:14px auto 0;text-align:right}
+@media (max-width:860px){
+  .epp{padding-top:100px}
+  .epp__bild{height:auto;min-height:0;aspect-ratio:4/3}
+  .epp__platte{display:block;margin-top:-44px}
+  .epp__platte h1{display:inline-block;margin-left:16px;padding:16px 20px 0;font-size:clamp(1.55rem,7.4vw,2.6rem);letter-spacing:.1em;white-space:normal}
+  .epp__platte .lauf{padding:18px 0 0}
+  .epp__nw{text-align:left}
+}
+/* Satz unter der Bildkante, nie auf dem Foto; Bildausschnitt mit dem Säntis */
+.epp{--ue:clamp(56px,6vw,96px)}
+.epp__platte{margin-top:calc(-1 * var(--ue));align-items:flex-start}
+.epp__platte .lauf{margin-top:calc(var(--ue) + 14px);padding:0}
+.epp__bild img{object-position:50% 40%}
+@media (max-width:860px){.epp__platte .lauf{margin-top:0;padding-top:18px}}
+/* Kapitel mit mehreren Ländern: Flaggen nebeneinander mit Luft; Platte trägt dann ihre Flagge klein in der Unterzeile */
+.wl__lflgs{display:flex;justify-content:center;gap:10px}
+.wl__kflg{display:inline-block;width:14px;height:14px;border-radius:50%;overflow:hidden;vertical-align:-2px;margin-right:8px;box-shadow:0 0 0 1.5px #fff}
+.wl__kflg svg{display:block;width:100%;height:100%}
+.wk__gruppe>h2+.wl__raster{margin-top:8px}
+
+
+/* ---------- Kontakt: Kopf «Briefkopf» (Robert 19.10.2026, Fassung 03 aus _varianten/kontakt-links.html) ----------
+   Linke Seite mittig gesetzt wie das Briefpapier des Hauses: Zeichen, Wortmarke, «by Christian Kuchler», feine Linie,
+   Titel, Satz, Linie, Adresse, Tage und Zeiten, Knöpfe. Bild rechts so breit wie vorher (rund 38 %). */
+.kopf--brief{grid-template-columns:minmax(0,1fr) 38%}
+.kopf--brief .kb{align-items:center;justify-content:center;text-align:center;padding:120px var(--rand) 64px;color:var(--titel-h)}
+.kb .zeichen{color:var(--titel-h);margin-bottom:12px}
+.kb__wm{font:400 17px/1 var(--titel);letter-spacing:.42em;text-transform:uppercase;margin:0 0 0 .42em}
+.kb__by{font:400 10px/1.6 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:#5f7aa3;margin:6px 0 0}
+.kb__li{display:block;width:44px;height:1px;background:var(--himmel-t);opacity:.6;margin:30px 0}
+.kopf--brief .kopf__t h1{font-size:clamp(1.9rem,3.2vw,2.9rem);margin:0}
+.kb .lauf{margin:14px 0 0;max-width:34ch;font-size:17px}
+.kb__adr{font:400 21px/1.45 var(--titel);letter-spacing:.06em;margin:0 0 8px}
+.kb__zeit{font:400 12px/1.6 var(--mono);letter-spacing:.16em;text-transform:uppercase;margin:0}
+.kb .knoepfe{margin-top:30px;justify-content:center;flex-wrap:wrap}
+@media (max-width:860px){
+  .kopf--brief{grid-template-columns:1fr}
+  .kopf--brief .kb{padding:110px var(--rand) 40px}
+  .kopf--brief .kopf__t h1{font-size:clamp(1.5rem,6.6vw,2.2rem);margin:0}
+  .kb__wm{font-size:14px;letter-spacing:.32em}
+}
+
+/* ---------- Kopf «Events & Termine»: Nachtblaue Spalte (Robert 19.10.2026, Fassung 6 aus _varianten/events-kopf-runde4.html, löst das Passepartout .epp ab) ----------
+   Links eine nachtblaue Spalte mit Tapete, heller Titel, Satz und nächster Anlass; rechts das Feuerwerk vom Seenachtfest über zwei Drittel, randlos. */
+.esp{--hh:max(100svh,560px);position:relative;min-height:var(--hh);display:grid;grid-template-columns:1fr 2fr}
+.esp__t{display:flex;flex-direction:column;justify-content:center;padding:120px var(--rand) 60px}
+.esp__t h1{font:400 clamp(2rem,3.4vw,3.4rem)/1.12 var(--titel);text-transform:uppercase;letter-spacing:.14em;color:#F2F5F8;margin-bottom:22px}
+.esp__t h1 em{font-style:normal;color:var(--himmel)}
+.esp__nx{margin-top:22px;color:var(--himmel)}
+.esp__bild{position:relative;margin:0;overflow:hidden}
+.esp__bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+@media (max-width:860px){
+  .esp{grid-template-columns:1fr;min-height:0}
+  .esp__t{padding:110px var(--rand) 36px}
+  .esp__t h1{font-size:clamp(1.55rem,7.4vw,2.6rem);letter-spacing:.1em}
+  .esp__bild{aspect-ratio:4/3}
+}
+
+/* ---------- Weinliste: Art als ruhiger Trenner und Filter (19.10.2026, 21:20) ---------- */
+/* Art (Schaumwein, Weiss …) mittig zwischen zwei Linien, kleiner als die Länder darunter */
+.wl__art{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);margin:0 0 clamp(36px,4vw,52px);font:400 clamp(.95rem,1.2vw,1.15rem)/1.3 var(--titel);letter-spacing:.32em;text-transform:uppercase;color:var(--himmel-t);text-align:center}
+.wl__art::before,.wl__art::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(15,54,120,.3))}
+.wl__art::after{background:linear-gradient(90deg,rgba(15,54,120,.3),transparent)}
+.wl__art span{padding-left:.32em}
+.wk__gruppe{scroll-margin-top:110px}
+.wk__gruppe+.wk__gruppe{margin-top:clamp(80px,9vw,130px)}
+.wl__art+.wl__kap>.wl__land{margin-top:0}
+/* Filter: eine erhabene Platte, oben die Arten, darunter die Länder, rechts die Suche in der Kuhle */
+.wl__filter{display:grid;grid-template-columns:1fr minmax(200px,320px);gap:12px 18px;align-items:center;max-width:1100px;margin:0 auto clamp(56px,6vw,84px);padding:14px;border-radius:var(--rund);
+  background:linear-gradient(180deg,#FFFFFF,#EDF1F7);box-shadow:inset 0 1px 0 #fff,0 30px 50px -36px rgba(4,16,35,.5),0 6px 14px -10px rgba(4,16,35,.2)}
+.wl__wahl{display:flex;flex-wrap:wrap;gap:6px}
+.wl__wahl--land{grid-column:1/3;justify-content:center}
+.wl__wahl button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:999px;font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tinte);
+  background:linear-gradient(180deg,#F8FAFC,#E4EAF2);box-shadow:inset 0 1px 0 #fff,0 6px 12px -9px rgba(4,16,35,.5);transition:transform .5s var(--knopf),background-color .4s var(--e1)}
+.wl__wahl button:hover{transform:translateY(-1px)}
+.wl__wahl button small{font-size:10px;color:var(--himmel-t)}
+.wl__wahl button[aria-pressed="true"]{background:var(--stuhl);color:#fff;box-shadow:inset 0 2px 5px rgba(0,0,0,.35),0 1px 0 #fff}
+.wl__wahl button[aria-pressed="true"] small{color:var(--himmel-h)}
+.wl__wahl button:focus-visible{outline:2px solid var(--stuhl);outline-offset:2px}
+.wl__wahl--land button{height:32px;padding:0 12px;font-size:10.5px}
+.wl__wahl--land .wl__kflg{margin:0;width:16px;height:16px}
+.wl__suche{grid-column:2;grid-row:1;display:flex;align-items:center;gap:10px;height:50px;padding:0 16px;border-radius:var(--rund-k);color:var(--himmel-t);
+  background:linear-gradient(180deg,#E3E9F1,#EAEFF5 40%,#EDF1F6);box-shadow:inset 0 3px 6px -1px rgba(4,16,35,.13),inset 0 1px 0 rgba(4,16,35,.08),0 1px 0 #fff}
+.wl__suche svg{flex:none;width:18px;height:18px}
+.wl__suche input{all:unset;flex:1;min-width:0;font:400 15px/1.3 var(--lauf);color:var(--tinte)}
+.wl__suche input::placeholder{color:#6A7890}
+.wl__suche:focus-within{box-shadow:inset 0 3px 6px -1px rgba(4,16,35,.13),0 0 0 2px var(--stuhl)}
+.wl__stand{grid-column:1/3;margin:2px 4px 0;font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t);text-align:center}
+.wl__leer{text-align:center;font-size:17px;color:#4E5D73;margin:0 0 60px}
+/* ausgefiltert */
+.wl__z[hidden],.wl__p[hidden],.wl__kap[hidden],.wk__gruppe[hidden]{display:none}
+.wl__z:not([hidden])~.wl__z:not([hidden]){border-top:1px solid rgba(15,54,120,.09)}
+.wl__z+.wl__z{border-top:0}
+@media (max-width:760px){
+  .wl__filter{grid-template-columns:1fr;padding:10px}
+  .wl__suche{grid-column:1;grid-row:auto;order:-1}.wl__wahl--land{grid-column:1;justify-content:flex-start}
+  .wl__wahl{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;margin:0 -10px;padding:2px 10px 6px}
+  .wl__wahl::-webkit-scrollbar{display:none}
+  .wl__wahl button{flex:none}
+  .wl__stand{grid-column:1}
+}
+@media print{.wl__filter,.wl__leer{display:none}}
+/* Filter ohne Lücken (Robert 21:21: Leerraum neben den Arten): beide Reihen füllen ihre Breite, Knöpfe teilen sie gleichmässig */
+@media (min-width:761px){
+  .wl__wahl{flex-wrap:nowrap}
+  .wl__wahl button{flex:1 1 auto;justify-content:center;padding:0 10px;white-space:nowrap}
+  .wl__wahl--land{justify-content:stretch}
+  .wl__wahl--land button{flex:1 1 auto}
+}
+/* mittlere Breiten: Länder dürfen in zwei gefüllte Reihen umbrechen statt über den Rand zu laufen */
+@media (min-width:761px) and (max-width:1180px){.wl__wahl{flex-wrap:wrap}}
+/* Überschrift über dem Filter (Robert 21:25) */
+.wl__titel{text-align:center;margin:0 auto clamp(28px,3vw,40px);max-width:760px}
+.wl__titel p{margin-top:14px;font-size:17px;color:#35455D}
+.wl__titel{max-width:none}.wl__titel .t2{font-size:clamp(2.3rem,5.2vw,4.6rem);letter-spacing:.12em}
+
+/* ---------- Anfahrt «Nachtblaue Seekarte» (kontakt.html #anreise, Fassung 06 aus _varianten/anfahrt-20.html, 19.10.2026). Steht still, nur die Auftritte. ---------- */
+.ank{position:relative;background:var(--nacht);color:#E9EEF3;padding-block:clamp(110px,12vw,190px)}
+.ank__wl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ank__wl path{fill:none;stroke:rgba(162,182,207,.18);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.ank__g{display:grid;grid-template-columns:1fr 1fr;column-gap:6cqw;row-gap:56px;align-items:center}
+.ank__pos i{display:block;width:16px;height:16px;border-radius:50%;background:#f6c9a6;box-shadow:0 0 0 10px rgba(246,201,166,.15),0 0 0 22px rgba(246,201,166,.07);margin:0 0 clamp(26px,3vw,44px) 4px}
+.ank__gr{font:300 clamp(3rem,6.2vw,5.6rem)/1.05 var(--mono);color:#fff;margin:0 0 20px}
+.ank__pos .mono{color:var(--himmel)}
+.ank .t2{color:#F2F5F8}
+.ank .lauf{color:rgba(233,238,243,.9)}
+.ank__l{display:flex;flex-wrap:wrap;gap:16px 34px;margin-top:30px}
+.ank .leise{color:#F2F5F8}
+@media (max-width:900px){.ank__g{grid-template-columns:1fr}}
+
+/* ===== Weinkarte Kopf «Das Kellerbuch» (Robert 19.10.2026, Fassung 9 aus _varianten-weinkopf) ===== */
+.wkb{position:relative;min-height:max(100svh,640px);display:grid;place-items:center;padding:clamp(130px,15svh,170px) var(--rand) clamp(48px,7svh,90px);background:var(--kalk) url(../svg/tapete-a-hell.svg);background-size:168px}
+.wkb__buch{display:grid;grid-template-columns:1fr 1fr;width:min(1180px,100%);aspect-ratio:16/9.4;background:#F6F3EC;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(4,16,35,.5),0 14px 30px -18px rgba(4,16,35,.4)}
+.wkb__bild{margin:0;position:relative;border-right:1px solid #d8cfba;overflow:hidden}
+.wkb__bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.wkb__seite{padding:7% 8%;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg,rgba(0,0,0,.06),transparent 8%)}
+.wkb__haus,.wkb__fuss{margin:0;font:400 12px/1.6 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#8a7a5a}
+.wkb__fuss{margin-top:26px;color:var(--himmel-t)}
+.wkb h1{margin:12px 0 0;font:400 clamp(1.8rem,3vw,2.8rem)/1.1 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h)}
+.wkb h1 em{font-style:normal;color:var(--himmel-t)}
+.wkb ol{list-style:none;padding:0;margin:30px 0 0}
+.wkb li a{display:flex;align-items:baseline;gap:12px;padding:10px 0;font:400 15px/1.4 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h);text-decoration:none}
+.wkb li a::after{content:"";order:2;flex:1;border-bottom:1px dotted #b9a98a}
+.wkb li a span{order:3;font:400 13px/1 var(--mono);color:var(--himmel-t)}
+.wkb li a:hover{color:var(--stuhl)}
+@media (max-width:900px){
+  .wkb{padding-top:110px}
+  .wkb__buch{grid-template-columns:1fr;aspect-ratio:auto}
+  .wkb__bild{aspect-ratio:4/3;border-right:0;border-bottom:1px solid #d8cfba}
+  .wkb__seite{padding:30px 26px 34px;background:linear-gradient(180deg,rgba(0,0,0,.05),transparent 22px)}
+}
+
+/* ---------- Events: abgerundete 3D-Kacheln (Robert 19.10.2026, 22:31) ---------- */
+/* Four Hands: Teller kommt von links aus dem Rand, rechts oben und unten gerundet; kleiner Abzug ohne Rahmen, gerundet */
+.tz .tz__teller{border-radius:0 var(--rund) var(--rund) 0;overflow:hidden}
+.tz .tz__teller img{border-radius:inherit}
+.tz .tz__klein{border:0;border-radius:var(--rund-k);overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 40px 80px -30px rgba(4,16,35,.5),0 14px 30px -18px rgba(4,16,35,.4)}
+.tz .tz__klein img{border-radius:inherit}
+@media (max-width:900px){.tz .tz__teller{border-radius:0 0 var(--rund) var(--rund)}}
+/* Angeschlagen am Hafen: Plakat, kleine Plakate und Zettel als erhabene, gerundete Kacheln (gleiche Tiefe wie die Weinkarte) */
+#kalender .ap__gross{border-radius:var(--rund);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 70px -40px rgba(4,16,35,.75),0 10px 20px -12px rgba(4,16,35,.4)}
+#kalender .ap__p{border-radius:var(--rund-k);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 26px 40px -26px rgba(4,16,35,.7),0 6px 14px -10px rgba(4,16,35,.35)}
+#kalender .ap__p[aria-pressed=true]{outline-offset:2px}
+#kalender .kt-detail{border-radius:var(--rund);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(10,37,82,.06),0 34px 60px -38px rgba(4,16,35,.55),0 8px 18px -12px rgba(4,16,35,.22)}
+#kalender .kt-detail::before{border-radius:calc(var(--rund) - 10px)}
+/* Rückblick: sanfter Wechsel zwischen den Anlässen (Robert 22:32), nur transform und opacity, Richtung aus dem Pfeil (--dir) */
+.kbg__s{transition:opacity .55s var(--e1) .14s,transform .9s var(--e1),visibility 0s}
+.kbg__s[aria-hidden=true]{opacity:0;transform:translateX(calc(var(--dir,1) * -56px));pointer-events:none;transition:opacity .2s ease,transform .7s var(--e1),visibility 0s .7s}
+.kbg__s .kbg__bild img{transition:transform 1.4s var(--e1)}
+.kbg__s[aria-hidden=true] .kbg__bild img{transform:scale(1.06)}
+.kbg__s .kbg__t{transition:transform 1.1s var(--e1) .06s}
+.kbg__s[aria-hidden=true] .kbg__t{transform:translateX(calc(var(--dir,1) * -24px))}
+.kbg__bild{box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 40px 70px -40px rgba(4,16,35,.55),0 10px 20px -12px rgba(4,16,35,.25)}
+@media (prefers-reduced-motion:reduce){.kbg__s,.kbg__s .kbg__bild img,.kbg__s .kbg__t{transition:none!important}}
+/* Fenster zeigen nur, was in ihrem Rahmen liegt (Fund Schaufenster 19.10.2026); clip-path statt overflow, weil Safari overflow:clip wie hidden behandelt und das klebende Bild dann nicht mehr klebt */
+.fenster{clip-path:inset(0)}
+
+/* Station 14 (Werkbank-Bauer, 19.10.2026): PDF neben jeder Karte */
+.drucken{display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:center}
+.lmk__pdf{margin-top:14px}.lmk__pdf .leise{color:inherit}
+.ka__weiter{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 26px}
+
+/* ---------- Leiste «Speisefolge» (Fassung 66, Robert 20.10.2026): links das Zeichen, in der Mitte «Menü» wie der Kopf einer Karte,
+   rechts die Reservation. Das Menü ist eine Speisefolge auf Papier: die Karte steigt von unten herein, die Gänge kommen nacheinander
+   aus dem Schlitz. Bewegt wird nur transform, der Grund nur über opacity. ---------- */
+.leiste--sf{display:grid;grid-template-columns:1fr auto 1fr}
+.leiste--sf .ecke--r{justify-self:end}
+.leiste .lz{justify-self:start;flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;color:var(--tinte);text-decoration:none;
+  background:linear-gradient(180deg,#FDFEFE,var(--kalk) 70%,var(--kalk2));box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(4,16,35,.1),0 16px 30px -18px rgba(4,16,35,.7);transition:transform .5s var(--knopf)}
+.leiste .lz:hover{transform:translateY(-2px)}
+.leiste .lz svg{display:block}
+.sf-taste{position:relative;flex:none;display:inline-flex;align-items:center;gap:18px;height:50px;padding:0 30px 0 calc(30px + .46em);border:0;border-radius:25px;cursor:pointer;overflow:hidden;
+  color:var(--tinte);background:linear-gradient(180deg,#FEFEFE,#F0F3F7 65%,#E3E9F1);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(4,16,35,.1),0 18px 32px -20px rgba(4,16,35,.7);
+  font:400 12.5px/1 var(--titel);letter-spacing:.46em;text-transform:uppercase;transition:transform .5s var(--knopf)}
+.sf-taste::before{content:"";position:absolute;inset:4px;border-radius:21px;border:1px solid rgba(4,16,35,.13);pointer-events:none}
+.sf-taste::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
+.sf-taste:hover{transform:translateY(-2px)}
+.sf-taste:hover::after{transform:translateX(120%);transition:transform .9s var(--e1)}
+.sf-taste:active{transform:translateY(1px)}
+.sf-taste i{display:block;width:30px;height:1px;background:currentColor;opacity:.4;transition:transform .7s var(--e1)}
+.sf-taste i:first-child{transform-origin:100% 50%}.sf-taste i:last-child{transform-origin:0 50%}
+.sf-taste:hover i{transform:scaleX(1.35)}
+@media (max-width:520px){.leiste .lz{width:46px;height:46px}.leiste .lz svg{height:28px!important}.sf-taste{height:46px;gap:12px;padding:0 20px 0 calc(20px + .36em);letter-spacing:.36em}.sf-taste i{width:20px}
+  .leiste--sf .ecke .knopf{font-size:0;letter-spacing:0;gap:0;padding-left:5px;width:46px}}
+
+.sf{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:16px;visibility:hidden;pointer-events:none}
+.sf.offen,.sf.zu{visibility:visible}
+.sf.offen{pointer-events:auto}
+.sf__grund{position:absolute;inset:0;background:rgba(4,12,30,.8);opacity:0;transition:opacity .7s var(--e1)}
+.sf.offen .sf__grund{opacity:1}
+.sf.zu .sf__grund{transition-duration:.4s}
+.sf.zu.schnell .sf__grund{transition-duration:.22s}
+.sf__karte{position:relative;width:min(540px,100%);max-height:calc(100svh - 32px);overflow:auto;overscroll-behavior:contain;scrollbar-width:none;border-radius:3px;
+  background:linear-gradient(180deg,#FFFFFF,#F4F6F9 55%,#EDF1F5);box-shadow:0 60px 120px -40px rgba(0,0,0,.95),0 1px 0 rgba(255,255,255,.5) inset;
+  transform:translateY(calc(100svh + 60px));transition:transform 1.15s var(--e1)}
+.sf__karte::-webkit-scrollbar{display:none}
+.sf.offen .sf__karte{transform:none}
+.sf.zu .sf__karte{transition:transform .55s cubic-bezier(.6,0,.85,.25)}
+.sf.zu.schnell .sf__karte{transition:transform .28s cubic-bezier(.5,0,.75,0)}
+.sf__blatt{position:relative;padding:clamp(34px,5svh,48px) clamp(26px,5vw,60px) clamp(26px,4svh,36px);text-align:center;color:var(--tinte)}
+.sf__blatt::before,.sf__blatt::after{content:"";position:absolute;pointer-events:none}
+.sf__blatt::before{inset:12px;border:1px solid rgba(4,16,35,.22)}
+.sf__blatt::after{inset:16px;border:1px solid rgba(4,16,35,.08)}
+.sf .z{display:block;overflow:clip;overflow-clip-margin:.3em}
+.sf .z>*{display:block;transform:translateY(115%);transition:transform .95s var(--e1)}
+.sf.offen .z>*{transform:none;transition-delay:calc(.42s + var(--i,0) * 55ms)}
+.sf.offen .sf__g .z:last-child>*{transition-delay:calc(.46s + var(--i,0) * 55ms)}
+.sf.zu .z>*{transition:transform .3s var(--e1);transition-delay:0s}
+.sf.zu.schnell .z>*{transition:none}
+.sf__zu{position:absolute;top:26px;right:26px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;color:var(--tinte);background:none;box-shadow:inset 0 0 0 1px rgba(4,16,35,.22);transition:transform .5s var(--knopf),box-shadow .4s}
+.sf__zu:hover{transform:rotate(90deg);box-shadow:inset 0 0 0 1px rgba(4,16,35,.5)}
+.sf__zu svg{width:12px;height:12px;stroke:currentColor;stroke-width:1.2}
+.sf__haus{margin:0;font:400 10px/1.4 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--titel-h)}
+.sf__titel{margin:12px 0 0;font:300 clamp(28px,3vw,36px)/1 var(--titel);letter-spacing:.5em;text-transform:uppercase;padding-left:.5em}
+.sf__zeichen{margin:14px 0 0}
+.sf__zeichen>span{display:flex!important;align-items:center;justify-content:center;gap:16px;color:var(--titel-h)}
+.sf__zeichen>span::before,.sf__zeichen>span::after{content:"";width:64px;height:1px;background:currentColor;opacity:.35}
+.sf__datum{margin:12px 0 clamp(14px,2.4svh,24px);font:400 10px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h)}
+.sf nav{display:grid;gap:0}
+.sf__g{display:block;padding:clamp(4px,.8svh,8px) 0 clamp(5px,.9svh,9px);text-decoration:none;color:inherit}
+.sf__g small{font:400 9.5px/1.5 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h)}
+.sf__g b{position:relative;display:inline-block;margin-top:3px;font:300 clamp(19px,2vw,23px)/1.22 var(--titel);letter-spacing:.02em}
+.sf__g b::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transition:transform .6s var(--e1)}
+.sf__g:hover b::after,.sf__g:focus-visible b::after,.sf__g[aria-current] b::after{transform:scaleX(1)}
+.sf__g--tisch b{color:var(--stuhl)}
+.sf__g .z:last-child{display:flex;justify-content:center}
+.sf__fuss{margin:clamp(14px,2.4svh,24px) 0 0;padding-top:clamp(12px,2svh,18px);border-top:1px solid rgba(4,16,35,.14);font:400 10px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--titel-h)}
+.sf__fuss a{color:inherit;white-space:nowrap}
+@media (max-width:520px){.sf{padding:10px}.sf__karte{max-height:calc(100svh - 20px)}.sf__blatt{padding:44px 26px 30px}.sf__zu{top:20px;right:20px}.sf__titel{letter-spacing:.36em;padding-left:.36em}.sf__g{padding:7px 0 8px}}
+html.ruhig .sf__karte,html.ruhig .sf .z>*{transition:none!important;transform:none!important}
+
+/* Menü-Fenster ohne Überzeilen (Robert 20.10.2026): nur die zehn Namen, ruhig und mit Luft */
+.sf nav{gap:clamp(2px,.6svh,8px)}
+.sf__g{padding:clamp(6px,1.1svh,11px) 0}
+.sf__g b{margin-top:0;font-size:clamp(21px,2.2vw,25px)}
+.sf__datum{margin-bottom:clamp(18px,3svh,30px)}
+
+/* ---------- Weg zur nächsten Seite (Robert 20.10.2026): jede Seite endet vor dem Fuss mit «Als Nächstes», Ton in Ton,
+   Name gross, kleines Bild, runder Pfeil-Knauf; dezent der Weg zurück. Auftritt wie der Rest (data-r), Bilder heben sich nicht. ---------- */
+.folge{padding:clamp(64px,8vw,120px) 0 clamp(56px,7vw,104px)}
+.folge[hidden]{display:none}
+.folge__in{display:grid;justify-items:center;gap:22px}
+.folge__karte{display:grid;grid-template-columns:clamp(170px,22vw,280px) minmax(0,1fr) auto;align-items:center;gap:clamp(20px,3vw,44px);width:min(980px,100%);
+  padding:16px clamp(18px,2.4vw,30px) 16px 16px;border-radius:var(--rund);text-decoration:none;color:var(--tinte);
+  background:linear-gradient(180deg,#FFFFFF,var(--papier) 60%,#E9EEF5);box-shadow:inset 0 1px 0 #fff,0 34px 60px -44px rgba(4,16,35,.7)}
+.folge__bild{display:block;border-radius:var(--rund-k);overflow:hidden;background:var(--kalk2)}
+.folge__bild img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.folge__t{display:grid;gap:10px;min-width:0}
+.folge__t small{font:400 11px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h)}
+.folge__t b{font:300 clamp(34px,4.4vw,60px)/1.05 var(--titel);letter-spacing:.005em;font-weight:300;overflow-wrap:anywhere}
+.folge__kn{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;color:#fff;
+  background:linear-gradient(180deg,#2350A0,var(--stuhl) 50%,var(--tief));box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 16px 26px -14px rgba(4,16,35,.7);transition:transform .5s var(--knopf)}
+.folge__kn svg{width:20px;height:12px;stroke:currentColor;fill:none;stroke-width:1.3}
+.folge__karte:hover .folge__kn{transform:translateX(5px)}
+.folge__karte:focus-visible{outline:2px solid var(--stuhl);outline-offset:4px}
+.folge__unten{display:flex;justify-content:space-between;gap:20px;width:min(980px,100%);padding:0 6px}
+@media (max-width:640px){.folge__karte{grid-template-columns:minmax(0,1fr) auto;padding:12px 12px 18px}.folge__bild{grid-column:1/-1}.folge__bild img{aspect-ratio:16/9}.folge__t{padding-left:8px}.folge__kn{width:54px;height:54px}
+  .folge__unten{flex-direction:column;align-items:center;gap:12px}}
+
+/* «Als Nächstes» kleiner (Robert 20.10.2026: «nicht so riesig») */
+.folge{padding:clamp(44px,5vw,72px) 0 clamp(40px,4.6vw,64px)}
+.folge__karte{grid-template-columns:clamp(110px,12vw,160px) minmax(0,1fr) auto;gap:clamp(16px,2vw,28px);width:min(680px,100%)}
+.folge__t{gap:6px}
+.folge__t small{font-size:10px}
+.folge__t b{font-size:clamp(22px,2.2vw,30px);line-height:1.1}
+.folge__kn{width:48px;height:48px}
+.folge__kn svg{width:16px;height:10px}
+.folge__unten{width:min(680px,100%)}
+@media (max-width:640px){.folge__karte{grid-template-columns:minmax(0,1fr) auto}.folge__kn{width:46px;height:46px}}

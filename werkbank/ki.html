@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI und Ihre Daten · Wirtschaft am Schlössli</title>
+<meta name="description" content="Ein Entwurf für die neue Website des Wirtschaft am Schlössli, mit Unterlagen und Ideen für Papier. Alles auf einen Blick.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b1d3d">
+<meta property="og:title" content="Alles auf einen Blick · Wirtschaft am Schlössli">
+<meta property="og:description" content="Ein Entwurf für die neue Website des Wirtschaft am Schlössli, mit Unterlagen, Studio und Ideen für Papier.">
+<meta property="og:image" content="werkbank/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="preload" href="fonts/OpenSans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/auftakt.webp?v=3e5ec89e" as="image">
+<link rel="preload" href="img/auftakt-h.webp?v=6a97e8c9" as="image">
+<link rel="stylesheet" href="werkbank.css?v=1792436556">
+<link rel="stylesheet" href="kapitel.css?v=1792436629">
+<style id="sb-ruhe">.bf .bf-blatt[data-a="heben"],.bf .bf-blatt[data-a="heben"].da{animation:none!important}.kap__geist{animation:none!important}.kn:hover,.kn:active,.rund:hover,.rund:active,.wahl button:active,.vh-wahl button:active,.bn button:hover,.bn button:active,.glanz:active,.ins-r:hover,.ins-r:active,.wf__pf:hover,.wf__pf:active,.rgc-p:hover,.rgc-p:active,.sbf-z:hover{transform:none!important;translate:none!important;scale:none!important}.kn{overflow:hidden}.ins-reiter,.fb__reiter{padding-top:10px!important;padding-bottom:26px!important;margin-top:-10px!important;margin-bottom:-26px!important}.wahl,.vh-wahl{padding-top:8px!important;padding-bottom:26px!important;margin-top:-8px!important;margin-bottom:-12px!important}.wfen .wfen__t{font-size:clamp(24px,3.6vw,54px)!important;line-height:1.14!important}.wfen .wfen__k{font-size:clamp(15px,1.36vw,19px)!important}#papier img.frei{filter:none!important;box-shadow:none!important}</style><style id="ki-stil">
+/* «KI und Ihre Daten» (ki_seite.py, 16.10.2026, zweite Fassung): Bausteine der Werkbank (ag-blatt, mn-preise, zt, odo, wfen, data-a),
+   eigene Teile nur für Raster, Auftakt, Karten und Zahlen. Bewegung nur über die data-a der Werkbank, nichts Eigenes animiert.
+   Das Claude-Zeichen in seinem Ton (#5f8dd1) ist der eine Farbpunkt der Seite. */
+.ki{--claude:#5f8dd1}
+.ki-hz{display:block;width:clamp(56px,5.4vw,84px);height:auto;margin:0 auto;color:var(--himmel)}
+.ki-claude{display:block;width:clamp(44px,4.2vw,64px);height:auto;color:var(--claude)}
+.ki-kopf{text-align:center;max-width:900px;margin:0 auto clamp(48px,5.6vw,96px)}
+.ki-kopf .t2{margin-top:clamp(18px,2vw,28px)}
+.ki-lauf{max-width:56ch;margin:clamp(18px,2vw,28px) auto 0;font-size:clamp(1.06rem,1.22vw,1.2rem);line-height:1.64;opacity:.86}
+/* Auftakt */
+.ki-auftakt{padding-top:clamp(130px,13vw,190px);padding-bottom:var(--abschnitt);text-align:center}
+.ki-auftakt .in{display:block}
+.ki-paar{display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.2vw,34px)}
+.ki-paar__hz{width:clamp(72px,7vw,108px)}   /* Robert 16.10.: nur das Zeichen des Hauses, mittig in Gold, ohne Claude-Zeichen */
+.ki-paar__x{position:relative;display:block;width:clamp(20px,1.8vw,28px);height:clamp(20px,1.8vw,28px)}
+.ki-paar__x::before,.ki-paar__x::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(162,182,207,.6);transform:rotate(45deg)}
+.ki-paar__x::after{transform:rotate(-45deg)}
+.ki-paar__n{display:flex;justify-content:center;gap:clamp(40px,5vw,80px);margin:18px 0 0;font:400 11px/1.3 var(--mono,'DM Mono',monospace);letter-spacing:.24em;text-transform:uppercase;color:rgba(162,182,207,.8)}
+.ki-auftakt .t1{margin:clamp(34px,4vw,60px) 0 0;text-align:center}
+.ki-auftakt .t1 .z,.ki-kopf .t2 .z,.ki-auftakt .t1 .z>span,.ki-kopf .t2 .z>span{margin-left:auto;margin-right:auto}
+.ki-kopf .t2,.ki-auftakt .t1{text-align:center;margin-left:auto!important;margin-right:auto!important}
+.ki-buehne{margin:clamp(48px,5.6vw,96px) auto 0;max-width:1240px;border-radius:clamp(22px,2.4vw,32px);overflow:hidden;box-shadow:0 60px 90px -50px rgba(0,0,0,.85),0 22px 40px -28px rgba(0,0,0,.6)}
+.ki-buehne img{display:block;width:100%;height:auto;aspect-ratio:1620/1080;object-fit:cover}
+/* Zahlen + Kosten */
+.ki-zahlen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:3px double rgba(162,182,207,.55);border-bottom:3px double rgba(162,182,207,.55);margin-bottom:clamp(56px,6vw,104px)}
+.ki-zahl{padding:clamp(28px,3vw,48px) clamp(14px,1.6vw,26px);text-align:center}
+.ki-zahl+.ki-zahl{border-left:1px solid rgba(162,182,207,.22)}
+.ki-zahl__n{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(3.6rem,7vw,7.6rem);line-height:1.16;color:var(--creme)}
+.ki-zahl__t{margin:12px auto 0;max-width:22ch;line-height:1.55;color:rgba(255,255,255,.82)}
+.ki-blick{display:grid;gap:clamp(28px,3.4vw,56px);grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center}
+.ki-blick__text p{font-family:var(--serif);font-size:clamp(1.1rem,1.3vw,1.3rem);line-height:1.55;margin:.7em 0 0;color:var(--tinte)}
+/* Claude gross und mittig im freien Raum der linken Spalte (Robert 16.10.2026) */
+.ki-blick{align-items:stretch!important}
+.ki-blick__text{display:flex;flex-direction:column}
+.ki-marke{flex:1;display:flex;align-items:center;justify-content:center;gap:clamp(14px,1.4vw,22px);min-height:clamp(120px,12vw,190px);margin-bottom:clamp(16px,1.8vw,24px)}
+.ki-marke .ki-claude{width:clamp(56px,5vw,80px)}
+.ki-marke span{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,3.4vw,3.6rem);line-height:1;color:var(--tinte)}
+.ki-preise{max-width:none;margin:0}
+.ki-k__t{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,2.3vw,2.4rem);line-height:1.1;color:var(--tinte)}
+/* Vier Stellen: Foto + Karte, abwechselnd; das Foto ist so hoch wie die Karte */
+.ki-stellen{display:grid;gap:clamp(56px,6.4vw,112px)}
+.ki-st{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(24px,3vw,52px);align-items:stretch}
+.ki-st--um .ki-st__b{order:2}
+.ki-st__b{position:relative;margin:0;border-radius:clamp(22px,2.4vw,30px);overflow:hidden;box-shadow:0 50px 80px -48px rgba(0,0,0,.9),0 18px 34px -26px rgba(0,0,0,.6);min-height:420px}
+.ki-st__b img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ki-kerbe{position:absolute;left:0;bottom:0;padding:18px 26px 2px 24px;background:var(--navy,var(--navy));border-top-right-radius:24px;font:400 14px/1 var(--mono,'DM Mono',monospace);letter-spacing:.18em;text-transform:uppercase;color:var(--creme)}
+.ki-kerbe::before,.ki-kerbe::after{content:"";position:absolute;width:24px;height:24px;background:radial-gradient(circle at 100% 0,transparent 23.5px,var(--navy,var(--navy)) 24px)}
+.ki-kerbe::before{left:0;top:-24px}
+.ki-kerbe::after{right:-24px;bottom:0}
+.ki-k{display:flex;flex-direction:column}
+.ki-k dl{margin:clamp(14px,1.6vw,22px) 0 clamp(18px,2vw,26px)}
+.ki-k__r{padding:14px 0;border-top:1px solid rgba(17,61,136,.22)}
+.ki-k__r dt{font:400 11px/1.3 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--blau)}
+.ki-k__r dd{margin:6px 0 0;font-size:1rem;line-height:1.6;color:rgba(12,21,38,.86)}
+.ki-k__ohne{margin-top:auto;padding:clamp(18px,2vw,26px);border-radius:18px;background:var(--navy,var(--navy));color:#ffffff;box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.ki-k__ohne-t{margin:0;font:400 11px/1.3 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--creme)}
+.ki-k__ohne p+p{margin:8px 0 0;font-family:var(--serif);font-size:clamp(1.08rem,1.25vw,1.24rem);line-height:1.5;color:rgba(255,255,255,.92)}
+/* Fenster: Satz mit kräftigem Schatten, damit er auf jedem Foto lesbar bleibt (Robert 16.10.2026) */
+#ki-fenster .wfen__t,#ki-fenster .wfen__k{text-shadow:0 1px 2px rgba(3,10,16,.95),0 3px 14px rgba(3,10,16,.85),0 10px 46px rgba(3,10,16,.75)}
+/* Geräte mit Film (Robert 16.10.2026): ein Gerät je Abschnitt, frei auf dem Grund, mittig zur Karte */
+.ki-k__mit{margin-top:auto;margin-bottom:10px;padding:clamp(18px,2vw,26px);border-radius:18px;background:rgba(17,61,136,.08);box-shadow:inset 0 0 0 1px rgba(17,61,136,.35)}
+.ki-k__mit .ki-k__ohne-t{color:var(--blau)}
+.ki-k__mit p+p{margin:8px 0 0;font-family:var(--serif);font-size:clamp(1.02rem,1.15vw,1.14rem);line-height:1.5;color:rgba(12,21,38,.86)}
+.ki-k__mit+.ki-k__ohne{margin-top:0}
+.ki-k p.ki-k__betrag{margin:10px 0 0;font:400 13px/1.3 var(--mono,'DM Mono',monospace);letter-spacing:.16em;text-transform:uppercase}
+.ki-k__mit p.ki-k__betrag{color:#264c84}.ki-k__ohne p.ki-k__betrag{color:var(--creme)}
+[dir=rtl] .ki-k p.ki-k__betrag{letter-spacing:0}
+.ki-k__preis{margin:8px 0 0;font:400 13px/1.3 var(--mono,'DM Mono',monospace);letter-spacing:.16em;text-transform:uppercase;color:var(--blau)}
+.ki-geraet{margin:0;display:flex;align-items:center;justify-content:center}
+.ki-st--um .ki-geraet{order:2}
+.ki-film{display:block;width:100%;height:100%;object-fit:cover;background:#0c0e16}
+.ki-laptop{position:relative;width:100%;aspect-ratio:2000/1673;filter:drop-shadow(0 46px 50px rgba(0,0,0,.55))}
+.ki-laptop__s{position:absolute;left:9.7242%;top:2.0296%;width:80.5516%;height:62.3256%;overflow:hidden;background:#0c0e16}
+.ki-laptop__g{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.ki-handy{position:relative;width:min(300px,62%);aspect-ratio:540/1168;padding:11px;border-radius:52px;background:linear-gradient(160deg,#3a4262,#11141f 55%,var(--navy));
+  box-shadow:inset 0 0 0 1.5px rgba(162,182,207,.28),inset 0 0 0 5px #0a0c13,0 50px 70px -36px rgba(0,0,0,.85)}
+.ki-handy__s{width:100%;height:100%;border-radius:42px;overflow:hidden;background:#0c0e16}
+.ki-ipad{position:relative;width:100%;aspect-ratio:1180/820;padding:clamp(12px,1.4vw,20px);border-radius:clamp(26px,2.6vw,38px);background:linear-gradient(160deg,#3a4262,#11141f 55%,var(--navy));
+  box-shadow:inset 0 0 0 1.5px rgba(162,182,207,.28),inset 0 0 0 6px #0a0c13,0 50px 70px -40px rgba(0,0,0,.85)}
+.ki-ipad__s{width:100%;height:100%;border-radius:clamp(12px,1.2vw,18px);overflow:hidden;background:#0c0e16}
+/* Zwei Wege für den Chat (19.10.2026): zwei Karten nebeneinander, darunter «Beides» und die Antwort auf die Sorge */
+.ki-wege{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);align-items:stretch}
+.ki-beides{text-align:center;margin:clamp(34px,4vw,60px) auto!important}
+.ki-sorge>p{max-width:62ch}
+[dir=rtl] .ki-weg .ki-k__preis{letter-spacing:0}
+/* Daten */
+/* Daten, edler (Robert 16.10.2026: «noch geiler und edler»): Anbieter als Platte, sechs Zusagen als helle Blätter mit Doppelrand und Siegel */
+.ki-anbieter{display:flex;align-items:center;justify-content:center;gap:clamp(16px,1.6vw,24px);width:max-content;max-width:100%;margin:0 auto clamp(44px,5vw,80px);padding:clamp(16px,1.6vw,22px) clamp(26px,2.6vw,40px);
+  border-radius:999px;background:var(--weiss);box-shadow:inset 0 1px 0 #ffffff,0 0 0 1px rgba(17,61,136,.45),0 0 0 6px rgba(242,244,248,.7),0 0 0 7px rgba(17,61,136,.25),0 30px 50px -36px rgba(4,16,35,.6)}
+.ki-anbieter .ki-claude{width:clamp(46px,4vw,60px)}
+.ki-anbieter p{margin:0;display:flex;flex-direction:column;text-align:left}
+.ki-anbieter b{font-family:var(--serif);font-weight:400;font-size:1.5rem;color:var(--tinte)}
+.ki-anbieter span{font-size:.9rem;opacity:.72}
+.ki-daten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2vw,30px)}
+.ki-d{position:relative;text-align:center;padding:clamp(34px,3.4vw,52px) clamp(24px,2.4vw,38px) clamp(30px,3vw,44px);border-radius:clamp(22px,2.2vw,30px);
+  background:var(--weiss);box-shadow:inset 0 1px 0 #ffffff,0 0 0 1px rgba(17,61,136,.5),0 50px 70px -52px rgba(4,16,35,.7),0 18px 30px -26px rgba(4,16,35,.45)}
+.ki-d::before,.ki-d::after{content:"";position:absolute;pointer-events:none;border:1px solid rgba(17,61,136,.45);border-radius:clamp(15px,1.5vw,22px);inset:10px}
+.ki-d::after{inset:14px;border-color:rgba(17,61,136,.2);border-radius:clamp(12px,1.2vw,19px)}
+.ki-siegel{display:grid;place-items:center;width:58px;height:58px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e7ecf3,#a2b6cf 55%,#113d88);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 0 0 5px rgba(17,61,136,.35),0 10px 18px -10px rgba(4,16,35,.7)}
+.ki-siegel i{width:12px;height:12px;transform:rotate(45deg);background:var(--navy)}
+.ki-d h3{margin:20px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,1.95vw,2rem);line-height:1.15;color:var(--tinte)}
+.ki-d p{margin:12px auto 0;line-height:1.62;max-width:34ch;color:rgba(12,21,38,.84)}
+.ki-raute{display:block;width:10px;height:10px;transform:rotate(45deg);background:var(--himmel)}
+/* Ohne KI */
+.ki-ohne{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2vw,30px)}
+.ki-o{padding:clamp(22px,2.4vw,32px);border-radius:clamp(20px,2vw,26px);background:var(--weiss);box-shadow:inset 0 1px 0 #ffffff,0 0 0 1px rgba(17,61,136,.35),0 34px 50px -40px rgba(4,16,35,.55)}
+.ki-o h3{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,1.7vw,1.75rem);color:var(--tinte)}
+.ki-o p{margin:12px 0 0;line-height:1.62;color:rgba(12,21,38,.86)}
+/* In Ihrer Hand */
+.ki-hand{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,3.6vw,64px);align-items:center;margin-bottom:clamp(56px,6vw,104px)}
+.ki-hand__b{margin:0;border-radius:clamp(22px,2.4vw,30px);overflow:hidden;box-shadow:0 50px 80px -48px rgba(0,0,0,.9)}
+.ki-hand__b img{display:block;width:100%;height:auto}
+.ki-hand__t .ki-hz{margin:0}
+.ki-hand__t .t2{margin:clamp(16px,1.8vw,24px) 0 clamp(20px,2.4vw,34px)}
+.ki-h{margin:0;padding:16px 0;border-top:1px solid rgba(162,182,207,.25);font-size:1.05rem;line-height:1.6;color:rgba(255,255,255,.82)}
+.ki-h b{display:block;font-family:var(--serif);font-weight:400;font-size:1.45rem;color:var(--creme);margin-bottom:4px}
+.ki-offen{max-width:880px;margin:0 auto;text-align:center}
+.ki-offen>p{font-family:var(--serif);font-size:clamp(1.08rem,1.25vw,1.25rem);line-height:1.55;max-width:58ch;margin:14px auto 0;color:var(--tinte)}
+.ki-knoepfe{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(22px,2.4vw,34px)!important}
+.ki-quellen{font-size:.82rem!important;font-family:inherit!important;opacity:.72;margin-top:clamp(24px,2.6vw,36px)!important}
+.ki-quellen__l{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;font-size:.82rem}
+.ki-quellen__l a{color:var(--blau)}
+@media(max-width:1000px){.ki-blick,.ki-st,.ki-hand,.ki-wege{grid-template-columns:1fr}.ki-st--um .ki-st__b,.ki-st--um .ki-geraet{order:0}.ki-st__b{min-height:0;aspect-ratio:4/3}
+  .ki-zahlen{grid-template-columns:repeat(2,minmax(0,1fr))}.ki-zahl:nth-child(3){border-left:0}.ki-zahl:nth-child(n+3){border-top:1px solid rgba(162,182,207,.22)}
+  .ki-daten{grid-template-columns:repeat(2,minmax(0,1fr))}.ki-ohne{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.ki-daten,.ki-ohne{grid-template-columns:1fr}.ki-paar__n{flex-direction:column;gap:6px}.ki-zahl__n{font-size:3.4rem}}
+
+/* Schlössli (sb_ki.py, 20.10.2026): Laptop als Bild mit echtem Bildschirm, Karten heben sich wie im Angebot */
+.ki-geraet img{display:block;width:100%;height:auto;filter:drop-shadow(0 40px 46px rgba(0,0,0,.5))}
+.ki [data-a="heben"]{opacity:1;transform:translate3d(0,100px,0) scale(.975);transition:transform 2.1s cubic-bezier(.16,1,.3,1)}
+.ki [data-a="heben"].da{transform:none}
+.ki .ag-blatt{position:relative;padding:clamp(26px,3.4vw,56px);border-radius:clamp(22px,2.4vw,34px);background:var(--weiss);color:var(--tinte);box-shadow:inset 0 1px 0 #ffffff,0 0 0 1px rgba(17,61,136,.22),0 60px 80px -56px rgba(0,0,0,.9)}
+.ki-sorge{margin-top:clamp(56px,6vw,100px)!important}
+.ki-hz{color:var(--himmel)}
+@media(prefers-reduced-motion:reduce){.ki [data-a="heben"]{transform:none;transition:none}}
+</style>
+<style>.ki-claude{color:#d97757!important}</style>
+<script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body class="haus-wirtschaft-am-schloessli">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="hz"><g transform="translate(0.000000,1563.000000) scale(0.100000,-0.100000)"><path d="M8188 14993 c-75 -186 -283 -705 -463 -1153 -180 -448 -343 -853 -362 -900 l-34 -85 39 -95 c22 -52 38 -98 35 -102 -2 -5 -20 -8 -39 -8 -51 0 -314 -38 -429 -61 -55 -12 -168 -43 -252 -70 -165 -54 -213 -84 -213 -133 0 -26 39 -76 59 -76 6 0 44 13 84 29 41 16 98 36 128 45 60 17 413 53 619 62 l135 6 77 -193 c43 -107 118 -295 169 -419 92 -228 364 -902 490 -1216 l69 -172 0 -1744 0 -1744 -66 -11 c-131 -23 -236 -98 -293 -210 -84 -167 -80 -450 9 -594 16 -27 30 -53 30 -57 0 -4 -226 -233 -502 -509 l-503 -502 -64 31 c-52 26 -75 32 -130 32 -183 -1 -341 -155 -341 -334 0 -113 63 -221 161 -275 49 -27 62 -30 149 -30 106 0 153 16 226 79 111 95 144 292 68 408 -13 21 -24 43 -24 50 0 7 225 238 499 512 l500 500 38 -27 c56 -38 128 -66 189 -73 l54 -7 0 -772 c0 -834 3 -785 -48 -785 -28 0 -94 -39 -140 -83 -174 -169 -113 -466 114 -553 63 -24 187 -16 240 16 60 35 113 90 142 145 24 45 27 60 27 155 0 90 -3 111 -23 147 -47 89 -117 147 -202 169 l-45 11 -3 775 -2 775 57 6 c123 13 250 103 309 219 72 142 80 369 18 523 l-24 60 690 690 690 690 368 147 c202 81 558 225 792 319 234 94 589 237 789 318 l365 146 50 127 c28 70 53 124 57 120 3 -4 44 -119 90 -257 106 -316 141 -372 223 -351 46 11 47 38 10 219 -41 198 -74 303 -160 497 -35 80 -64 149 -64 154 0 4 165 420 366 923 201 503 364 916 361 919 -2 3 -78 -25 -168 -62 -149 -60 -1108 -446 -1239 -499 l-56 -22 -65 61 c-36 34 -87 93 -112 131 -64 98 -122 160 -319 342 -391 361 -478 432 -745 607 -514 337 -813 475 -1173 541 -74 14 -157 32 -185 41 -27 9 -55 17 -62 19 -7 2 8 51 43 137 30 73 54 138 54 145 0 6 -60 162 -134 345 -322 802 -714 1777 -778 1938 -39 96 -74 178 -77 183 -4 4 -68 -145 -143 -330z m997 -2805 c44 -16 158 -56 253 -89 96 -33 265 -102 377 -154 111 -52 276 -126 366 -165 381 -165 686 -344 885 -517 56 -48 155 -131 220 -185 65 -53 173 -151 238 -218 l119 -122 -39 -17 c-21 -10 -165 -68 -320 -130 l-281 -112 -454 -1135 -454 -1134 -699 -705 -698 -705 -50 45 c-59 56 -136 93 -224 108 l-64 11 0 1753 0 1753 34 82 c19 46 105 259 191 473 160 398 236 584 390 965 48 118 89 221 92 228 3 8 13 10 22 7 9 -4 52 -20 96 -37z m-887 -5340 c-3 -7 -25 -16 -49 -19 -24 -4 -61 -14 -82 -22 -48 -21 -40 -5 10 19 65 30 127 42 121 22z m188 -19 c23 -11 49 -28 59 -39 16 -18 15 -18 -26 2 -24 12 -68 27 -98 33 -30 6 -57 17 -59 24 -6 18 69 6 124 -20z M9295 12694 c-36 -37 13 -96 59 -72 39 20 46 47 20 72 -20 21 -58 20 -79 0z M6177 12379 c-21 -5 -59 -18 -85 -28 -26 -11 -112 -45 -192 -76 -80 -31 -190 -81 -245 -110 -55 -29 -136 -68 -180 -85 -163 -64 -290 -142 -459 -279 -44 -36 -147 -113 -228 -171 -82 -59 -199 -149 -260 -201 -127 -108 -341 -328 -396 -408 -20 -30 -78 -95 -128 -145 -50 -50 -107 -118 -126 -151 -19 -33 -64 -97 -100 -142 -92 -114 -265 -344 -325 -433 -65 -97 -94 -155 -128 -260 -15 -47 -49 -122 -77 -168 -66 -109 -128 -244 -226 -488 -45 -111 -97 -237 -116 -280 -23 -55 -36 -102 -41 -154 -7 -82 -30 -205 -69 -375 -34 -149 -51 -295 -77 -650 -31 -438 -26 -505 96 -1195 36 -201 67 -391 70 -423 11 -100 78 -147 144 -101 40 28 51 73 51 201 0 127 -12 189 -52 268 -75 147 -93 330 -92 950 l1 470 46 230 c25 127 53 280 62 340 18 116 125 554 170 689 69 211 182 437 404 809 168 281 223 365 301 457 26 30 77 101 113 158 49 75 110 147 225 266 86 89 179 186 206 215 47 51 105 87 177 110 20 6 72 41 115 77 43 37 144 110 224 164 80 54 174 125 210 157 46 41 131 96 285 182 121 68 303 171 404 229 101 58 219 120 262 138 86 35 160 85 208 140 35 40 37 47 15 68 -17 18 -121 21 -187 5z M3083 5948 c-46 -22 -74 -136 -54 -226 6 -29 36 -110 66 -183 30 -72 68 -171 84 -220 19 -57 51 -123 89 -182 32 -51 94 -153 137 -227 43 -74 120 -198 170 -275 51 -77 105 -164 119 -193 15 -29 57 -87 94 -130 37 -42 117 -135 177 -207 145 -171 252 -278 350 -350 44 -32 95 -76 114 -97 18 -22 66 -61 105 -88 39 -26 107 -80 151 -119 99 -89 178 -142 472 -319 184 -110 257 -149 350 -182 138 -50 178 -69 241 -114 105 -75 248 -126 352 -126 76 0 93 11 93 62 0 45 -45 80 -144 113 -132 43 -189 73 -434 220 -477 286 -586 370 -1122 867 -317 295 -599 637 -815 992 -112 184 -278 514 -357 709 -85 211 -106 249 -151 272 -33 17 -56 18 -87 3z M10568 3244 c-121 -29 -308 -143 -308 -188 0 -32 24 -49 65 -48 42 2 68 14 216 108 117 74 142 102 117 131 -12 15 -16 15 -90 -3z M10017 2933 c-13 -12 -7 -44 8 -49 20 -8 45 13 45 37 0 13 -7 19 -23 19 -13 0 -27 -3 -30 -7z M9665 2795 c-34 -34 -33 -69 3 -84 37 -16 77 -5 102 26 24 31 25 47 4 67 -24 25 -81 20 -109 -9z M9198 2625 c-70 -12 -158 -30 -197 -40 -54 -13 -91 -16 -158 -10 -79 6 -100 3 -208 -26 -66 -17 -156 -40 -200 -51 -44 -11 -86 -22 -92 -24 -19 -5 -16 -55 5 -70 23 -18 153 -18 264 0 101 17 241 56 345 97 61 24 82 28 130 23 46 -5 75 0 143 21 118 38 142 51 138 78 -4 29 -19 29 -170 2z M6680 2610 c-11 -11 -20 -26 -20 -34 0 -21 48 -56 76 -56 27 0 64 32 64 55 0 25 -38 55 -70 55 -17 0 -39 -9 -50 -20z M7915 2485 c-27 -7 -97 -14 -155 -14 -108 -1 -150 -14 -150 -46 0 -23 17 -27 133 -30 68 -2 131 -9 161 -19 70 -23 126 -21 167 7 48 32 51 70 7 97 -37 23 -87 24 -163 5z"/></g></g></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" id="rhgold-def"><defs><linearGradient id="rhgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b6c3d7"/><stop offset=".3" stop-color="#859bbd"/><stop offset=".52" stop-color="#4076c8"/><stop offset=".66" stop-color="#2c5899"/><stop offset=".84" stop-color="#4a7dca"/><stop offset="1" stop-color="#9fb1cb"/></linearGradient><linearGradient id="rhgold-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3970c3"/><stop offset=".34" stop-color="#2c5899"/><stop offset=".56" stop-color="#25497f"/><stop offset=".7" stop-color="#173a6f"/><stop offset=".86" stop-color="#2b5594"/><stop offset="1" stop-color="#3365b0"/></linearGradient></defs></svg>
+<div class="gang-linie" aria-hidden="true"></div>
+<header class="leiste"><div class="insel">
+  <a class="insel__m" href="#oben"><svg class="hz" viewBox="256 16 1092 1324" aria-hidden="true" fill="currentColor"><use href="#hz"/></svg><b>SCHLÖSSLI</b><span>Entwurf</span></a>
+  <nav aria-label="Kapitel"><a href="#ki-blick">KI</a><a href="#ki-zahlen">Kosten</a><a href="#ki-stellen">Vier Stellen</a><a href="#ki-daten">Ihre Daten</a><a href="#ki-ohne">Ohne KI</a><a href="#ki-hand">In Ihrer Hand</a><a href="index.html#sag-vorschlag">Zurück zum Vorschlag</a></nav>
+  <a class="glanz" href="../index.html" target="_blank" rel="noopener">Zur Website<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+</div></header>
+
+<main id="oben">
+<section class="fl fl--nacht tapete-leicht ki ki-auftakt" id="ki-blick">
+  <div class="in"><div data-a="auf"><svg class="ki-hz" viewBox="256 16 1092 1324" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg></div><h1 class="t1 zt"><span class="z"><span>Wo die KI hilft.</span></span><span class="z"><span><em>Und wo Ihre Daten bleiben.</em></span></span></h1><p class="ki-lauf" data-a="worte">Drei Werkzeuge der Wirtschaft am Schlössli arbeiten an vier Stellen mit Claude, dem Sprachmodell von Anthropic. Hier steht für jede, was sie tut, was sie kostet, wohin Daten gehen und was ohne KI weiterläuft.</p></div>
+</section>
+<section class="fl fl--navy tapete blatt ki" id="ki-zahlen">
+  <div class="in">
+    <div class="ki-zahlen"><div class="ki-zahl" data-a="auf" style="--i:0"><p class="ki-zahl__n"><span class="odo" data-z="4">4</span></p><p class="ki-zahl__t">Stellen nutzen KI, alles andere arbeitet ohne.</p></div><div class="ki-zahl" data-a="auf" style="--i:1"><p class="ki-zahl__n"><span class="odo" data-z="0">0</span></p><p class="ki-zahl__t">Ihrer Daten gehen ins Training des Modells.</p></div><div class="ki-zahl" data-a="auf" style="--i:2"><p class="ki-zahl__n"><span class="odo" data-z="30">30</span></p><p class="ki-zahl__t">Tage, dann löscht der Anbieter jede Eingabe.</p></div><div class="ki-zahl" data-a="auf" style="--i:3"><p class="ki-zahl__n"><span class="odo" data-z="12">12</span></p><p class="ki-zahl__t">Monate bewahrt Ihr Haus Anfragen auf, dann sind sie weg.</p></div></div>
+    <div class="ag-blatt ki-blick" data-a="heben">
+      <div class="ki-blick__text"><div class="ki-marke"><svg class="ki-claude" viewBox="0 0 24 24" role="img" aria-label="Claude"><path fill="currentColor" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Claude</span></div><h3 class="ki-k__t">Was es kostet</h3><p>Die KI läuft über ein eigenes Konto Ihres Hauses beim Anbieter. Sie zahlen dort direkt nach Verbrauch, ich richte das Konto ein und setze eine Obergrenze je Monat.</p><p>In der Betreuung ist das nicht enthalten. Die fertigen Vorlagen, das Bildarchiv und alles Übrige kosten nichts.</p></div>
+      <div><ul class="mn-l mn-preise ki-preise"><li class="mn-p"><p class="mn-p__z"><b>Der Chat für Ihre Gäste</b><i></i><span>Reservationsbuch</span></p><p class="mn-p__s">Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</p></li><li class="mn-p"><p class="mn-p__z"><b>Antwort auf eine Anfrage</b><i></i><span>Reservationsbuch</span></p><p class="mn-p__s">Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</p></li><li class="mn-p"><p class="mn-p__z"><b>Fünf Entwürfe</b><i></i><span>Hausdruckerei</span></p><p class="mn-p__s">Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</p></li><li class="mn-p"><p class="mn-p__z"><b>Eine Markenprüfung</b><i></i><span>Bildarchiv</span></p><p class="mn-p__s">Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</p></li></ul></div>
+    </div>
+  </div>
+</section>
+<section class="fl fl--navy tapete blatt ki" id="ki-stellen">
+  <div class="in"><header class="ki-kopf"><div data-a="auf"><svg class="ki-hz" viewBox="256 16 1092 1324" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg></div><h2 class="t2 zt"><span class="z"><span>Vier Stellen,</span></span><span class="z"><span><em>genau beschrieben.</em></span></span></h2><p class="ki-lauf" data-a="worte">Was die KI dort tut, was dabei zum Anbieter geht, was Ihr Haus aufbewahrt, was es kostet und was ohne sie bleibt.</p></header><div class="ki-stellen"><article class="ki-st"><figure class="ki-geraet" data-a="kipp"><img src="img/ki-geraet-reception.webp?v=509376e7" alt="Reservationsbuch am Laptop: Der Chat für Ihre Gäste" loading="lazy" decoding="async"></figure><div class="ag-blatt ki-k" data-a="heben"><h3 class="ki-k__t">Der Chat für Ihre Gäste</h3><p class="ki-k__preis">Reservationsbuch</p><dl><div class="ki-k__r"><dt>Was sie tut</dt><dd>Beantwortet Fragen von Gästen zu Karte, Lunch, Terrasse und Anreise, nur aus den Seiten und Unterlagen des Hauses, auf Deutsch, Englisch oder Französisch. Im Entwurf steht er im Reservationsbuch zum Ausprobieren.</dd></div><div class="ki-k__r"><dt>Was zum Anbieter geht</dt><dd>Fragen und Antworten des Gesprächs. Name und Kontakt nur, wenn ein Gast selbst etwas anfragt.</dd></div><div class="ki-k__r"><dt>Was gespeichert wird</dt><dd>Fragen und Antworten im Reservationsbuch, damit Ihr Team sieht, was Gäste wissen wollen; nach zwölf Monaten gelöscht.</dd></div><div class="ki-k__r"><dt>Kosten</dt><dd>Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</dd></div></dl><div class="ki-k__ohne"><p class="ki-k__ohne-t">Ohne KI</p><p>Telefon, Reservation bei gastronovi und Gutschein stehen wie heute auf jeder Seite.</p></div></div></article><article class="ki-st ki-st--um"><figure class="ki-geraet" data-a="kipp"><img src="img/ki-geraet-reception-2.webp?v=0cf0a4b1" alt="Reservationsbuch am Laptop: Antwort auf eine Anfrage" loading="lazy" decoding="async"></figure><div class="ag-blatt ki-k" data-a="heben"><h3 class="ki-k__t">Antwort auf eine Anfrage</h3><p class="ki-k__preis">Reservationsbuch</p><dl><div class="ki-k__r"><dt>Was sie tut</dt><dd>Schreibt Ihrem Team einen Antwortentwurf auf eine Anfrage zu Bankett, Anlass oder Reservation, im Ton des Hauses.</dd></div><div class="ki-k__r"><dt>Was zum Anbieter geht</dt><dd>Die Anfrage mit Name, Kontakt und Anliegen.</dd></div><div class="ki-k__r"><dt>Was gespeichert wird</dt><dd>Anfragen im Reservationsbuch, nach zwölf Monaten gelöscht, auf Wunsch des Gastes sofort.</dd></div><div class="ki-k__r"><dt>Kosten</dt><dd>Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</dd></div></dl><div class="ki-k__ohne"><p class="ki-k__ohne-t">Ohne KI</p><p>Eingang und Anfragen lassen sich bedienen. Die Antwort schreibt das Team dann selbst. Verschickt wird ohnehin nur, was jemand abschickt.</p></div></div></article><article class="ki-st"><figure class="ki-geraet" data-a="kipp"><img src="img/ki-geraet-imprimerie.webp?v=01539cd6" alt="Hausdruckerei am Laptop: Fünf Entwürfe" loading="lazy" decoding="async"></figure><div class="ag-blatt ki-k" data-a="heben"><h3 class="ki-k__t">Fünf Entwürfe</h3><p class="ki-k__preis">Hausdruckerei</p><dl><div class="ki-k__r"><dt>Was sie tut</dt><dd>Macht aus einem Satz wie «Bankettmenü Herbst» fünf Entwürfe im Stil des Hauses.</dd></div><div class="ki-k__r"><dt>Was zum Anbieter geht</dt><dd>Ihr Satz, dazu Marke, Fotos und Texte der Website. Keine Angaben zu Gästen.</dd></div><div class="ki-k__r"><dt>Was gespeichert wird</dt><dd>Ihre Arbeiten und eigenen Fotos bleiben im Browser auf Ihrem Gerät.</dd></div><div class="ki-k__r"><dt>Kosten</dt><dd>Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</dd></div></dl><div class="ki-k__ohne"><p class="ki-k__ohne-t">Ohne KI</p><p>Alle fertigen Vorlagen lassen sich öffnen, ändern und als PDF speichern; ohne KI nimmt sie die passendste fertige Vorlage.</p></div></div></article><article class="ki-st ki-st--um"><figure class="ki-geraet" data-a="kipp"><img src="img/ki-geraet-livre.webp?v=1bab6ad8" alt="Bildarchiv am Laptop: Eine Markenprüfung" loading="lazy" decoding="async"></figure><div class="ag-blatt ki-k" data-a="heben"><h3 class="ki-k__t">Eine Markenprüfung</h3><p class="ki-k__preis">Bildarchiv</p><dl><div class="ki-k__r"><dt>Was sie tut</dt><dd>Prüft einen Entwurf, etwa eine Anzeige der Druckerei oder einer Agentur, gegen Farben, Zeichen und Schrift des Hauses.</dd></div><div class="ki-k__r"><dt>Was zum Anbieter geht</dt><dd>Die ersten zwei Seiten der Datei als Bild.</dd></div><div class="ki-k__r"><dt>Was gespeichert wird</dt><dd>Nichts.</dd></div><div class="ki-k__r"><dt>Kosten</dt><dd>Nach Verbrauch über das Konto Ihres Hauses. Den Betrag je Aufruf messe ich beim ersten Lauf mit Ihrem Konto und trage ihn hier ein.</dd></div></dl><div class="ki-k__ohne"><p class="ki-k__ohne-t">Ohne KI</p><p>Fotos, Dateien und die Messung der Farben laufen weiter. Nur die schriftliche Beurteilung fehlt.</p></div></div></article></div>
+    <div class="ag-blatt ki-offen ki-sorge" data-a="heben"><h3 class="ki-k__t">Und wenn die KI Gästen etwas Falsches sagt?</h3><p>Diese Sorge ist berechtigt. Die KI darf nur sagen, was Ihr Haus selbst veröffentlicht hat, und sie muss offen sagen, wenn sie etwas nicht weiss, mit Telefon und Mail des Hauses. Ganz ausschliessen lässt sich ein Fehler bei einer KI trotzdem nicht. Verbindlich bleiben Reservation und Ihr Team.</p></div></div>
+</section>
+<section class="wfen" id="ki-fenster" aria-label="Die KI schreibt. Ihr Team entscheidet.">
+  <div class="wfen__f">
+    <img src="eigen/fen-fenster-tisch-1800.webp?v=4040ea28" srcset="eigen/fen-fenster-tisch-2400-600.webp?v=6d4906d0 600w, eigen/fen-fenster-tisch-1200.webp?v=24628271 1200w, eigen/fen-fenster-tisch-1800.webp?v=4040ea28 1800w, eigen/fen-fenster-tisch-2400.webp?v=b488f948 2400w" sizes="(-webkit-min-device-pixel-ratio:1.5) 62vw, 100vw" alt="Ein gedeckter Tisch in der Wirtschaft am Schlössli" loading="lazy" decoding="async">
+    <div class="wfen__in"><svg class="wfen__z" viewBox="256 16 1092 1324" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg><h2 class="wfen__t"><span>Die KI schreibt.</span><span><em>Ihr Team entscheidet.</em></span></h2><p class="wfen__k">Keine Mail an einen Gast geht hinaus, ohne dass jemand aus Ihrem Haus sie abschickt.</p></div>
+  </div>
+</section>
+<section class="fl fl--papier tapete-hell blatt ki" id="ki-daten">
+  <div class="in"><header class="ki-kopf"><div data-a="auf"><svg class="ki-hz" viewBox="256 16 1092 1324" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg></div><h2 class="t2 zt"><span class="z"><span>Was mit Ihren Daten</span></span><span class="z"><span><em>geschieht.</em></span></span></h2><p class="ki-lauf" data-a="worte">Der Anbieter des Sprachmodells ist Anthropic. Was er zusagt, steht in seinen Geschäftsbedingungen; was Ihr Haus aufbewahrt, bestimmen Sie.</p></header>
+    <div class="ki-anbieter" data-a="auf"><svg class="ki-claude" viewBox="0 0 24 24" role="img" aria-label="Claude"><path fill="currentColor" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><p><b>Claude</b><span>Sprachmodell von Anthropic PBC, San Francisco</span></p></div>
+    <div class="ki-daten"><div class="ki-d" data-a="heben"><span class="ki-siegel" aria-hidden="true"><i></i></span><h3>Nicht zum Lernen</h3><p>Anthropic nutzt, was über das Konto Ihres Hauses läuft, nicht zum Training seiner Modelle.</p></div><div class="ki-d" data-a="heben"><span class="ki-siegel" aria-hidden="true"><i></i></span><h3>Nach 30 Tagen gelöscht</h3><p>Eingaben und Antworten löscht Anthropic innert 30 Tagen. Länger nur bei Verstössen gegen seine Nutzungsregeln oder wenn ein Gesetz es verlangt.</p></div><div class="ki-d" data-a="heben"><span class="ki-siegel" aria-hidden="true"><i></i></span><h3>Ihr eigener Speicher</h3><p>Was Ihr Haus aufbewahrt, liegt im Reservationsbuch, nur mit Zugang lesbar, und wird nach zwölf Monaten gelöscht.</p></div><div class="ki-d" data-a="heben"><span class="ki-siegel" aria-hidden="true"><i></i></span><h3>Menschen verschicken</h3><p>Die KI verschickt keine Mails und reserviert nichts. Jede Antwort per Mail geht von Ihrem Team hinaus.</p></div><div class="ki-d" data-a="heben"><span class="ki-siegel" aria-hidden="true"><i></i></span><h3>Reserviert wird woanders</h3><p>Tische laufen über gastronovi, Gutscheine über zenchef. Karten- und Zahlungsdaten gehören nicht in den Chat.</p></div><div class="ki-d" data-a="heben"><span class="ki-siegel" aria-hidden="true"><i></i></span><h3>Abschaltbar</h3><p>Jede der vier Stellen lässt sich einzeln abschalten, das Werkzeug arbeitet weiter.</p></div></div></div>
+</section>
+<section class="fl fl--creme tapete-hell blatt ki" id="ki-ohne">
+  <div class="in"><header class="ki-kopf"><div data-a="auf"><svg class="ki-hz" viewBox="256 16 1092 1324" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg></div><h2 class="t2 zt"><span class="z"><span>Läuft auch</span></span><span class="z"><span><em>ohne KI.</em></span></span></h2><p class="ki-lauf" data-a="worte">Fällt die KI aus, ist das Guthaben aufgebraucht oder schalten Sie sie ab, arbeiten alle Werkzeuge weiter. Es fehlt nur, was die KI schreibt.</p></header><div class="ki-ohne"><div class="ki-o" data-a="kipp" style="--i:0"><h3>Der Chat für Ihre Gäste</h3><p>Telefon, Reservation bei gastronovi und Gutschein stehen wie heute auf jeder Seite.</p></div><div class="ki-o" data-a="kipp" style="--i:1"><h3>Antwort auf eine Anfrage</h3><p>Eingang und Anfragen lassen sich bedienen. Die Antwort schreibt das Team dann selbst. Verschickt wird ohnehin nur, was jemand abschickt.</p></div><div class="ki-o" data-a="kipp" style="--i:2"><h3>Fünf Entwürfe</h3><p>Alle fertigen Vorlagen lassen sich öffnen, ändern und als PDF speichern; ohne KI nimmt sie die passendste fertige Vorlage.</p></div><div class="ki-o" data-a="kipp" style="--i:3"><h3>Eine Markenprüfung</h3><p>Fotos, Dateien und die Messung der Farben laufen weiter. Nur die schriftliche Beurteilung fehlt.</p></div></div></div>
+</section>
+<section class="fl fl--nacht tapete-leicht blatt ki" id="ki-hand">
+  <div class="in">
+    <div class="ki-hand">
+      <figure class="ki-hand__b" data-a="kipp"><img src="img/ki-team.webp?v=2ad6cfbf" alt="Das Team der Wirtschaft am Schlössli" loading="lazy" decoding="async"></figure>
+      <div class="ki-hand__t"><div data-a="auf"><svg class="ki-hz" viewBox="256 16 1092 1324" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg></div><h2 class="t2 zt"><span class="z"><span>Sie entscheiden,</span></span><span class="z"><span><em>wie weit sie geht.</em></span></span></h2><p class="ki-h" data-a="auf" style="--i:0"><b>Das Konto</b>läuft auf Ihr Haus, mit Ihrer Karte. Beim Anbieter sehen Sie jeden Aufruf und jeden Betrag.</p><p class="ki-h" data-a="auf" style="--i:1"><b>Die Obergrenze</b>setze ich je Monat. Ist sie erreicht, laufen die Werkzeuge bis zum nächsten Monat ohne KI weiter.</p><p class="ki-h" data-a="auf" style="--i:2"><b>Der Schalter</b>liegt bei Ihnen. Auf Ihren Wunsch schalte ich die KI ab, die Werkzeuge laufen weiter wie beschrieben.</p></div>
+    </div>
+    <div class="ag-blatt ki-offen" data-a="heben"><h3 class="ki-k__t">Was Ihr Haus noch festlegt</h3><p>Ihre Datenschutzerklärung bekommt vor dem Start einen Abschnitt zum Chat. Zwei Punkte entscheidet Ihr Haus: die Rechtsgrundlage für die Übermittlung in die USA und wie lange Anfragen aufbewahrt werden.</p>
+      <p class="ki-knoepfe"><a class="kn kn--klein" href="../datenschutz.html" target="_blank" rel="noopener">Ihre Datenschutzerklärung heute<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a>
+      <a class="kn kn--klein" href="index.html#sag-vorschlag">Zurück zum Vorschlag<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></p>
+      <p class="ki-quellen">Angaben des Anbieters, gelesen am 20. Oktober 2026:</p><ul class="ki-quellen__l"><li><a href="https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training" target="_blank" rel="noopener">Anthropic: Training mit Daten</a></li><li><a href="https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">Anthropic: Aufbewahrung</a></li></ul></div>
+  </div>
+</section>
+<script>
+(function () { var f = document.getElementById('ki-fenster'); if (!f) return; if (!('IntersectionObserver' in window)) { f.classList.add('da'); return; }
+  f.classList.add('weg'); new IntersectionObserver(function (es) { f.classList.toggle('weg', !es[0].isIntersecting); }).observe(f);
+  new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); f.classList.add('da'); } }, { threshold: 0.35 }).observe(f); })();
+</script>
+</main>
+
+<footer class="fuss">
+<nav class="in wege wf" id="uebersicht" aria-label="Das Wichtigste vom Schlössli">
+  <div class="wf__kopf"><b class="wege__t">Das Wichtigste vom Schlössli</b></div>
+  <div class="wfa" data-wfa aria-roledescription="Karussell" aria-label="Das Wichtigste vom Schlössli">
+    <div class="wfa__b"><a class="fblatt" href="../index.html" target="_blank" rel="noopener" data-i="0" data-p="0"><img src="eigen/fo-website.webp?v=057757af" width="1000" height="1000" alt="Ein Laptop mit der neuen Startseite der Wirtschaft am Schlössli" loading="lazy" decoding="async"></a><a class="fblatt" href="https://schloessli.tastystudios.ch/_werkzeuge/maison/" target="_blank" rel="noopener" data-i="1" data-p="1"><img src="eigen/fo-maison.webp?v=22e955c6" width="1000" height="1000" alt="Ein Handy mit dem Eingang zu den Werkzeugen" loading="lazy" decoding="async"></a><a class="fblatt" href="../unterlagen/index.html" target="_blank" rel="noopener" data-i="2" data-p="2"><img src="eigen/fo-unterlagen.webp?v=a96fd0a5" width="1000" height="1000" alt="Die neu gesetzten Karten des Hauses" loading="lazy" decoding="async"></a><a class="fblatt" href="../abend.html" target="_blank" rel="noopener" data-i="3" data-p="3"><img src="eigen/fo-gaeste.webp?v=93dfa6c1" width="1000" height="1000" alt="Ein Handy mit dem Weinberater" loading="lazy" decoding="async"></a><a class="fblatt" href="../potenzialanalyse/index.html" target="_blank" rel="noopener" data-i="4" data-p="-3"><img src="eigen/fo-analyse-h.webp?v=0efecaa5" width="1000" height="1000" alt="Ein Handy mit der Potentialanalyse" loading="lazy" decoding="async"></a><a class="fblatt" href="../drucksachen/index.html" target="_blank" rel="noopener" data-i="5" data-p="-2"><img src="eigen/fo-drucksachen.webp?v=0d06bf83" width="1000" height="1000" alt="Gutschein, Menükarte und Tischkarte" loading="lazy" decoding="async"></a><a class="fblatt" href="../untersetzer/index.html" target="_blank" rel="noopener" data-i="6" data-p="-1"><img src="eigen/fo-etiketten.webp?v=3cc66fd8" width="1000" height="1000" alt="Vier Untersetzer der Lästermeile" loading="lazy" decoding="async"></a></div>
+    <div class="wfa__fuss">
+      <button type="button" class="wf__pf" data-f="-1" aria-label="Zurück"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+      <div class="wfa__texte" aria-live="polite"><div class="an"><h3>Die neue Website</h3><p>Der Entwurf mit allen Seiten: der Tisch, die Terrasse, die Lästermeile, die Karte, Küche und Keller.</p><a class="kn kn--klein" href="../index.html" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div><div><h3>Das Hafenbüro</h3><p>Die Startseite für Ihr Team: die sechs Werkzeuge auf einen Blick, daneben, was ansteht.</p><a class="kn kn--klein" href="https://schloessli.tastystudios.ch/_werkzeuge/maison/" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div><div><h3>Ihre Karten</h3><p>Die Karte nach Ländern, die Lästermeile, der Lunch, die Bankettmenüs und die Weinkarte, neben Ihrer heutigen Fassung.</p><a class="kn kn--klein" href="../unterlagen/index.html" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div><div><h3>Für Ihre Gäste</h3><p>Reservieren mit Wünschen, der Weinberater, die Bankettmenüs, der Gutschein und der See heute.</p><a class="kn kn--klein" href="../abend.html" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div><div><h3>Die Potentialanalyse</h3><p>Die vier Stellen auf Ihrer heutigen Seite, an denen Gäste am ehesten stocken, mit Beleg.</p><a class="kn kn--klein" href="../potenzialanalyse/index.html" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div><div><h3>Drucksachen</h3><p>Ansichtskarten, Gutschein, Tischkarte, Menükarte, Aushang und Briefpapier, als Ideen für Papier.</p><a class="kn kn--klein" href="../drucksachen/index.html" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div><div><h3>Untersetzer</h3><p>Zwölf Untersetzer für die Lästermeile, mit Ihren Fliesen, den Zeigern und den Tapas der Karte.</p><a class="kn kn--klein" href="../untersetzer/index.html" target="_blank" rel="noopener">Öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></div></div>
+      <button type="button" class="wf__pf" data-f="1" aria-label="Weiter"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+    </div>
+    <p class="wfa__zahl"><span data-f-zahl>1</span> / 7</p>
+  </div>
+</nav>
+<script>
+(function () {
+  var f = document.querySelector('.wf [data-wfa]'); if (!f) return;
+  var bl = [].slice.call(f.querySelectorAll('.fblatt')), tx = [].slice.call(f.querySelectorAll('.wfa__texte>div')), zahl = f.querySelector('[data-f-zahl]'), n = bl.length, ist = 0, halb = Math.floor(n / 2);
+  function zeige(k) {
+    ist = (k % n + n) % n;
+    bl.forEach(function (b, i) { var p = ((i - ist + n + halb) % n) - halb; b.setAttribute('data-p', p); b.setAttribute('aria-hidden', p !== 0); b.tabIndex = p === 0 ? 0 : -1; });
+    tx.forEach(function (t, i) { t.classList.toggle('an', i === ist); [].forEach.call(t.querySelectorAll('a'), function (a) { a.tabIndex = i === ist ? 0 : -1; }); });
+    if (zahl) zahl.textContent = ist + 1;
+  }
+  [].forEach.call(f.querySelectorAll('[data-f]'), function (b) { b.addEventListener('click', function () { zeige(ist + (+b.getAttribute('data-f'))); }); });
+  bl.forEach(function (b, i) { b.addEventListener('click', function (e) { if (i !== ist) { e.preventDefault(); zeige(i); } }); });
+  f.setAttribute('tabindex', '0');
+  f.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') zeige(ist + 1); else if (e.key === 'ArrowLeft') zeige(ist - 1); });
+  var x0 = null, st = f.querySelector('.wfa__b');
+  st.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  st.addEventListener('touchend', function (e) { if (x0 === null) return; var d = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(d) > 40) zeige(ist + (d < 0 ? 1 : -1)); }, { passive: true });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es, o) { es.forEach(function (x) { if (x.isIntersecting) { f.classList.add('da'); o.disconnect(); } }); }, { threshold: .25 }).observe(f); else f.classList.add('da');
+  zeige(0);
+})();
+</script>
+<div class="in fuss__u">
+  <div><b>Entwurf</b><p>Ein Entwurf von Robert Reff, Tasty Studios, Hamburg, nicht die offizielle Website der Wirtschaft am Schlössli. Wer den Link nicht hat, findet die Seite nicht, in keiner Suchmaschine. Fotos, Zeichen und Texte gehören der Wirtschaft am Schlössli und den jeweiligen Fotografen.</p></div>
+  <div class="r mono"><span>robert@tasty-studios.de</span><a href="impressum.html">Impressum und Datenschutz</a><span>Stand 20.10.2026</span></div>
+</div></footer>
+
+<script>window.GEFUEGE={"sp": ["Von Ihnen", "Daraus gemacht", "Die Seiten", "Im Hintergrund"], "fx": [0.118, 0.372, 0.628, 0.882], "n": [["fotos", 0, 0, "Ihre Fotos", "Website, Instagram, Portale", "ein", "Ihre Fotos", "Die Aufnahmen von Ihrer Website, aus Instagram und von MySwitzerland, dazu wenige freie Fotos mit Namensnennung.", ["Terrasse", "Küche", "Hafen"]], ["zeichen", 0, 1, "Logo und Zeiger", "von Ihrem Logo", "ein", "Ihr Logo", "Die Zeiger aus Ihrem Logo, nachgezeichnet, und Ihr Name in Versalien.", ["Zeiger", "Name"]], ["karten", 0, 2, "Ihre Karten", "als PDF", "ein", "Ihre Karten", "Speisekarte, Lästermeile, Lunch-Menü, Bankettmenüvorschläge und Weinkarte. Aus ihnen stammt jede Zeile auf der Seite «Die Karte».", ["Speisekarte", "Lästermeile", "Wein"]], ["texte", 0, 3, "Ihre Texte", "Ihre Worte", "ein", "Ihre Texte", "Willkommen, Küche, Terrasse, Banketts: Die neue Seite sagt es mit Ihren eigenen Sätzen.", ["Willkommen", "Banketts"]], ["presse", 0, 4, "Auszeichnungen", "mit Quelle", "ein", "Auszeichnungen", "GaultMillau, Falstaff und Guide Michelin, jede Auszeichnung mit Quelle und Datum.", ["15 Punkte", "Entdeckung 2026"]], ["geschichte", 0, 5, "Der Besen", "Gemeindebuch 1994", "ein", "Die Geschichte vom Besen", "Aus «Die Bottighofer Mühlen und das Schlössli am See» der Gemeinde Bottighofen, 1994.", []], ["bildwelt", 1, 0, "Bildwelt", "jedes Foto mit festem Platz", "", "Bildwelt", "Jedes Foto liegt in mehreren Grössen vor, für den Rechner und fürs Handy, und sitzt mit seinem Horizont auf der Linie der Seite.", ["Horizont", "Grössen"]], ["muster", 1, 1, "Zeiger und Raster", "auf den dunklen Flächen", "", "Zeichen und Muster", "Die Zeiger stehen in der Leiste und zwischen den Abschnitten, das Punktraster mit den Zeigern liegt Ton in Ton auf den dunklen Flächen.", ["Leiste", "Flächen"]], ["kartendaten", 1, 2, "Karten-Daten", "eine Stelle", "", "Karten-Daten", "Alle Gerichte und Preise an einer Stelle. Daraus entstehen die Karte auf der Seite und die PDFs.", ["Gerichte", "Preise", "Allergene"]], ["weindaten", 1, 3, "Wein-Kärtchen", "jeder Wein der Karte", "", "Wein-Kärtchen", "Jeder Wein der Weinkarte als Kärtchen mit Herkunft, Rebsorte und Preis. Daraus entstehen der Weinberater und «Ein Glas zu jedem Gang».", ["Herkunft", "Rebsorte"]], ["neugesetzt", 1, 4, "Karten neu gesetzt", "als Idee", "", "Karten neu gesetzt", "Die Karten als Idee neu gesetzt, in Ihrer eigenen Machart, jede neben Ihrer heutigen Fassung zum Durchblättern.", []], ["zeitstrahl", 1, 5, "Besen und Luftbild", "Ende 17. Jh. und 1954", "", "Geschichte", "Der Besen, der statt eines Schilds hing, und das Strandhotel Schlössli aus der Luft, 1954.", []], ["start", 2, 0, "Startseite", "der Tisch zuerst", "seite", "Startseite", "Vom Tisch über die Terrasse und den Hafen zur Lästermeile, zur Karte, zu Küche und Keller. Von hier führt ein Weg zu jeder Seite.", ["Terrasse", "Lästermeile", "Küche"]], ["karte", 2, 1, "Die Karte", "nach Ländern", "seite", "Die Karte", "Die Karte nach Ländern, ein Glas zu jedem Gang, das Lunch-Menü und die Lästermeile; dazu die Weinkarte.", ["Länder", "Lunch", "Wein"]], ["feiern", 2, 2, "Banketts", "zwei Etagen", "seite", "Banketts & Gruppen", "Zwei Etagen für je bis zu 26 Personen, die Bankettmenüs und die Anfrage im Fenster.", []], ["anlaesse", 2, 3, "Events", "was kommt, was war", "seite", "Events", "Four Hands auf der Excellence, das Jahr am Hafen und was war.", []], ["haus", 2, 4, "Über uns", "und Kontakt", "seite", "Über uns und Kontakt", "Das Team, die Küche, das Schäfli, Zeiten, Anfahrt und der See heute.", []], ["reservation", 3, 0, "Reservation", "Gastronovi bleibt", "sys", "Reservation", "Reserviert wird weiter über Ihr Gastronovi; die Anfrage im Fenster nimmt zusätzlich Platz, Flasche und Allergien mit.", []], ["anfragen", 3, 1, "Anfragen", "ins Werkzeug", "sys", "Anfragen", "Bankett, Plätze für einen Abend und Gutschein fragt der Gast über ein Fenster an. Die Anfrage kommt im Werkzeug für die Anfragen an, nie als Mail.", []], ["pdf", 3, 2, "Karten als PDF", "zum Ausdrucken", "sys", "Karten als PDF", "Jede Karte liegt zusätzlich als PDF bereit.", []], ["studio", 3, 3, "Sieben Werkzeuge", "für Ihr Team", "sys", "Sieben Werkzeuge", "Mit ihnen ändert Ihr Team Zeiten, Anlässe, Texte, Bilder und Karten selbst; jede Änderung wartet als Entwurf.", ["Zeiten", "Anlässe", "Texte und Bilder"]]], "k": [["fotos", "bildwelt"], ["zeichen", "muster"], ["karten", "kartendaten"], ["karten", "weindaten"], ["karten", "neugesetzt"], ["presse", "start"], ["texte", "start"], ["geschichte", "zeitstrahl"], ["bildwelt", "start"], ["bildwelt", "anlaesse"], ["muster", "start"], ["kartendaten", "karte"], ["weindaten", "karte"], ["kartendaten", "feiern"], ["zeitstrahl", "start"], ["neugesetzt", "karte"], ["start", "reservation"], ["karte", "pdf"], ["feiern", "anfragen"], ["anlaesse", "anfragen"], ["studio", "start"], ["studio", "anlaesse"], ["studio", "haus"]], "tour": ["fotos", "karten", "presse", "reservation", "anfragen", "studio"], "fuss": "Folgen Sie einer Linie: Sie führt von dem, was von Ihnen kommt, zur Seite", "start": ["Übersicht", "Von Ihnen zur Seite", "Tippen Sie eine Kachel an, dann leuchtet ihr Weg. Oder starten Sie den Rundgang."]};window.SEITEN=[{"d": "index.html", "s": "startseite", "t": "Startseite", "k": "Startseite", "x": "Die blauen Stühle unter den Platanen, der Hafen, die Lästermeile, die Karte nach Ländern, Küche und Keller, der Besen von 1699 und der Abend unter der Platane.", "n": 8}, {"d": "karte.html", "s": "die-karte", "t": "Die Karte", "k": "Die Karte", "x": "Frankreich, Italien, die Iberische Halbinsel und die Klassiker, ein Glas zu jedem Gang, das Lunch-Menü und die Lästermeile.", "n": 5}, {"d": "weinkarte.html", "s": "weinkarte", "t": "Weinkarte", "k": "Weinkarte", "x": "Der Weinberater und alle Weine der Karte als Kärtchen, nach Champagner, Weiss, Rosé, Rot und Süss.", "n": 4}, {"d": "feiern.html", "s": "banketts-gruppen", "t": "Banketts und Gruppen", "k": "Banketts", "x": "Zwei Etagen für je bis zu 26 Personen, die Bankettmenüs Gericht für Gericht und die Anfrage im Fenster.", "n": 4}, {"d": "anlaesse.html", "s": "events", "t": "Events", "k": "Events", "x": "Das Four-Hands-Dinner auf der Excellence, das Jahr am Hafen als Band und was war.", "n": 4}, {"d": "team.html", "s": "ueber-uns", "t": "Über uns", "k": "Über uns", "x": "Ein Blick in die Küche, das Team und die Taverne zum Schäfli in Wigoltingen.", "n": 3}, {"d": "kontakt.html", "s": "kontakt", "t": "Kontakt", "k": "Kontakt", "x": "Zeiten, Anfahrt über Land und über das Wasser und der See heute.", "n": 3}, {"d": "gutschein.html", "s": "gutschein", "t": "Gutschein", "k": "Gutschein", "x": "Den Gutschein gestalten: Betrag, Haus, für wen, von wem und ein Satz dazu.", "n": 1}, {"d": "abend.html", "s": "ihr-abend", "t": "Ihr Abend", "k": "Ihr Abend", "x": "Anlass, Tag, Personen, Platz und Menü wählen, der Zettel rechnet mit den Preisen der Karte.", "n": 2}, {"d": "impressum.html", "s": "rechtliches", "t": "Rechtliches und Bildnachweis", "k": "Rechtliches", "x": "Impressum, Datenschutz, AGB und der Bildnachweis.", "n": 1}];</script>
+<script id="auftakt-kacheln">
+/* Kacheln im Auftakt neigen sich zum Zeiger (nur transform); nach jedem Scrollen 300 ms Ruhe, kein Anheben */
+(function(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var ruhe=0;addEventListener('scroll',function(){ruhe=Date.now()+300;},{passive:true});
+  [].forEach.call(document.querySelectorAll('.akz'),function(k){
+    var b=k.querySelector('.akz__b'),t=0;
+    k.addEventListener('pointermove',function(e){
+      if(Date.now()<ruhe||t)return;
+      t=requestAnimationFrame(function(){t=0;var r=k.getBoundingClientRect();
+        k.classList.add('kipp');
+        b.style.setProperty('--ry',(((e.clientX-r.left)/r.width-.5)*9).toFixed(2)+'deg');
+        b.style.setProperty('--rx',((.5-(e.clientY-r.top)/r.height)*9).toFixed(2)+'deg');});
+    });
+    k.addEventListener('pointerleave',function(){k.classList.remove('kipp');b.style.setProperty('--ry','0deg');b.style.setProperty('--rx','0deg');});
+  });
+})();
+</script>
+<script id="hs-auftritt">
+/* Handschrift: jede Zeile der Tafel startet ihren Auftritt, sobald ein Drittel von ihr im Bild steht (nur Klassen setzen) */
+(function(){
+  var s=document.getElementById('handschrift');
+  if(!s||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  s.classList.add('lebt');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);e.target.classList.add('da');}});},{rootMargin:'0px 0px -6% 0px',threshold:.3});
+  [].forEach.call(s.querySelectorAll('.hs2-z'),function(z){io.observe(z);});
+})();
+</script>
+<script id="wfen-js">
+/* Fenster: der Satz kommt, wenn der Ausschnitt gut im Bild ist, und ruht unsichtbar, solange das Fenster nicht im Bild ist */
+(function () {
+  [].forEach.call(document.querySelectorAll('.wfen'), function (f) {
+    if (!('IntersectionObserver' in window)) { f.classList.add('da'); return; }
+    f.classList.add('weg');
+    new IntersectionObserver(function (es) { f.classList.toggle('weg', !es[0].isIntersecting); }).observe(f);
+    new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); f.classList.add('da'); } }, { threshold: 0.35 }).observe(f);
+  });
+})();
+</script>
+<script src="werkbank.js?v=1792436556"></script>
+<script id="brett-hilfe">(function(){var b=document.getElementById('brett'),k=document.getElementById('brett-noch');if(!b||!k||!('IntersectionObserver' in window))return;new IntersectionObserver(function(E,o){if(!E[0].isIntersecting)return;o.disconnect();setTimeout(function(){if(/\bvor\b/.test(b.className))k.click()},700)},{rootMargin:'0px 0px -35% 0px'}).observe(b)})();</script><script id="rh-vorladen">(function(){if(!("IntersectionObserver" in window))return;(window.requestIdleCallback||function(f){setTimeout(f,700)})(function(){var kand=[].slice.call(document.querySelectorAll(".band,.aga-reihe,.vh-felder,.ins-dev,.lu-seiten,[class*=reihe],[class*=zug],[class*=leiste]"));[].forEach.call(document.querySelectorAll("main *"),function(e){var c=getComputedStyle(e).overflowX;if((c==="auto"||c==="scroll")&&e.scrollWidth>e.clientWidth+4&&kand.indexOf(e)<0)kand.push(e)});var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;io.unobserve(x.target);[].forEach.call(x.target.querySelectorAll("img[loading=lazy]"),function(i){i.loading="eager"})})},{rootMargin:"120% 0px 120% 0px"});kand.forEach(function(e){if(e.querySelector("img[loading=lazy]"))io.observe(e)})})})();</script>
+<script id="rh-frueh">(function(){if(!("IntersectionObserver" in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;io.unobserve(x.target);x.target.loading="eager"})},{rootMargin:"0px 0px 150% 0px"});[].forEach.call(document.querySelectorAll("main img[loading=lazy],body>section img[loading=lazy],section img[loading=lazy]"),function(i){io.observe(i)})})();</script>
+<script id="rh-zurueck">(function(){
+var WEB=/^\/(?:(?:index|karte|weinkarte|feiern|anlaesse|team|kontakt|gutschein|abend|impressum|datenschutz|agb)\.html)?$/;
+function ziel(a){try{var u=new URL(a.getAttribute('href'),location.href);if(!/^https?:$/.test(u.protocol))return null;
+ if(/\.pdf$/i.test(u.pathname))return null;
+ if(u.origin===location.origin){if(u.pathname===location.pathname)return null;if(WEB.test(u.pathname))return null;return u}
+ if(/^127\.0\.0\.1$|localhost/.test(u.hostname)&&/_werkzeuge\//.test(u.pathname))return u;return null}catch(e){return null}}
+function merk(ev){var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;var u=ziel(a);if(!u)return;var y=Math.round(scrollY);
+ u.searchParams.set('wb',y);a.href=u.toString();try{sessionStorage.setItem('wb-y',String(y))}catch(e){}
+ if(ev.type!=='click'||ev.defaultPrevented||ev.metaKey||ev.ctrlKey||ev.shiftKey)return;
+ /* Robert 19.10.2026 01:18 / Endprüfung: nur die sieben Werkzeuge (mit Anleitungen) öffnen einen neuen Tab, den «Zurück zur Werkbank» wieder schliesst;
+    Analyse, Drucksachen, Unterlagen, Mappe und die übrigen Beigaben im selben Tab, Safari-Zurück und der Knopf landen an der Stelle */
+ var werkzeug=/^\/(?:maison|studio|_?werkzeuge)\//.test(u.pathname);
+ ev.preventDefault();if(werkzeug)window.open(a.href,'_blank');else location.href=a.href}
+document.addEventListener('click',merk,true);document.addEventListener('auxclick',merk,true);
+var q=new URLSearchParams(location.search),y=q.get('y'),zur=false;
+try{var nav=performance.getEntriesByType('navigation')[0];if(y===null&&nav&&nav.type==='back_forward'){y=sessionStorage.getItem('wb-y');zur=true}}catch(e){}
+if(y===null||!/^\d+$/.test(y))return;y=+y;
+try{history.scrollRestoration='manual'}catch(e){}
+var st=document.createElement('style');st.textContent='html.wb-sofort,html.wb-sofort *{transition:none!important;animation-duration:0s!important;animation-delay:0s!important;scroll-behavior:auto!important}';document.head.appendChild(st);
+document.documentElement.classList.add('wb-sofort');
+function fertigOben(){var grenze=y+innerHeight*.15;[].forEach.call(document.querySelectorAll('[data-a],.odo,.zt,.roll,img.ld'),function(e){var r=e.getBoundingClientRect();if(r.top+scrollY<grenze&&!e.classList.contains('da')){e.classList.add('da')}})}
+function geh(){window.scrollTo(0,y);fertigOben()}
+function los(){geh();requestAnimationFrame(function(){geh();requestAnimationFrame(function(){document.documentElement.classList.remove('wb-sofort')})});
+ var n=0,t=setInterval(function(){n++;if(Math.abs(scrollY-y)>40&&n<12&&!wegd)geh();if(n>=12)clearInterval(t)},150);
+ if(!zur){q.delete('y');history.replaceState(history.state,'',location.pathname+(q.toString()?'?'+q:'')+location.hash)}}
+var wegd=false;['wheel','touchstart','keydown'].forEach(function(k){addEventListener(k,function(){wegd=true},{once:true,passive:true})});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',los);else los();
+addEventListener('load',function(){if(!wegd&&Math.abs(scrollY-y)>40)geh()});
+})();</script>
+<script id="rh-karussell">(function(){var K=[].slice.call(document.querySelectorAll("#register .rgw,[data-wfa],[data-rgw]"));if(!K.length)return;function hol(k){[].forEach.call(k.querySelectorAll("img"),function(i){try{i.fetchPriority="high"}catch(e){}i.loading="eager";if(i.decode)i.decode().catch(function(){})})}if(!("IntersectionObserver" in window)){K.forEach(hol);return}var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){io.unobserve(x.target);hol(x.target)}})},{rootMargin:"300% 0px 300% 0px"});K.forEach(function(k){io.observe(k)})})();</script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+/* Die Stube (La Maison) · Wirtschaft am Schlössli, Bottighofen (19.10.2026). Quelle für bau.py, nicht die Ausgabe.
+   Kleid aus der Website des Hauses (website/assets/css/haus.css, Farbwelt A «Stuhl und See», Ton in Ton): Nacht, Stuhlblau, Kalk, Papier,
+   Seehimmel, Schirmrot nur als Punkt. Titel in den Versalien der Wortmarke (Open Sans 400), Lauftext Instrument Sans, kleine Marken DM Mono.
+   Die tragende Idee des Hauses: der Horizont des Sees als feine Linie über die ganze Breite; Bild und Titel sitzen an ihr.
+   Empfang «Am Horizont»: links gross der Rahmen (in Ruhe die Terrasse über dem See, beim Darüberfahren die echte Vorschau des Werkzeugs, M23),
+   rechts die sechs Werkzeuge als ruhige Zeilen wie die Tafel an der Schifflände. Nichts hüpft, nichts schwingt; Bewegung nur transform/opacity. */
+
+@font-face{font-family:'Open Sans';src:url(schrift/OpenSans-var.woff2) format('woff2');font-weight:300 800;font-display:block}
+@font-face{font-family:'Instrument Sans';src:url(schrift/InstrumentSans-normal-400_600.woff2) format('woff2');font-weight:400 600;font-display:swap}
+@font-face{font-family:'DM Mono';src:url(schrift/DMMono-normal-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Lauf Ersatz';src:local('Helvetica Neue'),local('Arial');size-adjust:98%}
+
+:root{
+  --nacht:#0b1d3d;--tief:#0A234C;--stuhl:#113d88;--kalk:#E7ECF3;--kalk2:#D0DAE7;--papier:#F3F6F9;
+  --himmel:#A2B6CF;--himmel-h:#C5D2E1;--himmel-t:#0F3678;--tinte:#041023;--titel-h:#0A2552;--punkt:#FD9964;
+  --leise:rgba(4,16,35,.66);--leise-d:rgba(233,238,243,.74);
+  --titel:'Open Sans','Lauf Ersatz',Arial,sans-serif;--lauf:'Instrument Sans','Lauf Ersatz',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,Menlo,monospace;
+  --rand:clamp(16px,4.6vw,76px);--rund:clamp(18px,2.2vw,30px);--rund-k:clamp(12px,1.4vw,18px);
+  --e1:cubic-bezier(.16,1,.3,1);--knopf:cubic-bezier(.32,.72,0,1);
+  --tap-d:url(img/tapete-dunkel.webp);--tap-h:url(img/tapete-hell.webp)
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:auto}
+body.ma{margin:0;background:var(--kalk);color:var(--tinte);font:400 17px/1.62 var(--lauf);-webkit-font-smoothing:antialiased;overflow-x:clip}
+.ma img{display:block;max-width:100%;height:auto}
+.ma a{color:inherit}
+.ma p{margin:0}
+.ma h1,.ma h2,.ma h3{margin:0;font-weight:400}
+.ma :focus-visible{outline:2px solid var(--stuhl);outline-offset:3px}
+.ma .dunkel :focus-visible{outline-color:var(--himmel-h)}
+.mono{font:400 11.5px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase}
+.innen{max-width:1400px;margin:0 auto;padding-inline:var(--rand);position:relative}
+.dunkel{background-color:var(--nacht);background-image:var(--tap-d);background-size:168px;color:#E9EEF3}
+.tapete{background-color:var(--kalk);background-image:var(--tap-h);background-size:168px}
+.papier{background-color:var(--papier)}
+
+/* ---------- Startfehler-Tür (R04) ---------- */
+.m-tuer{position:fixed;inset:auto 16px 16px 16px;z-index:90;max-width:560px;margin:0 auto;padding:22px 24px;border-radius:var(--rund-k);background:var(--papier);color:var(--tinte);box-shadow:0 30px 60px -24px rgba(4,16,35,.6)}
+.m-tuer__t{font:400 15px/1.3 var(--titel);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.m-tuer p+p{color:var(--leise);margin-bottom:14px}
+.m-tuer .knopf{margin:4px 8px 0 0}
+
+/* ---------- Knöpfe: Pille mit rundem Knauf, Tiefe und Glanz (wie die Website) ---------- */
+.knopf{position:relative;display:inline-flex;align-items:center;gap:18px;height:54px;padding:0 6px 0 26px;border-radius:27px;overflow:hidden;border:0;cursor:pointer;
+  font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;color:var(--tinte);
+  background:linear-gradient(180deg,#EAEFF5,#C5D2E1 58%,#A9BAD0);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(4,16,35,.14),0 20px 32px -20px rgba(4,16,35,.55);
+  transition:transform .5s var(--knopf),box-shadow .5s var(--knopf)}
+.knopf::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
+.knopf:hover{transform:translateY(-2px)}
+.knopf:hover::after{transform:translateX(120%);transition:transform .9s var(--e1)}
+.knopf:active{transform:translateY(1px) scale(.985)}
+.knopf i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(180deg,var(--stuhl),var(--tief) 70%,var(--nacht));color:#E6ECF2;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 12px -6px rgba(0,0,0,.6)}
+.knopf svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.knopf--dunkel{color:#F2F5F8;background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 45%,var(--tief));box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -2px 0 rgba(0,0,0,.3),0 22px 34px -20px rgba(0,0,0,.7)}
+.knopf--dunkel i{background:linear-gradient(180deg,#EAEFF5,var(--himmel-h) 60%,var(--himmel));color:var(--tinte)}
+.knopf--klein{height:44px;padding-left:20px;gap:14px}
+.knopf--klein i{width:34px;height:34px}
+@media (max-width:420px){.knopf{padding-left:18px;gap:12px;font-size:11px;letter-spacing:.11em}}
+
+/* ---------- Leiste oben: Insel aus Kalk, Eck-Knöpfe (M01, M02), verschwindet beim Hinunterscrollen ---------- */
+.m-oben{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px var(--rand) 0;pointer-events:none;transition:transform .6s var(--e1)}
+.m-oben>*{pointer-events:auto}
+.m-oben.weg{transform:translateY(-130%)}
+.m-insel{display:flex;align-items:center;gap:clamp(14px,1.6vw,26px);height:56px;padding:0 24px 0 8px;border-radius:28px;min-width:0;
+  background:linear-gradient(180deg,rgba(243,246,249,.97),rgba(226,233,241,.97));box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(4,16,35,.08),0 18px 34px -22px rgba(4,16,35,.55)}
+/* M24: Ecke oben links wie in allen Werkzeugen des Hauses: Zeichen im Ring, Name des Werkzeugs, darunter «Bereich · Haus» */
+.m-ecke{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--tinte);flex:none;padding-left:14px}
+/* M24: Ecke wie in allen Werkzeugen des Hauses (_werkzeuge/oberflaeche: .wo-marke-w, Rahmen «Die Bühne»): Zeichen 26 px, Name 17 px, darunter «Bereich · Haus» */
+.m-ecke__z{height:26px;width:auto;flex:none;color:var(--titel-h)}
+.m-ecke__t{display:flex;flex-direction:column;min-width:0}
+.m-ecke__t b{font:400 17px/1.1 var(--titel);letter-spacing:.02em;white-space:nowrap}
+.m-ecke__t small{font:400 9.5px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t);white-space:nowrap;margin-top:3px}
+.m-insel__wege{display:flex;gap:clamp(12px,1.4vw,22px)}
+.m-insel__p{position:relative;font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--tinte);padding:6px 0;white-space:nowrap}
+.m-insel__p::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--stuhl);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--e1)}
+.m-insel__p:hover::after,.m-insel__p.an::after{transform:scaleX(1)}
+.m-insel__p.an{color:var(--stuhl)}
+/* Buchstaben rollen beim Überfahren der Namen (M01) */
+.rl{display:inline-flex;overflow:hidden;height:1.2em;line-height:1.2em}
+.rl b{display:inline-block;font-weight:400;white-space:pre;text-shadow:0 1.2em 0 currentColor;transition:transform .45s var(--e1);transition-delay:calc(var(--n)*14ms)}
+.m-insel__p:hover .rl b{transform:translateY(-1.2em)}
+.m-oben__ecke{flex:none}
+.m-oben__ecke.knopf{height:46px;padding-left:20px;gap:14px}
+.m-oben__ecke.knopf i{width:36px;height:36px}
+@media (max-width:1180px){.m-insel__wege{display:none}.m-insel{padding-right:22px}}
+/* Robert 19.10.2026 23:43 (Leiste bei rund 1600 px: Namen liefen unter «Website ansehen» durch): die Namen stehen nur, wenn sie ganz Platz haben (maison.js setzt .eng) */
+.m-oben.eng .m-insel__wege{display:none}.m-oben.eng .m-insel{padding-right:22px}
+.m-insel{min-width:0;overflow:hidden}
+@media (max-width:760px){.m-oben__ecke--l{display:none}}
+@media (max-width:480px){.m-ecke__t small{display:none}.m-oben{padding-top:12px}.m-oben__ecke.knopf{font-size:0;letter-spacing:0;gap:0;padding-left:5px;width:46px}}
+
+/* ---------- Kopf (M22): alles mittig untereinander, Zeichen klein, Titel gross, Linie mit Punkt, Gruss, Datum ---------- */
+.m-empfang{position:relative;padding:clamp(104px,9.4vw,136px) 0 clamp(64px,7vw,104px);overflow-x:clip}
+.m-kopf0{display:flex;flex-direction:column;align-items:center;text-align:center}
+.m-kopf0__z{width:clamp(30px,2.6vw,40px);height:auto;color:var(--himmel)}
+.m-kopf0__titel{margin-top:clamp(24px,2.4vw,38px)!important;font:400 clamp(2.4rem,5.6vw,5rem)/1 var(--titel)!important;letter-spacing:.2em;text-transform:uppercase;color:#F2F5F8;padding-left:.2em}
+.m-kopf0__titel em{font-style:normal;color:var(--himmel)}
+.m-kopf0__linie{position:relative;width:min(420px,70vw);height:1px;margin-top:clamp(28px,2.6vw,40px);background:linear-gradient(90deg,rgba(162,182,207,0),var(--himmel) 30%,var(--himmel) 70%,rgba(162,182,207,0))}
+.m-kopf0__linie::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--punkt)}
+.m-kopf0__gruss{margin-top:22px;font:400 clamp(1rem,1.15vw,1.15rem)/1.5 var(--lauf);color:#E9EEF3}
+.m-kopf0__datum{display:block;margin-top:8px;font:400 11px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-h)}
+
+/* ---------- Empfang «Am Horizont» (M04, M16, M23) ---------- */
+.hz-feld{position:relative;margin-top:clamp(40px,4vw,60px);display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:clamp(28px,4vw,72px);align-items:start}
+/* der Horizont: eine Linie über die ganze Breite, genau auf der Höhe des Sees im Ruhebild; liegt im ruhenden Rahmen, nie im Bild */
+.hz-linie{position:absolute;left:-100vw;right:-100vw;height:1px;background:var(--himmel);opacity:.55;pointer-events:none;top:var(--hz-top,0px);transform-origin:0 50%;display:none}
+.hz-feld.mit-hz .hz-linie{display:block}
+.hz-feld.mit-hz .hz-tafel{margin-top:var(--hz-top)}
+.js .hz-linie{transform:scaleX(0);transition:transform 1.6s var(--e1) .2s}
+.js .bereit .hz-linie{transform:none}
+.hz-rahmen{position:relative;margin:0;border-radius:var(--rund);overflow:hidden;aspect-ratio:16/10;background:#0B1F41 var(--abbild,none) center/cover;box-shadow:0 46px 80px -46px rgba(0,0,0,.85),inset 0 0 0 1px rgba(162,182,207,.18)}
+.ma .hz-bild{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;opacity:0;transition:opacity .45s ease;will-change:opacity}
+.hz-bild.an{opacity:1}
+.hz-bild--schirm{object-position:50% 0;background:var(--papier)}
+.hz-unter{position:absolute;left:0;right:0;bottom:0;padding:34px 22px 16px;background:linear-gradient(180deg,rgba(11,29,61,0),rgba(11,29,61,.72));font:400 11px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#F2F5F8;pointer-events:none}
+.hz-unter span{display:none}
+.hz-unter span.an{display:block}
+.hz-platz{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:24px;background:var(--papier) var(--tap-h) 0 0/168px;color:var(--tinte)}
+.hz-platz.an{display:grid}
+.hz-platz b{display:block;font:400 15px/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h);margin-bottom:8px}
+.hz-platz small{display:block;margin-top:10px;font:400 10.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--leise)}
+/* die Tafel der Werkzeuge: sechs Zeilen, gross und ruhig, getrennt von feinen Linien wie die Abfahrten an der Schifflände */
+.hz-tafel{list-style:none;margin:0;padding:0;border-top:1px solid rgba(162,182,207,.34)}
+.hz-z{border-bottom:1px solid rgba(162,182,207,.34)}
+.hz-z a{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;column-gap:16px;row-gap:4px;padding:clamp(13px,1.25vw,18px) 4px clamp(13px,1.25vw,18px) 0;text-decoration:none;color:#E9EEF3}
+.hz-nr{grid-row:1/span 2;font:400 11px/1 var(--mono);letter-spacing:.14em;color:var(--himmel)}
+.hz-nr::before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:var(--punkt);margin-bottom:9px;opacity:0;transition:opacity .35s ease}
+.hz-name{font:400 clamp(1.15rem,1.6vw,1.6rem)/1.15 var(--titel);letter-spacing:.14em;text-transform:uppercase;color:#F2F5F8;transition:color .35s ease}
+.hz-was{grid-column:2;font:400 14.5px/1.4 var(--lauf);color:var(--leise-d)}
+.hz-was b{font-weight:400;color:#F2F5F8}
+.hz-stand{font-weight:400}
+.hz-ring{grid-row:1/span 2;grid-column:3;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--himmel-h);box-shadow:inset 0 0 0 1px rgba(162,182,207,.45);transition:background-color .35s ease,color .35s ease,box-shadow .35s ease}
+.hz-ring svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.hz-z a.an .hz-nr::before,.hz-z a:focus-visible .hz-nr::before{opacity:1}
+.hz-z a.an .hz-name{color:var(--himmel-h)}
+.hz-z a.an .hz-ring{background:var(--himmel-h);color:var(--tinte);box-shadow:inset 0 0 0 1px var(--himmel-h)}
+.hz-z a.gedrueckt .hz-ring{background:#fff}
+/* Zahlenzeile (M06) */
+.m-zeile{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:10px 22px;margin-top:clamp(40px,4.4vw,64px);font:400 11.5px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h)}
+.m-zeile b{font:400 clamp(1.4rem,1.9vw,1.9rem)/1 var(--titel);letter-spacing:.06em;color:#F2F5F8;margin-right:8px}
+.m-zeile i{width:5px;height:5px;border-radius:50%;background:var(--himmel);opacity:.6;align-self:center}
+.m-zeile a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.m-zeile .bsp{color:var(--himmel)}
+.m-hilfe{margin-top:18px;text-align:center;font-size:14px;color:var(--leise-d)}
+.m-hilfe kbd{font:400 11px/1 var(--mono);padding:3px 6px;border-radius:5px;box-shadow:inset 0 0 0 1px rgba(162,182,207,.5);color:#F2F5F8}
+@media (max-width:1000px){
+  .hz-feld{grid-template-columns:1fr}
+  .hz-buehne{display:none}
+  .hz-linie{display:none}
+}
+@media (max-width:520px){.hz-z a{grid-template-columns:34px minmax(0,1fr) auto;column-gap:12px}.hz-ring{width:36px;height:36px}.m-hilfe{display:none}}
+
+/* ---------- Laufzeile (M07): Namen der Werkzeuge und des Hauses, läuft nur im Bild, hält beim Überfahren ---------- */
+.m-band{overflow:hidden;background:var(--tief);border-block:1px solid rgba(162,182,207,.25);padding:15px 0;color:var(--himmel-h)}
+.m-band ul{display:flex;width:max-content;margin:0;padding:0;list-style:none;gap:28px;animation:m-band 70s linear infinite;animation-play-state:paused}
+.m-band.laeuft ul{animation-play-state:running}
+.m-band:hover ul{animation-play-state:paused}
+.m-band li{font:400 12px/1 var(--titel);letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center}
+.m-band li.p::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--himmel)}
+@keyframes m-band{to{transform:translateX(-50%)}}
+
+/* ---------- Säle (M08, M09): je Werkzeug ein Abschnitt, schiebt sich als Platte über den vorigen ---------- */
+.m-saal{position:relative;padding:clamp(84px,9vw,148px) 0;border-radius:var(--rund) var(--rund) 0 0;margin-top:calc(var(--rund) * -1);box-shadow:0 -24px 50px -34px rgba(4,16,35,.5)}
+.m-saal:first-of-type{margin-top:0;border-radius:0}
+.m-saal__kopf{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:820px;margin:0 auto}
+.m-saal__z{width:22px;height:auto;color:var(--himmel-t)}
+.dunkel .m-saal__z{color:var(--himmel)}
+.m-saal__nr{margin-top:18px;font:400 11px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t)}
+.dunkel .m-saal__nr{color:var(--himmel-h)}
+.m-saal__titel{margin-top:16px!important;font:400 clamp(1.9rem,3.6vw,3.3rem)/1.1 var(--titel)!important;letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h);padding-left:.16em}
+.m-saal__titel em{font-style:normal;color:var(--himmel-t)}
+.dunkel .m-saal__titel{color:#F2F5F8}
+.dunkel .m-saal__titel em{color:var(--himmel)}
+.m-saal__satz{margin-top:18px;max-width:58ch;font-size:clamp(1rem,1.1vw,1.1rem);color:var(--leise)}
+.dunkel .m-saal__satz{color:var(--leise-d)}
+.m-saal__linie{width:100%;height:1px;margin-top:clamp(40px,4vw,60px);background:var(--himmel-t);opacity:.32}
+.dunkel .m-saal__linie{background:var(--himmel);opacity:.5}
+.m-saal__feld{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,3.4vw,56px);align-items:start;margin-top:clamp(-28px,-2vw,-16px)}
+.m-saal--gross .m-saal__feld{grid-template-columns:1fr}
+@media (max-width:1000px){.m-saal__feld{grid-template-columns:1fr}}
+/* Bildschirm des Werkzeugs: Fensterleiste und echte Aufnahme */
+.m-schirm{margin:0;border-radius:var(--rund-k);overflow:hidden;background:#fff;box-shadow:0 46px 80px -46px rgba(4,16,35,.6),0 0 0 1px rgba(4,16,35,.08)}
+.dunkel .m-schirm{box-shadow:0 46px 80px -40px rgba(0,0,0,.85),0 0 0 1px rgba(162,182,207,.2)}
+.m-schirm__leiste{display:flex;align-items:center;gap:8px;height:32px;padding:0 14px;background:linear-gradient(180deg,#F3F6F9,#E2E9F1);border-bottom:1px solid rgba(4,16,35,.08)}
+.m-schirm__leiste::before{content:"";width:9px;height:9px;border-radius:50%;background:#C9D3DF;box-shadow:15px 0 0 #C9D3DF,30px 0 0 #C9D3DF;margin-right:34px}
+.m-schirm__leiste span{font:400 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--leise);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-schirm img{width:100%}
+.m-schirm--platz{aspect-ratio:16/10.4;display:flex;flex-direction:column}
+.m-platz{flex:1;display:grid;place-items:center;align-content:center;gap:10px;text-align:center;padding:24px;background:var(--papier) var(--tap-h) 0 0/168px;color:var(--tinte)}
+.m-platz svg{width:26px;color:var(--himmel-t)}
+.m-platz b{display:block;font:400 14px/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h)}
+.m-platz p{max-width:36ch;font-size:14.5px;color:var(--leise)}
+.m-platz small{font:400 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--leise)}
+.m-schirme{display:grid;gap:clamp(18px,2vw,28px)}
+.m-schirme--zwei{grid-template-columns:1fr 1fr}
+@media (max-width:700px){.m-schirme--zwei{grid-template-columns:1fr}}
+/* Tafel «So geht’s»: helle Platte mit Kuhle für die Zeilen */
+.m-tafel{border-radius:var(--rund-k);padding:clamp(22px,2.2vw,30px);background:linear-gradient(180deg,#fff,var(--papier) 60%,#EAF0F6);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(4,16,35,.06),0 30px 50px -34px rgba(4,16,35,.5);color:var(--tinte)}
+.m-tafel__kopf{display:flex;align-items:center;gap:12px;font:400 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t)}
+.m-tafel__kopf::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(15,54,120,.4),rgba(15,54,120,0))}
+.m-tafel__z{display:grid;grid-template-columns:38px minmax(0,1fr);gap:14px;margin-top:18px;padding:16px;border-radius:14px;background:linear-gradient(180deg,#E1E8F0,#E9EEF4 45%,#F0F4F8);box-shadow:inset 0 2px 4px rgba(4,16,35,.08)}
+.m-tafel__z i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--stuhl),var(--tief));color:#E6ECF2}
+.m-tafel__z svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.m-tafel__z b{display:block;font:400 13px/1.3 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:var(--titel-h);margin-bottom:4px}
+.m-tafel__z p{font-size:15px;line-height:1.5;color:var(--leise)}
+.m-ui{font:400 .86em/1 var(--mono);letter-spacing:.06em;color:var(--tinte);white-space:nowrap;padding:2px 6px;border-radius:5px;background:rgba(15,54,120,.08)}
+.m-tafel__stand{margin-top:18px;font-size:15px;color:var(--tinte)}
+.m-tafel__stand b{font-weight:600}
+.m-tafel .knopf{margin-top:22px}
+/* Zahlen eines Saals */
+.m-zahlen{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:20px}
+.m-zahl b{display:block;font:400 clamp(1.7rem,2.4vw,2.3rem)/1 var(--titel);letter-spacing:.04em;color:var(--titel-h)}
+.m-zahl span{display:block;margin-top:6px;font:400 10.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--leise)}
+.m-hinweis{font-size:14px;color:var(--leise);margin-top:14px}
+.dunkel .m-hinweis{color:var(--leise-d)}
+/* Farben des Hauses: höchstens eine Reihe (M25) */
+.m-farben{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:clamp(6px,.8vw,12px);margin:clamp(36px,4vw,56px) 0 0;padding:0;list-style:none}
+.m-farben li{min-width:0}
+.m-farben i{display:block;aspect-ratio:1/1.1;border-radius:12px;background:var(--c);box-shadow:inset 0 0 0 1px rgba(4,16,35,.1)}
+.m-farben b{display:block;margin-top:8px;font:400 10px/1.25 var(--mono);letter-spacing:.08em;text-transform:uppercase;overflow-wrap:anywhere}
+.m-farben span{display:block;font:400 10px/1.2 var(--mono);color:var(--leise)}
+@media (max-width:700px){.m-farben b,.m-farben span{display:none}}
+/* Weg des Gastes (Besucherbuch) */
+.m-weg{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none;border-top:1px solid rgba(15,54,120,.25)}
+.m-weg li{padding:22px 18px 6px 0;border-right:1px solid rgba(15,54,120,.18)}
+.m-weg li+li{padding-left:18px}
+.m-weg li:last-child{border-right:0}
+.m-weg b{display:block;font:400 clamp(1.7rem,2.6vw,2.5rem)/1 var(--titel);color:var(--titel-h)}
+.m-weg span{display:block;margin-top:8px;font:400 11px/1.35 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.m-weg small{display:block;margin-top:6px;font-size:14px;color:var(--leise)}
+@media (max-width:700px){.m-weg{grid-template-columns:1fr 1fr}.m-weg li:nth-child(2n){border-right:0}.m-weg li:nth-child(n+3){border-top:1px solid rgba(15,54,120,.18)}.m-weg li:nth-child(odd){padding-left:0}}
+
+/* ---------- Fuss als Platte (M10) ---------- */
+.m-fuss{padding:clamp(56px,6vw,96px) var(--rand) clamp(40px,4vw,64px)}
+.m-fuss__platte{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,48px);align-items:start;padding:clamp(26px,3vw,44px);border-radius:var(--rund);
+  background:linear-gradient(180deg,#fff,var(--papier));box-shadow:inset 0 1px 0 #fff,0 30px 60px -40px rgba(4,16,35,.55)}
+.m-fuss__wm{width:clamp(110px,10vw,150px);height:auto;color:var(--tinte)}
+.m-fuss__k{font:400 11px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--himmel-t);margin-bottom:10px!important}
+.m-fuss__spalte{display:grid;gap:6px;font-size:15px;align-content:start}
+.m-fuss__spalte a{text-decoration:none;border-bottom:1px solid rgba(15,54,120,.25);justify-self:start}
+.m-fuss__leer{color:var(--leise)}
+@media (max-width:900px){.m-fuss__platte{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.m-fuss__platte{grid-template-columns:1fr}}
+
+/* ---------- Auftritte (M09, R17): Stücke federleicht von unten, deckend, nur transform; nach dem ersten Mal ruhig ---------- */
+.js [data-r]{transform:translateY(34px);transition:transform 1.3s var(--e1);transition-delay:calc(var(--i,0)*100ms)}
+.js [data-r].da{transform:none}
+.js .m-empfang .hz-feld{transform:translateY(24px);transition:transform 1.4s var(--e1)}
+.js .m-empfang.bereit .hz-feld{transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js [data-r],.js .m-empfang .hz-feld,.js .hz-linie{transform:none!important;transition:none!important}
+  .hz-bild{transition:none}
+  .m-band ul{animation:none}
+  .knopf,.knopf::after,.rl b{transition:none!important}
+}
+
+/* =====================================================================================================================================
+   Empfang in drei Fassungen zur Wahl (Robert 19.10.2026 23:30: «Das Interface finde ich nicht schön.»). Gemeinsam: alles im ersten Bild,
+   Fotos des Hauses statt leerer Fläche, Kopf links kompakt (a, b) oder mittig (c). Zeiger oder Fokus auf einem Werkzeug zeigt im Rahmen
+   dessen Vorschau (M23), nichts hüpft.
+   ===================================================================================================================================== */
+.fa,.fb,.fc{padding:clamp(96px,8vw,118px) 0 clamp(48px,5vw,72px)}
+.fk-kopf{display:flex;align-items:flex-start;gap:clamp(16px,1.6vw,24px)}
+.fk-kopf__z{width:clamp(26px,2.2vw,34px);height:auto;flex:none;margin-top:.5rem;color:var(--himmel-t)}
+.dunkel .fk-kopf__z{color:var(--himmel)}
+.fk-titel{font:400 clamp(2.1rem,3.9vw,3.6rem)/1.02 var(--titel)!important;letter-spacing:.14em;text-transform:uppercase;color:var(--titel-h)}
+.fk-titel em{font-style:normal;color:var(--himmel-t)}
+.dunkel .fk-titel{color:#F2F5F8}.dunkel .fk-titel em{color:var(--himmel)}
+.fk-gruss{margin-top:10px;font-size:clamp(1rem,1.1vw,1.1rem);color:var(--leise)}
+.fk-gruss span{color:var(--tinte)}
+.dunkel .fk-gruss{color:var(--leise-d)}.dunkel .fk-gruss span{color:#F2F5F8}
+.fk-gruss small{display:block;margin-top:4px;font:400 10.5px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--himmel-t)}
+.dunkel .fk-gruss small{color:var(--himmel-h)}
+.fa .m-zeile,.fb .m-zeile{justify-content:flex-start;margin-top:clamp(26px,2.6vw,36px)}
+.fa .m-zeile,.fc .m-zeile{color:var(--himmel-t)}
+.fa .m-zeile b,.fc .m-zeile b{color:var(--titel-h)}
+.fa .m-hilfe,.fc .m-hilfe{color:var(--leise)}
+.fa .m-hilfe kbd,.fc .m-hilfe kbd{color:var(--tinte);box-shadow:inset 0 0 0 1px rgba(15,54,120,.3)}
+.fa .m-hilfe,.fb .m-hilfe{text-align:left}
+.fa .hz-rahmen,.fb .hz-rahmen{box-shadow:0 40px 70px -42px rgba(4,16,35,.55),0 0 0 1px rgba(4,16,35,.06)}
+.js .fa .fa-feld,.js .fb .fb-feld,.js .fc .fc-kacheln{transform:translateY(22px);transition:transform 1.3s var(--e1)}
+.js .fa.bereit .fa-feld,.js .fb.bereit .fb-feld,.js .fc.bereit .fc-kacheln{transform:none}
+.hz-z a .fk-b img,.hz-z a .fb-b img,.hz-z a .fc-b img{transition:transform 1.2s var(--e1)}
+
+/* --- a: Sechs Bilder am Horizont --- */
+.fa-feld{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:clamp(22px,2.6vw,40px);margin-top:clamp(26px,2.6vw,38px);align-items:stretch}
+.fa-feld{align-items:start!important}
+.fa-kacheln{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.4vw,22px) clamp(12px,1.2vw,18px);border:0!important}
+.fa-k{border:0!important}
+.fa-k a{display:flex;flex-direction:column;text-decoration:none;color:var(--tinte);padding:0;text-align:left;align-items:stretch;row-gap:0}
+.fk-b{display:block;border-radius:var(--rund-k);overflow:hidden;aspect-ratio:4/3;background:var(--kalk2);box-shadow:0 18px 30px -22px rgba(4,16,35,.55)}
+.fk-b img{width:100%;height:100%;object-fit:cover}
+.fk-nr{margin-top:12px;font:400 10px/1 var(--mono);letter-spacing:.16em;color:var(--himmel-t)}
+.fk-name{margin-top:6px;font:400 clamp(.8rem,.9vw,.95rem)/1.25 var(--titel);letter-spacing:.08em;text-transform:uppercase;color:var(--titel-h)}
+.fk-linie{display:block;height:1px;margin:9px 0 7px;background:rgba(15,54,120,.22)}
+.fk-was{font-size:13.5px;line-height:1.35;color:var(--leise)}
+.fk-stand{margin-top:3px;font-size:13px;line-height:1.35;color:var(--himmel-t)}
+.fk-stand b{font-weight:600}
+/* beim Darüberfahren: der Punkt am Namen, das Foto zoomt sehr langsam ein wenig, die Kachel bleibt stehen */
+.fa-k a .fk-name::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--punkt);margin:0 8px 2px -14px;opacity:0;transition:opacity .35s}
+.fa-k a.an .fk-name::before,.fa-k a:focus-visible .fk-name::before{opacity:1}
+.fa-k a.an .fk-b img{transform:scale(1.035)}
+.fa-k a.an .fk-linie{background:var(--himmel-t)}
+@media (max-width:1000px){.fa-feld{grid-template-columns:1fr}.fa .hz-buehne{display:none}}
+@media (max-width:700px){.fa-kacheln{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* --- b: Die Tafel am Steg --- */
+.fb-feld{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(22px,2.6vw,40px);margin-top:clamp(26px,2.6vw,38px);align-items:stretch}
+.fb .hz-buehne{display:flex}
+.fb .hz-rahmen{aspect-ratio:auto;flex:1;min-height:440px}
+.fb .hz-bild--schirm{object-fit:contain;object-position:50% 50%;background:transparent}
+.fb-tafel{border-radius:var(--rund);padding:clamp(12px,1.2vw,18px);background:linear-gradient(180deg,#F3F6F9,#E3EAF2);box-shadow:inset 0 1px 0 #fff,0 40px 70px -40px rgba(0,0,0,.8);color:var(--tinte)}
+.fb-kopf{display:flex;align-items:center;gap:12px;padding:6px 10px 14px;border-bottom:1px solid rgba(15,54,120,.16);margin-bottom:6px!important}
+.fb-kopf svg{height:26px;width:auto;color:var(--titel-h)}
+.fb-kopf span{display:flex;flex-direction:column;font:400 9.5px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--himmel-t)}
+.fb-kopf b{font:400 15px/1.2 var(--titel);letter-spacing:.14em;color:var(--titel-h)}
+.fb .hz-tafel{border:0}
+.fb-z{border:0}
+.fb-z a{display:grid;grid-template-columns:76px minmax(0,1fr) 38px;align-items:center;gap:14px;padding:8px 10px 8px 8px;border-radius:14px;text-decoration:none;color:var(--tinte);transition:background-color .35s ease}
+.fb-z+.fb-z{margin-top:2px}
+.fb-b{display:block;width:76px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--kalk2)}
+.fb-b img{width:100%;height:100%;object-fit:cover}
+.fb-t{display:flex;flex-direction:column;gap:4px;min-width:0}
+.fb-t small{font:400 9.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fb-t b{font:400 clamp(.95rem,1.1vw,1.12rem)/1.15 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:var(--titel-h)}
+.fb-stand{font-size:13px;line-height:1.3;color:var(--leise)}
+.fb-stand b{font-weight:600;color:var(--tinte)}
+.fb .hz-ring{width:38px;height:38px;color:var(--titel-h);box-shadow:inset 0 0 0 1px rgba(15,54,120,.3)}
+.fb-z a.an{background:linear-gradient(180deg,#fff,#F3F6F9);box-shadow:0 10px 20px -16px rgba(4,16,35,.5)}
+.fb-z a.an .hz-ring{background:var(--stuhl);color:#fff;box-shadow:none}
+.fb-z a.an .fb-t b::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--punkt);margin:0 0 3px 10px}
+@media (max-width:1000px){.fb-feld{grid-template-columns:1fr}.fb .hz-buehne{display:none}}
+@media (max-width:520px){.fb-z a{grid-template-columns:60px minmax(0,1fr) 34px}.fb-b{width:60px}.fb .hz-ring{width:34px;height:34px}}
+
+/* --- c: Sechs Bildschirme --- */
+.fc .m-kopf0__z{color:var(--himmel-t)}
+.fc .m-kopf0__titel{color:var(--titel-h);font-size:clamp(2.2rem,4.6vw,4.2rem)!important;margin-top:clamp(18px,1.8vw,26px)!important}
+.fc .m-kopf0__titel em{color:var(--himmel-t)}
+.fc .m-kopf0__linie{margin-top:clamp(20px,2vw,28px);background:linear-gradient(90deg,rgba(15,54,120,0),var(--himmel-t) 30%,var(--himmel-t) 70%,rgba(15,54,120,0));opacity:.6}
+.fc .m-kopf0__gruss{color:var(--tinte);margin-top:16px}
+.fc .m-kopf0__datum{color:var(--himmel-t)}
+.fc .m-zeile{margin-top:22px}
+.fc-kacheln{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);margin-top:clamp(28px,3vw,42px)!important;border:0!important}
+.fc-z{border:0!important}
+.fc-z a{display:flex;flex-direction:column;height:100%;border-radius:var(--rund);overflow:hidden;text-decoration:none;color:var(--tinte);background:linear-gradient(180deg,#fff,var(--papier));box-shadow:inset 0 1px 0 #fff,0 30px 50px -34px rgba(4,16,35,.55),0 0 0 1px rgba(4,16,35,.06);position:relative}
+.fc-b{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--kalk2);border-bottom:1px solid rgba(4,16,35,.08)}
+.fc-b img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.fc-folgt{position:absolute;left:12px;bottom:12px;font:400 9.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:#fff;background:rgba(11,29,61,.72);padding:7px 10px;border-radius:8px}
+.fc-t{display:flex;flex-direction:column;gap:5px;padding:16px 70px 18px 20px}
+.fc-t small{font:400 9.5px/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+.fc-t b{font:400 clamp(1rem,1.2vw,1.2rem)/1.15 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:var(--titel-h)}
+.fc-stand{font-size:13.5px;color:var(--leise)}
+.fc-stand b{font-weight:600;color:var(--tinte)}
+.fc .hz-ring{position:absolute;right:18px;bottom:20px;width:38px;height:38px;color:var(--titel-h);box-shadow:inset 0 0 0 1px rgba(15,54,120,.3)}
+.fc-z a.an .hz-ring{background:var(--stuhl);color:#fff;box-shadow:none}
+.fc-z a.an .fc-b img{transform:scale(1.025)}
+.fc-z a.an .fc-t b::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--punkt);margin:0 0 3px 10px}
+@media (max-width:1000px){.fc-kacheln{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.fc-kacheln{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.js .fa .fa-feld,.js .fb .fb-feld,.js .fc .fc-kacheln{transform:none!important;transition:none!important}.hz-z a img{transition:none!important}}
+.fb .hz-rahmen{background:var(--tief)!important}
+.bsp{font:400 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t)}.dunkel .bsp{color:var(--himmel)}
+
+/* =====================================================================================================================================
+   Bewegung wie in den Hafenbüros der anderen Häuser (Robert 19.10.2026 23:43: «die Effekte sind nicht wie bei den anderen …
+   diese Animation mit dem Hochzoom … dem Reinfliegen der Bilder»). Takt der anderen Häuser: 40 px, 0,85 s, weich auslaufend, 0,12 s Staffel;
+   Fotos zoomen dazu im Rahmen von 1,08 an ihren Platz (Bewegungsidee der Website). Nur transform, deckend, kein Aufblenden.
+   ===================================================================================================================================== */
+@keyframes mbAuf{from{translate:0 40px;scale:1.04}}
+@keyframes mbKachel{from{translate:0 70px}}
+@keyframes mbZoom{from{scale:1.1}}
+@keyframes mbKopf{from{translate:0 22px}}
+@media (prefers-reduced-motion:no-preference){
+  .js .fa .fa-feld{transform:none!important;transition:none!important}
+  .js .fa .fk-kopf{animation:mbKopf .9s cubic-bezier(.22,.61,.36,1) .05s both}
+  .js .fa .hz-rahmen{animation:mbAuf 1s cubic-bezier(.22,.61,.36,1) .15s both}
+  .js .fa .hz-bild--ruhe{animation:mbZoom 2.4s cubic-bezier(.22,.61,.36,1) .15s both}
+  .js .fa .fa-k{animation:mbKachel 1.05s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(.22s + var(--i,0)*.09s)}
+  .js .fa .fa-k .fk-b img{animation:mbZoom 1.9s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(.22s + var(--i,0)*.09s)}
+  .js .fa .m-zeile,.js .fa .m-hilfe{animation:mbKopf .85s cubic-bezier(.22,.61,.36,1) .6s both}
+  .js .m-empfang:not(.bereit) .fk-kopf,.js .m-empfang:not(.bereit) .hz-rahmen,.js .m-empfang:not(.bereit) .hz-bild--ruhe,.js .m-empfang:not(.bereit) .fa-k,
+  .js .m-empfang:not(.bereit) .fa-k img,.js .m-empfang:not(.bereit) .m-zeile,.js .m-empfang:not(.bereit) .m-hilfe{animation-play-state:paused}
+  /* beim Scrollen: jedes Stück 40 px herauf; Bildschirme schweben dazu aus 1,04 an ihren Platz, ihr Bild zoomt aus 1,08 */
+  .js [data-r]{transform:translate3d(0,40px,0);transition:transform .85s cubic-bezier(.22,.61,.36,1);transition-delay:calc(var(--i,0)*120ms)}
+  .js [data-r="schweb"]:not(.da){transform:translate3d(0,60px,0) scale(1.04)}
+  .js [data-r].da{transform:none}
+  .js .m-schirm img{transform:scale(1.08);transition:transform 2.2s cubic-bezier(.22,.61,.36,1);transition-delay:calc(var(--i,0)*120ms)}
+  .js .m-schirm.da img{transform:none}
+}
+
+/* Stücke der Säle (Robert 19.10.2026 23:55: «die anderen Tools hatten … ein paar mehr Bilder»): unter dem Hauptbildschirm echte Stücke des Werkzeugs,
+   leicht versetzt und überlappend wie Blätter auf dem Tisch: zweiter Bildschirm, gedruckte Karten, Fotos aus dem Bildarchiv. */
+.m-saal__links{min-width:0}
+.m-stuecke{position:relative;display:grid;gap:clamp(12px,1.4vw,22px);margin-top:clamp(-56px,-3.4vw,-28px);padding-left:clamp(28px,5vw,90px);z-index:1}
+.m-stuecke--eins{grid-template-columns:1fr}
+.m-stuecke--eins .m-schirm{width:78%;justify-self:end;box-shadow:0 50px 90px -40px rgba(4,16,35,.7),0 0 0 1px rgba(4,16,35,.08)}
+.m-stuecke--karten{grid-template-columns:.72fr 1fr .72fr;align-items:end;padding-left:clamp(16px,3vw,48px)}
+.m-stuecke--fotos{grid-template-columns:repeat(6,minmax(0,1fr));align-items:end;padding-left:0;margin-top:clamp(18px,2vw,28px)}
+.m-stueck{margin:0;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 34px 60px -30px rgba(4,16,35,.6),0 0 0 1px rgba(4,16,35,.07)}
+.dunkel .m-stueck{box-shadow:0 40px 70px -30px rgba(0,0,0,.85),0 0 0 1px rgba(162,182,207,.2)}
+.m-stueck img{width:100%;height:auto}
+.m-stueck--blatt{border-radius:6px}
+.m-stueck--quer{border-radius:6px;margin-bottom:clamp(20px,3vw,46px)}
+.m-stueck--foto{border-radius:10px;aspect-ratio:3/4}
+.m-stueck--foto img{height:100%;object-fit:cover}
+.m-stuecke--fotos .m-stueck:nth-child(odd){margin-bottom:clamp(14px,1.6vw,26px)}
+@media (max-width:700px){.m-stuecke{padding-left:0;margin-top:16px}.m-stuecke--eins .m-schirm{width:100%}.m-stuecke--fotos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Schriftfarbe der Knöpfe gegen .ma a{color:inherit} sichern (dunkler Knopf auf hellem Grund war unlesbar) */
+.ma .knopf{color:var(--tinte)}
+.ma .knopf--dunkel{color:#F2F5F8}
+
+/* Titel auf dunklem Grund ganz weiss (Chef-Chat 20.10.2026 nach Roberts Vorgabe) */
+.dunkel .m-saal__titel,.dunkel .m-saal__titel em,.dunkel .fk-titel,.dunkel .fk-titel em,.dunkel .m-kopf0__titel,.dunkel .m-kopf0__titel em{color:#fff}
+
+/* 320 px: nichts ragt seitlich heraus (lange Namen, schwebende Bildschirme) */
+.m-saal,.m-empfang{overflow-x:clip}
+@media (max-width:420px){.m-saal__titel{font-size:1.45rem!important;letter-spacing:.1em;padding-left:.1em}.fk-titel{font-size:1.9rem!important;letter-spacing:.1em}}

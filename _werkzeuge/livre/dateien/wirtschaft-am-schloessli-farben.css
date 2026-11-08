@@ -1,0 +1,15 @@
+/* Wirtschaft am Schlössli · Farben der Marke (Das Bildarchiv, 20.10.2026), Werte der Website (assets/css/haus.css) */
+:root{
+  --nacht:#0b1d3d; /* Nacht: Grund der dunklen Flächen, immer mit der Punkt-Tapete */
+  --tief:#0a234c; /* Tief: zweite dunkle Fläche, Platten auf Nacht */
+  --stuhl:#113d88; /* Stuhlblau: Knöpfe, Linien und Betonung auf Hell */
+  --kalk:#e7ecf3; /* Kalk: Grund der hellen Flächen, mit der Punkt-Tapete */
+  --kalk2:#d0dae7; /* Kalk tief: zweite helle Fläche, Felder und Linien */
+  --papier:#f3f6f9; /* Papier: ruhige helle Abschnitte ohne Tapete */
+  --himmel:#a2b6cf; /* Seehimmel: Linie und Zeichen auf Dunkel, Horizont */
+  --himmel-h:#c5d2e1; /* Seehimmel hell: Betonung in Titeln auf Dunkel */
+  --himmel-t:#0f3678; /* Seehimmel tief: Betonung in Titeln auf Hell */
+  --tinte:#041023; /* Tinte: Schrift auf hellen Flächen, nie reines Schwarz */
+  --titel-h:#0a2552; /* Titelblau: Titel in Versalien auf Hell */
+  --punkt:#fd9964; /* Schirmrot: nur als Punkt: Stempel, Markierung, nie als Fläche */
+}

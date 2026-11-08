@@ -1,0 +1,146 @@
+[
+ {
+  "name": "Nacht",
+  "hex": "#0b1d3d",
+  "rgb": [
+   11,
+   29,
+   61
+  ],
+  "rolle": "Grund der dunklen Flächen, immer mit der Punkt-Tapete",
+  "gruppe": "dunkel",
+  "woher": "Farbwelt A #062531, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Tief",
+  "hex": "#0a234c",
+  "rgb": [
+   10,
+   35,
+   76
+  ],
+  "rolle": "zweite dunkle Fläche, Platten auf Nacht",
+  "gruppe": "dunkel",
+  "woher": "Farbwelt A #0A3A4C, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Stuhlblau",
+  "hex": "#113d88",
+  "rgb": [
+   17,
+   61,
+   136
+  ],
+  "rolle": "Knöpfe, Linien und Betonung auf Hell",
+  "gruppe": "dunkel",
+  "woher": "Farbwelt A #116788, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Kalk",
+  "hex": "#e7ecf3",
+  "rgb": [
+   231,
+   236,
+   243
+  ],
+  "rolle": "Grund der hellen Flächen, mit der Punkt-Tapete",
+  "gruppe": "hell",
+  "woher": "Farbwelt A #E7F0F3, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Kalk tief",
+  "hex": "#d0dae7",
+  "rgb": [
+   208,
+   218,
+   231
+  ],
+  "rolle": "zweite helle Fläche, Felder und Linien",
+  "gruppe": "hell",
+  "woher": "Farbwelt A #D0E2E7, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Papier",
+  "hex": "#f3f6f9",
+  "rgb": [
+   243,
+   246,
+   249
+  ],
+  "rolle": "ruhige helle Abschnitte ohne Tapete",
+  "gruppe": "hell",
+  "woher": "Wert der Website (haus.css), nicht aus dem Markenbuch"
+ },
+ {
+  "name": "Seehimmel",
+  "hex": "#a2b6cf",
+  "rgb": [
+   162,
+   182,
+   207
+  ],
+  "rolle": "Linie und Zeichen auf Dunkel, Horizont",
+  "gruppe": "himmel",
+  "woher": "Farbwelt A #A2C6CF, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Seehimmel hell",
+  "hex": "#c5d2e1",
+  "rgb": [
+   197,
+   210,
+   225
+  ],
+  "rolle": "Betonung in Titeln auf Dunkel",
+  "gruppe": "himmel",
+  "woher": "Farbwelt A #C5DCE1, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Seehimmel tief",
+  "hex": "#0f3678",
+  "rgb": [
+   15,
+   54,
+   120
+  ],
+  "rolle": "Betonung in Titeln auf Hell",
+  "gruppe": "himmel",
+  "woher": "Farbwelt A #0F5B78, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Tinte",
+  "hex": "#041023",
+  "rgb": [
+   4,
+   16,
+   35
+  ],
+  "rolle": "Schrift auf hellen Flächen, nie reines Schwarz",
+  "gruppe": "schrift",
+  "woher": "Farbwelt A #041B23, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+ },
+ {
+  "name": "Titelblau",
+  "hex": "#0a2552",
+  "rgb": [
+   10,
+   37,
+   82
+  ],
+  "rolle": "Titel in Versalien auf Hell",
+  "gruppe": "schrift",
+  "woher": "Wert der Website (haus.css), nicht aus dem Markenbuch"
+ },
+ {
+  "name": "Schirmrot",
+  "hex": "#fd9964",
+  "rgb": [
+   253,
+   153,
+   100
+  ],
+  "rolle": "nur als Punkt: Stempel, Markierung, nie als Fläche",
+  "gruppe": "punkt",
+  "woher": "Farbwelt A #FD9964, unverändert"
+ }
+]

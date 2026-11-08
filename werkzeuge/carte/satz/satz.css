@@ -1,0 +1,226 @@
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:url('../fonts/OpenSans-Regular.ttf') format('truetype')}
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:500;src:url('../fonts/OpenSans-Medium.ttf') format('truetype')}
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:url('../fonts/OpenSans-Medium.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400;src:url('../fonts/InstrumentSans-Regular.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:500;src:url('../fonts/InstrumentSans-Medium.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;src:url('../fonts/InstrumentSans-SemiBold.ttf') format('truetype')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;src:url('../fonts/DMMono-Regular.ttf') format('truetype')}
+:root{--titel:'Open Sans',Arial,sans-serif;--tg:400;--muster:url(../assets/svg/tapete-a-dunkel.svg);--musterb:14mm}
+/* Satz der Unterlagen. Masse in mm, Schrift in pt über --s (wird je Seite angepasst, damit nichts überläuft).
+   Farben sind die Bezugsfarben der Vorlage und werden beim Schreiben auf das Haus umgerechnet. Keine weichen Schatten. */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#7a828b;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.blatt{--s:1;position:relative;overflow:hidden;margin:8mm auto;background:#f8fafc;color:#132036;display:flex;flex-direction:column;font-family:'Instrument Sans',Arial,sans-serif;font-size:calc(9.4pt*var(--s));line-height:1.42;page-break-after:always;break-after:page}
+/* :where() wiegt nichts, sonst löscht diese Zeile die Abstände von .rubrik, .ut, .ab, .zw und .ul */
+:where(.blatt) :where(h1,h2,h3,h4,p,ul){margin:0;padding:0}
+.uband{flex:none;display:flex;align-items:center;gap:7mm;padding:9mm 15mm 8mm;background:#0a234c var(--muster) 50% 0/var(--musterb) auto;color:#f3f6f9;border-bottom:.7mm solid #5a7698}
+.uband--klein{padding:6mm 15mm 5mm}
+.uband__z{flex:none;width:17mm;color:#a2b6cf;display:block}
+.uband__z svg,.udeck__z svg,.uz svg,.uw svg{display:block;width:100%;height:auto}
+.uband h1{font-family:var(--titel);font-weight:var(--tg);font-size:25pt;line-height:1.08;letter-spacing:0}
+.uband--klein h1{font-size:19pt}
+.uband p{font-family:'DM Mono',Menlo,monospace;font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:#a2b6cf;margin-top:1.6mm}
+.inhalt{flex:1;min-height:0;padding:9mm 15mm 5mm;display:flex;flex-direction:column}
+.ufuss2{flex:none;margin:0 15mm;padding:3.2mm 0 6.5mm;border-top:.25mm solid #5a7698;font-family:'DM Mono',Menlo,monospace;font-size:6.2pt;letter-spacing:.17em;text-transform:uppercase;text-align:center;color:rgba(19,32,54,.74)}
+.spalten{flex:1;min-height:0;display:grid;gap:0 11mm}
+.spalten--2{grid-template-columns:1fr 1fr}.spalten--3{grid-template-columns:1fr 1fr 1fr}.spalten--1{grid-template-columns:1fr}
+.sp{min-width:0;min-height:0}
+.spalten--2 .sp+.sp,.spalten--3 .sp+.sp{border-left:.25mm solid rgba(90,118,152,.5);padding-left:11mm;margin-left:-5.5mm}
+/* Rubrik: Titelschrift, gut doppelt so gross wie der Lesetext, kurze Linie darunter */
+.rubrik{display:flex;align-items:flex-end;justify-content:space-between;gap:4mm;font-family:var(--titel);font-weight:var(--tg);font-size:calc(19pt*var(--s));line-height:1.1;color:#0a234c;margin:calc(5.4mm*var(--s)) 0 calc(2.4mm*var(--s));padding-bottom:calc(2.9mm*var(--s));position:relative}
+.rubrik::after{content:'';position:absolute;left:0;bottom:0;width:14mm;height:.5mm;background:#5a7698}
+.sp>.rubrik:first-child,.inhalt>.rubrik:first-child{margin-top:0}
+.rubrik small{font-family:'Instrument Sans',Arial,sans-serif;font-weight:400;font-size:calc(8.6pt*var(--s));color:rgba(19,32,54,.72);margin-left:2.4mm}
+.rk{display:flex;gap:0;flex:none}
+.rk b{flex:none;width:calc(12.5mm*var(--s));min-width:0;text-align:right;font-family:var(--titel);font-weight:400;font-size:calc(7.6pt*var(--s));letter-spacing:.02em;color:#54677f;white-space:nowrap}
+.rk b:empty::before{content:'\00a0'}
+.re .rk b em{font-family:'Instrument Sans',Arial,sans-serif;font-style:normal;font-weight:400;font-size:calc(8pt*var(--s));color:rgba(19,32,54,.72)}
+.zw{font-family:'DM Mono',Menlo,monospace;font-weight:400;font-size:calc(6.8pt*var(--s));letter-spacing:.22em;text-transform:uppercase;color:#54677f;margin:calc(3.2mm*var(--s)) 0 calc(1.2mm*var(--s))}
+.po{display:flex;justify-content:space-between;align-items:baseline;gap:4mm;padding:calc(1.5mm*var(--s)) 0;break-inside:avoid}
+.po__t{min-width:0}
+.po h4{font-family:'Instrument Sans',Arial,sans-serif;font-weight:600;font-size:calc(10pt*var(--s));line-height:1.28;color:#132036}
+.po h4 small{font-weight:400;font-size:calc(8.2pt*var(--s));color:rgba(19,32,54,.72)}
+.po p{font-size:calc(8.6pt*var(--s));line-height:1.36;color:rgba(19,32,54,.86)}
+.po p.fr{font-style:italic;color:rgba(19,32,54,.62);font-size:calc(8pt*var(--s))}
+.po__p{flex:none;text-align:right;display:flex;flex-direction:column;gap:.4mm}
+.pz{display:flex;justify-content:flex-end;align-items:baseline;gap:2.4mm;white-space:nowrap}
+.pz b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(11pt*var(--s));color:#0a234c;min-width:calc(11mm*var(--s));text-align:right}
+.pz em{font-style:normal;font-size:calc(8pt*var(--s));color:rgba(19,32,54,.72)}
+.re{display:flex;justify-content:space-between;align-items:baseline;gap:3mm;padding:calc(.72mm*var(--s)) 0}
+.re__n{font-weight:600;font-size:calc(9.4pt*var(--s));min-width:0}
+.re__n small{font-weight:400;font-size:calc(8.2pt*var(--s));color:rgba(19,32,54,.72)}
+.re .rk b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(9.6pt*var(--s));letter-spacing:0;text-transform:none;color:#0a234c}
+.ab{font-size:calc(9.4pt*var(--s));line-height:1.5;margin-bottom:calc(2.4mm*var(--s))}
+.ab.gross{font-family:var(--titel);font-weight:var(--tg);font-size:calc(13pt*var(--s));line-height:1.3;color:#0a234c}
+.ab.fr{font-style:italic;color:rgba(19,32,54,.66);font-size:calc(8.8pt*var(--s))}
+.ab.mitte,.ut.mitte{text-align:center}
+.ab.klein{font-size:calc(8pt*var(--s));color:rgba(19,32,54,.76)}
+.ut{font-family:var(--titel);font-weight:var(--tg);font-size:calc(19pt*var(--s));line-height:1.12;color:#0a234c;margin:calc(5mm*var(--s)) 0 calc(2.4mm*var(--s))}
+.ut.klein{font-size:calc(14pt*var(--s))}
+.ukasten{border:.3mm solid #5a7698;border-radius:3mm;padding:calc(4mm*var(--s)) calc(5mm*var(--s));margin:calc(3mm*var(--s)) 0;break-inside:avoid}
+.ukasten h3{font-family:var(--titel);font-weight:var(--tg);font-size:calc(13pt*var(--s));color:#0a234c;margin-bottom:calc(1.6mm*var(--s))}
+.ukasten.dunkel{background:#0a234c;border-color:#0a234c;color:#f3f6f9}
+.ukasten.dunkel h3{color:#a2b6cf}.ukasten.dunkel .ab{color:#f3f6f9}
+.ul{list-style:none}
+.ul li{position:relative;padding-left:5mm;font-size:calc(9.2pt*var(--s));line-height:1.45;margin-bottom:calc(1.2mm*var(--s))}
+/* Strich als Kante statt Fläche: eine Fläche von .35mm rundet je nach Lage auf 1 oder 2 Bildpunkte, die Striche wurden ungleich dick */
+.ul li::before{content:'';position:absolute;left:0;top:.62em;width:2.6mm;height:0;border-top:.35mm solid #5a7698}
+.ulin{display:block;width:14mm;height:.5mm;background:#5a7698;margin:calc(3mm*var(--s)) 0}
+.mitte .ulin,.ulin.mitte{margin-left:auto;margin-right:auto}
+.ubild{display:block;width:100%;object-fit:cover;border-radius:2.4mm}
+.udeck{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#0a234c var(--muster) 50% 0/var(--musterb) auto;color:#f3f6f9;margin:-9mm -15mm -5mm;padding:14mm}
+.udeck__z{width:34mm;color:#a2b6cf;margin-bottom:9mm}
+.udeck h1{font-family:var(--titel);font-weight:var(--tg);font-size:44pt;line-height:1.06}
+.udeck i{display:block;width:20mm;height:.6mm;background:#a2b6cf;margin:7mm 0}
+.udeck p{font-size:10.5pt;line-height:1.5;max-width:120mm}
+.udeck__u{font-family:'DM Mono',Menlo,monospace;font-size:8pt!important;letter-spacing:.22em;text-transform:uppercase;color:#a2b6cf;margin-bottom:5mm}
+.uz{display:block;width:26mm;color:#5a7698}.uz.mitte,.uw.mitte{margin-left:auto;margin-right:auto}
+.uw{display:block;width:70mm;color:#0a234c}
+@page{margin:0}
+@media print{html,body{background:#ffffff}.blatt{margin:0}}
+/* aus dem Original gelesene Karten (satz_auto.py): Zeilen unter dem Gericht, Übersetzungen kursiv und heller */
+.po p.fr{font-style:italic;color:rgba(19,32,54,.6);font-size:calc(7.9pt*var(--s))}
+.po--frei p{font-size:calc(9pt*var(--s))}
+.po__p--reihe{flex-direction:row;gap:calc(3mm*var(--s))}
+.oder{font-family:'DM Mono',Menlo,monospace;font-size:calc(6.2pt*var(--s));letter-spacing:.2em;text-transform:uppercase;color:#54677f;margin:calc(.6mm*var(--s)) 0!important}
+.po p.mp{display:flex;justify-content:space-between;gap:3mm;align-items:baseline}
+.po p.mp b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(10pt*var(--s));color:#0a234c;white-space:nowrap;margin-left:2.4mm}
+.po:has(p.mp) .po__t{flex:1}
+.tmreihe{display:grid;gap:0 6mm;margin-bottom:calc(5mm*var(--s))}
+.tmsp{min-width:0;border-top:.5mm solid #5a7698;padding-top:calc(2mm*var(--s))}
+.tmsp h4.tag{font-family:var(--titel);font-weight:var(--tg);font-size:calc(12.5pt*var(--s));line-height:1.15;color:#0a234c;margin-bottom:calc(1.6mm*var(--s))}
+.tmsp p{margin:0}
+.tmsp p.gang{font-weight:600;font-size:calc(9pt*var(--s));line-height:1.3;margin-top:calc(.5mm*var(--s))}
+.tmsp p.fr{font-style:italic;font-size:calc(7.2pt*var(--s));line-height:1.3;color:rgba(19,32,54,.62)}
+.tmsp p.stern{font-size:calc(6pt*var(--s));letter-spacing:.3em;color:#5a7698;margin:calc(.8mm*var(--s)) 0}
+.uleiste{flex:none;display:flex;align-items:center;justify-content:center;gap:4mm;padding:8mm 15mm 0;color:#5a7698}
+.uleiste span{display:block;width:11mm}.uleiste span svg{display:block;width:100%;height:auto}
+.uleiste b{font-family:'DM Mono',Menlo,monospace;font-weight:400;font-size:6.6pt;letter-spacing:.24em;text-transform:uppercase}
+.uleiste+.inhalt{padding-top:6mm}
+.po p.halb{font-weight:600;color:#132036}
+.po p.stern,.inhalt>p.stern,.sp>p.stern{font-size:calc(6pt*var(--s));letter-spacing:.3em;color:#5a7698;margin:calc(.6mm*var(--s)) 0}
+/* Aussenseite einer gefalzten Karte: eine Spalte ist der Deckel in der dunklen Farbe des Hauses */
+.karte .inhalt{padding:10mm 12mm 8mm}
+.karte--aussen .inhalt{padding:0}
+.karte--aussen .spalten{gap:0}
+.karte--aussen .sp{padding:10mm 9mm 8mm 12mm}
+.karte--aussen .sp:last-child{padding:0}
+.karte--aussen .sp+.sp{border-left:0;margin-left:0}
+.karte--aussen .sp+.sp:not(:last-child){padding-left:6mm}
+.deckel{height:100%;background:#0a234c var(--muster) 50% 0/var(--musterb) auto;color:#f3f6f9;padding:17mm 11mm 12mm;display:flex;flex-direction:column;align-items:center;text-align:center}
+.deckel .uz{width:30mm;color:#a2b6cf}
+.deckel h1{font-family:var(--titel);font-weight:var(--tg);font-size:34pt;line-height:1.08;margin-top:9mm}
+.deckel>i{display:block;width:16mm;height:.5mm;background:#a2b6cf;margin:8mm 0;flex:none}
+.deckel__z{font-family:var(--titel);font-weight:var(--tg);font-size:14pt;line-height:1.36;color:#a2b6cf;max-width:78mm}
+.deckel__q{font-family:'DM Mono',Menlo,monospace;font-size:6.6pt;letter-spacing:.22em;text-transform:uppercase;margin-top:4mm!important}
+.deckel__a{font-size:8.4pt;line-height:1.6;margin-top:auto!important;padding-top:8mm;opacity:.9}
+.gutschein{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 4mm}
+.gutschein .uz{width:22mm;margin-bottom:8mm}
+.gutschein .ab{font-size:calc(11pt*var(--s));line-height:1.7}
+.gutschein .unten{margin-top:14mm!important;opacity:.7}
+.menupreis{text-align:right;margin:-11mm 0 5mm!important}
+.menupreis b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(15pt*var(--s));color:#0a234c}
+.rubrik .rp{font-size:calc(13pt*var(--s));white-space:nowrap}
+.po p.mp span{flex:1}
+.po p.mp b{min-width:calc(15mm*var(--s));text-align:right}
+.gutschein .ab{font-size:calc(9.4pt*var(--s))}
+.pz--k{flex-direction:column;align-items:flex-end;gap:0}
+.pz--k em,.po__p .pz>em:only-child{font-family:'DM Mono',Menlo,monospace;font-size:calc(5.6pt*var(--s));letter-spacing:.14em;text-transform:uppercase;color:#54677f}
+.uraster{margin-top:calc(2mm*var(--s))}
+.uraster .rz{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:0 6mm;padding:calc(1.5mm*var(--s)) 0;border-bottom:.2mm solid rgba(90,118,152,.4);font-size:calc(9.4pt*var(--s))}
+.uraster .rz.kopf{font-family:'DM Mono',Menlo,monospace;font-size:calc(6.4pt*var(--s));letter-spacing:.2em;text-transform:uppercase;color:#54677f;border-bottom:.4mm solid #5a7698}
+.uraster .rz span.fr{font-style:italic;color:rgba(19,32,54,.66)}
+.mitte .po,.po.mitte{justify-content:center;text-align:center}
+.mittig .po{flex-direction:column;align-items:center;text-align:center}
+.mittig .po__p{flex-direction:row}
+.mittig .rubrik{justify-content:center}.mittig .rubrik::after{left:50%;margin-left:-7mm}
+.mittig p.stern{text-align:center}
+
+/* Umbrüche: keine einzelnen Wörter auf der letzten Zeile, Titel ausgeglichen */
+.blatt p,.blatt h4,.blatt li{text-wrap:pretty}
+.blatt h1,.blatt h2,.blatt h3,.po h4,.po p{text-wrap:balance}
+
+/* Schlössli, Station 10: in der Machart des Hauses (Garamond, blaue Kapitälchen, Blatt-Ornament, Länderumrisse), verfeinert */
+@font-face{font-family:'Garamond Haus';src:url(../sb/EBGaramond-400.ttf) format('truetype');font-weight:400}
+@font-face{font-family:'Garamond Haus';src:url(../sb/EBGaramond-700.ttf) format('truetype');font-weight:700}
+.blatt.sb-haus{font-feature-settings:'locl' 0;background:#FFFFFF;color:#041023;font-family:'Garamond Haus',Garamond,serif;font-size:calc(11pt*var(--s));line-height:1.3}
+.sb-haus .inhalt{padding:12mm 18mm 4mm}
+.sb-haus .ufuss2{font-family:'Garamond Haus',serif;font-size:8pt;letter-spacing:.02em;color:#A2B6CF;border-top:0;padding-top:2mm}
+.sb-haus .kl{font-size:.8em;letter-spacing:.03em}
+.sb-orn{display:flex;align-items:center;gap:3mm;margin:0 0 calc(3mm*var(--s))}
+.sb-orn i{flex:1;height:1.1mm;border-top:.3mm solid #A2B6CF;border-bottom:.3mm solid #A2B6CF}
+.sb-blatt{flex:none;width:calc(6.5mm*var(--s));height:auto;color:#A2B6CF}
+.sb-r{position:relative;margin-bottom:calc(6mm*var(--s))}
+.sb-r:last-of-type{margin-bottom:0}
+.sb-h{text-align:center;font-weight:700;font-size:calc(17pt*var(--s));letter-spacing:.04em;color:#0A2552;margin:calc(2mm*var(--s)) 0 calc(6mm*var(--s))!important}
+.sb-titel{text-align:center;font-weight:400;font-size:calc(26pt*var(--s));letter-spacing:.02em;color:#0A2552;margin:0 0 calc(5mm*var(--s))!important}
+/* Länderumriss rechts neben der Liste, nie unter den Preisen (Robert 19.10.2026, Bild: Iberien unter «45 / 65 Hauptgang») */
+.sb-umriss{position:absolute;right:-13mm;top:calc(9mm*var(--s));width:calc(42mm*var(--s));height:auto;color:#A2B6CF}
+.sb-umriss--iberien{width:calc(36mm*var(--s))!important;top:calc(10mm*var(--s))!important;right:-14mm!important}
+.sb-r--karte .sb-g{margin-right:calc(30mm*var(--s))}
+.sb-g{display:grid;grid-template-columns:1fr calc(23mm*var(--s));column-gap:4mm;align-items:baseline;margin-bottom:calc(4.4mm*var(--s));break-inside:avoid;position:relative;z-index:1}
+.sb-n{color:#113D88;font-size:calc(12pt*var(--s));letter-spacing:.03em}
+/* Kürzel: Punkte statt Schrägstriche, VEG mit Blatt (Robert 19.10.2026, Bild «VEG/G/L/E/N/SE») */
+.sb-k{font-size:calc(7.4pt*var(--s));letter-spacing:.08em;color:#7F93B0;white-space:nowrap;text-align:right}
+.sb-m .sb-k{text-align:center}
+.sb-kz{font-size:calc(6.6pt*var(--s));letter-spacing:.06em;color:#8FA3BE;vertical-align:.55em;line-height:0;white-space:nowrap;margin-left:.3em}
+.sb-ab{display:inline-block;width:.45em}
+.sb-kz .sb-veg{color:#3E7A4F;font-weight:700}
+.sb-veg{color:#113D88;font-weight:700;display:inline-flex;align-items:center;gap:.25em}
+.sb-vb{width:1.1em;height:1.1em;color:#3E7A4F;vertical-align:-.1em;margin-right:.1em}
+.sb-w{font-size:calc(6.8pt*var(--s));letter-spacing:.06em}
+.sb-p{grid-row:1 / span 4;grid-column:2;font-variant-numeric:lining-nums;text-align:right}
+.sb-p span{display:flex;justify-content:flex-end;align-items:baseline;gap:2mm}
+.sb-p b{font-weight:400;font-size:calc(12.5pt*var(--s));color:#0A2552}
+.sb-p em{font-style:normal;font-size:calc(9.6pt*var(--s));letter-spacing:0;color:#3B4A60}
+.sb-g .sb-t{grid-column:1}
+.sb-t{font-size:calc(11pt*var(--s))}
+.sb-fuss{margin-top:auto;padding-top:calc(4mm*var(--s));text-align:center}
+.sb-notiz{text-align:center;font-size:calc(9pt*var(--s));color:#3B4A60;margin-top:calc(1mm*var(--s))!important}
+.sb-luft .sb-g{margin-bottom:calc(10.4mm*var(--s))}   /* je Zwischenraum höchstens 6 mm mehr, der Rest an den Fuss (GBR 11.10.2026) */
+.sb-zeichen{width:calc(11mm*var(--s))!important;margin:0 auto calc(4mm*var(--s));color:#113D88!important}
+/* Bankett: Jahreszeit gross, Menüpreis als Marke zwischen zwei Linien */
+.sb-saison{text-align:center;font-weight:400;font-size:calc(24pt*var(--s));letter-spacing:.02em;color:#0A2552;margin:calc(1mm*var(--s)) 0 0!important}
+.sb-menupreis{display:flex;align-items:center;justify-content:center;gap:4mm;margin:calc(1.5mm*var(--s)) 0 calc(6mm*var(--s))!important;color:#113D88;font-size:calc(10pt*var(--s));letter-spacing:.12em}
+.sb-menupreis i{width:14mm;border-top:.3mm solid #A2B6CF}
+.sb-menupreis b{font-weight:400;font-size:calc(15pt*var(--s));letter-spacing:.02em;color:#0A2552}
+/* Lästermeile: beide Titel in derselben Form, normale Schreibung (Robert 19.10.2026) */
+.sb-band{text-align:center;font-weight:400;font-size:calc(19pt*var(--s));letter-spacing:.02em;color:#0A2552;margin:0 0 calc(6mm*var(--s))!important}
+.sb-mittig .sb-orn{margin-top:calc(5mm*var(--s))}
+.sb-mittig .sb-orn:first-child{margin-top:0}
+.sb-m{text-align:center;margin-bottom:calc(4.6mm*var(--s));break-inside:avoid}
+.sb-mp{color:#0A2552;font-size:calc(12.5pt*var(--s));margin-left:3mm}
+.sb-k--m{margin-top:calc(.8mm*var(--s))!important}
+/* Lunch */
+.sb-quer{flex:1;display:grid;grid-template-columns:62mm 1fr 62mm;align-items:center}
+.sb-gruss{text-align:center;font-weight:400;font-style:normal;font-size:calc(15pt*var(--s));line-height:1.45;color:#113D88}
+.sb-menue .sb-band{border-top:.3mm solid #A2B6CF;border-bottom:.3mm solid #A2B6CF;padding:calc(2mm*var(--s)) 0;margin-bottom:calc(7mm*var(--s))!important}
+.sb-n--gross{font-size:calc(16pt*var(--s));font-weight:700;letter-spacing:0}
+.sb-gang{display:flex;justify-content:center;margin:calc(3.5mm*var(--s)) 0;position:relative}
+.sb-gang .sb-blatt{width:calc(5mm*var(--s))}
+.sb-lunchpreis{display:flex;align-items:baseline;justify-content:center;gap:3mm;margin-top:calc(8mm*var(--s));color:#113D88}
+.sb-lunchpreis .g{font-size:calc(9pt*var(--s));letter-spacing:.16em;text-transform:uppercase}
+.sb-lunchpreis i{width:10mm;border-top:.3mm solid #A2B6CF;align-self:center}
+.sb-lunchpreis .z{font-size:calc(24pt*var(--s));color:#0A2552;line-height:1}
+.sb-lunchpreis .z small{font-size:.6em}
+.sb-lunchpreis .w{font-size:calc(9pt*var(--s));letter-spacing:.16em;text-transform:uppercase}
+/* Weinkarte: Art gross, Land mit Flagge, Region grösser in normaler Schreibung (Robert 19.10.2026) */
+.sb-wk .inhalt{padding-top:10mm}
+.sb-wart{text-align:center;font-weight:400;font-size:calc(24pt*var(--s));letter-spacing:.02em;color:#0A2552;margin:calc(1mm*var(--s)) 0 calc(4mm*var(--s))!important}
+.sb-land{display:flex;align-items:center;justify-content:center;gap:3mm;font-weight:400;font-size:calc(17pt*var(--s));color:#0A2552;margin:calc(4.5mm*var(--s)) 0 calc(1mm*var(--s))!important;break-after:avoid}
+.sb-land--klein{font-size:calc(14pt*var(--s));margin-top:calc(6mm*var(--s))!important;margin-bottom:calc(1.6mm*var(--s))!important}
+.sb-flagge{width:calc(7mm*var(--s));height:auto;flex:none;border-radius:1mm}
+.sb-land--klein .sb-flagge{width:calc(5.5mm*var(--s))}
+.sb-lr,.sb-region{display:block;text-align:center;font-style:normal;font-size:calc(13pt*var(--s));color:#113D88;letter-spacing:.02em;margin:calc(2.4mm*var(--s)) 0 calc(1.2mm*var(--s))!important;break-after:avoid}
+.sb-region--ober{font-size:calc(15pt*var(--s));color:#0A2552;margin-top:calc(4mm*var(--s))!important;margin-bottom:0!important}
+.sb-region--ober + .sb-region{font-size:calc(11.5pt*var(--s));margin-top:calc(.8mm*var(--s))!important}
+.sb-region::before,.sb-region::after{content:'';display:inline-block;width:8mm;border-top:.3mm solid #A2B6CF;vertical-align:middle;margin:0 3mm}
+.sb-wk .sb-gut,.sb-wk .sb-land,.sb-wk .sb-region--ober,.sb-wk .sb-orn{padding-top:var(--luft,0px)}
+.sb-wk .sb-region:not(.sb-region--ober + .sb-region):not(.sb-land + .sb-region){padding-top:var(--luft,0px)}
+.sb-gut{font-weight:700;font-size:calc(11.5pt*var(--s));color:#041023;margin:calc(2.8mm*var(--s)) 0 calc(.8mm*var(--s))!important;padding-bottom:calc(.6mm*var(--s));border-bottom:.2mm solid #DCE4EE;break-after:avoid}
+.sb-wein{display:grid;grid-template-columns:calc(11mm*var(--s)) 1fr calc(13mm*var(--s)) calc(12mm*var(--s));column-gap:2mm;font-size:calc(10.6pt*var(--s));line-height:1.36;font-variant-numeric:lining-nums tabular-nums;break-inside:avoid}
+.sb-wein .j{color:#7F93B0;font-size:.92em}
+.sb-wein .n small{font-size:.86em;color:#3B4A60}
+.sb-wein .f{text-align:right;color:#7F93B0;font-size:.86em}
+.sb-wein .p{text-align:right;color:#0A2552}
+.sb-wein .d{font-size:.84em;color:#3B4A60;font-style:normal}

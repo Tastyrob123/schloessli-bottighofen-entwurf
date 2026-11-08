@@ -1,0 +1,2038 @@
+{
+ "haus": "Wirtschaft am Schlössli",
+ "ort": "Bottighofen",
+ "fotos": [
+  {
+   "k": "start",
+   "t": {
+    "de": "Blaue Stühle auf der Terrasse am Mittag, dahinter der Bodensee und die Alpen"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "quer",
+   "w": 2500,
+   "h": 1667,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/8cc68d08-568a-4629-be24-74f090b23b65/32+-+FHF_2573.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/start-2400.webp",
+   "fm": "../../assets/img/start-1200.webp",
+   "fs": "../../assets/img/start-480.webp"
+  },
+  {
+   "k": "platanen",
+   "t": {
+    "de": "Gedeckte Tische unter den Platanen, Sonnenschirme, dahinter der Hafen"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3333,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/1781098134070-N16IYP68CCQBFA93PKFJ/IMG_1967.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/platanen-2400.webp",
+   "fm": "../../assets/img/platanen-1200.webp",
+   "fs": "../../assets/img/platanen-480.webp"
+  },
+  {
+   "k": "lounge",
+   "t": {
+    "de": "Lounge mit Champagner am Ufer, dahinter der See und die Alpen"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "quer",
+   "w": 1761,
+   "h": 1180,
+   "art": "haus",
+   "q": "Schweiz Tourismus (myswitzerland.com), Bild des Eintrags des Hauses",
+   "u": "https://www.myswitzerland.com/de-ch/erlebnisse/essen-trinken/restaurant/wirtschaft-am-schloessli/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/lounge-1761.webp",
+   "fm": "../../assets/img/lounge-1200.webp",
+   "fs": "../../assets/img/lounge-480.webp"
+  },
+  {
+   "k": "baum",
+   "t": {
+    "de": "Gäste am Tisch im Schatten des Baums am Ufer, roter Sonnenschirm, dahinter der See"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "quer",
+   "w": 4284,
+   "h": 3142,
+   "art": "fremd",
+   "q": "Foto von Gästen auf Tripadvisor, Rechte bei den Gästen. Auf der Website nur für die Demo; vor jeder Veröffentlichung durch ein Foto des Hauses ersetzen",
+   "u": "https://www.tripadvisor.ch/Restaurant_Review-g6908343-d33091733-Reviews-Schlossli-Bottighofen_Canton_of_Thurgau.html",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/baum-2400.webp",
+   "fm": "../../assets/img/baum-1200.webp",
+   "fs": "../../assets/img/baum-480.webp"
+  },
+  {
+   "k": "gaststube",
+   "t": {
+    "de": "Die Gaststube mit grossen Fenstern zum Hafen"
+   },
+   "b": "bar",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2500,
+   "h": 1877,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/50fa7982-e0dc-4be7-b6e3-c9de643b9e19/_DSC5718.JPG",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/gaststube-2400.webp",
+   "fm": "../../assets/img/gaststube-1200.webp",
+   "fs": "../../assets/img/gaststube-480.webp"
+  },
+  {
+   "k": "mi-teller",
+   "t": {
+    "de": "Ein Gericht der Küche in einer geriffelten Schale"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "quadrat",
+   "w": 1000,
+   "h": 1000,
+   "art": "fremd",
+   "q": "Titelbild der Seite des Guide Michelin; ob das Haus es geliefert hat, ist nicht belegt",
+   "u": "https://guide.michelin.com/ch/de/thurgau/bottighofen_1149146/restaurant/wirtschaft-am-schlossli",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/mi-teller-1000.webp",
+   "fm": "../../assets/img/mi-teller-1000.webp",
+   "fs": "../../assets/img/mi-teller-480.webp"
+  },
+  {
+   "k": "bar",
+   "t": {
+    "de": "An der Bar wird ein Bier gezapft, unter der Theke die Zementfliesen"
+   },
+   "b": "bar",
+   "s": "jahr",
+   "f": "quer",
+   "w": 900,
+   "h": 600,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/b49b5b6f-681d-404f-a34d-640836327eb9/IMG_2226.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/bar-900.webp",
+   "fm": "../../assets/img/bar-900.webp",
+   "fs": "../../assets/img/bar-480.webp"
+  },
+  {
+   "k": "regal",
+   "t": {
+    "de": "Flaschen im Regal an der Bar, durch die Scheibe der See"
+   },
+   "b": "bar",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1920,
+   "h": 1280,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/de97ffe1-b493-4d1f-917a-1e23d929ed01/IMG_2166.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/regal-1920.webp",
+   "fm": "../../assets/img/regal-1200.webp",
+   "fs": "../../assets/img/regal-480.webp"
+  },
+  {
+   "k": "schild",
+   "t": {
+    "de": "Wegweiser zur A-la-carte-Restaurant-Terrasse und zur Lästermeile"
+   },
+   "b": "bar",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3334,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/a005f38f-db66-4442-ac86-bc549bef0858/2026-05-22_193805_Schl%C3%B6ssli_SM.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/schild-2400.webp",
+   "fm": "../../assets/img/schild-1200.webp",
+   "fs": "../../assets/img/schild-480.webp"
+  },
+  {
+   "k": "fliesen",
+   "t": {
+    "de": "Die Zementfliesen an der Bar"
+   },
+   "b": "bar",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2500,
+   "h": 582,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/7c203673-e6b4-4676-95e9-073aaba19fa7/IMG_2037.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/fliesen-2400.webp",
+   "fm": "../../assets/img/fliesen-1200.webp",
+   "fs": "../../assets/img/fliesen-480.webp"
+  },
+  {
+   "k": "thon",
+   "t": {
+    "de": "Thunfisch in Scheiben in einer gerippten Schale"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3750,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/fc5b3b18-f584-4537-9cd7-256ad381e5d7/Schloessli_August2025-11-5.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/thon-2400.webp",
+   "fm": "../../assets/img/thon-1200.webp",
+   "fs": "../../assets/img/thon-480.webp"
+  },
+  {
+   "k": "pasta",
+   "t": {
+    "de": "Schwarze Pasta mit Garnelen und Meeresfrüchten"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2304,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/93b96d0f-b4bd-42a5-b1c6-b65b97f2c9b5/Schloessli_August2025-12-6.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/pasta-1536.webp",
+   "fm": "../../assets/img/pasta-1200.webp",
+   "fs": "../../assets/img/pasta-480.webp"
+  },
+  {
+   "k": "iberia",
+   "t": {
+    "de": "Fisch in grüner Sauce in einer gerippten Schale, daneben ein Weinglas"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3750,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/d18c6dc9-5cab-4332-8563-dc3bc855b59f/Schloessli_August2025-9-4.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/iberia-2400.webp",
+   "fm": "../../assets/img/iberia-1200.webp",
+   "fs": "../../assets/img/iberia-480.webp"
+  },
+  {
+   "k": "tortelloni",
+   "t": {
+    "de": "Tortelloni mit Tomate, Burrata und Taggiasca-Olive"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 900,
+   "h": 1350,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/88d91631-60a3-45c5-b089-23e6bb568d32/Tortelloni.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/tortelloni-900.webp",
+   "fm": "../../assets/img/tortelloni-900.webp",
+   "fs": "../../assets/img/tortelloni-480.webp"
+  },
+  {
+   "k": "moni",
+   "t": {
+    "de": "Monika Huber, Küchenchefin, auf der Terrasse"
+   },
+   "b": "team",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2441,
+   "h": 3661,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/c39c8ad1-4208-4c47-95c2-20bbb9150750/5+-+FHF_2667.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/moni-2400.webp",
+   "fm": "../../assets/img/moni-1200.webp",
+   "fs": "../../assets/img/moni-480.webp"
+  },
+  {
+   "k": "sauce",
+   "t": {
+    "de": "Die Sauce wird mit dem Löffel angegossen"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1043,
+   "h": 1270,
+   "art": "haus",
+   "q": "Schweiz Tourismus (myswitzerland.com), Bild des Eintrags des Hauses",
+   "u": "https://www.myswitzerland.com/de-ch/erlebnisse/essen-trinken/restaurant/wirtschaft-am-schloessli/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/sauce-1043.webp",
+   "fm": "../../assets/img/sauce-1043.webp",
+   "fs": "../../assets/img/sauce-480.webp"
+  },
+  {
+   "k": "team",
+   "t": {
+    "de": "Das Team der Wirtschaft am Schlössli vor der Holzwand"
+   },
+   "b": "team",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2500,
+   "h": 1667,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/d5121609-e3c4-4aff-92a6-c5228736a262/2+-+FHF_2646.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/team-2400.webp",
+   "fm": "../../assets/img/team-1200.webp",
+   "fs": "../../assets/img/team-480.webp"
+  },
+  {
+   "k": "glas",
+   "t": {
+    "de": "Ein Glas Weisswein und ein Wasserglas vor dem See"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3750,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/9a3afc71-8072-454c-8c2b-dcb13e212430/Schloessli_August2025-1-1.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/glas-2400.webp",
+   "fm": "../../assets/img/glas-1200.webp",
+   "fs": "../../assets/img/glas-480.webp"
+  },
+  {
+   "k": "wein",
+   "t": {
+    "de": "Weinflaschen im Regal"
+   },
+   "b": "bar",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3330,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/8e85ca9a-7484-4953-a760-0ef7313fe290/_DSC5833_1.JPG",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/wein-2400.webp",
+   "fm": "../../assets/img/wein-1200.webp",
+   "fs": "../../assets/img/wein-480.webp"
+  },
+  {
+   "k": "jonas",
+   "t": {
+    "de": "Jonas Volpert, Gastgeber und Sommelier, auf der Terrasse"
+   },
+   "b": "team",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2441,
+   "h": 3661,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/dfee6f51-ba75-4081-a5dd-cacbc2ba38aa/11+-+FHF_2706.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/jonas-2400.webp",
+   "fm": "../../assets/img/jonas-1200.webp",
+   "fs": "../../assets/img/jonas-480.webp"
+  },
+  {
+   "k": "lukas",
+   "t": {
+    "de": "Lukas Siebel, Sous-Chef, auf der Terrasse"
+   },
+   "b": "team",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2441,
+   "h": 3661,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/5c9a3089-1eab-4bb7-a80c-84c471176e44/13+-+FHF_2729.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/lukas-2400.webp",
+   "fm": "../../assets/img/lukas-1200.webp",
+   "fs": "../../assets/img/lukas-480.webp"
+  },
+  {
+   "k": "apero",
+   "t": {
+    "de": "Ein Spritz und ein Bier auf einem blauen Tisch in der blauen Stunde"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3334,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/8165433d-086d-4e80-af63-a7074a21054b/2026-05-22_205034_Schl%C3%B6ssli_SM.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/apero-2400.webp",
+   "fm": "../../assets/img/apero-1200.webp",
+   "fs": "../../assets/img/apero-480.webp"
+  },
+  {
+   "k": "anguria",
+   "t": {
+    "de": "Ein Teller von oben auf dem blauen Platzteller"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3333,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern. Auf der Startseite als quadratischer Ausschnitt, Licht und Schärfe mit KI nachgeschärft",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/7f6b932f-acd4-4790-b296-6714bf798cfd/Anguria.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/anguria-2400.webp",
+   "fm": "../../assets/img/anguria-1200.webp",
+   "fs": "../../assets/img/anguria-480.webp"
+  },
+  {
+   "k": "dessert",
+   "t": {
+    "de": "Dessert mit Beeren auf einem blauen Teller, dahinter ein Wasserglas"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3750,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/9f207df9-cf6b-46cd-8a56-d11b13e82c9c/Schloessli_August2025-18-9.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/dessert-2400.webp",
+   "fm": "../../assets/img/dessert-1200.webp",
+   "fs": "../../assets/img/dessert-480.webp"
+  },
+  {
+   "k": "abend",
+   "t": {
+    "de": "Abend unter der Platane mit Lichterkette, Gäste am Tisch über dem See"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 2500,
+   "h": 3333,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/28f07178-c348-4cf9-b592-45eefe074c31/2026-05-22_220420_Schl%C3%B6ssli_SM_blurred.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/abend-2400.webp",
+   "fm": "../../assets/img/abend-1200.webp",
+   "fs": "../../assets/img/abend-480.webp"
+  },
+  {
+   "k": "suppe",
+   "t": {
+    "de": "Grüne Suppe in einer blauen Schale"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2304,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/05cfd12b-4f7d-499a-90eb-0df6172790ca/Schloessli_August2025-5-2.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/suppe-1536.webp",
+   "fm": "../../assets/img/suppe-1200.webp",
+   "fs": "../../assets/img/suppe-480.webp"
+  },
+  {
+   "k": "fisch",
+   "t": {
+    "de": "Fischfilet mit Sauce in einer gerippten Schale, dahinter ein blauer Stuhl"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2304,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern. Dasselbe Foto zeigt Excellence / Twerenbold auf excellence.ch (Gourmetfestival mit Monika Huber)",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/30467d9a-8d7e-4037-b809-ecbabe5f1bef/Schloessli_August2025-14-7.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/fisch-1536.webp",
+   "fm": "../../assets/img/fisch-1200.webp",
+   "fs": "../../assets/img/fisch-480.webp"
+  },
+  {
+   "k": "salat",
+   "t": {
+    "de": "Ein Salat auf einem gerippten silbernen Teller"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2304,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/49a4b920-195d-41e5-9ce9-045c2e8b20e6/Schloessli_August2025-7-3.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/salat-1536.webp",
+   "fm": "../../assets/img/salat-1200.webp",
+   "fs": "../../assets/img/salat-480.webp"
+  },
+  {
+   "k": "fleisch",
+   "t": {
+    "de": "Gefülltes Fleisch mit Blättern und Blüten auf einem geriffelten Teller"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2304,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/9f9d8b45-e9e3-4d28-b6aa-a995e649ec94/Schloessli_August2025-15-8.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/fleisch-1536.webp",
+   "fm": "../../assets/img/fleisch-1200.webp",
+   "fs": "../../assets/img/fleisch-480.webp"
+  },
+  {
+   "k": "haus",
+   "t": {
+    "de": "Das ehemalige Hafenmeistergebäude mit der Wirtschaft am Hafen von Bottighofen, 2016"
+   },
+   "b": "hafen",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3840,
+   "h": 2560,
+   "art": "frei",
+   "q": "JoachimKohler-HB, CC BY-SA 4.0, Wikimedia Commons, 2016",
+   "u": "https://commons.wikimedia.org/wiki/File%3ABar_Wirtschaft_%22Schl%C3%B6ssli%22_am_Bodensee_in_Bottighofen_TG_%282016%29.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/haus-2400.webp",
+   "fm": "../../assets/img/haus-1200.webp",
+   "fs": "../../assets/img/haus-480.webp"
+  },
+  {
+   "k": "bootshafen",
+   "t": {
+    "de": "Der Bootshafen, dahinter die Wirtschaft und das Schlössli"
+   },
+   "b": "hafen",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2560,
+   "h": 1707,
+   "art": "frei",
+   "q": "JoachimKohler-HB, CC BY-SA 4.0, Wikimedia Commons, 2016",
+   "u": "https://commons.wikimedia.org/wiki/File%3ABootshafen_mit_Wirtschaft_und_Schl%C3%B6ssli_-_MG_0679.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/bootshafen-2400.webp",
+   "fm": "../../assets/img/bootshafen-1200.webp",
+   "fs": "../../assets/img/bootshafen-480.webp"
+  },
+  {
+   "k": "luft1954",
+   "t": {
+    "de": "Das Strandhotel Schlössli am See aus der Luft, 1954"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3840,
+   "h": 2685,
+   "art": "frei",
+   "q": "Werner Friedli, CC BY-SA 4.0, Wikimedia Commons, 1954",
+   "u": "https://commons.wikimedia.org/wiki/File%3AETH-BIB-Bottighofen%2C_Strandhotel_Schl%C3%B6ssli-LBS_H1-017018.tif",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/luft1954-2400.webp",
+   "fm": "../../assets/img/luft1954-1200.webp",
+   "fs": "../../assets/img/luft1954-480.webp"
+  },
+  {
+   "k": "morgen",
+   "t": {
+    "de": "Morgen am Bodensee, hinten die Alpen und die Schifflände Bottighofen"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3840,
+   "h": 2160,
+   "art": "frei",
+   "q": "JoachimKohler-HB, CC BY-SA 4.0, Wikimedia Commons, 2012",
+   "u": "https://commons.wikimedia.org/wiki/File%3AMorgen_am_Bodensee_mit_Schiffl%C3%A4nde_Bottighofen_%282012%29.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/morgen-2400.webp",
+   "fm": "../../assets/img/morgen-1200.webp",
+   "fs": "../../assets/img/morgen-480.webp"
+  },
+  {
+   "k": "stier",
+   "t": {
+    "de": "Patrick Stier vom Restaurant Papageno in Konstanz"
+   },
+   "b": "anlaesse",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1595,
+   "h": 1200,
+   "art": "fremd",
+   "q": "Restaurant Papageno / Guide Michelin, nur Designstudie",
+   "u": "https://guide.michelin.com/ch/de/baden-wurttemberg/konstanz/restaurant/papageno-zur-schweizer-grenze",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/stier-1595.webp",
+   "fm": "../../assets/img/stier-1200.webp",
+   "fs": "../../assets/img/stier-480.webp"
+  },
+  {
+   "k": "kf-deck-abend",
+   "t": {
+    "de": "Das Sonnendeck der Excellence in der Abenddämmerung"
+   },
+   "b": "anlaesse",
+   "s": "sommer",
+   "f": "quer",
+   "w": 4006,
+   "h": 2671,
+   "art": "fremd",
+   "q": "Excellence / Twerenbold Reisen, nur Designstudie",
+   "u": "https://www.excellence.ch/flusskreuzfahrten/gourmetfestival-dieter-koschina-monika-huber-eobas88-gf",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/kf-deck-abend-2400.webp",
+   "fm": "../../assets/img/kf-deck-abend-1200.webp",
+   "fs": "../../assets/img/kf-deck-abend-480.webp"
+  },
+  {
+   "k": "kp-party",
+   "t": {
+    "de": "Kitchen Party in der Gasse vor dem Schäfli am Abend, Lichter und Gäste"
+   },
+   "b": "anlaesse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 1179,
+   "h": 1504,
+   "art": "fremd",
+   "q": "Taverne zum Schäfli (Schwesterhaus), nur Designstudie",
+   "u": "https://www.schaefli-wigoltingen.ch/kitchenparty-2026",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/kp-party-1179.webp",
+   "fm": "../../assets/img/kp-party-1179.webp",
+   "fs": "../../assets/img/kp-party-480.webp"
+  },
+  {
+   "k": "pa-teller",
+   "t": {
+    "de": "Hauptgang von Patrick Stier im Papageno auf weissem Teller vor Schwarz"
+   },
+   "b": "anlaesse",
+   "s": "jahr",
+   "f": "quadrat",
+   "w": 1080,
+   "h": 1080,
+   "art": "fremd",
+   "q": "Restaurant Papageno / Guide Michelin, nur Designstudie",
+   "u": "https://guide.michelin.com/ch/de/baden-wurttemberg/konstanz/restaurant/papageno-zur-schweizer-grenze",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/pa-teller-1080.webp",
+   "fm": "../../assets/img/pa-teller-1080.webp",
+   "fs": "../../assets/img/pa-teller-480.webp"
+  },
+  {
+   "k": "kf-anrichten",
+   "t": {
+    "de": "Eine Hand richtet einen Teller an, an Bord der Excellence"
+   },
+   "b": "anlaesse",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1801,
+   "h": 2700,
+   "art": "fremd",
+   "q": "Excellence / Twerenbold Reisen, nur Designstudie",
+   "u": "https://www.excellence.ch/flusskreuzfahrten/gourmetfestival-dieter-koschina-monika-huber-eobas88-gf",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/kf-anrichten-1801.webp",
+   "fm": "../../assets/img/kf-anrichten-1200.webp",
+   "fs": "../../assets/img/kf-anrichten-480.webp"
+  },
+  {
+   "k": "schaefli",
+   "t": {
+    "de": "Die Taverne zum Schäfli in Wigoltingen am Abend, die Fenster erleuchtet"
+   },
+   "b": "familie",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1919,
+   "h": 1280,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/schaefli-1919.webp",
+   "fm": "../../assets/img/schaefli-1200.webp",
+   "fs": "../../assets/img/schaefli-480.webp"
+  },
+  {
+   "k": "ig-terrasse",
+   "t": {
+    "de": "Gäste auf den Stühlen an der Promenade, dahinter die Wirtschaft"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 360,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/reel/Dcp83R_oajm/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-terrasse-360.webp",
+   "fm": "../../assets/img/ig-terrasse-360.webp",
+   "fs": "../../assets/img/ig-terrasse-360.webp"
+  },
+  {
+   "k": "ig-herd",
+   "t": {
+    "de": "In der Küche am Herd"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 360,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/reel/DcYmDKJos2U/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-herd-360.webp",
+   "fm": "../../assets/img/ig-herd-360.webp",
+   "fs": "../../assets/img/ig-herd-360.webp"
+  },
+  {
+   "k": "ig-teller",
+   "t": {
+    "de": "Am Pass werden die Teller angerichtet"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 360,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/reel/Db8FPgtoIYx/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-teller-360.webp",
+   "fm": "../../assets/img/ig-teller-360.webp",
+   "fs": "../../assets/img/ig-teller-360.webp"
+  },
+  {
+   "k": "ig-pasta",
+   "t": {
+    "de": "Tortelloni werden von Hand geformt"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 480,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/p/Da7srxfiFJU/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-pasta-480.webp",
+   "fm": "../../assets/img/ig-pasta-480.webp",
+   "fs": "../../assets/img/ig-pasta-480.webp"
+  },
+  {
+   "k": "schifflaende",
+   "t": {
+    "de": "Die Schifflände und die Bootstankstelle am Hafen von Bottighofen"
+   },
+   "b": "hafen",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3840,
+   "h": 2743,
+   "art": "frei",
+   "q": "JoachimKohler-HB, CC BY-SA 4.0, Wikimedia Commons, 2021",
+   "u": "https://commons.wikimedia.org/wiki/File%3ABottighofen_TG_-_Schiffl%C3%A4nde_und_Bootstankstelle.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/schifflaende-2400.webp",
+   "fm": "../../assets/img/schifflaende-1200.webp",
+   "fs": "../../assets/img/schifflaende-480.webp"
+  },
+  {
+   "k": "ig-luft",
+   "t": {
+    "de": "Die Terrasse am Abend von oben, davor der Hafen"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 360,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/reel/DbxwnZlo42p/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-luft-360.webp",
+   "fm": "../../assets/img/ig-luft-360.webp",
+   "fs": "../../assets/img/ig-luft-360.webp"
+  },
+  {
+   "k": "ig-dessert",
+   "t": {
+    "de": "In der Küche wird ein Dessert auf den Teller gesetzt"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 480,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/p/DaCnJVLCLfG/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-dessert-480.webp",
+   "fm": "../../assets/img/ig-dessert-480.webp",
+   "fs": "../../assets/img/ig-dessert-480.webp"
+  },
+  {
+   "k": "ig-abend",
+   "t": {
+    "de": "Dämmerung über dem See, am Ufer die Lichter"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 360,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/reel/Ddt4mM3oBnu/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-abend-360.webp",
+   "fm": "../../assets/img/ig-abend-360.webp",
+   "fs": "../../assets/img/ig-abend-360.webp"
+  },
+  {
+   "k": "ig-hafen",
+   "t": {
+    "de": "Die Wirtschaft am Hafen vom Wasser aus"
+   },
+   "b": "hafen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 524,
+   "h": 640,
+   "art": "haus",
+   "q": "Instagram des Hauses (@schloessli_bottighofen), Standbild aus einem Beitrag, klein",
+   "u": "https://www.instagram.com/schloessli_bottighofen/p/DaLOIDjiFXn/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/ig-hafen-524.webp",
+   "fm": "../../assets/img/ig-hafen-524.webp",
+   "fs": "../../assets/img/ig-hafen-480.webp"
+  },
+  {
+   "k": "tb-fisch",
+   "t": {
+    "de": "Rotbarbe auf Risotto mit grüner Sauce in der gerippten Schale"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Foto von Gästen auf Tripadvisor, Rechte bei den Gästen. Auf der Website nur für die Demo; vor jeder Veröffentlichung durch ein Foto des Hauses ersetzen",
+   "u": "https://www.tripadvisor.ch/Restaurant_Review-g6908343-d33091733-Reviews-Schlossli-Bottighofen_Canton_of_Thurgau.html",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/tb-fisch-2400.webp",
+   "fm": "../../assets/img/tb-fisch-1200.webp",
+   "fs": "../../assets/img/tb-fisch-480.webp"
+  },
+  {
+   "k": "tb-glas",
+   "t": {
+    "de": "Ein Glas Weisswein auf dem Tisch der Terrasse, dahinter der See"
+   },
+   "b": "terrasse",
+   "s": "sommer",
+   "f": "hoch",
+   "w": 4284,
+   "h": 5712,
+   "art": "fremd",
+   "q": "Foto von Gästen auf Tripadvisor, Rechte bei den Gästen. Auf der Website nur für die Demo; vor jeder Veröffentlichung durch ein Foto des Hauses ersetzen",
+   "u": "https://www.tripadvisor.ch/Restaurant_Review-g6908343-d33091733-Reviews-Schlossli-Bottighofen_Canton_of_Thurgau.html",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/tb-glas-2400.webp",
+   "fm": "../../assets/img/tb-glas-1200.webp",
+   "fs": "../../assets/img/tb-glas-480.webp"
+  },
+  {
+   "k": "tb-teller",
+   "t": {
+    "de": "Thunfisch mit Kaviar und Sauce in der gerippten Schale auf dem blauen Platzteller"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Foto von Gästen auf Tripadvisor, Rechte bei den Gästen. Auf der Website nur für die Demo; vor jeder Veröffentlichung durch ein Foto des Hauses ersetzen",
+   "u": "https://www.tripadvisor.ch/Restaurant_Review-g6908343-d33091733-Reviews-Schlossli-Bottighofen_Canton_of_Thurgau.html",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/tb-teller-2400.webp",
+   "fm": "../../assets/img/tb-teller-1200.webp",
+   "fs": "../../assets/img/tb-teller-480.webp"
+  },
+  {
+   "k": "tb-dunkel",
+   "t": {
+    "de": "Masten im Hafen vor dem Abendrot über dem See"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2016,
+   "h": 1512,
+   "art": "fremd",
+   "q": "Foto von Gästen auf Tripadvisor, Rechte bei den Gästen. Auf der Website nur für die Demo; vor jeder Veröffentlichung durch ein Foto des Hauses ersetzen",
+   "u": "https://www.tripadvisor.ch/Restaurant_Review-g6908343-d33091733-Reviews-Schlossli-Bottighofen_Canton_of_Thurgau.html",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/tb-dunkel-2016.webp",
+   "fm": "../../assets/img/tb-dunkel-1200.webp",
+   "fs": "../../assets/img/tb-dunkel-480.webp"
+  },
+  {
+   "k": "abend-hafen",
+   "t": {
+    "de": "Sonnenuntergang am Seerhein in Gottlieben, Laternen und Pfähle am Ufer"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3840,
+   "h": 2560,
+   "art": "frei",
+   "q": "JoachimKohler-HB, CC BY-SA 4.0, Wikimedia Commons, 2015. Auf der Website zur Bildmitte abgedunkelt, «Druck» liefert das Original",
+   "u": "https://commons.wikimedia.org/wiki/File:Sonnenuntergang_am_SeeRhein_in_Gottlieben_(Thurgau,_2015).jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/abend-hafen-2400.webp",
+   "fm": "../../assets/img/abend-hafen-1200.webp",
+   "fs": "../../assets/img/abend-hafen-480.webp"
+  },
+  {
+   "k": "torte",
+   "t": {
+    "de": "Schichttorte mit Beeren auf einem blauen Teller"
+   },
+   "b": "essen",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2304,
+   "art": "haus",
+   "q": "Website des Hauses (schloessli-bottighofen.ch); Rechte laut Impressum beim Haus oder den genannten Rechtsinhabern",
+   "u": "https://images.squarespace-cdn.com/content/v1/66e34c0fda2c825a3968d132/fb5117cc-1e7b-4d8f-b11a-008007d1ede0/Schloessli_August2025-19-10.jpeg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/torte-1536.webp",
+   "fm": "../../assets/img/torte-1200.webp",
+   "fs": "../../assets/img/torte-480.webp"
+  },
+  {
+   "k": "jz-fruehling",
+   "t": {
+    "de": "Apfelblüte am Bodensee im April"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2816,
+   "h": 2112,
+   "art": "frei",
+   "q": "Kritzolina, CC BY-SA 3.0, Wikimedia Commons, 2014",
+   "u": "https://commons.wikimedia.org/wiki/File:Apfelbl%C3%BCte_am_Bodensee_2014.JPG",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/jz-fruehling-2400.webp",
+   "fm": "../../assets/img/jz-fruehling-1200.webp",
+   "fs": "../../assets/img/jz-fruehling-480.webp"
+  },
+  {
+   "k": "jz-sommer",
+   "t": {
+    "de": "Reife rote Johannisbeeren am Strauch"
+   },
+   "b": "see",
+   "s": "sommer",
+   "f": "quer",
+   "w": 2237,
+   "h": 1918,
+   "art": "frei",
+   "q": "Angela Huster, CC0, Wikimedia Commons, 2014",
+   "u": "https://commons.wikimedia.org/wiki/File:Johannisbeeren_rot.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/jz-sommer-2237.webp",
+   "fm": "../../assets/img/jz-sommer-1200.webp",
+   "fs": "../../assets/img/jz-sommer-480.webp"
+  },
+  {
+   "k": "ch-postkarte",
+   "t": {
+    "de": "Postkarte Hotel & Pension Schlössli Bottighofen, Gruss vom Bodensee"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2592,
+   "h": 990,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-postkarte-2400.webp",
+   "fm": "../../assets/img/ch-postkarte-1200.webp",
+   "fs": "../../assets/img/ch-postkarte-480.webp"
+  },
+  {
+   "k": "ch-anzeige",
+   "t": {
+    "de": "Anzeige Hotel & Restaurant Schlössli-Bottighofen, Lohnendster Ausflug, Besitzer Carl Gängel"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2688,
+   "h": 1520,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-anzeige-2400.webp",
+   "fm": "../../assets/img/ch-anzeige-1200.webp",
+   "fs": "../../assets/img/ch-anzeige-480.webp"
+  },
+  {
+   "k": "ch-strandhotel",
+   "t": {
+    "de": "Das Strandhotel Schlössli mit dem weissen Gitterzaun"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2688,
+   "h": 1520,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-strandhotel-2400.webp",
+   "fm": "../../assets/img/ch-strandhotel-1200.webp",
+   "fs": "../../assets/img/ch-strandhotel-480.webp"
+  },
+  {
+   "k": "ch-zeichnung",
+   "t": {
+    "de": "Das Schlössli, gezeichnet von Günter Dittmann"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2048,
+   "h": 1360,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-zeichnung-2048.webp",
+   "fm": "../../assets/img/ch-zeichnung-1200.webp",
+   "fs": "../../assets/img/ch-zeichnung-480.webp"
+  },
+  {
+   "k": "ch-mann",
+   "t": {
+    "de": "Ein Mann vor dem Schlössli"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2048,
+   "h": 1360,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-mann-2048.webp",
+   "fm": "../../assets/img/ch-mann-1200.webp",
+   "fs": "../../assets/img/ch-mann-480.webp"
+  },
+  {
+   "k": "ch-luftkarte",
+   "t": {
+    "de": "Postkarte Strand Hotel Schlössli Bottighofen aus der Luft"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2688,
+   "h": 1520,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-luftkarte-2400.webp",
+   "fm": "../../assets/img/ch-luftkarte-1200.webp",
+   "fs": "../../assets/img/ch-luftkarte-480.webp"
+  },
+  {
+   "k": "ch-portal",
+   "t": {
+    "de": "Das Portal des Schlössli am See"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1360,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-portal-1360.webp",
+   "fm": "../../assets/img/ch-portal-1200.webp",
+   "fs": "../../assets/img/ch-portal-480.webp"
+  },
+  {
+   "k": "ch-ufer",
+   "t": {
+    "de": "Hotel und Restaurant Schlössli vom See aus, Segelboot und Ruderboote"
+   },
+   "b": "geschichte",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2592,
+   "h": 1536,
+   "art": "fremd",
+   "q": "Heft 2 der Gemeinde Bottighofen (1994), mit KI nachgeschärft; nur zur Anschauung, vor Veröffentlichung Erlaubnis der Gemeinde holen",
+   "u": "https://www.bottighofen.ch/_doc/87701",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/ch-ufer-2400.webp",
+   "fm": "../../assets/img/ch-ufer-1200.webp",
+   "fs": "../../assets/img/ch-ufer-480.webp"
+  },
+  {
+   "k": "jz-herbst",
+   "t": {
+    "de": "Reife Zwetschgen am Baum"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3840,
+   "h": 2560,
+   "art": "frei",
+   "q": "Stephan van Helden, CC BY-SA 4.0, Wikimedia Commons, 2023",
+   "u": "https://commons.wikimedia.org/wiki/File:Zwetschgen_am_Baum_in_den_Struth%C3%A4ckern.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/jz-herbst-2400.webp",
+   "fm": "../../assets/img/jz-herbst-1200.webp",
+   "fs": "../../assets/img/jz-herbst-480.webp"
+  },
+  {
+   "k": "saentis",
+   "t": {
+    "de": "Blick über den Bodensee bis zum Säntis"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2954,
+   "h": 1336,
+   "art": "frei",
+   "q": "qwesy, CC BY 3.0, Wikimedia Commons, 2012",
+   "u": "https://commons.wikimedia.org/wiki/File:Ausblick_vom_Bodensee_bis_zum_S%C3%A4ntis_-_panoramio.jpg",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/saentis-2400.webp",
+   "fm": "../../assets/img/saentis-1200.webp",
+   "fs": "../../assets/img/saentis-480.webp"
+  },
+  {
+   "k": "feuerwerk-ki",
+   "t": {
+    "de": "Feuerwerk über dem Konstanzer Trichter beim Seenachtfest"
+   },
+   "b": "anlaesse",
+   "s": "sommer",
+   "f": "quer",
+   "w": 2336,
+   "h": 1744,
+   "art": "ki",
+   "q": "Mit KI erzeugt (Higgsfield, Vorlage: Foto der Website des Hauses), nur Platzhalter bis zu einem echten Foto des Hauses. Vorlage war das Foto der Website des Hauses, Bildrecht laut Dateiname bei «Keller»; «Vorher» zeigt es",
+   "u": "",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/img/feuerwerk-ki-2336.webp",
+   "fm": "../../assets/img/feuerwerk-ki-1200.webp",
+   "fs": "../../assets/img/feuerwerk-ki-480.webp"
+  },
+  {
+   "k": "abendschiff",
+   "t": {
+    "de": "Ein Kursschiff im Abendlicht auf dem Bodensee, dahinter das Säntis-Massiv"
+   },
+   "b": "see",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2560,
+   "h": 1920,
+   "art": "frei",
+   "q": "Ameichle, CC BY-SA 3.0, Wikimedia Commons, 2010",
+   "u": "https://commons.wikimedia.org/wiki/File:Abendschiff_vor_dem_S%C3%A4ntis-Massiv.JPG",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/img/abendschiff-2400.webp",
+   "fm": "../../assets/img/abendschiff-1200.webp",
+   "fs": "../../assets/img/abendschiff-480.webp"
+  }
+ ],
+ "dateien": [
+  {
+   "k": "zeichen",
+   "var": [
+    {
+     "k": "nacht",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeichen-nacht.svg",
+      "wirtschaft-am-schloessli-zeichen-nacht.png"
+     ],
+     "px": [
+      900,
+      1091
+     ]
+    },
+    {
+     "k": "stuhl",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeichen-stuhl.svg",
+      "wirtschaft-am-schloessli-zeichen-stuhl.png"
+     ],
+     "px": [
+      900,
+      1091
+     ]
+    },
+    {
+     "k": "himmel",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeichen-himmel.svg",
+      "wirtschaft-am-schloessli-zeichen-himmel.png"
+     ],
+     "px": [
+      900,
+      1091
+     ]
+    },
+    {
+     "k": "weiss",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeichen-weiss.svg",
+      "wirtschaft-am-schloessli-zeichen-weiss.png"
+     ],
+     "px": [
+      900,
+      1091
+     ]
+    }
+   ]
+  },
+  {
+   "k": "zeiger",
+   "var": [
+    {
+     "k": "nacht",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeiger-nacht.svg",
+      "wirtschaft-am-schloessli-zeiger-nacht.png"
+     ],
+     "px": [
+      600,
+      991
+     ]
+    },
+    {
+     "k": "stuhl",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeiger-stuhl.svg",
+      "wirtschaft-am-schloessli-zeiger-stuhl.png"
+     ],
+     "px": [
+      600,
+      991
+     ]
+    },
+    {
+     "k": "himmel",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeiger-himmel.svg",
+      "wirtschaft-am-schloessli-zeiger-himmel.png"
+     ],
+     "px": [
+      600,
+      991
+     ]
+    },
+    {
+     "k": "weiss",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-zeiger-weiss.svg",
+      "wirtschaft-am-schloessli-zeiger-weiss.png"
+     ],
+     "px": [
+      600,
+      991
+     ]
+    }
+   ]
+  },
+  {
+   "k": "logo",
+   "var": [
+    {
+     "k": "nacht",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-logo-nacht.png"
+     ],
+     "px": [
+      1120,
+      1299
+     ]
+    },
+    {
+     "k": "schwarz",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-logo-schwarz.png"
+     ],
+     "px": [
+      1120,
+      1299
+     ]
+    },
+    {
+     "k": "weiss",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-logo-weiss.png"
+     ],
+     "px": [
+      1120,
+      1299
+     ]
+    },
+    {
+     "k": "himmel",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-logo-himmel.png"
+     ],
+     "px": [
+      1120,
+      1299
+     ]
+    }
+   ]
+  },
+  {
+   "k": "name",
+   "var": [
+    {
+     "k": "nacht",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-name-nacht.svg",
+      "wirtschaft-am-schloessli-name-nacht.png"
+     ],
+     "px": [
+      1802,
+      88
+     ]
+    },
+    {
+     "k": "weiss",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-name-weiss.svg",
+      "wirtschaft-am-schloessli-name-weiss.png"
+     ],
+     "px": [
+      1802,
+      88
+     ]
+    },
+    {
+     "k": "himmel",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-name-himmel.svg",
+      "wirtschaft-am-schloessli-name-himmel.png"
+     ],
+     "px": [
+      1802,
+      88
+     ]
+    },
+    {
+     "k": "kurz-nacht",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-name-kurz-nacht.svg",
+      "wirtschaft-am-schloessli-name-kurz-nacht.png"
+     ],
+     "px": [
+      1002,
+      127
+     ]
+    },
+    {
+     "k": "kurz-weiss",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-name-kurz-weiss.svg",
+      "wirtschaft-am-schloessli-name-kurz-weiss.png"
+     ],
+     "px": [
+      1002,
+      127
+     ]
+    },
+    {
+     "k": "kurz-himmel",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-name-kurz-himmel.svg",
+      "wirtschaft-am-schloessli-name-kurz-himmel.png"
+     ],
+     "px": [
+      1002,
+      127
+     ]
+    }
+   ]
+  },
+  {
+   "k": "website",
+   "var": [
+    {
+     "k": "original",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-logo-original.png"
+     ],
+     "px": [
+      1563,
+      1563
+     ]
+    },
+    {
+     "k": "heute",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-logo-website-heute.jpg"
+     ],
+     "px": [
+      1144,
+      1258
+     ]
+    }
+   ]
+  },
+  {
+   "k": "tapete",
+   "var": [
+    {
+     "k": "dunkel",
+     "grund": "dunkel",
+     "dateien": [
+      "wirtschaft-am-schloessli-tapete-dunkel.png",
+      "wirtschaft-am-schloessli-tapete-dunkel.svg",
+      "wirtschaft-am-schloessli-tapete-dunkel.webp"
+     ],
+     "px": [
+      168,
+      168
+     ],
+     "farbe": "#0b1d3d"
+    },
+    {
+     "k": "hell",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-tapete-hell.png",
+      "wirtschaft-am-schloessli-tapete-hell.svg",
+      "wirtschaft-am-schloessli-tapete-hell.webp"
+     ],
+     "px": [
+      168,
+      168
+     ],
+     "farbe": "#e7ecf3"
+    }
+   ]
+  },
+  {
+   "k": "farben",
+   "var": [
+    {
+     "k": "alle",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-farben.css",
+      "wirtschaft-am-schloessli-farben.json",
+      "wirtschaft-am-schloessli-farben.ase"
+     ]
+    }
+   ]
+  },
+  {
+   "k": "schriften",
+   "var": [
+    {
+     "k": "alle",
+     "grund": "hell",
+     "dateien": [
+      "wirtschaft-am-schloessli-schriften.zip"
+     ]
+    }
+   ]
+  }
+ ],
+ "farben": [
+  {
+   "k": "nacht",
+   "n": "Nacht",
+   "h": "#0B1D3D",
+   "rgb": [
+    11,
+    29,
+    61
+   ],
+   "r": "Grund der dunklen Flächen, immer mit der Punkt-Tapete",
+   "g": "dunkel",
+   "woher": "Farbwelt A #062531, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "tief",
+   "n": "Tief",
+   "h": "#0A234C",
+   "rgb": [
+    10,
+    35,
+    76
+   ],
+   "r": "zweite dunkle Fläche, Platten auf Nacht",
+   "g": "dunkel",
+   "woher": "Farbwelt A #0A3A4C, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "stuhl",
+   "n": "Stuhlblau",
+   "h": "#113D88",
+   "rgb": [
+    17,
+    61,
+    136
+   ],
+   "r": "Knöpfe, Linien und Betonung auf Hell",
+   "g": "dunkel",
+   "woher": "Farbwelt A #116788, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "kalk",
+   "n": "Kalk",
+   "h": "#E7ECF3",
+   "rgb": [
+    231,
+    236,
+    243
+   ],
+   "r": "Grund der hellen Flächen, mit der Punkt-Tapete",
+   "g": "hell",
+   "woher": "Farbwelt A #E7F0F3, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "kalk2",
+   "n": "Kalk tief",
+   "h": "#D0DAE7",
+   "rgb": [
+    208,
+    218,
+    231
+   ],
+   "r": "zweite helle Fläche, Felder und Linien",
+   "g": "hell",
+   "woher": "Farbwelt A #D0E2E7, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "papier",
+   "n": "Papier",
+   "h": "#F3F6F9",
+   "rgb": [
+    243,
+    246,
+    249
+   ],
+   "r": "ruhige helle Abschnitte ohne Tapete",
+   "g": "hell",
+   "woher": "Wert der Website (haus.css), nicht aus dem Markenbuch"
+  },
+  {
+   "k": "himmel",
+   "n": "Seehimmel",
+   "h": "#A2B6CF",
+   "rgb": [
+    162,
+    182,
+    207
+   ],
+   "r": "Linie und Zeichen auf Dunkel, Horizont",
+   "g": "himmel",
+   "woher": "Farbwelt A #A2C6CF, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "himmel-h",
+   "n": "Seehimmel hell",
+   "h": "#C5D2E1",
+   "rgb": [
+    197,
+    210,
+    225
+   ],
+   "r": "Betonung in Titeln auf Dunkel",
+   "g": "himmel",
+   "woher": "Farbwelt A #C5DCE1, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "himmel-t",
+   "n": "Seehimmel tief",
+   "h": "#0F3678",
+   "rgb": [
+    15,
+    54,
+    120
+   ],
+   "r": "Betonung in Titeln auf Hell",
+   "g": "himmel",
+   "woher": "Farbwelt A #0F5B78, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "tinte",
+   "n": "Tinte",
+   "h": "#041023",
+   "rgb": [
+    4,
+    16,
+    35
+   ],
+   "r": "Schrift auf hellen Flächen, nie reines Schwarz",
+   "g": "schrift",
+   "woher": "Farbwelt A #041B23, um 21° auf das Blau des Platztellers gedreht (Ton in Ton, 19.10.2026)"
+  },
+  {
+   "k": "titel-h",
+   "n": "Titelblau",
+   "h": "#0A2552",
+   "rgb": [
+    10,
+    37,
+    82
+   ],
+   "r": "Titel in Versalien auf Hell",
+   "g": "schrift",
+   "woher": "Wert der Website (haus.css), nicht aus dem Markenbuch"
+  },
+  {
+   "k": "punkt",
+   "n": "Schirmrot",
+   "h": "#FD9964",
+   "rgb": [
+    253,
+    153,
+    100
+   ],
+   "r": "nur als Punkt: Stempel, Markierung, nie als Fläche",
+   "g": "punkt",
+   "woher": "Farbwelt A #FD9964, unverändert"
+  }
+ ],
+ "gruppen": [
+  {
+   "k": "dunkel",
+   "n": "Nacht und Stuhlblau",
+   "s": "Die dunklen Flächen. Aus dem Blau der Terrassenstühle, seit dem 19.10.2026 auf das Blau des Platztellers gedreht. Sie tragen immer die Punkt-Tapete.",
+   "bild": "buch/bilder/k-stuhl.webp",
+   "bild_t": "Das Geflecht der Terrassenstühle. Daraus kommt Stuhlblau, seit dem 19.10.2026 auf das Blau des Platztellers gedreht."
+  },
+  {
+   "k": "hell",
+   "n": "Kalk und Papier",
+   "s": "Die hellen Flächen, auf denen gelesen wird. Kalk mit der Punkt-Tapete, Papier ruhig.",
+   "bild": "../../assets/img/start-800.webp",
+   "bild_t": "Der Hafen am Mittag, das Startbild der Website. Der helle Himmel über dem See, aufgehellt, gibt Kalk und Papier."
+  },
+  {
+   "k": "himmel",
+   "n": "Seehimmel",
+   "s": "Der Himmel über dem See, aufgehellt und vertieft: die Linie des Horizonts, das Zeichen auf Dunkel, die Betonung in Titeln. Zeichnet, schreibt nie den Lesetext.",
+   "bild": "buch/bilder/k-himmel.webp",
+   "bild_t": "Der Himmel über dem See. Daraus kommt Seehimmel, hell und tief."
+  },
+  {
+   "k": "schrift",
+   "n": "Schrift",
+   "s": "Tinte für den Lesetext, Titelblau für Titel in Versalien. Nie reines Schwarz.",
+   "bild": "listen/schrift-t.webp",
+   "bild_t": "So stehen Tinte und Titelblau auf der Website."
+  },
+  {
+   "k": "punkt",
+   "n": "Nur als Punkt",
+   "s": "Das Rot der Sonnenschirme auf der Terrasse. Nie als Fläche.",
+   "bild": "buch/bilder/k-schirm.webp",
+   "bild_t": "Die Sonnenschirme der Terrasse. Daraus kommt Schirmrot."
+  }
+ ],
+ "glanz": [],
+ "groessen": {
+  "wirtschaft-am-schloessli-farben.ase": 542,
+  "wirtschaft-am-schloessli-farben.css": 1042,
+  "wirtschaft-am-schloessli-farben.json": 3068,
+  "wirtschaft-am-schloessli-logo-himmel.png": 67947,
+  "wirtschaft-am-schloessli-logo-nacht.png": 67944,
+  "wirtschaft-am-schloessli-logo-original.png": 34776,
+  "wirtschaft-am-schloessli-logo-schwarz.png": 64018,
+  "wirtschaft-am-schloessli-logo-website-heute.jpg": 26534,
+  "wirtschaft-am-schloessli-logo-weiss.png": 67564,
+  "wirtschaft-am-schloessli-marke.zip": 1164199,
+  "wirtschaft-am-schloessli-name-himmel.png": 23532,
+  "wirtschaft-am-schloessli-name-himmel.svg": 12355,
+  "wirtschaft-am-schloessli-name-kurz-himmel.png": 14037,
+  "wirtschaft-am-schloessli-name-kurz-himmel.svg": 4456,
+  "wirtschaft-am-schloessli-name-kurz-nacht.png": 14035,
+  "wirtschaft-am-schloessli-name-kurz-nacht.svg": 4456,
+  "wirtschaft-am-schloessli-name-kurz-weiss.png": 13968,
+  "wirtschaft-am-schloessli-name-kurz-weiss.svg": 4456,
+  "wirtschaft-am-schloessli-name-nacht.png": 23484,
+  "wirtschaft-am-schloessli-name-nacht.svg": 12355,
+  "wirtschaft-am-schloessli-name-weiss.png": 23436,
+  "wirtschaft-am-schloessli-name-weiss.svg": 12355,
+  "wirtschaft-am-schloessli-schriften.zip": 415263,
+  "wirtschaft-am-schloessli-tapete-dunkel.png": 4126,
+  "wirtschaft-am-schloessli-tapete-dunkel.svg": 3681,
+  "wirtschaft-am-schloessli-tapete-dunkel.webp": 1010,
+  "wirtschaft-am-schloessli-tapete-hell.png": 3847,
+  "wirtschaft-am-schloessli-tapete-hell.svg": 3681,
+  "wirtschaft-am-schloessli-tapete-hell.webp": 834,
+  "wirtschaft-am-schloessli-zeichen-himmel.png": 46539,
+  "wirtschaft-am-schloessli-zeichen-himmel.svg": 5092,
+  "wirtschaft-am-schloessli-zeichen-nacht.png": 46938,
+  "wirtschaft-am-schloessli-zeichen-nacht.svg": 5092,
+  "wirtschaft-am-schloessli-zeichen-stuhl.png": 46825,
+  "wirtschaft-am-schloessli-zeichen-stuhl.svg": 5092,
+  "wirtschaft-am-schloessli-zeichen-weiss.png": 46066,
+  "wirtschaft-am-schloessli-zeichen-weiss.svg": 5092,
+  "wirtschaft-am-schloessli-zeiger-himmel.png": 26203,
+  "wirtschaft-am-schloessli-zeiger-himmel.svg": 2482,
+  "wirtschaft-am-schloessli-zeiger-nacht.png": 26660,
+  "wirtschaft-am-schloessli-zeiger-nacht.svg": 2482,
+  "wirtschaft-am-schloessli-zeiger-stuhl.png": 26411,
+  "wirtschaft-am-schloessli-zeiger-stuhl.svg": 2482,
+  "wirtschaft-am-schloessli-zeiger-weiss.png": 26567,
+  "wirtschaft-am-schloessli-zeiger-weiss.svg": 2482
+ },
+ "bereiche": [
+  "terrasse",
+  "essen",
+  "bar",
+  "team",
+  "hafen",
+  "see",
+  "geschichte",
+  "anlaesse",
+  "familie"
+ ],
+ "schriften": [
+  {
+   "k": "t",
+   "n": "Open Sans",
+   "d": "OpenSans-var.woff2",
+   "r": "Titel und Name, die Schrift der Wortmarke",
+   "e": "400, Versalien, Titel 0,14 em gesperrt, Name 0,3 em",
+   "p": "Direkt im Hafen von Bottighofen",
+   "w": 400,
+   "bild": "listen/schrift-t.webp"
+  },
+  {
+   "k": "s",
+   "n": "Instrument Sans",
+   "d": "InstrumentSans-normal-400_600.woff2",
+   "r": "Lesetext",
+   "e": "400 bis 600, 18 px, Zeilenabstand 1,64",
+   "p": "Den ganzen Tag durchgängig bieten wir die Karte der Lästermeile an.",
+   "w": 400,
+   "bild": "listen/schrift-s.webp"
+  },
+  {
+   "k": "m",
+   "n": "DM Mono",
+   "d": "DMMono-normal-400.woff2",
+   "r": "Kleine Angaben und Knöpfe",
+   "e": "400, Versalien, 0,16 em gesperrt",
+   "p": "Seestrasse 50 · 8598 Bottighofen",
+   "w": 400,
+   "bild": "listen/schrift-m.webp"
+  },
+  {
+   "k": "h",
+   "n": "Caveat",
+   "d": "Caveat-500.woff",
+   "r": "Handschrift, nur einzelne Wörter (Städte auf den Landkarten der Karte)",
+   "e": "500, nie für Sätze",
+   "p": "Lästermeile",
+   "w": 500,
+   "bild": "listen/schrift-h.webp"
+  }
+ ],
+ "namen": {
+  "zentrale": "Das Hafenbüro",
+  "website": "Das Schaufenster",
+  "karten": "Das Kartenpult",
+  "gaeste": "Das Reservationsbuch",
+  "marke": "Das Bildarchiv",
+  "besuche": "Die Besucherliste",
+  "druck": "Die Hausdruckerei"
+ },
+ "ton": {
+  "eigene_worte": [
+   "Willkommen in der Wirtschaft am Schlössli",
+   "Direkt im Hafen von Bottighofen",
+   "mit Blick aufs Wasser und die Alpen",
+   "Die schönste Terrasse am Bodensee",
+   "kulinarische Reise in die Welt der mediterranen Küche",
+   "junges Küchenteam",
+   "frischer Wind",
+   "herzliche Gastfreundschaft",
+   "Lästermeile",
+   "Tapas durchgehend",
+   "Zur Stärkung & Süsses",
+   "Banketts & Gruppen",
+   "Tavolata oder gesetztes Menue",
+   "unkompliziert",
+   "in Ruhe besprechen",
+   "Reservation",
+   "klassisch wie bei der italienischen Oma"
+  ],
+  "nicht": [
+   "kulinarische Highlights",
+   "Genuss pur",
+   "ein Fest für die Sinne",
+   "Gourmet-Tempel",
+   "unvergesslich",
+   "Verwöhnprogramm",
+   "Geheimtipp",
+   "Wir essen im Schlössli (das Restaurant liegt im ehemaligen Hafenmeistergebäude)",
+   "Statt zu … / ohne zu …",
+   "«ß» (heute in «Genießen», «Weißen»)",
+   "Du-Ansprache (das Cookie-Fenster duzt heute)"
+  ]
+ },
+ "stand": {
+  "fotos": 68,
+  "haus": 37,
+  "frei": 11,
+  "ki": 1,
+  "fremd": 19,
+  "partner": 0,
+  "ue": 9,
+  "vn": 9,
+  "original": 68,
+  "dateien": 45,
+  "datum": "20.10.2026"
+ }
+}

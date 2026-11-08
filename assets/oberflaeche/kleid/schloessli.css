@@ -1,0 +1,100 @@
+/* kleid/schloessli.css · Wirtschaft am Schlössli Bottighofen · Farbwelt A «Stuhl und See» (marke.json, Station 5, Robert 19.10.2026 «schlössli a»),
+   wie die Website gedreht auf «Ton in Ton» (Blau des Platztellers, website/farbwelt.py, Werte = assets/css/haus.css :root):
+   Stuhlblau als dunkle Fläche (#0b1d3d · #0A234C · #113d88), Seehimmel als Linie und Zeichen (#A2B6CF, hell #C5D2E1), Papier im Seespiegel (#E7ECF3 · #D0DAE7),
+   Schrift #041023, Schirmrot (#FD9964) nur als Punkt und Marke «Entwurf». Titel Open Sans 400 in Versalien (aus der Wortmarke gemessen), Instrument Sans, DM Mono.
+   Eigene Form des Hauses: der Horizont des Sees als feine Linie über die ganze Breite (Darstellungsidee des Markenbuchs), die Zeiger als einziges Zeichen,
+   runde Naben statt Rauten oder Kerben, Punktraster mit Zeiger-Medaillon als Tapete. Keine Einkerbungen. Rahmen: Die Bühne. */
+@font-face{font-family:'W Sans';font-weight:400 600;font-display:swap;src:url('../../fonts/InstrumentSans-normal-400_600.woff2') format('woff2')}
+@font-face{font-family:'W Mono';font-weight:400;font-display:swap;src:url('../../fonts/DMMono-normal-400.woff2') format('woff2')}
+@font-face{font-family:'Titel WS';font-weight:300 800;font-display:swap;src:url('../../fonts/OpenSans-var.woff2') format('woff2')}
+:root{
+  --wo-sans:'W Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --wo-mono:'W Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --wo-e1:cubic-bezier(.16,1,.3,1); --wo-e2:cubic-bezier(.32,.72,0,1);
+  --wo-nacht:#0A234C; --wo-nacht2:#113d88; --wo-tief:#0b1d3d;
+  --wo-g1:#EEF2F6; --wo-g2:#A2B6CF; --wo-g3:#718091;
+  --wo-gold:#A2B6CF; --wo-akzent:#0F3678;
+  --wo-papier:#E7ECF3; --wo-papier2:#D0DAE7; --wo-blatt:#F4F6F9; --wo-weiss:#FBFDFD;
+  --wo-tinte:#041023; --wo-leise:#515656; --wo-linie:rgba(4,16,35,.12); --wo-linie-d:rgba(162,182,207,.32);
+  --wo-punkt:#FD9964; --wo-gut:#0F3678;
+  --wo-titel:'Titel WS','Open Sans',system-ui,sans-serif; --wo-titel-g:400; --wo-titel-ls:.06em;
+  --wo-r1:20px; --wo-r2:14px; --wo-r3:10px; --wo-rk:999px;
+  --wo-tapete:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cg fill='%23A2B6CF' fill-opacity='.16'%3E%3Ccircle cx='14' cy='14' r='1.1'/%3E%3Ccircle cx='42' cy='14' r='1.1'/%3E%3Ccircle cx='14' cy='42' r='1.1'/%3E%3Ccircle cx='42' cy='42' r='1.1'/%3E%3C/g%3E%3Ccircle cx='28' cy='28' r='5' fill='none' stroke='%23A2B6CF' stroke-opacity='.14' stroke-width='1.2'/%3E%3C/svg%3E");
+  --wo-tapete-fein:var(--wo-tapete);
+  --ws-horizont:rgba(162,182,207,.55);
+}
+
+/* ================= Wirtschaft am Schlössli · Stuhl und See ================= */
+/* Titel wie die Wortmarke: Open Sans, Versalien gesperrt; Betonung in Seehimmel, nicht fett */
+.wo-sb__h,.wo-zw{text-transform:uppercase;font-weight:400;letter-spacing:.12em}
+.wo-sb__h em,.wo-zw em{font-style:normal;font-weight:300;color:var(--wo-akzent)}
+[data-wo-rahmen="buehne"] .wo-sb .wo-sb__h em{color:var(--wo-g2)}
+/* Der Horizont: eine feine Linie über die ganze Breite der Bühne, an ihr sitzen Titel und Foto */
+[data-wo-rahmen="buehne"] .wo-sb{position:relative;overflow:hidden}
+[data-wo-rahmen="buehne"] .wo-sb__h{position:relative}
+[data-wo-rahmen="buehne"] .wo-sb__h::after{content:'';position:absolute;left:-400px;width:4000px;bottom:-.32em;height:1px;background:var(--ws-horizont);pointer-events:none;transform-origin:400px 50%}
+[data-wo-rahmen="buehne"] .wo-sb__h{margin-bottom:.5em}
+[data-wo-rahmen="buehne"] .wo-kopf{border-bottom:1px solid var(--ws-horizont)}
+.wo-lage,.wo-ag,.wo-det__kopf{border-top:1px solid rgba(162,182,207,.5)}
+/* Über den Abschnittstiteln die Linie mit der Nabe der Zeiger (ein Kreis), statt Raute oder Kerbe */
+.wo-zw::before{content:'';display:block;width:84px;height:12px;margin-bottom:12px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='12'%3E%3Cpath d='M0 6h34M50 6h34' stroke='%230F3678' stroke-opacity='.55'/%3E%3Ccircle cx='42' cy='6' r='4.5' fill='none' stroke='%230F3678' stroke-width='1.4'/%3E%3Ccircle cx='42' cy='6' r='1.6' fill='%23FD9964'/%3E%3C/svg%3E") no-repeat}
+/* Fotos klar und hell wie der See am Mittag, unten leicht ins Stuhlblau */
+.wo-sb__foto::after{background:linear-gradient(0deg,rgba(6,22,49,.42),transparent 55%)}
+/* Zeichen in Kacheln rund wie die Nabe der Zeiger */
+.wo-lg__z,.wo-ag__z{border-radius:50%}
+.wo-bk__t small,.wo-mk{color:var(--wo-akzent)}
+.wo-re.wo-an,.wo-re[aria-current="true"],.wo-re[aria-current="page"]{background:linear-gradient(180deg,#113d88,#0A234C)}
+
+/* Ecke oben links in allen Werkzeugen gleich (M24): die Zeiger im Ring aus Seehimmel, darunter Bereich · Haus */
+.wo-marke-w{position:relative;padding-left:60px!important;min-height:46px}
+.wo-marke-w::before{content:'';position:absolute;left:0;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;
+  background:radial-gradient(circle at 50% 40%,#113d88,#0A234C 72%);box-shadow:inset 0 0 0 1px rgba(162,182,207,.75),inset 0 0 0 4px rgba(6,22,49,.55),0 6px 14px -8px rgba(0,0,0,.8)}
+.wo-marke-w .wo-zeichen{position:absolute;left:15px;top:50%;width:16px;height:26px;max-width:none;margin-top:-13px;color:#EEF2F6}
+.wo-marke-w small{color:rgba(197,210,225,.85)!important}
+
+/* Auftritt der Bühne: der Horizont zieht sich einmal von links nach rechts auf, das Foto schwebt von unten herein und zoomt von 1,06 auf 1
+   (Bewegungsidee des Markenbuchs), Titel, Satz und Knöpfe folgen 40 px von unten. Nur transform, deckend. */
+@keyframes woAufFoto{from{translate:0 40px;scale:1.06}}
+@keyframes woAuf{from{translate:0 40px}}
+@keyframes wsHorizont{from{transform:scaleX(0)}}
+@media screen and (prefers-reduced-motion:no-preference){
+  html:not(.still)[data-wo-rahmen="buehne"] .wo-sb__h::after{animation:wsHorizont 1.1s cubic-bezier(.22,.61,.36,1) .3s both}
+  html:not(.still) .wo-sb__foto{animation:woAufFoto .85s cubic-bezier(.22,.61,.36,1) both}
+  html:not(.still) :is(.wo-sb__zier,.wo-sb__h,.wo-sb__satz,.wo-sb__kn){animation:woAuf .85s cubic-bezier(.22,.61,.36,1) both}
+  html:not(.still) .wo-sb__zier{animation-delay:.12s}
+  html:not(.still) .wo-sb__h{animation-delay:.24s}
+  html:not(.still) .wo-sb__satz{animation-delay:.36s}
+  html:not(.still) .wo-sb__kn{animation-delay:.48s}
+}
+
+/* Robert 20.10.2026: «Da ist blaue Schrift. Das kann man nicht lesen … Die muss, glaube ich, weiß sein, die Schrift.»
+   Zweiter Titelteil (<em>) auf dunkler Fläche immer weiss, in allen Werkzeugen (Fehlerbuch Werkzeug-Master 10a). */
+.wo-sb .wo-sb__h em,[data-wo-rahmen] .wo-sb .wo-sb__h em,#ansicht .wo-sb .wo-sb__h em,body .wo-sb .wo-sb__h em{color:#fff}
+
+/* Untere Leiste in allen Werkzeugen (Robert 20.10.2026, Fehlerbuch 10a): der Titel bricht nie um; wird es eng, verschwindet erst der Satz, dann die Beschriftung der Knöpfe */
+.wo-leiste__t b{white-space:nowrap}
+
+/* Kopf bei wenig Breite (Selbst gefunden 20.10.2026, Kartenpult bei 1000 px: «Bankettmenüvorschläge» lief in die runden Knöpfe; Fehlerbuch 10a): der Titel in der Mitte
+   nimmt nur den freien Platz, wird etwas kleiner und kürzt notfalls mit «…»; er überdeckt nie einen Knopf. */
+@media (min-width:901px) and (max-width:1240px){
+  .wo-kopf{grid-template-columns:auto minmax(0,1fr) auto}
+  .wo-kopf__mitte{min-width:0;max-width:100%}
+  .wo-kopf__mitte b{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .wo-kopf__mitte small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .wo-kopf .wo-kn--gold.wo-kn--klein>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .wo-kopf .wo-kn--gold.wo-kn--klein{padding:0;gap:0;width:auto}
+}
+
+/* Zierzeile im Startbild (Demo-Check 21.10.2026, Auftrag Oberchef): bei 901–1240 px wurde sie in mehreren Werkzeugen gekürzt («Der Gastgeber · Taverne zum…»,
+   «Die Hausdruckerei · Wirtschaft am…»). Im Schlössli dazu: im Bildarchiv gekürzt, im Reservationsbuch, Schaufenster und in der Besucherliste lief sie über das Foto bis über den Rand des Startbilds.
+   Jetzt bricht sie um, wenn der Platz nicht reicht; die Linie daneben gibt bis 1240 px ihren Platz dem Text. */
+.wo-sb__zier{min-width:0;max-width:100%}
+.wo-sb__zier span{min-width:0;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.6}
+@media (max-width:1240px){.wo-sb__zier i{display:none}}
+
+/* Schrift optisch mittig in Knöpfen und Pillen (Robert 29.10.2026: «Die Schriften in deinen Buttons sitzen IMMER falsch»; Messlauf-Regel text-mitte, gemessen in Chromium und WebKit).
+   text-box schneidet die Zeile auf Versalhöhe und Grundlinie zu, dann zentriert der Knopf genau die Buchstaben; wo der Text ohne eigenes Element im Knopf steht, ein gemessener Ausgleich. */
+.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{text-box:trim-both cap alphabetic}
+.wo-re .wo-zahl{display:block;height:auto;padding:7px;line-height:1;text-align:center;text-box:trim-both cap alphabetic}
+.ansicht>button,.wahl3>button{text-box:trim-both cap alphabetic}
+@supports not (text-box:trim-both cap alphabetic){.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{position:relative;top:.05em}}

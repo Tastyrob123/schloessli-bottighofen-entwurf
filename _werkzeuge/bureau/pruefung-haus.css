@@ -1,0 +1,8 @@
+/* pruefung-haus.css · Prüfseite des Stamms im Kleid des Schlössli (Demo-Check 21.10.2026). Werte aus kleid/schloessli.css über die Brücke in bureau.css;
+   hier nur Grund, Kopf und Schrift der Seite, damit sie aussieht wie das Schaufenster und nicht wie der Stamm. */
+body.wsp{margin:0;background-color:var(--wo-papier);background-image:var(--wo-tapete);color:var(--wo-tinte);font:15px/1.55 var(--wo-sans);-webkit-font-smoothing:antialiased}
+.wsp-kopf{background:linear-gradient(180deg,var(--wo-nacht2),var(--wo-nacht));color:#fff}
+.wsp .wsp-kopf .kap,.wsp .wsp-kopf .kap span{color:var(--wo-gold);font-family:var(--wo-mono)}
+.wsp-kopf__titel{color:#fff;font-family:var(--wo-titel);font-weight:400;letter-spacing:.02em}
+.wsp h2.t-zwischen{font-family:var(--wo-titel);font-weight:400;color:var(--wo-tinte)}
+.wsp .kap span{color:var(--wo-akzent)}

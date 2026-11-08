@@ -1,0 +1,176 @@
+{
+ "reihen": 7,
+ "stuecke": [
+  {
+   "id": "dessert",
+   "r": 1,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/9f207d_Schloessli_August2025-18-9.jpg"
+  },
+  {
+   "id": "abend",
+   "r": 1,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/28f071_2026-05-22_220420_Schl_C3_B6ssli_SM_blurred.jpg"
+  },
+  {
+   "id": "glas",
+   "r": 1,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/9a3afc_Schloessli_August2025-1-1.jpg"
+  },
+  {
+   "id": "jonas",
+   "r": 2,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/dfee6f_11_-_FHF_2706.jpg"
+  },
+  {
+   "id": "anguria",
+   "r": 2,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/7f6b93_Anguria.jpg"
+  },
+  {
+   "id": "gaststube",
+   "r": 2,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/50fa79__DSC5718.JPG"
+  },
+  {
+   "id": "fleisch",
+   "r": 3,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/9f9d8b_Schloessli_August2025-15-8.jpeg"
+  },
+  {
+   "id": "regal",
+   "r": 3,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/de97ff_IMG_2166.jpeg"
+  },
+  {
+   "id": "suppe",
+   "r": 3,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/05cfd1_Schloessli_August2025-5-2.jpeg"
+  },
+  {
+   "id": "horizont",
+   "r": 4,
+   "c": 1,
+   "w": 3,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/8cc68d_32_-_FHF_2573.jpg"
+  },
+  {
+   "id": "torte",
+   "r": 5,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/fb5117_Schloessli_August2025-19-10.jpeg"
+  },
+  {
+   "id": "lukas",
+   "r": 5,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/5c9a30_13_-_FHF_2729.jpg"
+  },
+  {
+   "id": "pasta",
+   "r": 5,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/93b96d_Schloessli_August2025-12-6.jpeg"
+  },
+  {
+   "id": "lounge",
+   "r": 6,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/myswitzerland/01_922778687.jpg"
+  },
+  {
+   "id": "thon",
+   "r": 6,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/fc5b3b_Schloessli_August2025-11-5.jpg"
+  },
+  {
+   "id": "sauce",
+   "r": 6,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/myswitzerland/02_922778688.jpg"
+  },
+  {
+   "id": "salat",
+   "r": 7,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/49a4b9_Schloessli_August2025-7-3.jpeg"
+  },
+  {
+   "id": "platanen",
+   "r": 7,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/178109_IMG_1967.jpeg"
+  },
+  {
+   "id": "fisch",
+   "r": 7,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/30467d_Schloessli_August2025-14-7.jpeg"
+  }
+ ]
+}

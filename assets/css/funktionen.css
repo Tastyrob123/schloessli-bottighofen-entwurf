@@ -1,0 +1,647 @@
+/* Gäste-Funktionen der Wirtschaft am Schlössli (Station 07, Runde 3, 19.10.2026). Im Kleid des Hauses: Stuhlblau, Seehimmel, Kalk, Versalien der Wortmarke.
+   Ein Block je Funktion. Bewegung nur über transform, nichts blendet aus Deckkraft null ein. */
+
+/* ---------- Auswahl als Chips: helle Platte, gewählt in Stuhlblau, ohne Punkte ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:9px 16px;border-radius:20px;font:400 13px/1.2 var(--lauf);color:var(--tinte);
+  background:linear-gradient(180deg,#F6F8FB,#E2E9F1);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(4,16,35,.06),0 6px 14px -10px rgba(4,16,35,.45);transition:background .5s var(--e1),color .5s var(--e1),transform .4s var(--knopf)}
+.chip span i{font-style:normal;font-family:var(--mono);font-size:11.5px;color:var(--himmel-t)}
+.chip:hover span{transform:translateY(-1px)}
+.chip input:checked+span{color:#F2F5F8;background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 50%,var(--tief));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 18px -12px rgba(4,16,35,.7)}
+.chip input:checked+span i{color:var(--himmel-h)}
+.chip input:focus-visible+span{outline:2px solid var(--stuhl);outline-offset:2px}
+.f-dunkel .chip span{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));color:#E9EEF3;box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+
+/* ---------- 1 Weinberater «Der Keller» (19.10.2026, Robert «richtig luxuriös und edel»): dunkle Platte, Arten als Flaschen, Länder als Flaggen,
+   der Rest als Auswahl im Stil des Hauses. Gewählt wird die ganze Kachel hell, nichts verschiebt sich, keine Pillen-Reihen. ---------- */
+.fl-defs{position:absolute;width:0;height:0;overflow:hidden}
+.keller{position:relative;display:grid;gap:clamp(22px,2.4vw,34px);padding:clamp(22px,3vw,44px);border-radius:var(--rund);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 50px 90px -50px rgba(4,16,35,.85),0 18px 30px -24px rgba(4,16,35,.6)}
+.keller input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+/* Arten: sechs stehende Kacheln mit gezeichneter Flasche */
+.keller__arten{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(8px,1vw,14px)}
+.kf{position:relative;cursor:pointer;display:grid;justify-items:center;align-content:end;gap:6px;padding:clamp(16px,1.6vw,22px) 8px clamp(14px,1.4vw,18px);border-radius:var(--rund-k);
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px rgba(255,255,255,.04);
+  transition:background .7s var(--e1),box-shadow .7s var(--e1)}
+.kf__b{display:flex;align-items:flex-end;justify-content:center;height:clamp(104px,9.6vw,146px);margin-bottom:8px;transition:transform .8s var(--e1)}
+.kf__b .fl{height:100%;width:auto;filter:drop-shadow(0 10px 8px rgba(0,0,0,.35))}
+.kf__b .fl--foto{width:auto;max-width:100%}
+.kf__alle{display:flex;align-items:flex-end;height:100%}
+.kf__alle .fl{height:88%;margin:0 -7px}.kf__alle .fl:nth-child(2){height:100%;position:relative;z-index:1}
+.kf__n{font:400 12px/1.25 var(--titel);letter-spacing:.18em;text-transform:uppercase;color:#F2F5F8;text-align:center;margin-right:-.18em;transition:color .7s var(--e1)}
+.kf__z{font:400 11px/1 var(--mono);letter-spacing:.12em;color:var(--himmel);transition:color .7s var(--e1)}
+.kf:hover .kf__b{transform:translateY(-4px)}
+.kf:has(input:checked){background:linear-gradient(180deg,#FBFCFD,#E2E9F2);box-shadow:inset 0 1px 0 #fff,0 22px 34px -22px rgba(0,0,0,.7)}
+.kf:has(input:checked) .kf__n{color:var(--tinte)}
+.kf:has(input:checked) .kf__z{color:var(--himmel-t)}
+.kf:has(input:checked) .kf__b{transform:translateY(-6px)}
+.kf:has(input:focus-visible){outline:2px solid var(--himmel-h);outline-offset:3px}
+.kf.leer,.kl.leer{opacity:.38}
+/* Länder: runde Flaggen in einer Reihe */
+.keller__laender{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(6px,1vw,14px);padding-top:clamp(20px,2.2vw,30px);border-top:1px solid rgba(255,255,255,.12)}
+.kl{position:relative;cursor:pointer;display:grid;justify-items:center;gap:6px;padding:12px 4px 10px;border-radius:var(--rund-k);transition:background .7s var(--e1)}
+.kl__m{display:block;width:clamp(42px,3.8vw,54px);aspect-ratio:1;border-radius:50%;margin-bottom:4px;box-shadow:0 0 0 1.5px rgba(255,255,255,.28),0 12px 18px -10px rgba(0,0,0,.7);transition:box-shadow .7s var(--e1),transform .8s var(--e1)}
+.kl__m svg{display:block;width:100%;height:100%}
+.kl__m--alle{display:grid;place-items:center;background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 50%,var(--tief));color:var(--himmel-h)}
+.kl__m--alle svg{width:46%;height:auto}
+.kl__n{font:400 13px/1.2 var(--lauf);color:#E9EEF3;text-align:center}
+.kl__z{font:400 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--himmel)}
+.kl:hover .kl__m{transform:translateY(-3px)}
+.kl:has(input:checked){background:linear-gradient(180deg,#FBFCFD,#E2E9F2);box-shadow:inset 0 1px 0 #fff,0 22px 34px -22px rgba(0,0,0,.7)}
+.kl:has(input:checked) .kl__m{box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--stuhl),0 12px 18px -10px rgba(4,16,35,.6)}
+.kl:has(input:checked) .kl__n{color:var(--tinte)}
+.kl:has(input:checked) .kl__z{color:var(--himmel-t)}
+.kl:has(input:focus-visible){outline:2px solid var(--himmel-h);outline-offset:3px}
+/* Rebsorte, Preis, Flasche: drei Auswahlfelder nebeneinander, Liste mit Zahl je Eintrag */
+.keller__zeile{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,18px);padding-top:clamp(20px,2.2vw,30px);border-top:1px solid rgba(255,255,255,.12)}
+.keller__wahl{position:relative;display:grid;gap:8px}
+.keller__wahl>.mono{font-size:11px;color:var(--himmel)}
+.keller__k{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:15px 18px;border-radius:14px;
+  font:400 15.5px/1.3 var(--lauf);color:#F2F5F8;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.16));box-shadow:inset 0 2px 4px rgba(0,0,0,.35),inset 0 -1px 0 rgba(255,255,255,.08);transition:background .6s var(--e1),color .6s var(--e1)}
+.keller__k>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.keller__k::after{content:"";flex:none;width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .5s var(--e1)}
+.keller__k[aria-expanded=true]::after{transform:rotate(225deg) translate(-2px,-1px)}
+.keller__k:focus-visible{outline:2px solid var(--himmel-h);outline-offset:2px}
+.keller__wahl.gewaehlt .keller__k{color:var(--tinte);background:linear-gradient(180deg,#FBFCFD,#E2E9F2);box-shadow:inset 0 1px 0 #fff,0 14px 22px -16px rgba(0,0,0,.7)}
+.keller__l{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:6;display:none;max-height:320px;overflow:auto;overscroll-behavior:contain;padding:8px;border-radius:16px;background:#F8FAFC;color:var(--tinte);
+  box-shadow:0 0 0 1px rgba(15,54,120,.18),0 30px 50px -20px rgba(0,0,0,.7)}
+.keller__l.offen{display:block}
+.keller__l button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:14px;width:100%;padding:10px 12px;border-radius:10px;font:400 15px/1.3 var(--lauf)}
+.keller__l button i{font:400 11px/1 var(--mono);font-style:normal;color:var(--himmel-t)}
+.keller__l button:hover{background:#E6ECF4}
+.keller__l button[aria-selected=true]{background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 50%,var(--tief));color:#F2F5F8}
+.keller__l button[aria-selected=true] i{color:var(--himmel-h)}
+.keller__l button.leer{opacity:.4}
+.keller__neu{justify-self:end;color:var(--himmel-h);margin-top:-8px}
+.keller__neu[hidden]{display:none}
+.berater__zahl{display:flex;align-items:baseline;gap:12px;margin:clamp(30px,3vw,46px) 0 18px}
+.berater__zahl b{font:300 clamp(2.4rem,4vw,3.6rem)/1 var(--titel);color:var(--titel-h)}
+.berater__zahl span{font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+@media (max-width:1100px){.keller__arten{grid-template-columns:repeat(3,minmax(0,1fr))}.keller__laender{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:760px){.keller__zeile{grid-template-columns:1fr}.kf__b{height:92px}.kf__n{font-size:10.5px;letter-spacing:.1em;margin-right:-.1em}.keller{padding:20px 16px}}
+@media (max-width:420px){.kl__n{font-size:12px}}
+
+/* ---------- 3 Wein-Kärtchen: Landschaft der Herkunft, die echte Flasche freigestellt davor, Flagge des Landes ---------- */
+.wk-raster,.wf-raster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+.wk-raster--drei{grid-template-columns:repeat(3,minmax(0,1fr));max-width:980px;margin:clamp(26px,3vw,40px) auto 0}
+.wf{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;border-radius:var(--rund-k);overflow:hidden;
+  background:linear-gradient(180deg,#FFFFFF,#EEF2F7);box-shadow:inset 0 1px 0 #fff,0 30px 50px -32px rgba(4,16,35,.6),0 6px 14px -10px rgba(4,16,35,.3);
+  transform:translateY(46px);transition:transform 1.4s var(--e1),box-shadow .6s var(--e1);transition-delay:calc(var(--i,0)*70ms)}
+.wf.da{transform:none}
+.wf:hover{box-shadow:inset 0 1px 0 #fff,0 40px 60px -32px rgba(4,16,35,.66),0 8px 18px -10px rgba(4,16,35,.3)}
+.wf:focus-visible{outline:2px solid var(--stuhl);outline-offset:3px}
+.wf__bild{position:relative;display:block;aspect-ratio:4/4.3;background:#F4F6F9}
+.wf__land{position:absolute;left:0;top:0;width:100%;height:64%;object-fit:cover;display:block;background:var(--nacht)}
+.wf--ohne-flasche .wf__land{height:100%}
+.wf--ohne-land .wf__bild::before{content:"";position:absolute;left:0;top:0;right:0;height:64%;background:var(--nacht) var(--tap-d) 0 0/168px}
+.wf__schatten{position:absolute;left:50%;bottom:5%;width:40%;height:6%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(4,16,35,.38),rgba(4,16,35,0))}
+.wf__fl{position:absolute;left:50%;bottom:7.5%;height:84%;width:auto;max-width:56%;object-fit:contain;transform:translateX(-50%)}
+.wf__zf{position:absolute;left:50%;bottom:7.5%;height:80%;width:auto;transform:translateX(-50%)}
+.wf__flagge{position:absolute;left:12px;top:12px;width:30px;height:30px;border-radius:50%;box-shadow:0 0 0 2px #fff,0 8px 14px -6px rgba(4,16,35,.6)}
+.wf__flagge svg{display:block;width:100%;height:100%}
+.wf__text{display:flex;flex-direction:column;gap:6px;flex:1;padding:16px 20px 18px}
+.wf__art{font:400 10.5px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-t)}
+.wf__name{font:400 14px/1.35 var(--titel);letter-spacing:.1em;text-transform:uppercase;color:var(--tinte);transition:color .5s var(--e1);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wf:hover .wf__name{color:var(--stuhl)}
+.wf__erz{font-size:14px;line-height:1.4;color:#35455D;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wf__fuss{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(15,54,120,.16)}
+.wf__jahr{font:300 clamp(1.5rem,1.9vw,1.9rem)/1 var(--titel);color:var(--titel-h)}
+.wf__jahr small{font:400 10.5px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t)}
+.wf__preis{font:400 12px/1.5 var(--mono);color:var(--titel-h);white-space:pre-wrap;text-align:right}
+.wk-leer{grid-column:1/-1;font-size:16px;color:#35455D;padding:30px 0}
+@media (max-width:1100px){.wk-raster,.wf-raster{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.wk-raster,.wk-raster--drei,.wf-raster{grid-template-columns:repeat(2,minmax(0,1fr))}.wf__text{padding:14px 14px 14px}.wf__flagge{width:24px;height:24px;left:9px;top:9px}}
+@media (max-width:400px){.wk-raster,.wk-raster--drei,.wf-raster{grid-template-columns:1fr}}
+
+/* ---------- Wein-Ansicht: die Welt des Weins. Landschaft oben, Flasche steht über der Kante, Flagge, Angaben mit Zeichen ---------- */
+dialog.fe.ww{width:min(1060px,calc(100vw - 24px));padding:0;overflow-x:hidden}
+.ww__buehne{position:relative;height:clamp(230px,30vw,360px);background:var(--nacht) var(--tap-d) 0 0/168px}
+.ww__land{position:absolute;inset:0;overflow:hidden}
+.ww__land img{display:block;width:100%;height:100%;object-fit:cover}
+.ww__zu{position:absolute;top:18px;right:18px;z-index:3}
+.ww__flasche{position:absolute;z-index:2;left:clamp(26px,5vw,70px);bottom:calc(-1 * clamp(150px,16vw,210px));width:clamp(120px,15vw,200px);height:clamp(330px,38vw,470px);display:flex;align-items:flex-end;justify-content:center}
+.ww__flasche::after{content:"";position:absolute;left:50%;bottom:-10px;width:70%;height:22px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(4,16,35,.32),rgba(4,16,35,0));z-index:-1}
+.ww__flasche img{display:block;max-height:100%;max-width:100%;width:auto;height:100%;object-fit:contain}
+.ww--ohne-flasche .ww__flasche{display:none}
+.ww--ohne-flasche .ww__inhalt{padding-left:clamp(24px,3.4vw,44px)}
+.ww__flagge{position:absolute;z-index:2;right:clamp(24px,3.4vw,44px);bottom:-30px;width:60px;height:60px;border-radius:50%;box-shadow:0 0 0 3px var(--papier),0 16px 26px -12px rgba(4,16,35,.6)}
+.ww__flagge svg{display:block;width:100%;height:100%}
+.ww__inhalt{padding:clamp(26px,3vw,40px) clamp(24px,3.4vw,44px) clamp(26px,3vw,38px) calc(clamp(26px,5vw,70px) + clamp(120px,15vw,200px) + clamp(26px,3.4vw,48px));min-height:clamp(230px,24vw,300px)}
+.ww__kopf{display:grid;gap:8px;padding-right:70px;margin-bottom:clamp(22px,2.4vw,30px)}
+.ww__herkunft{color:var(--himmel-t);margin:0}
+.ww__name{margin:0;font:400 clamp(1.4rem,2.4vw,2.1rem)/1.15 var(--titel);letter-spacing:.1em;text-transform:uppercase;color:var(--titel-h);text-wrap:balance}
+.ww__erz{margin:0;font-size:17px;line-height:1.45;color:#35455D}
+.ww__angaben{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0}
+.ww__angaben>div{padding:14px 16px;border-radius:14px;background:linear-gradient(180deg,#DCE3ED,#E9EEF4);box-shadow:inset 0 2px 4px rgba(4,16,35,.1),inset 0 -1px 0 rgba(255,255,255,.9)}
+.ww__angaben>div:last-child:nth-child(odd){grid-column:1/-1}
+.ww__angaben dt{display:flex;align-items:center;gap:9px;font:400 10.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t);margin-bottom:6px}
+.ww__angaben dt svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--stuhl);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.ww__angaben dd{margin:0;font-size:15.5px;line-height:1.45}
+.ww__haus{margin-top:clamp(20px,2.4vw,28px)}
+.ww__haus>.mono{color:var(--himmel-t);margin:0 0 10px}
+.ww__liste{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ww__mini{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:linear-gradient(180deg,#FFFFFF,#EEF2F7);box-shadow:inset 0 1px 0 #fff,0 14px 24px -18px rgba(4,16,35,.55)}
+.ww__mini:hover b{color:var(--stuhl)}
+.ww__mini:focus-visible{outline:2px solid var(--stuhl);outline-offset:2px}
+.ww__mb{flex:none;display:flex;align-items:flex-end;justify-content:center;width:30px;height:76px}
+.ww__mb img{max-height:100%;max-width:100%;object-fit:contain}
+.ww__mb--land{width:34px;height:34px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #fff}
+.ww__mb--land svg{width:100%;height:100%;display:block}
+.ww__mini b{display:block;font:400 12px/1.35 var(--titel);letter-spacing:.1em;text-transform:uppercase;transition:color .5s var(--e1)}
+.ww__mini small{display:block;margin-top:4px;font:400 11px/1.4 var(--mono);color:var(--himmel-t)}
+.ww__hinweis{margin-top:clamp(18px,2vw,24px)}
+@media (max-width:760px){
+  .ww__buehne{height:210px}
+  .ww__flasche{left:18px;width:96px;height:250px;bottom:-112px}
+  .ww__flagge{width:46px;height:46px;bottom:-23px}
+  .ww__inhalt{padding:22px 20px 24px}
+  .ww__kopf{padding:0 0 0 118px;min-height:120px;align-content:start}
+  .ww--ohne-flasche .ww__kopf{padding-left:0;min-height:0}
+  .ww__kopf{padding-top:12px}
+  .ww .fe__senden{justify-content:stretch}
+  .ww .fe__senden .knopf{width:100%;justify-content:space-between;letter-spacing:.1em;font-size:11px}
+  .ww__angaben,.ww__liste{grid-template-columns:1fr}
+}
+
+/* ---------- 2 + 6 Reservation: Reiter und die bereitgelegte Flasche ---------- */
+.reiter{display:inline-flex;gap:4px;padding:5px;border-radius:26px;background:linear-gradient(180deg,#DCE3ED,#E9EEF4);box-shadow:inset 0 2px 4px rgba(4,16,35,.1);margin-bottom:20px}
+.reiter button{border:0;cursor:pointer;padding:11px 18px;border-radius:21px;background:none;font:400 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--titel-h)}
+.reiter button[aria-selected=true]{color:#F2F5F8;background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 50%,var(--tief));box-shadow:0 8px 14px -10px rgba(4,16,35,.6)}
+.flasche{display:grid;gap:8px}
+.flasche__leer{font-size:15px;color:#35455D}
+.flasche__leer a{color:var(--stuhl)}
+.flasche__voll{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:14px 18px;border-radius:14px;background:linear-gradient(180deg,#fff,#EAEFF5);box-shadow:inset 0 0 0 1px rgba(15,54,120,.15)}
+.flasche__voll b{font:400 14px/1.35 var(--titel);letter-spacing:.1em;text-transform:uppercase}
+.flasche__voll small{grid-column:1;font-size:13.5px;color:#4E5D73}
+.flasche__voll em{grid-column:1;font:400 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--stuhl)}
+.flasche__voll .leise{grid-column:2;grid-row:1/4;align-self:center;font-size:11px}
+.flasche [hidden]{display:none}
+
+/* ---------- 4 Wein zum Gang ---------- */
+/* 4 Wein zum Gang: «Jonas schenkt ein» (Robert 19.10.2026, Fassung 4 aus _varianten/wein-gang-luxus.html). Links Jonas und das Glas als
+   Abzüge mit weissem Rand, rechts die Wahl der Küche und drei gedruckte Kärtchen, leicht verdreht, die von unten hereinfliegen (nur transform). */
+.wzg4{display:grid;grid-template-columns:.95fr 1.25fr;gap:5cqw;align-items:center}
+.wzg4 button{appearance:none;-webkit-appearance:none;background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-align:inherit}
+.wzg4__abz{position:relative;padding-bottom:90px}
+.wzg4__a{background:#F4F1EA;padding:12px 12px 46px;box-shadow:0 2px 2px rgba(0,0,0,.35),0 30px 50px -20px rgba(0,0,0,.7)}
+.wzg4__a .foto{border-radius:0;box-shadow:none}
+.wzg4__a1{width:78%;rotate:-2.4deg}.wzg4__a1 .foto{aspect-ratio:3/3.6}.wzg4__a1 img{object-position:50% 22%}
+.wzg4__a2{position:absolute;right:0;bottom:30px;width:44%;rotate:3.2deg}.wzg4__a2 .foto{aspect-ratio:3/4}
+.wzg4__name{position:absolute;left:4%;bottom:0;font:italic 400 1.5rem/1.2 var(--lauf);color:#F2F5F8}
+.wzg4__name small{display:block;font:400 11px/1.6 var(--mono);font-style:normal;letter-spacing:.18em;text-transform:uppercase;color:var(--himmel)}
+.wzg4__r .t2{margin-bottom:18px}.wzg4__r>.lauf{margin-bottom:34px}
+.wzg4__wahl{display:grid;gap:12px;margin-bottom:clamp(28px,3cqw,44px)}
+.wzg4__wahl>p{font:400 14px/1.3 var(--titel);letter-spacing:.18em;text-transform:uppercase;color:var(--himmel)}
+.wzg4__wahl>div{display:flex;flex-wrap:wrap;gap:6px clamp(18px,2cqw,30px)}
+.wzg4__wahl button{font:300 clamp(1rem,1.25vw,1.2rem)/1 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:#7F95B5;padding:10px 0 12px;border-bottom:1px solid transparent;transition:color .4s}
+.wzg4__wahl button:hover{color:#C9D5E4}
+.wzg4__wahl button[aria-pressed=true]{color:#F2F5F8;border-bottom-color:var(--punkt)}
+.wzg4__drei{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.wzg4__drei[hidden]{display:none}
+.wzg4 .wzg4__k{position:relative;display:grid;gap:6px;justify-items:center;text-align:center;background:#F4F1EA;color:var(--tinte);padding:24px 18px 22px;border-radius:4px;
+  box-shadow:0 1px 1px rgba(0,0,0,.45),0 7px 12px -5px rgba(0,0,0,.55),0 24px 34px -14px rgba(0,0,0,.65),0 56px 70px -34px rgba(0,0,0,.6);rotate:calc((var(--i) - 1) * 2.2deg);
+  transition:transform 1.7s var(--e1) calc(var(--i) * 180ms)}
+.wzg4__k::before{content:'';position:absolute;inset:8px;border:1px solid rgba(4,16,35,.2);outline:1px solid rgba(4,16,35,.12);outline-offset:-5px;pointer-events:none}
+.wzg4__k:nth-child(2){translate:0 22px}
+.wzg4__drei.unten .wzg4__k{transform:translateY(42vh);transition:none}
+.wzg4__k i{font:400 10.5px/1.3 var(--mono);font-style:normal;letter-spacing:.2em;text-transform:uppercase;color:var(--stuhl)}
+.wzg4__k strong{font:200 clamp(2.4rem,3.4cqw,3.2rem)/1 var(--titel);color:var(--titel-h);margin:8px 0 4px}
+.wzg4__k b{font:500 12.5px/1.4 var(--titel);letter-spacing:.14em;text-transform:uppercase;color:var(--titel-h);text-wrap:balance}
+.wzg4__k span{font-size:15px;line-height:1.4;color:#3b4c66}
+.wzg4__k em{font:400 14px/1.4 var(--lauf);font-style:normal;color:#4E5D73;padding-top:10px;margin-top:6px;border-top:1px solid rgba(4,16,35,.15);width:100%}
+.wzg4__k:hover b{color:var(--stuhl)}
+@media (max-width:900px){.wzg4{grid-template-columns:1fr;row-gap:44px}.wzg4__drei{grid-template-columns:1fr;gap:16px}.wzg4 .wzg4__k{rotate:0deg}.wzg4__k:nth-child(2){translate:none}}
+
+/* ---------- 5 Abend zusammenstellen: Schritte links, der Zettel rechts läuft mit ---------- */
+.az{display:grid;grid-template-columns:minmax(0,1fr) 34cqw;gap:clamp(28px,4cqw,64px);align-items:start}
+.az__form{display:grid;gap:clamp(22px,2.4vw,34px)}
+.az__schritt{border:0;margin:0;padding:clamp(20px,2.4vw,32px);border-radius:var(--rund);background:linear-gradient(180deg,#FBFDFD,#EAEEF4);box-shadow:inset 0 1px 0 #fff,0 26px 46px -40px rgba(4,16,35,.55)}
+.az__schritt legend{float:left;width:100%;display:flex;align-items:center;gap:14px;margin-bottom:18px;font:400 clamp(1rem,1.4vw,1.25rem)/1.2 var(--titel);letter-spacing:.14em;text-transform:uppercase;color:var(--titel-h)}
+.az__schritt>*:not(legend){clear:both}
+.az__alacarte{display:grid;gap:14px;margin-top:18px}
+.az__alacarte[hidden]{display:none}
+.ab-land{display:grid;gap:8px}.ab-land>.mono{color:var(--himmel-t)}
+.az__zettel{position:sticky;top:96px}
+.zettel{position:relative;padding:clamp(26px,3vw,40px);border-radius:var(--rund);background:var(--nacht) var(--tap-d) 0 0/168px;color:#E9EEF3;box-shadow:0 50px 80px -50px rgba(4,16,35,.8)}
+.zettel>.mono{color:var(--himmel-h);margin-bottom:18px}
+.zettel dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0 0 22px}
+.zettel dt{font:400 10.5px/1.7 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-h)}
+.zettel dd{margin:0;font-size:15px;line-height:1.45}
+.zettel__summe{padding:14px 0 18px;border-top:1px solid rgba(162,182,207,.25);font-size:14.5px;line-height:1.5}
+.zettel__summe b{display:block;font:300 clamp(1.8rem,2.6vw,2.4rem)/1.1 var(--titel);color:#F2F5F8;margin-top:4px}
+.zettel__summe small{color:var(--himmel-h);font-size:12px}
+.zettel .fe__hinweis{color:rgba(197,210,225,.7)}
+.zettel__danke h3{font:400 1.1rem/1.3 var(--titel);letter-spacing:.16em;text-transform:uppercase;margin:16px 0 8px}
+@media (max-width:980px){.az{grid-template-columns:1fr}.az__zettel{position:static}}
+
+/* ---------- 7 Gutschein als gestaltete Karte ---------- */
+.gs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,5cqw,80px);align-items:center}
+.gs__form{display:grid;gap:22px}
+.gs__buehne{display:grid;justify-items:center;gap:16px}
+.gkarte{position:relative;width:min(100%,560px);aspect-ratio:1.6;padding:clamp(24px,3vw,40px);border-radius:var(--rund);overflow:hidden;display:grid;grid-template-rows:auto auto 1fr auto auto;color:#EEF2F5;
+  background:var(--nacht) var(--tap-d) 0 0/168px;box-shadow:0 60px 90px -50px rgba(4,16,35,.85),0 20px 34px -24px rgba(4,16,35,.5);transform:rotate(-1.4deg)}
+.gkarte__kopf{display:flex;align-items:center;gap:12px}
+.gkarte__kopf .mono{color:var(--himmel-h)}
+.gkarte__zeichen{display:block;width:auto;height:34px;color:var(--himmel)}
+.gkarte__zeichen svg{height:100%;width:auto;display:block}
+.gkarte__titel{margin-top:clamp(16px,2vw,26px);font:400 clamp(1.4rem,2.6vw,2.2rem)/1 var(--titel);letter-spacing:.24em;text-transform:uppercase}
+.gkarte__betrag{display:flex;align-items:baseline;gap:10px;align-self:center}
+.gkarte__betrag b{font:200 clamp(3.4rem,7vw,6rem)/1 var(--titel);color:#F2F5F8}
+.gkarte__betrag span{font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h)}
+.gkarte__satz{font-size:15px;line-height:1.45;color:rgba(233,238,243,.86);max-width:36ch}
+.gkarte__fuss{display:flex;justify-content:space-between;gap:16px;margin-top:14px;font:400 11px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--himmel-h)}
+.gkarte__fuss b{font-weight:400;color:#F2F5F8}
+.gkarte__linie{position:absolute;left:0;right:0;top:58%;height:1px;background:linear-gradient(90deg,transparent,var(--himmel) 18%,var(--himmel) 82%,transparent);opacity:.35}
+.gs__hinweis{text-align:center;max-width:44ch}
+@media (max-width:900px){.gs{grid-template-columns:1fr}.gkarte{transform:none}}
+@media print{
+  html.druck-gutschein body *{visibility:hidden}
+  html.druck-gutschein .gkarte,html.druck-gutschein .gkarte *{visibility:visible}
+  html.druck-gutschein .gkarte{position:fixed;left:15mm;top:20mm;width:150mm;transform:none;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ---------- 8 Kalender: Plakatwand (Robert 19.10.2026). Grosses Plakat links, vier kleine rechts, beide Seiten gleich hoch ---------- */
+.ap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4cqw,60px);align-items:stretch}
+.ap__gross,.ap__p{appearance:none;-webkit-appearance:none;border:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.ap__gross{display:grid;grid-template-rows:minmax(0,1fr) auto;aspect-ratio:3/4;width:100%;align-self:start;padding:0;border-radius:6px;overflow:hidden;background:var(--nacht);box-shadow:0 30px 50px -30px rgba(0,0,0,.7)}
+.ap__gross img{width:100%;height:100%;object-fit:cover}
+.ap__schrift{display:grid;align-content:start;gap:10px;padding:clamp(20px,2.4cqw,32px) clamp(22px,2.6cqw,34px);color:#F3F6F9}
+.ap__schrift .mono{color:var(--punkt)}
+.ap__titel{font:400 clamp(24px,2.6vw,38px)/1.08 var(--titel);letter-spacing:.06em;text-transform:uppercase;overflow-wrap:anywhere}
+/* Robert 19.10.2026, 21:2x: kleine Plakate gerade, in einer Reihe; die Karte des Termins direkt darunter, neben dem grossen Plakat, damit man sieht, was der Tipp bewirkt */
+.ap__r{display:grid;grid-template-rows:auto 1fr;gap:clamp(18px,2cqw,28px);min-width:0}
+.ap__klein{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.2cqw,16px);min-height:0}
+.ap__p{display:grid;grid-template-rows:auto 1fr;align-content:start;min-height:0;padding:0;background:var(--nacht);border-radius:4px;overflow:hidden;box-shadow:0 16px 26px -18px rgba(4,16,35,.6);transition:rotate .5s var(--knopf),translate .5s var(--knopf)}
+.ap__p img{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover}
+/* Kleine Plakate mit demselben blauen Band wie das grosse (Robert 19.10.2026, 21:1x: «Schrift nicht lesbar») */
+.ap__p>.ap__schrift{display:grid;gap:4px;align-content:start;padding:10px 11px 12px;background:var(--nacht);color:#F3F6F9}
+.ap__schrift .mono{font:400 clamp(9px,.85cqw,10.5px)/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--punkt)}
+.ap__p .ap__titel{font:400 11.5px/1.3 var(--titel);letter-spacing:.06em;text-transform:uppercase;-webkit-hyphens:auto;hyphens:auto}
+.ap__p .ap__unter,.ap__p .ap__lang,.ap__gross .ap__kurz{display:none}
+.ap__gross .ap__schrift .mono{font-size:12px;letter-spacing:.2em}
+.ap__unter{display:none}
+/* Höhe gibt nur das grosse Plakat vor: rechts zählt nicht mit */
+@media (min-width:901px){.ap__r{height:0;min-height:100%;grid-template-rows:auto minmax(0,1fr)}}
+.ap__p:hover{translate:0 -4px}
+.ap__p[aria-pressed=true]{outline:3px solid var(--punkt);outline-offset:0}
+/* Tausch: gross und klein fliegen an den Platz des anderen (nur transform, Feder) */
+.ap__gross,.ap__p{transform-origin:0 0;will-change:auto}
+.ap--tausch .ap__gross,.ap--tausch .ap__p{will-change:transform}
+.ap__flug{position:relative;z-index:3}
+/* Darunter: der Termin als Karte des Hauses (Robert 21:1x: «schöner und edler»), Papier mit Doppelrahmen und Zeichen */
+/* Feste Grössen (Robert 19.10.2026, 21:2x: «die Bildgrösse richtet sich nach der Textmenge»): das grosse Plakat hat ein festes Format und gibt die Höhe vor;
+   die Karte daneben füllt den Rest, alle Termine liegen übereinander im selben Feld, gezeigt wird einer. Der ganze Text steht im Fenster «Alles lesen». */
+#kalender .kt-detail{margin:0;display:grid;min-height:0;position:relative;background:#F6F3EC;border-radius:4px;box-shadow:0 40px 70px -40px rgba(4,16,35,.45);padding:clamp(24px,2.6cqw,40px) clamp(24px,2.8cqw,44px)}
+#kalender .kt-detail::before{content:"";position:absolute;inset:10px;border:1px solid #c9bfa8;outline:1px solid #c9bfa8;outline-offset:-5px;pointer-events:none}
+#kalender .ktd{grid-area:1/1;align-self:center;position:relative;max-width:none;display:block;padding:0;background:none;box-shadow:none;border-radius:0;visibility:hidden;opacity:0;transition:opacity .35s ease,visibility 0s .35s}
+#kalender .ktd.an{visibility:visible;opacity:1;transition:opacity .35s ease}
+.ktd__zeichen{position:absolute;right:0;top:0;width:24px;height:auto;opacity:.85}
+.ktd__l{display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:end;padding-right:36px}
+.ktd__l .ktd__tag{grid-row:1/3}.ktd__l h3,.ktd__l .ktd__strich,.ktd__l .ktd__zeit{grid-column:1/-1}
+.ktd__tag{font:200 clamp(36px,4.2cqw,68px)/.9 var(--titel);color:var(--titel-h);letter-spacing:-.01em;margin:0}
+.ktd__mon{margin:0 0 5px;color:var(--himmel-t)}
+#kalender .ktd h3{text-wrap:balance;font:300 clamp(21px,2cqw,31px)/1.15 var(--titel);letter-spacing:.01em;text-transform:none;color:var(--titel-h);margin:14px 0 0}
+.ktd__strich{display:block;width:52px;border-top:1px solid #b9a98a;margin:14px 0 9px}
+.ktd__zeit{margin:0;color:#55657d}
+.ktd__lead{font:300 clamp(15px,1.35cqw,20px)/1.45 var(--titel);color:var(--titel-h);margin:18px 0 0}
+.ktd .knoepfe{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:clamp(18px,2cqw,28px)}
+.ktd .kt-vorbei{display:block;width:100%;font:400 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#55657d}
+#fe-termin [data-t-text] p{margin:0 0 12px}
+@media (max-width:900px){.ap__klein{grid-template-columns:1fr 1fr}.ap__gross{aspect-ratio:auto;grid-template-rows:auto auto}.ap__gross img{aspect-ratio:4/3;height:auto}.ap__p{grid-template-rows:auto auto}.ap__p .ap__titel{letter-spacing:.04em;-webkit-hyphens:auto;hyphens:auto;font-size:12px}}
+@media (max-width:900px){.ap{grid-template-columns:1fr}.ap__klein{contain:none;grid-template-rows:none;grid-auto-rows:auto}.ap__p img{height:auto;aspect-ratio:4/3}}
+.kt-detail{margin-top:clamp(26px,3vw,44px)}
+.ktd{padding:clamp(24px,3vw,40px);border-radius:var(--rund);background:linear-gradient(180deg,#F8FAFC,#E6EBF3);box-shadow:inset 0 1px 0 #fff,0 34px 56px -40px rgba(4,16,35,.55);display:grid;gap:12px;max-width:820px}
+.ktd h3{font:400 clamp(1.3rem,2.2vw,2rem)/1.2 var(--titel);letter-spacing:.14em;text-transform:uppercase;color:var(--titel-h);margin:0}
+.ktd .mono{color:var(--himmel-t)}
+.kt-vorbei{font-size:14.5px;color:#4E5D73}
+
+/* ---------- 9 Blick in die Küche ---------- */
+.bk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,5cqw,80px);align-items:center}
+.bk__t{display:grid;gap:18px}
+.bk__ck{margin:12px 0 0;padding-left:20px;border-left:1px solid rgba(162,182,207,.4)}
+.bk__ck p{font:300 clamp(1.15rem,1.7vw,1.5rem)/1.4 var(--titel);color:#F2F5F8}
+.bk__ck cite{display:block;margin-top:10px;font-style:normal;color:var(--himmel-h)}
+.bk__bilder{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.4vw,20px);align-items:start}.bk__sp{display:grid;gap:clamp(12px,1.4vw,20px);will-change:transform}.bk__sp--r{margin-top:calc(-1 * clamp(40px,5vw,80px))}
+.bk__a,.bk__b{aspect-ratio:9/14}
+
+.bk__c{aspect-ratio:3/4}.bk__d{aspect-ratio:3/4}
+@media (max-width:900px){.bk{grid-template-columns:1fr}}
+
+/* ---------- 11 Das Schwesterhaus ---------- */
+.sw{display:flex;justify-content:center}
+.sw__karte{width:min(100%,820px);text-align:center;display:grid;justify-items:center;gap:18px;padding:clamp(34px,4vw,60px);border-radius:var(--rund);background:linear-gradient(180deg,#FBFDFD,#E8EDF3);box-shadow:inset 0 1px 0 #fff,0 44px 70px -50px rgba(4,16,35,.6)}
+.sw__karte>.mono{color:var(--himmel-t)}
+.sw__noten{display:flex;gap:clamp(24px,4vw,56px);justify-content:center;flex-wrap:wrap}
+.sw__noten span{font:300 clamp(1.4rem,2.4vw,2.2rem)/1.1 var(--titel);color:var(--titel-h)}
+.sw__noten small{font:400 11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t)}
+.sw .knoepfe{justify-content:center}
+
+/* ---------- 10 Der See heute ---------- */
+.see{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,4cqw,56px);align-items:start}
+.see__wasser,.see__land{display:grid;gap:14px;align-content:start}
+.see__land .t2{text-align:left;margin-bottom:clamp(14px,2cqw,30px)}
+.see__hoch{aspect-ratio:3/4}.see__breit{aspect-ratio:16/10}
+.see__von{font:400 12px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--himmel);margin-top:8px}
+.see__zahlen{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+.see__zahlen p{display:grid;gap:8px;padding-top:16px;border-top:1px solid rgba(162,182,207,.3)}
+.see__zahlen b{font:200 clamp(2.6rem,4.4vw,3.8rem)/1 var(--titel);color:#F2F5F8}
+.see__zahlen span{font:400 11.5px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-h)}
+.see__land .knoepfe{margin-top:16px}
+.see__wasser h3{font:400 clamp(1.1rem,1.6vw,1.4rem)/1.2 var(--titel);letter-spacing:.16em;text-transform:uppercase;color:#F2F5F8;margin:6px 0 0}
+@media (max-width:900px){.see{grid-template-columns:1fr}.see__land{order:-1}.see__hoch{aspect-ratio:4/3}}
+.wk__jahr--ohne{font:400 11px/2.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t);margin-top:12px}
+.chip .chip__caps{font:400 11.5px/1.2 var(--titel);letter-spacing:.12em;text-transform:uppercase}
+
+/* Zwei Häuser nebeneinander (Robert 19.10.2026, 21:10): links das Schlössli, rechts die Schwester Taverne zum Schäfli. Je Karte das Haus als Foto,
+   feiner Innenrahmen wie eine Urkunde, die Auszeichnungen in Originalfarben auf Weiss, Haarlinien dazwischen, unten Knopf zum Haus.
+   Logos federn einzeln herauf, Zahlen steigen. Abgelehnt: Tafel auf Leder im Nachtblau; nur das Schäfli allein. */
+#schaefli .sw{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,36px);align-items:stretch;max-width:1320px}
+#schaefli .sw__karte{position:relative;width:auto;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;
+  padding:clamp(14px,1.4vw,20px) clamp(14px,1.4vw,20px) clamp(36px,3.6vw,54px);background:#fff;border-radius:var(--rund);
+  box-shadow:0 1px 0 rgba(10,37,82,.04),0 50px 90px -56px rgba(4,16,35,.55),0 14px 30px -24px rgba(4,16,35,.18)}
+#schaefli .sw__karte::before{content:"";position:absolute;inset:clamp(8px,.9vw,12px);border:1px solid rgba(10,37,82,.12);border-radius:calc(var(--rund) - clamp(6px,.7vw,9px));pointer-events:none;z-index:1}
+.sw__bild{margin:0 0 clamp(14px,1.8vw,24px);width:100%;aspect-ratio:3/2;border-radius:calc(var(--rund) - clamp(10px,1.1vw,14px));overflow:hidden;background:var(--kalk2)}
+.sw__bild img{width:100%;height:100%;object-fit:cover}
+#schaefli .sw__karte>.mono{color:var(--himmel-t);letter-spacing:.22em}
+#schaefli .sw__karte .t2{font-size:clamp(1.6rem,2.2vw,2.3rem);letter-spacing:.12em}
+#schaefli .sw__karte>.lauf,#schaefli .sw__karte>.knoepfe{padding-inline:clamp(10px,2vw,36px)}
+#schaefli .sw__karte>.lauf{font-size:16px;max-width:46ch}
+#schaefli .sw__karte>.knoepfe{margin-top:auto;padding-top:8px}
+#schaefli .sw__karte>.knoepfe{display:flex;flex-direction:column;align-items:center;gap:16px}   /* Knopf mittig, kleiner Verweis darunter (Robert 19.10.2026, 21:20) */
+#schaefli .sw__karte>.knoepfe .leise{font-size:10.5px;padding:6px 0 5px;opacity:.75}
+.sw__tafel{width:calc(100% - 2*clamp(16px,2.4vw,40px));margin:clamp(8px,1.2vw,14px) 0 clamp(4px,.8vw,10px);padding:clamp(20px,2.2vw,30px) 0;display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(10,37,82,.12);border-bottom:1px solid rgba(10,37,82,.12)}
+.sw__ehre{position:relative;display:grid;justify-items:center;align-content:start;gap:clamp(12px,1.3vw,18px);padding:0 clamp(6px,1vw,14px)}
+.sw__ehre+.sw__ehre::before{content:"";position:absolute;left:0;top:6%;bottom:6%;width:1px;background:linear-gradient(transparent,rgba(10,37,82,.16),transparent)}
+.sw__lg{display:flex;align-items:center;justify-content:center;height:clamp(60px,5.6vw,82px);width:100%}
+.sw__lg img{width:auto;height:auto;max-width:min(100%,170px);max-height:100%}
+.sw__lg--rund img{max-height:86%}
+.sw__lg--falstaff img{max-width:min(80%,118px)}
+.sw__ehre b{font:300 clamp(1.15rem,1.6vw,1.55rem)/1.05 var(--titel);color:var(--titel-h);letter-spacing:.01em;white-space:nowrap}
+.sw__ehre b>span{display:inline-block;text-align:right}
+.js .sw__ehre .sw__lg{transform:translateY(20px) scale(.9);transition:transform 1.3s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--i)*140ms + 200ms)}
+.js .sw__karte.da .sw__lg{transform:none}
+@media (prefers-reduced-motion:reduce){.js .sw__ehre .sw__lg{transform:none;transition:none}}
+html.ruhig .sw__ehre .sw__lg{transform:none!important;transition:none!important}
+@media (max-width:900px){#schaefli .sw{grid-template-columns:1fr}}
+@media (max-width:520px){
+  .sw__tafel{width:calc(100% - 20px)}
+  .sw__lg{height:56px}
+  .sw__ehre b{font-size:1.05rem}
+}
+
+/* Küche als Bildband (19.10.2026): Grösse des Abschnitts bleibt; je Spalte hängt oben und unten ein Bild dran, das über den Rand läuft und dort angeschnitten wird */
+.bk__sp{position:relative}
+.bk__x{position:absolute;left:0;right:0;aspect-ratio:3/4}
+.bk__sp>.bk__x:first-child{bottom:calc(100% + clamp(12px,1.4vw,20px))}
+.bk__sp>.bk__x:last-child{top:calc(100% + clamp(12px,1.4vw,20px))}
+@media (max-width:900px){.bk__x{display:none}}
+
+/* ---------- Weinberater: klassisch oder nach Geschmack (19.10.2026, neu geschrieben 21:30, der erste Block ging bei einem Dateistand von 21:24 verloren).
+   Platte OHNE Tapete (Robert 21:22). Umschalter wie ein Knopf mit Tiefe, gewählt hell ---------- */
+.keller.f-dunkel{background-image:none;background:linear-gradient(180deg,#0E2247,var(--nacht) 60%,#081633)}
+.keller__modus{justify-self:center;display:inline-flex;gap:4px;padding:5px;border-radius:30px;background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.16));box-shadow:inset 0 2px 4px rgba(0,0,0,.35),inset 0 -1px 0 rgba(255,255,255,.08)}
+.keller__modus button{all:unset;cursor:pointer;padding:13px 26px;border-radius:25px;font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--himmel-h);transition:background .6s var(--e1),color .6s var(--e1)}
+.keller__modus button[aria-selected=true]{color:var(--tinte);background:linear-gradient(180deg,#FBFCFD,#E2E9F2);box-shadow:inset 0 1px 0 #fff,0 10px 18px -12px rgba(0,0,0,.7)}
+.keller__modus button:focus-visible{outline:2px solid var(--himmel-h);outline-offset:2px}
+.keller__fach{display:grid;gap:clamp(22px,2.4vw,34px)}
+.keller__fach[hidden]{display:none}
+/* Skalen: eine Linie mit drei Stufen, gewählt sitzt der Knauf */
+.keller__skalen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2vw,26px) clamp(24px,3vw,48px)}
+.skala{display:grid;gap:10px}
+.skala>.mono{font-size:11px;color:var(--himmel)}
+.skala__bahn{position:relative;display:grid;grid-template-columns:repeat(3,1fr)}
+.skala__bahn::before{content:"";position:absolute;left:16.6%;right:16.6%;top:15px;height:2px;border-radius:1px;background:rgba(255,255,255,.16)}
+.skala__p{position:relative;cursor:pointer;display:grid;justify-items:center;gap:8px;padding:4px 2px 2px}
+.skala__p input{position:absolute;opacity:0;pointer-events:none}
+.skala__p i{width:22px;height:22px;border-radius:50%;background:linear-gradient(180deg,#26375A,#15233F);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1px rgba(255,255,255,.18);transition:transform .7s var(--e1),background .7s var(--e1),box-shadow .7s var(--e1)}
+.skala__p span{font:400 14px/1.2 var(--lauf);color:#E9EEF3}
+.skala__p b{font:400 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--himmel)}
+.skala__p:hover i{transform:scale(1.12)}
+.skala__p:has(input:checked) i{transform:scale(1.25);background:linear-gradient(180deg,#FFFFFF,#D9E2EE);box-shadow:0 0 0 4px rgba(197,210,225,.22),0 8px 14px -6px rgba(0,0,0,.7)}
+.skala__p:has(input:checked) span{color:#fff}
+.skala__p:has(input:focus-visible) i{outline:2px solid var(--himmel-h);outline-offset:3px}
+.skala__p.leer{opacity:.38}
+/* Aromen: Tafel mit freigestellten Bildern (Vivino), gewählt hell */
+.keller__aromen{display:grid;gap:12px;padding-top:clamp(20px,2.2vw,30px);border-top:1px solid rgba(255,255,255,.12)}
+.keller__aromen>.mono{font-size:11px;color:var(--himmel)}
+.keller__ar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(6px,.8vw,12px)}
+.ka{position:relative;cursor:pointer;display:grid;justify-items:center;gap:6px;padding:12px 4px 10px;border-radius:var(--rund-k);text-align:center;transition:background .7s var(--e1)}
+.ka input{position:absolute;opacity:0;pointer-events:none}
+.ka__m{width:clamp(44px,4vw,60px);aspect-ratio:1;margin-bottom:2px;display:flex;align-items:center;justify-content:center;transition:transform .8s var(--e1)}
+/* kein object-fit unter einem drop-shadow: Safari wirft sonst den Schatten des ganzen Kastens (Robert 19.10., «Schatten hinter den Bildern») */
+.ka__m img{width:auto;height:auto;max-width:100%;max-height:100%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.45))}
+.ka__n{font:400 12.5px/1.25 var(--lauf);color:#E9EEF3}
+.ka__z{font:400 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--himmel)}
+.ka:hover .ka__m{transform:translateY(-3px)}
+.ka:has(input:checked){background:linear-gradient(180deg,#FBFCFD,#E2E9F2);box-shadow:inset 0 1px 0 #fff,0 22px 34px -22px rgba(0,0,0,.7)}
+.ka:has(input:checked) .ka__m{transform:translateY(-4px) scale(1.06)}
+.ka:has(input:checked) .ka__n{color:var(--tinte)}
+.ka:has(input:checked) .ka__z{color:var(--himmel-t)}
+.ka:has(input:focus-visible){outline:2px solid var(--himmel-h);outline-offset:3px}
+.ka.leer{opacity:.38}
+.keller__zeile--g{grid-template-columns:1fr 2fr;align-items:end}
+.keller__quelle{margin:0;font-size:13.5px;line-height:1.5;color:var(--himmel-h);padding-bottom:6px}
+@media (max-width:1100px){.keller__ar{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:760px){.keller__skalen,.keller__zeile--g{grid-template-columns:1fr}.keller__ar{grid-template-columns:repeat(3,minmax(0,1fr))}.keller__modus button{padding:12px 16px;letter-spacing:.1em}}
+
+/* ---------- Wein-Ansicht: Angaben als Platten mit Tiefe, Im Glas farbig, Aromen und Speisen mit Bild, Weinstil, Weingut, Miniaturflaschen ---------- */
+.ww__angaben{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
+.ww__angaben>div{position:relative;padding:16px 18px 16px 20px;border-radius:16px;background:linear-gradient(180deg,#FFFFFF,#EDF1F6);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(4,16,35,.06),0 18px 28px -22px rgba(4,16,35,.55)}
+.ww__angaben>div::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:2px;background:linear-gradient(180deg,#1A4D9F,var(--tief))}
+.ww__angaben>div:last-child:nth-child(odd){grid-column:1/-1}
+.ww__angaben dt{display:flex;align-items:center;gap:9px;font:400 10.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t);margin-bottom:7px}
+.ww__angaben dt svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--stuhl);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.ww__angaben dd{margin:0;font:400 17px/1.4 var(--lauf);color:var(--tinte)}
+.ww__teil{margin-top:clamp(22px,2.6vw,32px)}
+.ww__teil[hidden]{display:none}
+.ww__teil>.mono{color:var(--himmel-t);margin:0 0 12px}
+/* Im Glas: je Eigenschaft eine Bahn in ihrer Farbe, der Wert als Knauf */
+.wg{display:grid;gap:14px;padding:20px 22px;border-radius:16px;background:linear-gradient(180deg,#FFFFFF,#EEF2F7);box-shadow:inset 0 1px 0 #fff,0 18px 28px -22px rgba(4,16,35,.5)}
+.wg__z{display:grid;grid-template-columns:6.5em 5em 1fr 5em;align-items:center;gap:12px}
+.wg__n{font:400 10.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--himmel-t)}
+.wg__l{font-size:13.5px;color:#55647A}
+.wg__l:last-child{text-align:right}
+.wg__bahn{--c1:#C5D2E1;--c2:var(--stuhl);position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--c1),var(--c2));box-shadow:inset 0 1px 2px rgba(4,16,35,.18)}
+.wg__bahn i{position:absolute;top:50%;left:calc(var(--p) * 100%);width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%);background:linear-gradient(180deg,#FFFFFF,#E4EAF2);box-shadow:0 0 0 2px var(--c2),0 6px 10px -4px rgba(4,16,35,.6)}
+.wg__z--k .wg__bahn{--c1:#F1E6CF;--c2:#7A5230}
+.wg__z--sa .wg__bahn{--c1:#F4F0C2;--c2:#A7C957}
+.wg__z--su .wg__bahn{--c1:#E8EEF5;--c2:#E8A64A}
+.wg__z--t .wg__bahn{--c1:#F2D9DC;--c2:#5E1526}
+.wg__z--p .wg__bahn{--c1:#E9F1F8;--c2:#2C4C39}
+.ww__aromen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.wa{display:flex;gap:14px;align-items:center}
+.wa__m{flex:none;width:56px;height:56px;display:grid;place-items:center}
+.wa__m img{filter:drop-shadow(0 8px 10px rgba(4,16,35,.35))}
+.wa b{display:block;font:400 12px/1.35 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:var(--titel-h)}
+.wa span{display:block;font-size:15px;line-height:1.4;color:#35455D}
+.ww__speisen{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.ww__speisen li{display:grid;justify-items:center;gap:8px;padding:12px 8px 12px;border-radius:16px;text-align:center;font-size:13.5px;line-height:1.3;color:var(--tinte);background:linear-gradient(180deg,#FFFFFF,#EEF2F7);box-shadow:inset 0 1px 0 #fff,0 14px 22px -18px rgba(4,16,35,.5)}
+.ww__speisen img{width:auto;height:auto;max-width:78px;max-height:78px;filter:drop-shadow(0 8px 10px rgba(4,16,35,.35))}
+.ww__stil h3{margin:0 0 4px;font:400 15px/1.3 var(--titel);letter-spacing:.12em;text-transform:uppercase;color:var(--titel-h)}
+.ww__kurz{margin:0 0 10px;font:400 11px/1.5 var(--mono);letter-spacing:.1em;color:var(--himmel-t)}
+.ww__stil p:not(.ww__kurz),.ww__gut p{margin:0;font-size:16px;line-height:1.6;max-width:62ch}
+.ww__stil ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.ww__stil li{position:relative;padding-left:18px;font-size:15px;line-height:1.5;color:#35455D}
+.ww__stil li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--stuhl)}
+.ww__quelle{display:inline-block;margin-top:8px;font:400 11px/1.4 var(--mono);letter-spacing:.12em;color:var(--himmel-t)}
+.ww__nachweis{margin:clamp(18px,2vw,24px) 0 0;font-size:12.5px;line-height:1.5;color:#55647A}
+.ww__nachweis[hidden]{display:none}
+/* Vom selben Weingut: Flaschen stehen nebeneinander wie im Regal, jede Karte gleich gross, keine wird über die ganze Breite gezogen (Robert 20.10.2026) */
+.ww__liste{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ww__liste>button{grid-column:auto}
+.ww__mini{all:unset;box-sizing:border-box;cursor:pointer;display:grid;justify-items:center;align-content:start;gap:8px;padding:16px 10px 14px;border-radius:16px;text-align:center;background:linear-gradient(180deg,#FFFFFF,#EEF2F7);box-shadow:inset 0 1px 0 #fff,0 18px 28px -22px rgba(4,16,35,.55);transition:box-shadow .6s var(--e1)}
+.ww__mini:hover{box-shadow:inset 0 1px 0 #fff,0 26px 36px -22px rgba(4,16,35,.6)}
+.ww__mini:hover b{color:var(--stuhl)}
+.ww__mini:focus-visible{outline:2px solid var(--stuhl);outline-offset:2px}
+.ww__mb{display:flex;align-items:flex-end;justify-content:center;width:100%;height:120px}
+.ww__mb img{width:auto;height:auto;max-height:100%;max-width:60%;filter:drop-shadow(0 10px 10px rgba(4,16,35,.35))}
+.ww__mb--land{height:120px}
+.ww__mb--land svg{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px #fff;align-self:center}
+.ww__mini b{display:block;font:400 11.5px/1.35 var(--titel);letter-spacing:.1em;text-transform:uppercase;transition:color .5s var(--e1)}
+.ww__mini small{display:block;font:400 10.5px/1.5 var(--mono);color:var(--himmel-t)}
+@media (max-width:760px){.wg__z{grid-template-columns:1fr 1fr;row-gap:6px}.wg__n{grid-column:1/-1}.wg__bahn{grid-column:1/-1;order:3}.ww__aromen{grid-template-columns:1fr}.ww__speisen,.ww__liste{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Erzählung je Wein: Herkunft, Weingut, Was ihn ausmacht (19.10.2026, Robert «mehr Geschichte») */
+.ww__text p:not(.mono){margin:0;font-size:16.5px;line-height:1.65;max-width:64ch;color:var(--tinte)}
+.ww__gut p{font-size:16.5px;line-height:1.65}
+/* Aromen: bis zu drei Bildchen gestaffelt */
+.wa__m{flex:none;position:relative;width:76px;height:60px}
+.wa__m img{position:absolute;top:0;width:auto;height:auto;max-width:52px;max-height:52px;filter:drop-shadow(0 8px 10px rgba(4,16,35,.35))}
+.wa__m--1 img{left:12px;top:4px}
+.wa__m--2 img:nth-child(1){left:0;top:8px}.wa__m--2 img:nth-child(2){left:26px;top:0}
+.wa__m--3 img:nth-child(1){left:0;top:10px;max-width:46px;max-height:46px}.wa__m--3 img:nth-child(2){left:18px;top:0}.wa__m--3 img:nth-child(3){left:36px;top:12px;max-width:44px;max-height:44px}
+.ww__speisen li{min-height:0}
+.ww__mb--zf .wf__zf{position:static;transform:none;height:100%;width:auto}
+
+/* ---------- Ihr Abend (Robert 20.10.2026, zwei Runden): Anlass, Platz und Menü als Bildkarten mit ruhiger, gleich gesetzter Schrift;
+   Personen mittig; die Karte als Liste zum Ankreuzen; der Zettel rechts als edles Papier mit allen Angaben. Bilder heben sich nicht. ---------- */
+.az__form,.az__schritt{min-width:0}
+.bws{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:12px}
+.bws--menue{grid-template-columns:repeat(6,minmax(0,1fr))}
+.bws--menue .bw:nth-child(-n+2){grid-column:span 3}
+.bws--menue .bw:nth-child(n+3){grid-column:span 2}
+.bws--menue .bw:nth-child(-n+2) .bw__k img{aspect-ratio:16/8}
+@media (max-width:1180px) and (min-width:561px){.bws,.bws--menue{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.bws--menue .bw{grid-column:auto!important}.bws--menue .bw .bw__k img{aspect-ratio:4/3}}
+.bw{position:relative;display:block;cursor:pointer}
+.bw input{position:absolute;opacity:0;pointer-events:none}
+.bw__k{display:flex;flex-direction:column;height:100%;border-radius:16px;overflow:hidden;text-align:center;background:linear-gradient(180deg,#FFFFFF,#EEF2F7);
+  box-shadow:inset 0 0 0 1px rgba(4,16,35,.07),0 14px 26px -20px rgba(4,16,35,.6);transition:box-shadow .35s var(--e1),background-color .35s}
+.bw__k::after{content:"";flex:1;min-height:15px}
+.bw__k img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.bw__k b{display:block;padding:14px 10px 0;font:400 15px/1.25 var(--titel);letter-spacing:.005em;color:var(--tinte);text-wrap:balance}
+.bw__k i{display:block;padding:6px 10px 0;font:400 9.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--himmel-t)}
+.bw:hover .bw__k{box-shadow:inset 0 0 0 1px rgba(17,61,136,.35),0 18px 30px -20px rgba(4,16,35,.7)}
+.bw input:checked+.bw__k{background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 55%,var(--tief));box-shadow:0 0 0 2px var(--stuhl),0 20px 32px -18px rgba(4,16,35,.8)}
+.bw input:checked+.bw__k b{color:#fff}
+.bw input:checked+.bw__k i{color:var(--himmel-h)}
+.bw input:focus-visible+.bw__k{outline:2px solid var(--stuhl);outline-offset:3px}
+/* Personen mittig, Kalender ganz offen */
+.az .felder .az__pers{grid-column:1/-1;justify-self:center;width:min(340px,100%)}
+.az__pers>label{display:block;text-align:center}
+.az__pers .zaehler{display:flex;align-items:center;gap:4px;height:56px;padding:0 6px;border-radius:28px;background:#fff;box-shadow:inset 0 1px 3px rgba(4,16,35,.12)}
+.az__pers .zaehler input{flex:1;min-width:0;width:3em;height:auto;padding:0;text-align:center;border:0;background:none;box-shadow:none;font:300 24px/1 var(--titel);color:var(--tinte)}
+.az__pers .zaehler button{flex:none;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;color:#fff;background:linear-gradient(180deg,#1A4D9F,var(--stuhl) 50%,var(--tief));font:300 22px/1 var(--titel);transition:transform .4s var(--knopf)}
+.az__pers .zaehler button:active{transform:scale(.94)}
+.az [data-kal] .wahl-l{max-height:none;overflow:visible;z-index:8}
+/* À la carte: die Karte als Liste zum Ankreuzen */
+.az .ab-land{display:block;padding-top:22px;margin-top:6px;border-top:1px solid rgba(4,16,35,.08)}
+.ab-land__t{margin:0 0 12px;font:400 12px/1.3 var(--titel);letter-spacing:.22em;text-transform:uppercase;color:var(--titel-h)}
+.grs{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+.gr{position:relative;display:block;cursor:pointer}
+.gr input{position:absolute;opacity:0;pointer-events:none}
+.gr__k{display:flex;align-items:center;gap:12px;min-height:48px;height:100%;padding:8px 16px 8px 12px;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 1px rgba(4,16,35,.08);transition:background-color .3s,box-shadow .3s}
+.gr__k i{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(17,61,136,.45);transition:background-color .3s}
+.gr__k i::after{content:"";width:9px;height:5px;border-left:1.4px solid #fff;border-bottom:1.4px solid #fff;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .35s var(--knopf)}
+.gr__k b{flex:1;min-width:0;font:400 11.5px/1.35 var(--titel);letter-spacing:.1em;text-transform:uppercase;font-weight:400;color:var(--tinte)}
+.gr__k em{flex:none;font:400 12px/1 var(--mono);font-style:normal;color:var(--himmel-t)}
+.gr:hover .gr__k{box-shadow:inset 0 0 0 1px rgba(17,61,136,.4)}
+.gr input:checked+.gr__k{background:#E9EFF8;box-shadow:inset 0 0 0 1.5px var(--stuhl)}
+.gr input:checked+.gr__k i{background:var(--stuhl);box-shadow:none}
+.gr input:checked+.gr__k i::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+.gr input:focus-visible+.gr__k{outline:2px solid var(--stuhl);outline-offset:2px}
+/* Wein mit Bild */
+.az .flasche{grid-template-columns:120px minmax(0,1fr);align-items:center;column-gap:18px}
+.flasche__bild{grid-row:1/3;display:block;width:120px;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
+/* Der Zettel als edles Papier: zwischen Einladung und Menükarte */
+.az .az__zettel{top:100px}
+.az .zettel{padding:0;border-radius:4px;color:var(--tinte);background:linear-gradient(180deg,#FFFFFF,#F4F6F9 55%,#EDF1F5);box-shadow:inset 0 1px 0 #fff,0 50px 90px -46px rgba(4,16,35,.75);
+  max-height:calc(100svh - 120px);overflow:auto;scrollbar-width:none}
+.az .zettel::-webkit-scrollbar{display:none}
+.zettel__blatt{position:relative;padding:36px 36px 28px;text-align:center}
+.zettel__blatt::before,.zettel__blatt::after{content:"";position:absolute;pointer-events:none}
+.zettel__blatt::before{inset:12px;border:1px solid rgba(4,16,35,.22)}
+.zettel__blatt::after{inset:16px;border:1px solid rgba(4,16,35,.08)}
+.zettel__haus{margin:0;font:400 10px/1.4 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--titel-h)}
+.zettel__titel{margin:10px 0 0;font:300 27px/1 var(--titel);letter-spacing:.42em;padding-left:.42em;text-transform:uppercase}
+.az .zettel__bilder{display:flex;align-items:center;justify-content:center;min-height:56px;margin:16px 0 20px}
+.az .zettel__bilder::before,.az .zettel__bilder::after{content:"";width:40px;height:1px;margin:0 16px;background:rgba(4,16,35,.3)}
+.az .zettel__bilder img{position:relative;width:52px;height:52px;margin:0 -6px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px #fff,0 8px 16px -8px rgba(4,16,35,.55)}
+.az .zettel dl{grid-template-columns:auto 1fr;gap:0;margin:0 0 4px;text-align:left}
+.az .zettel dt,.az .zettel dd{padding:6px 0;border-top:1px solid rgba(4,16,35,.09)}
+.az .zettel dt{padding-right:16px;font:400 9.5px/1.9 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--titel-h)}
+.az .zettel dd{margin:0;font:400 14.5px/1.45 var(--lauf);color:var(--tinte);text-align:right;overflow-wrap:anywhere}
+.az .zettel__summe{margin:0;padding:14px 0 18px;border-top:1px solid rgba(4,16,35,.2);color:var(--titel-h);font-size:13px}
+.az .zettel__summe b{color:var(--tinte);font:300 34px/1.1 var(--titel)}
+.az .zettel__summe small{color:var(--titel-h)}
+.az .zettel .knopf{width:100%;justify-content:space-between}
+.az .zettel .fe__hinweis{margin-top:12px;color:#6A778C}
+.az .zettel__danke h3{color:var(--tinte)}
+@media (max-width:980px){.az .zettel{max-height:none}}
+@media (max-width:560px){.bws,.bws--menue{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * clamp(20px,2.4vw,32px)) -26px;padding:4px clamp(20px,2.4vw,32px) 30px;scroll-padding-inline:clamp(20px,2.4vw,32px)}
+  .bws::-webkit-scrollbar{display:none}.bw{flex:none;width:44vw;scroll-snap-align:start}.bws--menue .bw .bw__k img{aspect-ratio:4/3}
+  .grs{grid-template-columns:1fr}.az .flasche{grid-template-columns:84px minmax(0,1fr)}.flasche__bild{width:84px}.zettel__blatt{padding:32px 28px 24px}}
+
+/* ---------- Ihr Abend, dritte Runde (20.10.2026): Gerichte als eigener Schritt mit Erklärung; der Zettel luftig gesetzt wie eine Einladung ---------- */
+.az__gerichte[hidden]{display:none}
+.az__lead{clear:both;max-width:58ch;margin:-6px 0 4px;font:400 15px/1.55 var(--lauf);color:#3A4A62}
+.az__gerichte .az__alacarte{margin-top:6px}
+.az__gerichte .ab-land:first-child{border-top:0;margin-top:0}
+.az .zettel dl{display:none}
+.az .zettel__titel{font-size:26px}
+.az .zettel__bilder{margin:16px 0 18px}
+.zb{display:grid;justify-items:center;gap:0;text-align:center;padding:4px 6px 0}
+.zb__gross{margin:0;font:300 25px/1.2 var(--titel);letter-spacing:.01em;color:var(--tinte)}
+.zb__zeile{margin:8px 0 0;font:400 14px/1.45 var(--lauf);color:#3A4A62}
+.zb__zeile+.zb__zeile{margin-top:2px}
+.zb__trenn{display:block;width:44px;height:1px;margin:20px 0 6px;background:rgba(4,16,35,.28)}
+.zb__g{display:grid;gap:5px;max-width:30ch;padding:14px 0 0}
+.zb__g small{font:400 9.5px/1.4 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--titel-h)}
+.zb__g b{font:300 17.5px/1.35 var(--titel);font-weight:300;color:var(--tinte);text-wrap:balance}
+.zb__g--leise b{color:#7A879B;font-size:15.5px}
+.az .zettel__summe{margin:22px 0 0;padding:18px 0 20px;text-align:center}
+.az .zettel__summe b{display:block;margin:6px 0 4px}
+
+/* Vom selben Weingut ohne echtes Flaschenfoto: keine gezeichnete Flasche mehr, der Jahrgang gross gesetzt (Robert 20.10.2026: «Da stimmt was mit den Weinflaschenbildern nicht.») */
+.ww__mb--jahr{flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.ww__mb--jahr em{font:200 clamp(2.2rem,3vw,2.8rem)/1 var(--titel);font-style:normal;letter-spacing:.04em;color:var(--tinte)}
+.ww__mb--jahr i{font:400 9.5px/1 var(--mono);font-style:normal;letter-spacing:.18em;text-transform:uppercase;color:var(--himmel-t)}
+
+/* Zettel «Ihr Abend»: gleichmässige Abstände, Knopf nie direkt an der letzten Zeile (Robert 20.10.2026) */
+.az .zb__g{gap:6px;padding:18px 0 0}
+.az .zettel .knopf[data-abend-senden]{margin-top:28px}
+.az .zettel__summe:not([hidden])+.knopf[data-abend-senden]{margin-top:0}
+
+/* Gutschein: das Formular als Bestellblatt in derselben Handschrift wie der Zettel «Ihr Abend» (Robert 20.10.2026: «schöner darstellen») */
+#gestalten{padding-block:clamp(56px,6vw,88px)}
+.gs{align-items:start}
+.gs__form{position:relative;gap:20px;padding:clamp(34px,3.6vw,48px) clamp(28px,3.4vw,48px) clamp(30px,3vw,40px);border-radius:4px;background:linear-gradient(180deg,#FFFFFF,#F4F6F9 55%,#EDF1F5);box-shadow:inset 0 1px 0 #fff,0 50px 90px -46px rgba(4,16,35,.6)}
+.gs__form::before,.gs__form::after{content:"";position:absolute;pointer-events:none}
+.gs__form::before{inset:12px;border:1px solid rgba(4,16,35,.2)}
+.gs__form::after{inset:16px;border:1px solid rgba(4,16,35,.07)}
+.gs__kopf{display:grid;justify-items:center;text-align:center;gap:10px;margin-bottom:4px}
+.gs__haus{margin:0;font:400 10px/1.4 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--titel-h)}
+.gs__titel{margin:0;font:300 clamp(24px,2.2vw,30px)/1 var(--titel);letter-spacing:.38em;padding-left:.38em;text-transform:uppercase;color:var(--tinte)}
+.gs__strich{display:block;width:44px;height:1px;margin-top:8px;background:rgba(4,16,35,.28)}
+.gs__form .berater__z>.mono,.gs__form .feld>label{display:block;margin:0 0 10px;font:400 10px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--titel-h)}
+.gs__betrag{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.gs__betrag .chips{flex:0 1 auto}
+.gs__frei{margin:0;flex:1 1 110px;max-width:150px}
+.gs__frei input{min-height:40px;padding:8px 16px;border-radius:20px;font-size:13px;text-align:center}
+.gs__form .felder{row-gap:18px}
+.gs__form textarea{min-height:96px}
+.gs__knoepfe{margin-top:6px;justify-content:center}
+.gs__buehne{align-self:center}
+@media (max-width:900px){.gs__buehne{position:static;padding-top:0}}

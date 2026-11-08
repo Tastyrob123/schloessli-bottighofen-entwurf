@@ -1,0 +1,142 @@
+/* Wirtschaft am Schlössli · Potentialanalyse, erster Entwurf ohne Blender (19.10.2026).
+   Farben aus Seite und Fotos des Hauses: Nachtblau der Knöpfe, Stuhlblau der Terrasse, Kies, Seelicht. Schrift: Gilda Display (Titel, wie die Seite des Hauses). */
+@font-face { font-family: 'Gilda'; src: url(schrift/GildaDisplay.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Instrument'; src: url(schrift/InstrumentSans-normal-400_600.woff2) format('woff2'); font-weight: 400 600; font-display: swap; }
+:root {
+  --nacht: #1f3a4c; --nacht2: #16293a; --stuhl: #2f78ad; --see: #e6f1f5; --kies: #f1ece3; --papier: #fbfaf7;
+  --tinte: #1d2a33; --leise: #5b6b75; --linie: #d6dde1; --rot: #c41e24;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--papier); color: var(--tinte); font: 17px/1.6 'Instrument', system-ui, sans-serif; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--stuhl); }
+h1, h2 { font-family: 'Gilda', Georgia, serif; font-weight: 400; color: var(--nacht); letter-spacing: .005em; }
+
+/* Auftakt: Terrasse, darunter das Schild */
+.auftakt { position: relative; background: var(--nacht); }
+.auftakt .foto { width: 100%; height: 62vh; min-height: 340px; object-fit: cover; object-position: 50% 60%; }
+.schild { max-width: 860px; margin: -110px auto 0; position: relative; background: var(--papier); padding: 44px 48px 36px; text-align: center; border-radius: 18px 18px 0 0; }
+.zeichen { width: 76px; margin: 0 auto 14px; }
+.vor { margin: 0; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--stuhl); }
+.auftakt h1 { font-size: clamp(40px, 6.4vw, 76px); line-height: 1.05; margin: 8px 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+.ort { margin: 0; color: var(--stuhl); letter-spacing: .08em; }
+.satz { font-family: 'Gilda', serif; font-size: 22px; margin: 18px 0 10px; color: var(--nacht); }
+.zeile { margin: 0; font-size: 14px; color: var(--leise); border-top: 1px solid var(--linie); padding-top: 12px; }
+
+main { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+/* Gruss mit Zahlen */
+.gruss { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; padding: 56px 0 40px; align-items: start; }
+.brief p:first-child { font-family: 'Gilda', serif; font-size: 24px; color: var(--nacht); line-height: 1.35; }
+.zahlen { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.zahlen div { background: var(--see); border-radius: 14px; padding: 16px 18px; }
+.zahlen b { display: block; font-family: 'Gilda', serif; font-weight: 400; font-size: 40px; line-height: 1; color: var(--nacht); }
+.zahlen span { display: block; font-weight: 600; font-size: 15px; margin-top: 6px; }
+.zahlen small { display: block; color: var(--leise); font-size: 12.5px; line-height: 1.35; margin-top: 4px; }
+
+/* Register: Tafel wie am Steg */
+.tafel { background: var(--nacht); color: #fff; border-radius: 18px; padding: 36px 36px 28px; margin-bottom: 40px; }
+.tafel h2 { color: #fff; margin: 0; font-size: 34px; }
+.unter { margin: 4px 0 18px; color: var(--leise); }
+.tafel .unter { color: #a9bccb; }
+.register { display: grid; }
+.register .zeile { display: grid; grid-template-columns: 52px 64px 1fr 170px; gap: 16px; align-items: center; padding: 9px 0; border-top: 1px solid rgba(255,255,255,.14); color: #fff; text-decoration: none; }
+.register .zeile:hover .ziel { text-decoration: underline; }
+.register .nr { font-family: 'Gilda', serif; font-size: 24px; color: #8cc3e6; }
+.register img { width: 64px; height: 44px; object-fit: cover; border-radius: 6px; }
+.register .ziel { font-size: 16.5px; line-height: 1.35; }
+.register .steg { font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: #a9bccb; text-align: right; }
+.blaetter { margin: 18px 0 0; font-size: 15px; color: #a9bccb; }
+.blaetter a { color: #fff; }
+
+/* Ein Punkt */
+.punkt { border-top: 1px solid var(--linie); padding: 40px 0 44px; scroll-margin-top: 10px; }
+.punkt header { display: flex; gap: 22px; align-items: flex-start; margin-bottom: 22px; }
+.gross { font-family: 'Gilda', serif; font-size: 64px; line-height: .9; color: var(--stuhl); min-width: 82px; }
+.punkt .steg { margin: 4px 0 0; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--leise); }
+.punkt h2 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.2; margin: 4px 0 0; max-width: 30ch; }
+.spalten { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: start; }
+.text h3 { font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--stuhl); margin: 18px 0 2px; }
+.text h3:first-child { margin-top: 0; }
+.text p { margin: 0 0 6px; }
+.bedeutet { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 12px; }
+.bedeutet p { background: var(--nacht); color: #fff; border-radius: 12px; padding: 12px 14px; font-size: 15px; line-height: 1.45; margin: 0; }
+.bedeutet b { display: block; font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: #8cc3e6; margin-bottom: 3px; }
+.tun { background: var(--see); border-radius: 12px; padding: 12px 14px; font-size: 15.5px; }
+.tun b { color: var(--nacht); }
+details { margin-top: 12px; font-size: 13.5px; color: var(--leise); }
+details summary { cursor: pointer; color: var(--nacht); }
+details ul { padding-left: 18px; margin: 6px 0 0; }
+details a { word-break: break-all; }
+
+/* Belege: ganze Seite und Stelle nah */
+.belege { display: grid; gap: 22px; }
+.auf { margin: 0; background: var(--kies); border-radius: 14px; padding: 14px; }
+.auf .paar { display: grid; gap: 12px; align-items: start; }
+.auf.tel .paar { grid-template-columns: minmax(0, 200px) minmax(0, 1fr); }
+.auf.desk .paar { grid-template-columns: 1fr; }
+.auf.tel.solo .paar { grid-template-columns: minmax(0, 260px); }
+.auf a img { border-radius: 8px; border: 1px solid var(--linie); background: #fff; }
+.auf .nah img { box-shadow: 0 0 0 1px var(--linie); }
+.auf figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; margin-top: 10px; font-size: 13px; color: var(--leise); }
+.auf .hin { font-weight: 600; text-decoration: none; }
+.auf figcaption span { min-width: 0; overflow-wrap: anywhere; }
+.auf.frei img { border-radius: 8px; max-height: 560px; width: auto; margin: 0 auto; }
+.qt { margin: 0; background: #14232e; color: #d5e3ec; border-radius: 14px; padding: 14px 16px; font-size: 13px; }
+.qt figcaption { color: #8fa6b6; margin-bottom: 8px; font-size: 12.5px; }
+.qt figcaption a { color: #8cc3e6; }
+.qt ol { list-style: none; margin: 0; padding: 0; }
+.qt li { display: grid; grid-template-columns: 46px 1fr; gap: 10px; padding: 3px 6px; border-radius: 6px; }
+.qt li.hl { outline: 2.5px solid var(--rot); outline-offset: -1px; background: rgba(196, 30, 36, .12); }
+.qt .n { color: #6f8796; text-align: right; font: 12px/1.6 ui-monospace, Menlo, monospace; }
+.qt code { font: 12.5px/1.6 ui-monospace, Menlo, monospace; white-space: pre-wrap; word-break: break-word; }
+.nurlink a { font-weight: 600; }
+
+/* Blätter am Ende */
+.blatt { border-top: 1px solid var(--linie); padding: 44px 0; }
+.blatt h2 { font-size: 34px; margin: 0 0 6px; }
+.blatt.hell { background: var(--see); border-radius: 18px; padding: 40px 36px; border: 0; margin: 20px 0; }
+.blatt.dunkel { background: var(--nacht); color: #fff; border-radius: 18px; padding: 40px 36px; border: 0; margin: 20px 0; }
+.blatt.dunkel h2, .blatt.dunkel h3 { color: #fff; }
+.stimmt { list-style: none; padding: 0; margin: 18px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 14px; }
+.stimmt li { background: var(--kies); border-radius: 14px; overflow: hidden; }
+.stimmt img { width: 100%; height: 150px; object-fit: cover; }
+.stimmt div { padding: 12px 14px 14px; }
+.stimmt p { margin: 4px 0 0; font-size: 15px; }
+.liste { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 12px; }
+.liste li { background: var(--papier); border-radius: 12px; padding: 14px 16px; }
+#chancen .liste li { background: var(--kies); }
+.liste p { margin: 4px 0 0; font-size: 15px; }
+.liste .wo { font-size: 13px; color: var(--leise); word-break: break-word; }
+.q { font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+.heute { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr)); gap: 12px; margin-top: 16px; }
+.hz { background: rgba(255,255,255,.07); border-radius: 12px; padding: 14px 16px; }
+.hz b { color: #8cc3e6; font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; }
+.hz p { margin: 4px 0 6px; font-size: 15.5px; }
+.hz small { color: #a9bccb; font-size: 12.5px; line-height: 1.4; display: block; overflow-wrap: anywhere; }
+.hz, .liste li, .auf, .qt, .text { min-width: 0; }
+.beiuns { font-family: 'Gilda', serif; font-size: 22px; margin: 24px 0 8px; }
+.offen { margin: 6px 0 0; padding-left: 20px; color: #ffd2d2; }
+.offen li::marker { color: var(--rot); }
+
+.fuss { text-align: center; padding: 40px 20px 60px; color: var(--leise); font-size: 13.5px; }
+.fuss img { width: 48px; margin: 0 auto 10px; opacity: .8; }
+.fuss p { margin: 2px 0; }
+
+@media (max-width: 900px) {
+  .gruss, .spalten { grid-template-columns: 1fr; gap: 24px; }
+  .register .zeile { grid-template-columns: 40px 56px 1fr; }
+  .register .steg { display: none; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  main { padding: 0 16px; }
+  .schild { margin-top: -60px; padding: 28px 18px 22px; border-radius: 14px 14px 0 0; }
+  .tafel, .blatt.hell, .blatt.dunkel { padding: 26px 18px; border-radius: 14px; }
+  .gross { font-size: 46px; min-width: 56px; }
+  .bedeutet { grid-template-columns: 1fr; }
+  .auf.tel .paar { grid-template-columns: minmax(0, 130px) minmax(0, 1fr); }
+  .zahlen b { font-size: 32px; }
+  .liste, .heute { grid-template-columns: 1fr; }
+}

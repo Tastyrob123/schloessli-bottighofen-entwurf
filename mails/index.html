@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>Drei Mails · Wirtschaft am Schlössli</title>
+<link rel="icon" href="../assets/svg/zeichen.svg">
+<style>
+@font-face{font-family:'Open Sans';font-weight:300 700;font-display:swap;src:url('../assets/fonts/OpenSans-var.woff2') format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-display:swap;src:url('../assets/fonts/InstrumentSans-normal-400_600.woff2') format('woff2')}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#0b1d3d;color:#fbfcfe;font:400 17px/1.6 'Instrument Sans',system-ui,sans-serif;--rand:clamp(20px,4.6vw,76px)}
+header.kopf{padding:clamp(56px,8vw,120px) var(--rand) clamp(30px,4vw,60px);text-align:center}
+header.kopf img{width:clamp(50px,5.9vw,92px);height:auto}
+h1{margin:clamp(14px,1.6vw,24px) 0 0;font:400 clamp(1.9rem,4.6vw,4.4rem)/1.12 'Open Sans',Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em}h1 em{font-style:normal;color:#a2b6cf}
+header.kopf p{max-width:60ch;margin:clamp(18px,2.1vw,32px) auto 0;color:rgba(243,246,249,.86)}
+main{padding:0 0 clamp(60px,8vw,120px)}
+.band{display:flex;gap:clamp(20px,2.4vw,40px);align-items:flex-start;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--rand);padding:4px var(--rand) 34px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.band::-webkit-scrollbar{display:none}
+.band:focus-visible{outline:2px solid #a2b6cf;outline-offset:-2px}
+.mb{flex:0 0 clamp(300px,34vw,520px);scroll-snap-align:start}
+.mb:last-child{margin-inline-end:var(--rand)}
+.mb-ueber{display:flex;gap:16px;align-items:flex-start;margin:0 4px 18px}
+.mb-nr{font:400 2.3rem/.9 'Open Sans',Arial,sans-serif;color:#a2b6cf}
+.mb-ueber__t{display:flex;flex-direction:column;gap:5px;min-width:0}
+.mb-ueber__t b{font:400 1.2rem/1.2 'Open Sans',Arial,sans-serif}
+.mb-ueber__t small{font-size:.86rem;line-height:1.4;color:rgba(243,246,249,.74)}
+.mb-ueber__t small span{display:inline-block;min-width:5.4em;font:400 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:#a2b6cf}
+.mb-blatt{position:relative;height:640px;border-radius:20px;overflow:hidden;background:#e7ecf3;box-shadow:0 0 0 1px rgba(162,182,207,.3),0 40px 50px -30px rgba(0,0,0,.9);-webkit-mask-image:linear-gradient(#000000 68%,transparent);mask-image:linear-gradient(#000000 68%,transparent)}
+.mb.auf .mb-blatt{-webkit-mask-image:none;mask-image:none}
+.mb-in{position:relative}.mb-in table{max-width:100%}
+.mb-ganz{position:relative;margin:-30px 0 0;text-align:center}
+.mb.auf .mb-ganz{margin-top:22px}
+.mb-kn{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 22px;border:0;border-radius:999px;cursor:pointer;font:400 11.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:#fbfcfe;
+  background:linear-gradient(180deg,#1d4f9e,#113d88 60%,#081631);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 1px rgba(162,182,207,.38),0 14px 22px -12px rgba(0,0,0,.8)}
+.mb-kn i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;color:#041023;background:linear-gradient(180deg,#f3f6f9,#d0dae7 55%,#a2b6cf);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+.mb-kn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mb-kn .z,.mb.auf .mb-kn .a{display:none}.mb.auf .mb-kn .z{display:inline}.mb.auf .mb-kn svg{transform:rotate(180deg)}
+.mb-kn:focus-visible{outline:2px solid #d0dae7;outline-offset:3px}
+.pfeile{display:flex;justify-content:center;gap:14px;margin-top:4px}
+.pf{width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:#041023;background:linear-gradient(180deg,#f3f6f9,#d0dae7 55%,#a2b6cf);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 12px 20px -10px rgba(0,0,0,.7)}
+.pf svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pf:disabled{opacity:.35;cursor:default}
+footer{padding:26px var(--rand) 40px;text-align:center;font-size:.92rem;color:rgba(243,246,249,.6);border-top:1px solid rgba(162,182,207,.2)}
+footer a{color:#d0dae7}
+@media (max-width:760px){.mb{flex-basis:calc(100vw - 2 * var(--rand))}.pfeile{display:none}}
+@media (hover:none){.pfeile{display:none}}
+</style><script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body>
+<header class="kopf"><img src="img/zeichen.png?v=fd679801" alt="" width="92"><h1>Drei Mails,<br><em>im Ton Ihres Hauses.</em></h1>
+<p>Was ein Gast nach einer Anfrage von Ihnen bekommt, sieht aus wie die neue Seite. Drei Fälle als Idee. Namen, Daten und Beträge in den Mails sind Beispielwerte, Telefon, Adresse und Zeiten sind Ihre.</p></header>
+<main><div class="band" id="mband" tabindex="0" aria-label="Die drei Mails, zum Blättern"><article class="mb">
+  <header class="mb-ueber"><span class="mb-nr">01</span><span class="mb-ueber__t"><b>Ihre Reservation</b><small><span>Von</span> Wirtschaft am Schlössli · kontakt@schloessli-bottighofen.ch</small><small><span>Wann</span> Gleich nach der Reservationsanfrage</small><small><span>Betreff</span> Ihre Reservation ist bei uns</small></span></header>
+  <div class="mb-blatt"><div class="mb-in">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#e7ecf3"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#fbfcfe;border-radius:22px;overflow:hidden">
+  <tr><td align="center" style="background:#113d88;padding:34px 30px 30px">
+    <img src="img/zeichen.png?v=fd679801" width="58" alt="" style="display:block;border:0;width:58px;height:auto;margin:0 auto 14px">
+    <div style="font:400 15px/1.2 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.3em;color:#fbfcfe">SCHLÖSSLI</div>
+    <div style="margin-top:7px;font:400 10.5px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#a2b6cf">Wirtschaft am Schlössli · Bottighofen</div>
+    <h1 style="margin:28px 0 0;font:400 clamp(26px,7.4vw,34px)/1.18 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fbfcfe">Ihr Tisch<br><span style="color:#a2b6cf">am Hafen.</span></h1>
+  </td></tr>
+  <tr><td style="padding:34px clamp(22px,6vw,40px) 8px"><p style="margin:0 0 14px;font:400 20px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#041023">Liebe Frau Keller</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Vielen Dank für Ihre Anfrage. Wir schauen in unser Buch und bestätigen Ihnen den Tisch persönlich.</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Die Flasche, die Sie ausgesucht haben, legt Jonas Volpert für Sie bereit. Die ganze Karte finden Sie schon jetzt auf unserer Seite.</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Geht etwas schneller am Telefon, erreichen Sie uns unter +41 71 688 90 92.</p></td></tr>
+  <tr><td style="padding:6px 28px 6px"><img src="img/platanen.jpg?v=4578ba27" width="544" alt="Gedeckte Tische unter den Platanen der Terrasse, dahinter der Hafen" style="display:block;border:0;width:100%;height:auto;border-radius:16px"></td></tr>
+  <tr><td style="padding:10px 28px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#113d88;border-radius:16px">
+    <tr><td style="padding:22px 26px 12px"><div style="font:400 10.5px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#a2b6cf;padding-bottom:12px">Ihre Anfrage · Beispielwerte</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Tag</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">Samstag, 6. Juni 2026</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Uhrzeit</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">19:00 Uhr</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Personen</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">2</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Platz</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">Terrasse</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Flasche</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">aus der Weinkarte bereitgelegt</td></tr></table></td></tr></table></td></tr>
+  <tr><td align="center" style="padding:26px 40px 8px"><a href="../karte.html" style="display:inline-block;padding:16px 30px;border-radius:999px;background:#113d88;font:400 12px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fbfcfe;text-decoration:none">Die Karte ansehen &nbsp;↗</a></td></tr>
+  <tr><td style="padding:14px 40px 30px"><p style="margin:0;font:400 15px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#3a4c69;text-align:center">Donnerstag - Montag, 11:30 Uhr - 23:00 Uhr. Dienstag &amp; Mittwoch Ruhetag.</p>
+    <img src="img/team.jpg?v=78e0c834" width="520" alt="Das Team der Wirtschaft am Schlössli" style="display:block;border:0;width:100%;max-width:520px;height:auto;margin:26px auto 0;border-radius:16px">
+    <p style="margin:16px 0 0;font:400 17px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#041023;text-align:center">Herzlich, Monika Huber, Jonas Volpert und das Team</p></td></tr>
+  <tr><td align="center" style="background:#0b1d3d;padding:26px 30px"><div style="font:400 13px/1.4 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.24em;color:#fbfcfe">WIRTSCHAFT AM SCHLÖSSLI</div>
+    <div style="margin-top:8px;font:400 13px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#c5d2e1">Seestrasse 50 · 8598 Bottighofen<br><span style="color:#c5d2e1">+41 71 688 90 92</span> · <span style="color:#c5d2e1">kontakt@schloessli-bottighofen.ch</span></div></td></tr>
+</table>
+</td></tr></table>
+</div></div>
+  <p class="mb-ganz"><button type="button" class="mb-kn" aria-expanded="false"><span class="a">Ganze Mail</span><span class="z">Weniger zeigen</span><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></i></button></p>
+</article><article class="mb">
+  <header class="mb-ueber"><span class="mb-nr">02</span><span class="mb-ueber__t"><b>Ihr Bankett</b><small><span>Von</span> Wirtschaft am Schlössli · kontakt@schloessli-bottighofen.ch</small><small><span>Wann</span> Gleich nach der Bankettanfrage</small><small><span>Betreff</span> Ihre Bankettanfrage ist bei uns</small></span></header>
+  <div class="mb-blatt"><div class="mb-in">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#e7ecf3"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#fbfcfe;border-radius:22px;overflow:hidden">
+  <tr><td align="center" style="background:#113d88;padding:34px 30px 30px">
+    <img src="img/zeichen.png?v=fd679801" width="58" alt="" style="display:block;border:0;width:58px;height:auto;margin:0 auto 14px">
+    <div style="font:400 15px/1.2 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.3em;color:#fbfcfe">SCHLÖSSLI</div>
+    <div style="margin-top:7px;font:400 10.5px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#a2b6cf">Wirtschaft am Schlössli · Bottighofen</div>
+    <h1 style="margin:28px 0 0;font:400 clamp(26px,7.4vw,34px)/1.18 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fbfcfe">Ihr Fest<br><span style="color:#a2b6cf">am See.</span></h1>
+  </td></tr>
+  <tr><td style="padding:34px clamp(22px,6vw,40px) 8px"><p style="margin:0 0 14px;font:400 20px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#041023">Lieber Herr Brunner</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Vielen Dank für Ihre Anfrage. Wir melden uns persönlich, besprechen mit Ihnen das Menü und richten uns nach Ihnen und Ihren Wünschen.</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Wir haben auf zwei Etagen Platz für jeweils bis zu 26 Personen, ausreichend Parkplätze und eine nahe Anbindung zum Zugverkehr mit dem Bahnhof Bottighofen.</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Gibt es Allergien oder ein Gericht, das auf keinen Fall fehlen darf, schreiben Sie es uns gern noch dazu.</p></td></tr>
+  <tr><td style="padding:6px 28px 6px"><img src="img/lounge.jpg?v=9148befa" width="544" alt="Die Lounge am Ufer, dahinter der See und die Alpen" style="display:block;border:0;width:100%;height:auto;border-radius:16px"></td></tr>
+  <tr><td style="padding:10px 28px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#113d88;border-radius:16px">
+    <tr><td style="padding:22px 26px 12px"><div style="font:400 10.5px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#a2b6cf;padding-bottom:12px">Ihre Anfrage · Beispielwerte</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Datum</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">Freitag, 18. September 2026</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Personen</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">24</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Etage</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">eine Etage für Sie</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Menü</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">Herbst, CHF 175 je Person</td></tr></table></td></tr></table></td></tr>
+  <tr><td align="center" style="padding:26px 40px 8px"><a href="../feiern.html" style="display:inline-block;padding:16px 30px;border-radius:999px;background:#113d88;font:400 12px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fbfcfe;text-decoration:none">Die Bankettmenüs ansehen &nbsp;↗</a></td></tr>
+  <tr><td style="padding:14px 40px 30px"><p style="margin:0;font:400 15px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#3a4c69;text-align:center">Für Fragen erreichen Sie uns unter +41 71 688 90 92.</p>
+    <img src="img/team.jpg?v=78e0c834" width="520" alt="Das Team der Wirtschaft am Schlössli" style="display:block;border:0;width:100%;max-width:520px;height:auto;margin:26px auto 0;border-radius:16px">
+    <p style="margin:16px 0 0;font:400 17px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#041023;text-align:center">Herzlich, Monika Huber, Jonas Volpert und das Team</p></td></tr>
+  <tr><td align="center" style="background:#0b1d3d;padding:26px 30px"><div style="font:400 13px/1.4 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.24em;color:#fbfcfe">WIRTSCHAFT AM SCHLÖSSLI</div>
+    <div style="margin-top:8px;font:400 13px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#c5d2e1">Seestrasse 50 · 8598 Bottighofen<br><span style="color:#c5d2e1">+41 71 688 90 92</span> · <span style="color:#c5d2e1">kontakt@schloessli-bottighofen.ch</span></div></td></tr>
+</table>
+</td></tr></table>
+</div></div>
+  <p class="mb-ganz"><button type="button" class="mb-kn" aria-expanded="false"><span class="a">Ganze Mail</span><span class="z">Weniger zeigen</span><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></i></button></p>
+</article><article class="mb">
+  <header class="mb-ueber"><span class="mb-nr">03</span><span class="mb-ueber__t"><b>Ihr Gutschein</b><small><span>Von</span> Wirtschaft am Schlössli · kontakt@schloessli-bottighofen.ch</small><small><span>Wann</span> Nach der Bestellung des Gutscheins</small><small><span>Betreff</span> Ihr Gutschein für das Schlössli</small></span></header>
+  <div class="mb-blatt"><div class="mb-in">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#e7ecf3"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#fbfcfe;border-radius:22px;overflow:hidden">
+  <tr><td align="center" style="background:#113d88;padding:34px 30px 30px">
+    <img src="img/zeichen.png?v=fd679801" width="58" alt="" style="display:block;border:0;width:58px;height:auto;margin:0 auto 14px">
+    <div style="font:400 15px/1.2 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.3em;color:#fbfcfe">SCHLÖSSLI</div>
+    <div style="margin-top:7px;font:400 10.5px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#a2b6cf">Wirtschaft am Schlössli · Bottighofen</div>
+    <h1 style="margin:28px 0 0;font:400 clamp(26px,7.4vw,34px)/1.18 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fbfcfe">Ihr Gutschein<br><span style="color:#a2b6cf">ist da.</span></h1>
+  </td></tr>
+  <tr><td style="padding:34px clamp(22px,6vw,40px) 8px"><p style="margin:0 0 14px;font:400 20px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#041023">Liebe Frau Keller</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Vielen Dank. Ihr Gutschein hängt als PDF an dieser Mail, mit Ihrem Satz darauf. Drucken Sie ihn aus oder schicken Sie ihn weiter.</p><p style="margin:0 0 14px;font:400 16px/1.62 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#22324d">Eingelöst wird er bei uns am Hafen.</p></td></tr>
+  <tr><td style="padding:6px 28px 6px"><img src="img/glas.jpg?v=a436520e" width="544" alt="Ein Glas Weisswein vor dem See" style="display:block;border:0;width:100%;height:auto;border-radius:16px"></td></tr>
+  <tr><td style="padding:10px 28px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#113d88;border-radius:16px">
+    <tr><td style="padding:22px 26px 12px"><div style="font:400 10.5px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#a2b6cf;padding-bottom:12px">Ihr Gutschein · Beispielwerte</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Für</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">Anna und Luca</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Von</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">Mama</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Betrag</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">CHF 150</td></tr><tr><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d0dae7;width:38%">Satz</td><td style="padding:11px 0;border-top:1px solid #2a4f8f;font:400 16px/1.35 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fbfcfe">«Ein Abend am See»</td></tr></table></td></tr></table></td></tr>
+  <tr><td align="center" style="padding:26px 40px 8px"><a href="../index.html" style="display:inline-block;padding:16px 30px;border-radius:999px;background:#113d88;font:400 12px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fbfcfe;text-decoration:none">Einen Tisch reservieren &nbsp;↗</a></td></tr>
+  <tr><td style="padding:14px 40px 30px"><p style="margin:0;font:400 15px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#3a4c69;text-align:center">Fragen dazu beantworten wir gern unter +41 71 688 90 92.</p>
+    <img src="img/team.jpg?v=78e0c834" width="520" alt="Das Team der Wirtschaft am Schlössli" style="display:block;border:0;width:100%;max-width:520px;height:auto;margin:26px auto 0;border-radius:16px">
+    <p style="margin:16px 0 0;font:400 17px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#041023;text-align:center">Herzlich, Monika Huber, Jonas Volpert und das Team</p></td></tr>
+  <tr><td align="center" style="background:#0b1d3d;padding:26px 30px"><div style="font:400 13px/1.4 Arial,'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.24em;color:#fbfcfe">WIRTSCHAFT AM SCHLÖSSLI</div>
+    <div style="margin-top:8px;font:400 13px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#c5d2e1">Seestrasse 50 · 8598 Bottighofen<br><span style="color:#c5d2e1">+41 71 688 90 92</span> · <span style="color:#c5d2e1">kontakt@schloessli-bottighofen.ch</span></div></td></tr>
+</table>
+</td></tr></table>
+</div></div>
+  <p class="mb-ganz"><button type="button" class="mb-kn" aria-expanded="false"><span class="a">Ganze Mail</span><span class="z">Weniger zeigen</span><i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></i></button></p>
+</article></div>
+<div class="pfeile"><button type="button" class="pf" data-r="-1" aria-label="Vorige Mail"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button><button type="button" class="pf" data-r="1" aria-label="Nächste Mail"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button></div></main>
+<footer>Entwurf von Robert Reff, Tasty Studios. Stand 19.10.2026. <a href="../werkbank/index.html#papier">Zurück zu «Alles auf einen Blick»</a></footer>
+<script>
+(function () {
+  /* die Mail steht in der Seite; zu sieht man den oberen Teil, auf die ganze Mail, sofort */
+  var ms = [].slice.call(document.querySelectorAll('.mb'));
+  function lage(m) { var bl = m.querySelector('.mb-blatt'), i = bl.querySelector('.mb-in'); bl.style.height = (m.classList.contains('auf') ? i.scrollHeight : Math.min(640, i.scrollHeight)) + 'px'; }
+  ms.forEach(function (m) {
+    var k = m.querySelector('.mb-kn');
+    [].forEach.call(m.querySelectorAll('img'), function (im) { if (!im.complete) im.addEventListener('load', function () { lage(m); }, { once: true }); });
+    lage(m);
+    k.addEventListener('click', function () { var auf = m.classList.toggle('auf'); k.setAttribute('aria-expanded', auf); lage(m); if (!auf) m.scrollIntoView({ block: 'nearest' }); });
+  });
+  var rt = 0; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { ms.forEach(lage); kl(); }, 120); });
+  /* Pfeile am Laptop blättern das Band um eine Mail */
+  var b = document.getElementById('mband'), p = document.querySelectorAll('.pf');
+  function schritt() { return ms[0].getBoundingClientRect().width + parseFloat(getComputedStyle(b).columnGap || 0); }
+  function kl() { p[0].disabled = b.scrollLeft < 4; p[1].disabled = b.scrollLeft > b.scrollWidth - b.clientWidth - 4; }
+  [].forEach.call(p, function (x) { x.addEventListener('click', function () { b.scrollBy({ left: +x.dataset.r * schritt(), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }); });
+  b.addEventListener('scroll', kl, { passive: true }); kl();
+})();
+</script>
+</body></html>
