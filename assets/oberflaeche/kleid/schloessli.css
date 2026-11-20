@@ -98,3 +98,6 @@
 .wo-re .wo-zahl{display:block;height:auto;padding:7px;line-height:1;text-align:center;text-box:trim-both cap alphabetic}
 .ansicht>button,.wahl3>button{text-box:trim-both cap alphabetic}
 @supports not (text-box:trim-both cap alphabetic){.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{position:relative;top:.05em}}
+
+/* Prüfung 20.11.2026: Hausname im Kopf berührt bei 1280 px die Mitte */
+@media(max-width:1366px){.wo-marke-w small{letter-spacing:.14em}}
