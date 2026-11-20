@@ -101,3 +101,6 @@
 
 /* Prüfung 20.11.2026: Hausname im Kopf berührt bei 1280 px die Mitte */
 @media(max-width:1366px){.wo-marke-w small{letter-spacing:.14em}}
+
+/* Prüfung 20.11.2026: Werkzeugname im Kopf am Handy passt neben «Bereiche» */
+@media(max-width:600px){.wo-marke-w b{font-size:15px}}
