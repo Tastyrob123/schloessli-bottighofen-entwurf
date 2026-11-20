@@ -1,4 +1,4 @@
-/* Die Stube (La Maison) · Wirtschaft am Schlössli (19.10.2026). Quelle für bau.py, nicht die Ausgabe.
+/* Die Stube (Kontrollpanel) · Wirtschaft am Schlössli (19.10.2026). Quelle für bau.py, nicht die Ausgabe.
    Gruss, Datum, Empfang «Am Horizont» (Vorschau statt Foto, M23), Auftritte, Leiste und der Stand je Werkzeug.
    Stand nur aus den Werkzeugen selbst (nichts geschätzt): Wege als Daten in der Seite (#maison-wege); ein Weg darf eine Liste sein
    (antwortet der erste nicht, gilt der nächste). Werte gehen nur als Zahl in die Seite. Antwortet ein Werkzeug nicht: Satz ohne Zahl. */
@@ -175,7 +175,7 @@
     setze('reception', t.length ? kurz : 'Nichts offen · ' + u.fragen_gesamt + (u.fragen_gesamt === 1 ? ' Frage' : ' Fragen') + ' bisher');
   }).catch(function () { setze('reception-kurz', 'Chat auf der Website'); setze('reception', '&nbsp;'); });
 
-  /* Das Hausbuch: stand:{fotos, dateien, ki, ue} */
+  /* Markenbuch: stand:{fotos, dateien, ki, ue} */
   hole('livre').then(function (d) {
     var s = d.stand || {}, f = ganz(s.fotos), da = ganz(s.dateien), ki = ganz(s.ki), ue = ganz(s.ue);
     if (!f && !da) throw new Error('leer');
@@ -184,7 +184,7 @@
     setze('livre', f + ' Fotos in fertigen Grössen' + (dazu.length ? ', davon ' + dazu.join(' und ') + ', alle gekennzeichnet' : '') + '. ' + da + ' Dateien für Agenturen und Druckereien.');
   }).catch(function () { setze('livre-kurz', 'Fotos, Dateien, Markenprüfung'); setze('livre', '&nbsp;'); });
 
-  /* Das Besucherbuch: {summe:{heute, besuche, seiten, laender, buchung}, je_tag:[…], tage, beispiel, leer} */
+  /* Besucher: {summe:{heute, besuche, seiten, laender, buchung}, je_tag:[…], tage, beispiel, leer} */
   hole('registre').then(function (m) {
     var u = m.summe || {}, bs = ganz(u.besuche), jt = Array.isArray(m.je_tag) && m.je_tag.length ? m.je_tag[m.je_tag.length - 1] : null;
     var heute = jt && isFinite(Number(jt.besuche)) ? Number(jt.besuche) : (isFinite(Number(u.heute)) ? Number(u.heute) : null);

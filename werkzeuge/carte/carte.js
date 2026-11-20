@@ -1,4 +1,4 @@
-/* Die Tafel (La Carte) · Wirtschaft am Schlössli Bottighofen — Bedienung (19.10.2026, Kopie aus der Tafel des Berghotel Gasterntal, dort aus dem
+/* Die Tafel (Karten & Preislisten) · Wirtschaft am Schlössli Bottighofen — Bedienung (19.10.2026, Kopie aus der Tafel des Berghotel Gasterntal, dort aus dem
    Ruedihus, Doldenhorn, Carlton-Europe und mc.js des Grand Beau-Rivage). Die Karte ist ein Baum aus dem Satz (satz/satz.js, gesetzt von satz_bau.py
    aus den Daten von Station 10); Einträge, Rubriken und Texte erkennt SATZ.art(), die Felder eines Eintrags SATZ.felder(). Zwei Wege «Einfach»
    (Liste und Fenster) und «Fortgeschritten» (direkt in der Karte schreiben), jede Änderung zuerst als Entwurf, Veröffentlichen druckt PDF und prüft
@@ -26,10 +26,10 @@ const FOTO = { speisekarte: ['tortelloni', 900], mittag: ['suppe', 1200], laeste
 const fotoKlein = z => `/_werkzeuge/carte/bilder/z/${(FOTO[z] || FOTO.speisekarte)[0]}.webp`;   // 112 px (einlesen.py vorschaubilder)
 const fotoGross = z => `/assets/img/${(FOTO[z] || FOTO.speisekarte)[0]}-${(FOTO[z] || FOTO.speisekarte)[1]}.webp`;
 const ROLLEN = { kueche: 'Küche', service: 'Service', direktion: 'Direktion' };
-/* Namen der Landhaus-Welt (_Werkzeuge/stamm/welt.js, Welt «land» aus marke.json): La Carte heisst hier «Die Tafel», La Maison «Die Stube», Le Bureau «Der Schreibtisch» */
-const NAME = (window.WO && WO.name('karten')) || 'Das Kartenpult', STUBE = (window.WO && WO.name('zentrale')) || 'Das Hafenbüro', SCHREIBTISCH = (window.WO && WO.name('website')) || 'Das Schaufenster';   // Namen aus kleid/schloessli.js (WO_HAUS.namen, Robert 19.10.2026)
+/* Namen der Landhaus-Welt (_Werkzeuge/stamm/welt.js, Welt «land» aus marke.json): Karten & Preislisten heisst hier «Karten & Preislisten», Kontrollpanel «Kontrollpanel», Website bearbeiten «Website bearbeiten» */
+const NAME = (window.WO && WO.name('karten')) || 'Karten & Preislisten', STUBE = (window.WO && WO.name('zentrale')) || 'Kontrollpanel', SCHREIBTISCH = (window.WO && WO.name('website')) || 'Website bearbeiten';   // Namen aus kleid/schloessli.js (WO_HAUS.namen, Robert 19.10.2026)
 /* Die Website und die anderen Werkzeuge des Hauses: lokal auf dem Server der Website (8982), online auf derselben Adresse wie die Tafel */
-const HAUS = location.port ? location.protocol + '//' + location.hostname + ':8982/' : '/';
+const HAUS = location.port ? 'https://schloessli.tastystudios.ch/' : '/';   // lokal über den Kette-Server (8982 ist seit 08.11.2026 nicht mehr der Server des Hauses)
 const API = '/_werkzeuge/carte/api/';   // lokal (serve.py) und online (vercel.json → api/carte.py) derselbe Weg
 /* Wo die Karte auf der Website steht (Seite und Abschnitt) */
 const SEITE_DER_KARTE = { speisekarte: 'karte.html', mittag: 'karte.html', laestermeile: 'karte.html', weinkarte: 'weinkarte.html', bankett: 'feiern.html', 'vier-haende': 'anlaesse.html' };
@@ -45,7 +45,9 @@ const PDF_DER_WEBSITE = {};
 /* Wege der Oberfläche: lokal liegen Die Stube, Der Schreibtisch und die anderen Werkzeuge auf dem Server des Projekts (8987, launch.json «stube-schloessli»);
    der Server der Website (8982) liefert nur website/ (Demo-Check 21.10.2026: dort 404) */
 const WERKZEUGE = location.port ? location.protocol + '//' + location.hostname + ':8987/' : '/';
-if (window.WO && WO.haus && WO.haus.wege && location.port) Object.keys(WO.haus.wege).forEach(k => { if (k !== 'karten') WO.haus.wege[k] = WERKZEUGE + WO.haus.wege[k].replace(/^\//, ''); });
+/* Robert 10.11.2026 (Knöpfe): jedes Werkzeug läuft lokal auf eigenem Port; über 8987 öffnete «Website bearbeiten» eine leere Seite */
+const PORTE_10_11 = { zentrale: 8987, website: 9035, gaeste: 9047, marke: 9049, besuche: 8988, druck: 9053 };
+if (window.WO && WO.haus && WO.haus.wege && location.port) Object.keys(WO.haus.wege).forEach(k => { if (k !== 'karten') WO.haus.wege[k] = (PORTE_10_11[k] ? location.protocol + '//' + location.hostname + ':' + PORTE_10_11[k] + '/' : WERKZEUGE) + WO.haus.wege[k].replace(/^\//, ''); });
 
 let NEU_KARTE = false, ANSICHT = 'karte';
 let LISTE = [], Z = '', STAND = null, D = null, BASIS = '', MODUS = 'einfach', OFFEN = false, UNDO = [], BLITZ = null, ERWARTET = null, SCHRIFT = null;
@@ -199,11 +201,17 @@ function oben() {
 let STATUS_ROT = false, SATZ_ZEICHEN = { ZEICHEN: '', WORTMARKE: '' };
 /* Zeichen des Hauses (aus dem Band der Karte), eingefärbt über currentColor */
 function zeichenHaus(kl) { return (SATZ_ZEICHEN.ZEICHEN || '').replace('<svg ', `<svg class="${kl}" `); }
+/* Station 12, 8.11.2026: «Zur Werkbank» im Rand tut dasselbe wie der schwebende Knopf (Tab zu, Werkbank an der alten Stelle); ohne Knopf (nicht aus der Werkbank geöffnet) bleibt der Link */
+document.addEventListener('click', ev => {
+  const a = ev.target.closest && ev.target.closest('a[data-zw]'); if (!a) return;
+  const w = document.getElementById('zur-werkbank'), k = w && (w.shadowRoot || w).querySelector('a'); if (!k) return;
+  ev.preventDefault(); k.click();
+});
 function rand() {
   const karten = LISTE.map(k => `<li><button class="wo-rk kw" type="button" data-z="${k.ziel}" aria-current="${k.ziel === Z}"><span class="wo-rk__b" style="background-image:url('${fotoKlein(k.ziel)}')"></span><span class="wo-rk__t"><b>${h(k.name)}</b><small>${h(k.gruppe)} · ${k.seiten} ${k.seiten === 1 ? 'Seite' : 'Seiten'}</small></span>${k.entwurf || (k.ziel === Z && D && geaendert()) ? '<em class="wo-marke">Entwurf</em>' : ''}</button></li>`).join('');
   const wege = [
     { text: 'Frühere Fassungen', attr: 'data-akt="verlauf"' }, { text: 'Veröffentlichte PDF', href: `${API}pdf?z=${Z}&q=live`, attr: 'target="_blank" rel="noopener"' },
-    { text: 'Unterlagen ansehen', href: `${HAUS}unterlagen/`, attr: 'target="_blank" rel="noopener"' }, { text: 'Zur Werkbank', href: `${HAUS}werkbank/`, attr: 'target="_blank" rel="noopener"' },
+    { text: 'Unterlagen ansehen', href: `${HAUS}unterlagen/`, attr: 'target="_blank" rel="noopener"' }, { text: 'Zur Werkbank', href: `${HAUS}werkbank/`, attr: 'target="_blank" rel="noopener" data-zw' },
     { text: `${ORT_DER_KARTE[SEITE_DER_KARTE[Z]] || 'Karte'} auf der Website`, href: webAdresse(Z), attr: 'target="_blank" rel="noopener"' },
     { text: SCHREIBTISCH, href: (WO.haus.wege || {}).website || `${HAUS}studio/`, attr: 'target="_blank" rel="noopener"' },
     { text: 'Anschluss an die Website', attr: 'data-akt="einst"' }, { text: 'Kurzer Rundgang', attr: 'data-akt="rundgang"' }];
@@ -406,7 +414,7 @@ function waehleAusVorschau(pfad) {   // aus der Karte: Liste links springt hin, 
   const r = markiere(np); if (!r) return;
   blitzRechts(np, linksMitte(r));
 }
-/* ---------------------------------------------------------------- Freie Anordnung und Gestalten (Fortgeschritten), 1:1 nach La Carte des Grand Beau-Rivage
+/* ---------------------------------------------------------------- Freie Anordnung und Gestalten (Fortgeschritten), 1:1 nach «Karten & Preislisten» des Grand Beau-Rivage
    (anordnen.js, 15./16.10.2026). Gewählt, gezogen und gezeigt wird in der Vorschau (blatt.js, ANR); hier liegen die Daten, der Verlauf für ⌘Z / ⌘⇧Z
    und die Seitenleiste «Gestalten» rechts (öffnet beim Wählen, × oder Esc schliesst, nie über der Karte).
    Wo die lage steht: Eintrag (Pfad «seiten.…») → n.lage, seine Linie («…:lin») → n.lage.lin; Bankett-Zeile → u.lage; Teile der Seite
@@ -466,7 +474,7 @@ function entf(id) {   // Entf: Einträge gehen von der Karte (wie «Ausblenden»
 }
 function abwaehlen() { WAHLID = null; WAHLINFO = null; GST_OFFEN = false; seitenleiste(); const f = $('#vf'); if (f && f.contentWindow) f.contentWindow.postMessage({ carte: 'abwaehlen' }, location.origin); }
 
-/* Seitenleiste «Gestalten» (GBR: «Schriftarten, Schriftgrösse und Textart ändern … so ein kleines Side-Menü»), Begriffe wie in L’Imprimerie */
+/* Seitenleiste «Gestalten» (GBR: «Schriftarten, Schriftgrösse und Textart ändern … so ein kleines Side-Menü»), Begriffe wie in «Drucksachen & Feed» */
 const SCHRIFTEN = [['titel', 'Open Sans'], ['instrument', 'Instrument Sans'], ['mono', 'DM Mono']];
 const TEXTART = [['normal', 'Normal'], ['kursiv', 'Kursiv'], ['versal', 'Versalien'], ['medium', 'Medium']];
 const AUSR = [['links', 'Links'], ['mitte', 'Mitte'], ['rechts', 'Rechts']];

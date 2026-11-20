@@ -1,7 +1,7 @@
-/* Anschluss der Formulare der Website an das Reservationsbuch (La Réception) · Wirtschaft am Schlössli, Bottighofen (19.10.2026, Master Werkzeug-Bau E12/E24).
+/* Anschluss der Formulare der Website an «Anfragen & Chat» · Wirtschaft am Schlössli, Bottighofen (19.10.2026, Master Werkzeug-Bau E12/E24).
    Die Website hat fünf Formulare: Reservation mit Wünschen (#fe-reservation, mit Allergien), Bankettanfrage (#fe-bankett), Gutschein (#fe-gutschein),
    Plätze für einen Anlass (#fe-plaetze) und «Ihr Abend» ([data-abend]). Bisher zeigten sie nur «Vielen Dank» (Designstudie, nichts ging weg).
-   Mit diesem Baustein geht jede Anfrage in den Eingang des Reservationsbuchs, mit allen Angaben und den Allergien als Kürzel; erst wenn das Reservationsbuch
+   Mit diesem Baustein geht jede Anfrage in den Eingang «Anfragen & Chat», mit allen Angaben und den Allergien als Kürzel; erst wenn «Anfragen & Chat»
    sie angenommen hat, zeigt das Fenster «Vielen Dank». Nie mailto, nie ein Mailprogramm.
    Eigenes Fenster braucht es nicht: die Fenster der Website bleiben, wie sie sind (haus.js, funktionen.js unverändert). Der Baustein fängt das
    Abschicken im Fang-Durchlauf am Dokument ab, bevor haus.js «gesendet» setzt, und setzt es selbst, wenn die Anfrage angekommen ist.
@@ -55,7 +55,7 @@
       personen: wert(f, 'personen'), platz: wert(f, 'platz'), allergene: kuerzel(f), name: wert(f, 'name'), kontakt: wert(f, 'kontakt'), zeilen: z };
   }
 
-  /* Feld, das Menschen nicht sehen: nur Maschinen füllen es aus (das Reservationsbuch nimmt solche Anfragen still an und legt nichts ab) */
+  /* Feld, das Menschen nicht sehen: nur Maschinen füllen es aus («Anfragen & Chat» nimmt solche Anfragen still an und legt nichts ab) */
   function falle(f) {
     if (f.querySelector('[name=website]')) return;
     var i = D.createElement('input'); i.type = 'text'; i.name = 'website'; i.tabIndex = -1; i.autocomplete = 'off'; i.setAttribute('aria-hidden', 'true');

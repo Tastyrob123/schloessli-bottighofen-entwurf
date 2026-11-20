@@ -1,6 +1,6 @@
-/* Das Hausbuch (Le Livre) · Wirtschaft am Schlössli, Bottighofen. Die Marke des Hauses zum Arbeiten (Nachbau von Le Livre des Grand Beau-Rivage, des Carlton-Europe,
+/* Markenbuch · Wirtschaft am Schlössli, Bottighofen. Die Marke des Hauses zum Arbeiten (Nachbau von «Markenbuch» des Grand Beau-Rivage, des Carlton-Europe,
    des Waldhotel Doldenhorn und des Landgasthof Ruedihus, dort nur gelesen): Bildarchiv mit fertigen Grössen, Dateien (Zeichen, Zeiger, Logo, Name, Tapete, Farben, Schriften), Markenprüfung, Markenbuch (buch.html).
-   Namen der Welt Landhaus (_Werkzeuge/stamm/welt.js): Das Hausbuch, Die Stube, Die Werkstatt.
+   Namen der Welt Landhaus (_Werkzeuge/stamm/welt.js): Markenbuch, Die Stube, Die Werkstatt.
    Daten: livre.json (gebaut von bau.py), Downloads und Prüfung über den Server-Teil (server.py lokal, online/livre_online.py). Gespeichert wird nichts,
    ausser «Ergebnis sichern» legt auf Wunsch eine Datei auf diesem Rechner ab. Fehlermelder, Ladezeichen und Startfehler laufen vorher in start.js. */
 'use strict';
@@ -20,7 +20,7 @@ const S_ = 'wirtschaft-am-schloessli';
 const ZEICHEN = `<img src="dateien/${S_}-zeiger-himmel.svg" alt="" width="24" height="40" decoding="async">`;
 const ZEICHEN_N = `<img src="dateien/${S_}-zeiger-nacht.svg" alt="" width="24" height="40" decoding="async">`;
 const MARKE = 'buch.html', DAT = 'dateien/', ORIG = 'original/';
-const MAISON = /\/_werkzeuge\//.test(location.pathname) ? '../maison/' : '/maison/';   // lokal _werkzeuge/maison/, online /maison/ (nach Adresse, nie fest; Notiz La Maison 17.10.2026)
+const MAISON = /\/_werkzeuge\//.test(location.pathname) ? '../maison/' : '/maison/';   // lokal _werkzeuge/maison/, online /maison/ (nach Adresse, nie fest; Notiz Kontrollpanel 17.10.2026)
 const WEBSITE = '/';
 const IMPRIMERIE = '../imprimerie/';      // immer relativ, nie nach Port (F18): lokal _werkzeuge/imprimerie/, online werkzeuge/imprimerie/
 const okey = k => k.replace(/\//g, '-');
@@ -42,7 +42,7 @@ de: {
   k_pruefung: 'Ein Entwurf als Bild oder PDF. {marke} sagt, was zum Haus passt und was nicht, Punkt für Punkt.',
   k_buch: 'Zeichen, Farben und ihre Herkunft im Haus, Schriften, Tapete, Bilder und Ton, nach denen alles gestaltet ist.',
   oeffnen: 'Öffnen', lesen: 'Lesen',
-  ue_kurz: 'nachgeschärft', z_haus: 'Fotos des Hauses', z_frei: 'frei lizenziert', z_ki: 'mit KI erzeugt', z_fremd: 'mit fremden Rechten', z_ue: 'nachgeschärft, mit Vorher', z_dateien: 'Dateien',
+  ue_kurz: 'nachgeschärft', z_haus: 'Fotos des Hauses', z_frei: 'frei lizenziert', z_ki: 'mit KI erzeugt', z_fremd: 'mit fremden Rechten', z_ue: 'nachgeschärft, mit Vorher', z_dateien: 'Dateien', z_zeichen: 'Logos und Zeichen',
   stand: '{0} Fotos · {1} Dateien',
   recht_t: 'Bildrechte', recht: 'Die Fotos gehören der Wirtschaft am Schlössli und den jeweiligen Fotografen. Frei lizenzierte Fotos nur mit dem genannten Namen und der Lizenz. Fotos mit fremden Rechten nur mit Erlaubnis der Rechteinhaber.',
   alles_zip: 'Alle Dateien (ZIP)',
@@ -193,12 +193,16 @@ function zeichne(still = false) {
 let IO = null, IO2 = null;
 const RUHIG = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 function auftritte(r, still) {
-  /* R17 (Robert 14./15.10.: «nicht von meiner Geschwindigkeit abhängig … nicht erst warten»): beim Ansichtswechsel federt nur, was im ersten Bild steht,
-     der Reihe nach, höchstens 22; alles darunter und alles, was beim Scrollen nachkommt, steht sofort. Nur transform, deckend ab dem ersten Bild. */
+  /* R17 (Robert 14./15.10.: «nicht von meiner Geschwindigkeit abhängig … nicht erst warten»): beim Ansichtswechsel federt, was im ersten Bild steht,
+     der Reihe nach, höchstens 22. Robert 09.11.2026 («diese Animationen, dieses luxuriöse, edle, überall … zum Hochscrollen»): alles darunter federt herein,
+     sobald es am unteren Rand auftaucht. Nur transform, deckend ab dem ersten Bild, nichts wartet. */
   const alle = $$('[data-r]', r).filter(x => !x.classList.contains('da'));
   if (still || RUHIG()) { alle.forEach(x => x.classList.add('da', 'steht')); return; }
-  const H = innerHeight; let n = 0;
-  alle.forEach(x => { const b = x.getBoundingClientRect(); if (b.top < H && b.bottom > 0 && n < 22) { x.style.setProperty('--i', Math.min(n++, 6)); requestAnimationFrame(() => requestAnimationFrame(() => x.classList.add('da'))); } else x.classList.add('da', 'steht'); });
+  const H = innerHeight; let n = 0; const spaeter = [];
+  alle.forEach(x => { const b = x.getBoundingClientRect(); if (b.top < H && b.bottom > 0 && n < 22) { x.style.setProperty('--i', Math.min(n++, 6)); requestAnimationFrame(() => requestAnimationFrame(() => x.classList.add('da'))); } else if (b.top >= H && 'IntersectionObserver' in window) spaeter.push(x); else x.classList.add('da', 'steht'); });
+  if (!spaeter.length) return;
+  const io = new IntersectionObserver(es => { let k = 0; es.forEach(e => { if (e.isIntersecting) { e.target.style.setProperty('--i', Math.min(k++, 3)); e.target.classList.add('da'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px' });
+  spaeter.forEach(x => io.observe(x));
 }
 
 /* ---------------------------------------------------------------- Übersicht */
@@ -214,7 +218,7 @@ function start() {
   return `${umbenannt(WO.startbild({ werkzeug: 'marke', art: 'voll', h1: `${esc(gruss)} <em>${esc(t('frage'))}</em>`, satz: esc(t('start_satz')),
       knoepfe: WO.knopf(esc(t('anleitung')), 'buch', 'gold', { href: 'anleitung.html', neu: true }) + WO.knopf(esc(t('buch')), 'pfeil', 'glas', { href: MARKE }) }))}
     <div class="wo-lage" data-r>
-      ${lg('foto', t('bilder'), zahl(st.fotos), `${zahl(st.haus)} ${t('z_haus')} · ${zahl(st.frei)} ${t('z_frei')} · ${zahl(st.fremd)} ${t('z_fremd')}`, 'bilder')}
+      ${lg('foto', t('bilder'), zahl(st.fotos), `${zahl(st.haus)} ${t('z_haus')} · ${zahl(st.frei)} ${t('z_frei')}${st.ki ? ` · ${zahl(st.ki)} ${t('z_ki')}` : ''} · ${zahl(st.fremd)} ${t('z_fremd')}`, 'bilder')}
       ${lg('kopie', t('z_dateien'), zahl(st.dateien), t('k_dateien'), 'dateien')}
       ${lg('auge', t('pruefung'), 'ΔE 2000', t('k_pruefung'), 'pruefung')}
     </div>
@@ -391,7 +395,7 @@ function dateien() {
   const schriften = S.d.schriften.map(s => `<li class="li-schrift">${s.bild ? `<span class="li-schrift__b"><img src="${esc(s.bild)}" alt="${esc(s.n)} auf der Website" loading="lazy" decoding="async"></span>` : ''}<span class="li-schrift__p f-${esc(s.k)}">${esc(s.p)}</span><span><b>${esc(s.n)}</b><small>${esc(s.r)} · ${esc(s.e)}</small></span>
       <a class="kn kn--klein kn--linie" href="../../assets/fonts/${esc(s.d)}" download>${esc(s.d.split('.').pop().toUpperCase())}<i>${PU}</i></a></li>`).join('');
   const n_dat = S.d.dateien.filter(g => ['logo', 'zeichen', 'zeiger', 'name', 'website', 'tapete'].includes(g.k)).reduce((n, g) => n + g.var.length, 0);
-  return `${titel('dateien', teile(t('d_titel')), t('d_satz'), `<a class="kn kn--gold" href="${DAT}${S_}-marke.zip" download>${esc(t('alles_zip'))}<i>${PU}</i></a><a class="kn kn--linie kn--hell" href="${MARKE}#zeichen">${esc(t('regeln'))}<i>${PF}</i></a>`, [[n_dat, t('z_dateien')], ['SVG', 'PNG']])}
+  return `${titel('dateien', teile(t('d_titel')), t('d_satz'), `<a class="kn kn--gold" href="${DAT}${S_}-marke.zip" download>${esc(t('alles_zip'))}<i>${PU}</i></a><a class="kn kn--linie kn--hell" href="${MARKE}#zeichen">${esc(t('regeln'))}<i>${PF}</i></a>`, [[n_dat, t('z_zeichen')], ['SVG', 'PNG']])}
     ${block('zeichen', t('d_zeichen'), t('d_zeichen_s'), tafeln('zeichen'), 0)}
     ${block('zeiger', t('d_zeiger'), t('d_zeiger_s'), tafeln('zeiger'), 1)}
     ${block('logo', t('d_logo'), t('d_logo_s'), tafeln('logo'), 0)}
@@ -544,6 +548,7 @@ function ergebnis(j, ziel) {
       ${k.text ? `<details class="li-gelesen"><summary class="mono">${esc(t('p_text'))}</summary><p>${esc(k.text)}</p></details>` : ''}`}
       <div class="li-erg__kn"><button class="kn" type="button" data-neu>${esc(t('p_neu'))}<i>${PO}</i></button><button class="kn kn--linie" type="button" data-kopie-erg>${esc(t('p_kopie'))}<i>${KOPIE}</i></button><button class="kn kn--linie" type="button" data-sichern>${esc(t('p_sichern'))}<i>${PU}</i></button></div>
     </div></div>`;
+  { const lg = Z.querySelector('.li-erg__l'); if (lg && window.ResizeObserver) { const setz = () => { lg.style.top = Math.min(94, innerHeight - lg.offsetHeight - 100) + 'px'; }; setz(); new ResizeObserver(setz).observe(lg); } }   /* linke Spalte läuft mit (Robert 09.11.2026: keine Leerfläche), höher als der Bildschirm: erst ganz zeigen, dann halten */
   auftritte(Z);
   const kn = x => Z.querySelector(x);
   kn('[data-neu]').onclick = () => { S.ergebnis = null; S.datei = null; feld(); scrollTo({ top: 0, behavior: RUHIG() ? 'auto' : 'smooth' }); };
@@ -566,7 +571,7 @@ function sichere(j) {
   // nur auf ausdrücklichen Wunsch: eine Datei auf diesem Rechner, nichts auf dem Server
   const html = `<!doctype html><meta charset="utf-8"><title>${esc(t('name'))} · ${esc(j.name)}</title><body style="font:15px/1.6 system-ui;max-width:820px;margin:40px auto;color:#041023;background:#e7ecf3;padding:0 20px">
     <h1 style="font:400 26px/1.2 'Open Sans',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;color:#0a2552">${esc(t('pruefung'))}: ${esc(j.name)}</h1><img src="${j.vorschau}" style="max-width:360px;border-radius:12px"><pre style="white-space:pre-wrap;font:14px/1.6 system-ui">${esc(alsText(j))}</pre>
-    <p style="color:#0a2552;font-size:12px">${esc(t('name'))} · Wirtschaft am Schlössli, Bottighofen · ${new Date().toLocaleString('de-CH')}</p></body>`;
+    <p style="color:#0a2552;font-size:13px">${esc(t('name'))} · Wirtschaft am Schlössli, Bottighofen · ${new Date().toLocaleString('de-CH')}</p></body>`;
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
   a.download = 'hausbuch-pruefung-' + (j.name.replace(/\.[a-z0-9]+$/i, '').replace(/[^a-z0-9äöü_-]+/gi, '-').toLowerCase().slice(0, 60) || 'entwurf') + '.html';
@@ -601,7 +606,7 @@ function melde(text, fehl = false) {
 }
 
 /* ---------------------------------------------------------------- Start */
-/* Startfehler-Tür (R04): statt einer leeren Fläche sagt das Hausbuch, dass und warum es nicht startet */
+/* Startfehler-Tür (R04): statt einer leeren Fläche sagt «Markenbuch», dass und warum es nicht startet */
 function startfehler(grund) {
   window.LIVRE_BEREIT = true; clearTimeout(window.LIVRE_LADE);
   $('#ansicht').innerHTML = `<div class="platte li-tuer" role="alert"><span class="li-tuer__z">${ZEICHEN_N}</span><h1>${esc(t('tuer_t'))}</h1>
@@ -631,7 +636,7 @@ function bereit(ansicht) {
       if (!S.d || !Array.isArray(S.d.fotos) || !S.d.stand || !Array.isArray(S.d.farben)) throw new Error('Form');
       NAMEN = Object.assign({}, S.d.namen || {}, (window.WO_HAUS && WO_HAUS.namen) || {});
       window.LIVRE_NAMEN = NAMEN;
-      document.title = `${NAMEN.marke || 'Das Hausbuch'} · Wirtschaft am Schlössli`;
+      document.title = `${NAMEN.marke || 'Markenbuch'} · Wirtschaft am Schlössli`;
     } catch (e) { return startfehler(t('fehler_json') + ' (' + (/Failed to fetch|Load failed|NetworkError/.test(e.message) ? 'offline' : e.message) + ')'); }
     const h = location.hash.slice(1);
     try {

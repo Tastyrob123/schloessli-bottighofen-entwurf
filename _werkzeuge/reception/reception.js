@@ -1,4 +1,4 @@
-/* Das Reservationsbuch (La Réception) · Wirtschaft am Schlössli, Bottighofen (Kopie aus dem Ruedihus, 19.10.2026). Ein Restaurant ohne Zimmer.
+/* Anfragen & Chat · Wirtschaft am Schlössli, Bottighofen (Kopie aus dem Ruedihus, 19.10.2026). Ein Restaurant ohne Zimmer.
    Eingang: Anfragen aus den Formularen der Website (Reservation, Bankett, Gutschein, Plätze für einen Anlass, «Ihr Abend») und aus dem Chat, mit Allergien
    und Hinweisen (Ruhetag, Ferien, Etagen) und einem Antwortentwurf im Ton des Hauses.
    Das wurde gefragt: jede Frage an den Chat, nach Themen; wo der Chat keine Antwort hatte, trägt das Team sie einmal nach, ab dann antwortet er damit.
@@ -31,7 +31,10 @@ const S = { ue: null, ansicht: 'start', anfragen: null, fragen: null, nachgetrag
 const ART_LANG = { tisch: 'Reservation', bankett: 'Bankett & Gruppen', anlass: 'Anlässe & Events', gutschein: 'Gutscheine', nachricht: 'Nachrichten' };
 /* Je Art ein Foto des Hauses (Robert 15.10.2026: lieber Fotos als Zeichen): Terrasse, Gaststube, Abend am See, ein Glas am Wasser, der Wegweiser */
 const ARTBILD = { tisch: 'start-480', bankett: 'gaststube-480', anlass: 'abend-480', gutschein: 'glas-480', nachricht: 'schild-480' };
-const bild = (art, kl) => `<span class="${kl}" aria-hidden="true"><img src="../../assets/img/${ARTBILD[art] || ARTBILD.tisch}.webp" alt="" width="900" height="675" decoding="async"></span>`;
+/* Kein Foto zweimal untereinander in der Liste (Fehlerbuch 10a «kein Foto zweimal auf einem Bildschirm», wie im Schäfli): je Art mehrere Fotos des Hauses, je Anfrage fest eines (aus ihrer Kennung) */
+const ARTBILDER = { tisch: ['start-480', 'lounge-480', 'morgen-480', 'platanen-480', 'abend-hafen-480'], bankett: ['gaststube-480', 'apero-480'], anlass: ['abend-480', 'feuerwerk-480'], gutschein: ['glas-480', 'wein-480'], nachricht: ['schild-480', 'haus-480'] };
+const artBild = (art, id) => { const l = ARTBILDER[art] || [ARTBILD[art] || ARTBILD.tisch]; let h = 0; for (const c of String(id || '')) h = (h * 31 + c.charCodeAt(0)) >>> 0; return l[h % l.length]; };
+const bild = (art, kl, id) => `<span class="${kl}" aria-hidden="true"><img src="../../assets/img/${artBild(art, id)}.webp" alt="" width="900" height="675" decoding="async"></span>`;
 const uhr = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' }) + ' Uhr'; };
 
 /* ---------- Server ---------- */
@@ -229,7 +232,7 @@ function arten() {   // die Arten als Kacheln mit Foto (wo-aufg des Pakets), wie
 function karteAnfrage(a, i = 0) {
   const st = a.status === 'neu' ? 'Neu' : a.status === 'erledigt' ? 'Erledigt' : a.entwurf ? 'Brief bereit' : 'Gelesen';
   return `<button class="re-a${a.status === 'neu' ? ' neu' : ''}${a.status === 'erledigt' ? ' erledigt' : ''}${S.wahl === a.id && S.ansicht === 'eingang' ? ' aktiv' : ''}" style="--i:${i}" type="button" data-gehe="eingang" data-wahl="${esc(a.id)}">
-    ${bild(a.art, 're-a__bild')}
+    ${bild(a.art, 're-a__bild', a.id)}
     <span class="re-a__n"><span class="re-a__k">${esc(ART[a.art] || a.art)}${abt(a) !== ART[a.art] ? ' · ' + esc(abt(a)) : ''} · ${esc(uhr(a.zeit).replace(' Uhr', ''))}${a.web ? ' · Website' : ''}${a.beispiel ? ' · Beispiel' : a.probe ? ' · Probe' : ''}</span><b><bdi>${esc(a.name || 'Ohne Namen')}</bdi></b><small>${[a.datum, a.personen ? a.personen + ' Personen' : '', SPRACHE[a.sprache] || a.sprache].filter(Boolean).map(x => `<bdi>${esc(x)}</bdi>`).join(' · ')}</small>${hinwKurz(a).length ? `<em class="re-a__hinw">${hinwKurz(a).map(esc).join(' · ')}</em>` : ''}</span>
     <span class="re-a__st">${st}</span></button>`;
 }
@@ -291,10 +294,10 @@ const BRIEFBILDER = [['haus', 'Die Wirtschaft am Hafen'], ['start', 'Die Terrass
   ['teller', 'Ein Teller der Küche'], ['dessert', 'Dessert'], ['glas', 'Ein Glas am Wasser'], ['apero', 'Apéro'], ['fliesen', 'Die Fliesen der Bar']];
 const SCHRIFT = { serif: 'font-family:var(--serif)', sans: 'font-family:var(--sans)', mono: 'font-family:var(--mono)', cinzel: 'font-family:var(--caps)', versal: 'font-family:var(--caps);letter-spacing:.16em;text-transform:uppercase' };
 const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', kursiv: 'font-style:italic', versal: 'text-transform:uppercase;letter-spacing:.16em', medium: 'font-weight:500' };
-/* Hauspalette, gleich in La Carte, La Réception und L’Imprimerie (Absprache 16.10.2026) */
+/* Hauspalette, gleich in «Karten & Preislisten», Anfragen & Chat und Drucksachen & Feed (Absprache 16.10.2026) */
 const HFARBE = { navy: '#0b1d3d', blau: '#113d88', tinte: '#041023', papier: '#E7ECF3', creme: '#D0DAE7', weiss: '#FBFDFD', sand: '#AD8A5A', gold: '#A2B6CF', messing: '#0F3678', taupe: '#747B7B', rot: '#FD9964' };
 const HNAME = { navy: 'Stuhlblau tief', blau: 'Stuhlblau', tinte: 'Tinte', papier: 'Seespiegel', creme: 'Seespiegel tief', weiss: 'Blatt', sand: 'Ufersand', gold: 'Seehimmel', messing: 'Petrol', taupe: 'Kies', rot: 'Schirmrot' };
-/* Hauspalette aus marke.json des Schlössli (Farbwelt A «Stuhl und See», Station 5): Werte abgeschrieben, weil das Reservationsbuch das Markenbuch nicht lädt */
+/* Hauspalette aus marke.json des Schlössli (Farbwelt A «Stuhl und See», Station 5): Werte abgeschrieben, weil «Anfragen & Chat» das Markenbuch nicht lädt */
 const LFARBE = { taupe: 'rgba(162,182,207,.62)', gold: '#A2B6CF', navy: '#0A234C' };
 const GNAME = { linie1: 'Linie unter dem Kopf', linie2: 'Linie über dem Betreff', linie3: 'Linie über der Fusszeile', zeichen: 'Zeichen', haus: 'Hausname', zeile: 'Unterzeile', an: 'Empfänger', von: 'Absender', betreff: 'Betreff', fuss: 'Fusszeile' };
 const gName = k => GNAME[k] || (/^p\d+$/.test(k) ? 'Absatz ' + (+k.slice(1) + 1) : 'Foto');
@@ -388,7 +391,7 @@ function briefMail(a, e) {
   const fotos = nach => bilder.filter(b => b.nach === nach).map(b => { const g = G[b.id] || {}; const w = Math.round(Math.min(560, (g.w || 560) * (g.s || 1)));
     return `<tr><td style="padding:6px 0 18px;${g.al ? 'text-align:' + g.al : 'text-align:center'}"><img src="${basis}assets/img/${b.k}-800.webp" width="${w}" alt="${esc(b.n || '')}" style="display:inline-block;width:${w}px;max-width:100%;height:auto;border:0"></td></tr>`; }).join('');
   const mLinie = (k, pad) => { const g = G[k] || {}; if (g.aus) return ''; const w = g.w ? Math.min(504, g.w) + 'px' : '100%', al = g.al || 'center', farbe = { taupe: '#c6cedb', gold: '#647ca4', navy: '#0f1c33' }[g.fb || 'taupe'] || HFARBE[g.fb];
-    return `<tr><td style="padding:${pad};text-align:${al}"><div style="display:inline-block;width:${w};height:${g.st || 1}px;background:${farbe};line-height:1px;font-size:1px">&nbsp;</div></td></tr>`; };
+    return `<tr><td style="padding:${pad};text-align:${al}"><div style="display:inline-block;width:${w};height:${g.st || 1}px;background:${farbe};line-height:1px;font-size:13px">&nbsp;</div></td></tr>`; };
   const serif = "font-family:Open Sans,Georgia,serif;color:#0d182b";
   const ab = e.text.split(/\n{2,}/);
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#e4e8ee"><tr><td align="center" style="padding:24px 12px">
@@ -402,7 +405,7 @@ function briefMail(a, e) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${mLinie('linie1', '22px 0 24px')}
 ${mLinie('linie2', '0 0 14px')}
-<tr><td style="font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#2b5295">Betreff</td></tr>
+<tr><td style="font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#2b5295">Betreff</td></tr>
 <tr><td style="${st('betreff', 22, serif + ';font-weight:700;color:#0d182b;padding:6px 0 22px;line-height:1.2')}">${t(e.betreff)}</td></tr>
 ${fotos('kopf')}
 ${ab.map((x, n) => `<tr><td dir="auto" style="${st('p' + n, 16, "font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;color:#142543;line-height:1.62;padding-bottom:" + (14 + Math.max(0, (G['p' + n] || {}).mb || 0)) + 'px' + (ab.length > 2 && n === ab.length - 1 ? ';padding-top:8px' : ''))}">${t(x)}</td></tr>${fotos('p' + n)}`).join('\n')}
@@ -493,7 +496,7 @@ function verbindeBrief(a) {
     const sel = getSelection(); if (sel && !el.contains(sel.anchorNode)) { const r = document.createRange(); r.selectNodeContents(el); r.collapse(false); sel.removeAllRanges(); sel.addRange(r); }
   };
   const schluss = () => { $$('.gs--schreib', br).forEach(x => { x.contentEditable = 'false'; x.classList.remove('gs--schreib'); }); if (vorher) { lies(); merke(vorher); vorher = null; } };
-  /* Hilfslinien und Einrasten (wie L’Imprimerie: Kanten und Mitten von Papier und anderen Teilen, 7 px; Alt hält das Einrasten aus) */
+  /* Hilfslinien und Einrasten (wie Drucksachen & Feed: Kanten und Mitten von Papier und anderen Teilen, 7 px; Alt hält das Einrasten aus) */
   const linien = l => { $$('.hl', br).forEach(n => n.remove()); const b = br.getBoundingClientRect();
     l.forEach(x => { const n = document.createElement('i'); n.className = 'hl ' + (x.x != null ? 'hl--x' : 'hl--y'); n.style.transform = x.x != null ? `translateX(${x.x - b.left}px)` : `translateY(${x.y - b.top}px)`; br.appendChild(n); }); };
   const fang = (el, r) => {
@@ -610,7 +613,7 @@ function verbindeBrief(a) {
     if ((ev.key === 'Backspace' || ev.key === 'Delete') && (wahl.classList.contains('gs--bild') || wahl.classList.contains('gs--linie'))) { ev.preventDefault(); $('.gs-werk [data-g="weg"]').click(); }
     if (ev.key === 'Enter' && wahl.hasAttribute('data-schreib')) { ev.preventDefault(); schreib(wahl); }
   });
-  /* Seitenleiste «Gestalten» rechts (Robert 16.10.2026: «so ein kleines Side-Menü … was sich öffnet»; gleich in La Carte und L’Imprimerie):
+  /* Seitenleiste «Gestalten» rechts (Robert 16.10.2026: «so ein kleines Side-Menü … was sich öffnet»; gleich in «Karten & Preislisten» und Drucksachen & Feed):
      öffnet sich beim Wählen, schliesst mit × oder Esc, das Dokument rückt nach links. Detail-Einstellungen hier, die Leiste oben bleibt. */
   let altS = null;
   const seite = () => {
@@ -628,7 +631,7 @@ function verbindeBrief(a) {
     const cs = getComputedStyle(wahl), fs = parseFloat(cs.fontSize) || 16, lh = g.lh || Math.round((parseFloat(cs.lineHeight) / fs || 1.4) * 20) / 20;
     const pt = Math.round(fs * .75 * 2) / 2, ls = g.ls != null ? g.ls : Math.round((parseFloat(cs.letterSpacing) || 0) / fs * 100) / 100, op = g.op != null ? g.op : 1;
     const r = wahl.getBoundingClientRect();
-    /* Aufbau wie die Gestalten-Platte in L’Imprimerie (studio.js zeichneEigenschaften): Titel = Art, Gruppen mit Mono-Label, Segmente, runde Marine-Knöpfe, Regler mit Wert */
+    /* Aufbau wie die Gestalten-Platte in «Drucksachen & Feed» (studio.js zeichneEigenschaften): Titel = Art, Gruppen mit Mono-Label, Segmente, runde Marine-Knöpfe, Regler mit Wert */
     const an = x => x ? ' an' : '';
     const kn = (z, v, inhalt, aktiv, tip = '', aus = false) => `<button type="button" class="${aktiv ? 'an' : ''}" data-s="${z}" data-v="${v}" aria-pressed="${!!aktiv}"${tip ? ` title="${tip}" aria-label="${tip}"` : ''}${aus ? ' disabled' : ''}>${inhalt}</button>`;
     const gruppe = (t, inhalt) => `<div class="gs-gruppe"><span class="gs-gruppe__t">${t}</span>${inhalt}</div>`;
@@ -1414,7 +1417,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#fenst
   catch (e) { $('#tuer').hidden = false; $('#tuer-t').textContent = /^VERBINDUNG · /.test(e.message || '') ? 'Keine Verbindung zum Server-Teil. Bitte gleich neu laden.' : String(e.message || e).replace(/^[A-ZÄÖÜ]+ · /, ''); return; }
   const h = location.hash.slice(1);
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) try { const l = await api('wissen_links'); S.wissenDa = true; S.wissenNeu = 0; if (l.links.some(x => x.status === 'liest')) wachen(); } catch (e) { S.wissenDa = false; }   // «Das weiss der Chat» gibt es bisher nur lokal (serve.py); online wird gar nicht erst gefragt, sonst steht ein 400 in der Konsole
-  try { S.ansicht = ['start', 'eingang', 'gefragt', 'nachgetragen', 'wissen'].includes(h) ? h : ((/\/maison\/?(index\.html)?([?#].*)?$/.test(document.referrer) && ((performance.getEntriesByType('navigation')[0] || {}).type !== 'reload')) ? (localStorage.removeItem('reception-ansicht'), 'start') : localStorage.getItem('reception-ansicht') || 'start'); }   /* Aus La Maison geöffnet: immer auf der Übersicht anfangen (Robert 16.10.2026), beim Neuladen bleibt die letzte Ansicht */ catch (e) { S.ansicht = 'start'; }
+  try { S.ansicht = ['start', 'eingang', 'gefragt', 'nachgetragen', 'wissen'].includes(h) ? h : ((/\/maison\/?(index\.html)?([?#].*)?$/.test(document.referrer) && ((performance.getEntriesByType('navigation')[0] || {}).type !== 'reload')) ? (localStorage.removeItem('reception-ansicht'), 'start') : localStorage.getItem('reception-ansicht') || 'start'); }   /* Aus «Kontrollpanel» geöffnet: immer auf der Übersicht anfangen (Robert 16.10.2026), beim Neuladen bleibt die letzte Ansicht */ catch (e) { S.ansicht = 'start'; }
   if (!TITEL[S.ansicht] || (S.ansicht === 'wissen' && !S.wissenDa)) S.ansicht = 'start';
   rand(); leiste(); await zeichne();
   window.addEventListener('hashchange', () => { const z = location.hash.slice(1); if (TITEL[z] && z !== S.ansicht) gehe(z); });

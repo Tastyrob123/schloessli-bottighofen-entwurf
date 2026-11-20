@@ -1,7 +1,7 @@
-/* Das Besucherbuch (Le Registre) · Wirtschaft am Schlössli, Bottighofen (Tasty Studios 19.10.2026, Werkzeug 6). Das Haus sieht, wer seine Website besucht:
+/* Besucher · Wirtschaft am Schlössli, Bottighofen (Tasty Studios 19.10.2026, Werkzeug 6). Das Haus sieht, wer seine Website besucht:
    woher (Land, Ort), wann (Tag, Uhrzeit, Wochentag), was (Seiten, Zeit je Seite), wie es sich entwickelt (Verlauf) und ob ein Besuch
    weiterführt (Fenster «Reservation», Tisch angefragt, «Direkt buchen», Bankettanfrage, Anfrage, Anruf, Mail, Schäfli, Route). Nie ein Name, keine Adresse der Verbindung, kein Cookie.
-   Kopie von Das Besucherbuch des Berghotel Gasterntal (Bau 17./18.10.2026), dieses nach Doldenhorn und Carlton-Europe; Funktion und Bedienung wie Le Registre
+   Kopie von Besucher des Berghotel Gasterntal (Bau 17./18.10.2026), dieses nach Doldenhorn und Carlton-Europe; Funktion und Bedienung wie Besucher
    des Grand Beau-Rivage; Kleid des Schlössli (Farbwelt «Stuhl und See», Ton in Ton wie die Website seit 19.10.2026, Open Sans in Versalien, die Zeiger als Zeichen),
    Namen der Welt Landhaus (marke.json welt «land», _Werkzeuge/stamm/welt.js). Eigener Zähl-Schlüssel und eigener Speicher, nie gemeinsam mit dem Schäfli.
    Server-Teil: registre.py über /api/registre (lokal server.py). Ohne Server-Teil liest das Werkzeug beispiel/<tage>.json und schiebt die Tage auf heute.
@@ -35,13 +35,13 @@ const BEREICHE = [
   ['', 'Die Website'], ['seiten', 'Seiten', ''], ['verlauf', 'Verlauf', ''], ['buchung', 'Zur Reservation', ''], ['', 'Gut zu wissen'], ['zaehlung', 'So wird gezählt', '']];
 const TITEL = Object.fromEntries(BEREICHE.filter(x => x[0]).map(x => [x[0], x[1]]));
 const WTAG = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
-/* Die Stube (La Maison): lokal liegt sie neben dem Besucherbuch (_werkzeuge/maison/), online unter /maison/ (wie im Doldenhorn; Andock-Datei der Stube: statik → maison) */
+/* Die Stube (Kontrollpanel): lokal liegt sie neben «Besucher» (_werkzeuge/maison/), online unter /maison/ (wie im Doldenhorn; Andock-Datei der Stube: statik → maison) */
 const MAISON = /\/_werkzeuge\/registre\//.test(location.pathname) ? '../maison/' : '../../maison/';
 const MERK = 'schloessli-nicht-zaehlen';   /* dieselbe Marke liest messung.js auf der Website (gleiche Adresse vorausgesetzt) */
 const VORFUEHRUNG = true;
 const SCHL = (location.search.match(/[?&]k=([\w-]+)/) || [])[1] || '';
 const ECHT_DA = !VORFUEHRUNG || !!SCHL;
-const S = { d: null, namen: {}, bilder: {}, ansicht: 'start', tage: 30, beispiel: !ECHT_DA || /[?&]beispiel=1/.test(location.search), wahl: 0, filter: 'alle', zeige: 40, ablage: false, raster: 'besuche' };
+const S = { d: null, namen: {}, bilder: {}, gross: {}, ansicht: 'start', tage: 30, beispiel: !ECHT_DA || /[?&]beispiel=1/.test(location.search), wahl: 0, filter: 'alle', zeige: 40, ablage: false, raster: 'besuche' };
 
 /* ---------- Helfer ---------- */
 const n = x => Number(x || 0).toLocaleString('de-CH');
@@ -90,7 +90,7 @@ function schiebe(iso, tage) { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDa
 async function lade() {
   const echt = !S.beispiel && SCHL;
   /* Vorführung: Beispielwerte aus den abgelegten Dateien, auf heute geschoben und genau auf jetzt gekürzt. Dieselbe Rechnung macht der Dienst
-     (registre.py ablage_heute) für La Maison, damit beide dieselben Zahlen zeigen (Prüfung 16.10.2026). Kein Aufruf an einen Dienst, den es nicht gibt. */
+     (registre.py ablage_heute) für «Kontrollpanel», damit beide dieselben Zahlen zeigen (Prüfung 16.10.2026). Kein Aufruf an einen Dienst, den es nicht gibt. */
   if (S.beispiel && !SCHL) return ablageLaden();
   let r, d = {};
   try { r = await fetch('../../api/registre?tage=' + S.tage + (S.beispiel ? '&beispiel=1' : echt ? '&k=' + SCHL : ''), { cache: 'no-store' }); }
@@ -198,10 +198,10 @@ function werteAus(sum) {
 /* ---------- Rahmen ---------- */
 /* Kopf, Rand, Leiste und Startbild kommen aus der Oberfläche der Häuser (_Werkzeuge/stamm/oberflaeche/, im Haus /assets/oberflaeche/, Kleid schloessli,
    Rahmen «Die Bühne» wie beim Gasterntal; kein eigener Kopf und kein eigenes Startbild).
-   Ids, data-gehe und die Klick-Handler bleiben wie im Le Registre des Doldenhorn. */
+   Ids, data-gehe und die Klick-Handler bleiben wie im Besucher des Doldenhorn. */
 const STUBE = MAISON;
 /* Namen der Werkzeuge: nur aus dem Kleid des Hauses (kleid/schloessli.js → WO_HAUS.namen, Robert 19.10.2026), hier nie abgetippt.
-   NAME groß am Satzanfang («Die Besucherliste»), KLEIN im Satz («die Besucherliste»; nur Nominativ und Akkusativ, damit jeder Artikel passt). */
+   NAME groß am Satzanfang («Besucher»), KLEIN im Satz («die Besucher»; nur Nominativ und Akkusativ, damit jeder Artikel passt). */
 const NAME = WO.name('besuche'), KLEIN = NAME.replace(/^(Die|Das|Der) /, m => m.toLowerCase()), STUBE_N = WO.name('zentrale');
 function kopfLeiste() {
   const u = S.d.summe;
@@ -300,7 +300,7 @@ function beispiel(an) {
 
 /* ---------- Datenexport (Website-Bau-Master 9d Punkt 21, Prüfung 16.10.2026): alle Besuche des Zeitraums als Tabelle, ohne uns ----------
    Echte Werte (mit Schlüssel): der Dienst gibt alle Besuche des Zeitraums heraus (?export=1), nicht nur die neuesten 400. Beispielwerte: was die Liste zeigt,
-   im Dateinamen und in der ersten Spalte als Beispiel gekennzeichnet. Nur Angaben, die das Besucherbuch ohnehin zeigt: kein Name, keine Adresse, kein Kürzel. */
+   im Dateinamen und in der ersten Spalte als Beispiel gekennzeichnet. Nur Angaben, die «Besucher» ohnehin zeigt: kein Name, keine Adresse, kein Kürzel. */
 function zelle(x) {
   let t = String(x == null ? '' : x);
   if (/^[=+\-@\t\r]/.test(t)) t = "'" + t;   /* keine Formeln in Excel (CSV-Einschleusung) */
@@ -353,10 +353,12 @@ function saeulen(werte, beschrift, tip, klasse = '', vorher) {
     ${werte.map((z, i) => `<div class="s" style="--i:${Math.round(i * 30 / werte.length)}" data-t="${esc(tip(i, z))}">${vorher ? `<u style="--h:${(vorher[i] / max).toFixed(3)}"></u>` : ''}<i style="--h:${z ? Math.max(.025, z / max).toFixed(3) : 0}"></i>${beschrift(i) ? `<span>${beschrift(i)}</span>` : ''}</div>`).join('')}
   </div>`;
 }
+/* Bild je Zeile: die erste Seite nach der Startseite, damit nicht jede Zeile dasselbe Startbild zeigt (wie Schäfli, oberflaeche_pruefen Punkt 5) */
+const zeilenSeite = b => { const w = (b.weg || []).map(x => x.s).filter(Boolean); return w.find(s => s !== 'index.html') || w[0] || ''; };
 function karteBesuch(b, i, aktiv) {
   const marke = b.buchung ? 'Zur Reservation' : b.anfrage ? 'Anfrage' : b.kontakt ? 'Kontakt' : b.chat ? 'Schäfli' : esc(GERAET[b.g] || '');
   return `<button class="besuch rg-a${b.buchung ? ' gold' : ''}${aktiv ? ' aktiv' : ''}" type="button" data-gehe="besuche" data-wahl="${i}" aria-pressed="${aktiv}">
-    <span class="besuch__b">${sbild(b.weg && b.weg[0] ? b.weg[0].s : '')}<span class="besuch__l">${esc(b.l && b.l !== '??' ? b.l : '–')}</span></span>
+    <span class="besuch__b">${sbild(zeilenSeite(b))}<span class="besuch__l">${esc(b.l && b.l !== '??' ? b.l : '–')}</span></span>
     <span class="besuch__n"><b>${esc(ort(b))}</b><small>${esc(tagWort(b.tag))}, ${esc(b.z)} Uhr · ${mal(b.seiten, 'eine Seite', 'Seiten')}${b.dauer ? ' · ' + dauer(b.dauer, true) : ''}</small></span>
     <span class="besuch__z">${marke}<small>${esc(SPRACHE[b.sp] || b.sp)}</small></span></button>`;
 }
@@ -381,7 +383,7 @@ function zeichne(ruhig) {
   document.title = (TITEL[S.ansicht] || NAME) + ' · ' + NAME + ' · ' + WO.haus.name;
   schweben(el, ruhig);
 }
-/* Schweben (Gefühl der Carlton-Seiten, Rezeptur des Le Registre im Grand Beau-Rivage, Robert 16.10.2026: «darf nicht an den Scroll geknüpft sein, muss luxuriös
+/* Schweben (Gefühl der Carlton-Seiten, Rezeptur des Besucher im Grand Beau-Rivage, Robert 16.10.2026: «darf nicht an den Scroll geknüpft sein, muss luxuriös
    reingeschwebt kommen»): Sobald ein Blatt am unteren Rand auftaucht, schwebt es nach der Uhr an seinen Platz (.rg-da). Balken und Säulen wachsen erst, wenn ihr Blatt
    gut zur Hälfte im Bild ist (.rg-los). */
 let IO = null, IO_LOS = null;
@@ -455,9 +457,12 @@ function besuche() {
   return aus;
 }
 function detail(b) {
+  /* Robert 09.11.2026 (keine Leerfläche): ein kurzer Weg (bis drei Seiten) füllt die Karte mit den Fotos seiner Seiten, ein langer bleibt die Liste */
+  const gross = b.weg.length <= 3;
   const schritte = b.weg.map((x, i) => {
     const e = REIHE.filter(k => x.e.indexOf(k) > -1);
-    return `<li style="--i:${Math.min(i, 12)}"><time>${esc(x.z)}</time><div><b>${mitBild(x.s)}</b>${x.sp !== b.sp ? `<small>${esc(SPRACHE[x.sp] || x.sp)}</small>` : ''}
+    const gb = gross && S.bilder[x.s] ? `<span class="weg__foto" aria-hidden="true"><img src="/${esc(S.gross[x.s] || S.bilder[x.s])}" data-k="/${esc(S.bilder[x.s])}" onerror="if(this.dataset.k&&this.src.indexOf(this.dataset.k)<0)this.src=this.dataset.k" alt="" decoding="async"></span>` : '';
+    return `<li style="--i:${Math.min(i, 12)}">${gb}<time>${esc(x.z)}</time><div><b>${mitBild(x.s)}</b>${x.sp !== b.sp ? `<small>${esc(SPRACHE[x.sp] || x.sp)}</small>` : ''}
       ${e.length ? `<p>${e.map(k => `<span class="ereignis${GOLD_E.includes(k) ? ' gold' : ''}">${esc(EREIGNIS[k])}</span>`).join('')}</p>` : ''}</div><em>${x.sek ? dauer(x.sek, true) : '–'}</em></li>`;
   }).join('');
   return `<article class="blatt besuchsblatt">
@@ -472,7 +477,7 @@ function detail(b) {
       <div><dt>Gekommen über</dt><dd>${esc(b.h)}</dd></div>
     </dl>
     <h3 class="wegtitel">Der Weg durch die Website</h3>
-    <ol class="weg">${schritte}</ol>
+    <ol class="weg${gross ? ' weg--gross' : ''}">${schritte}</ol>
     <p class="fein">Die Zeit zählt nur, solange die Seite im Vordergrund war. Die Uhrzeit ist die in Bottighofen. Sprache: die des Browsers.${b.r ? ' Region: ' + esc(b.r) + '.' : ''}</p>
   </article>`;
 }
@@ -653,6 +658,7 @@ async function zeichenLaden() {   /* die Zeiger des Hauses aus der Datei der Web
   const zeichen = zeichenLaden();
   try { const r = await fetch('seiten.json', { cache: 'no-store' }); if (r.ok) S.namen = await r.json(); } catch (e) { /* dann stehen die Dateinamen da */ }
   try { const r = await fetch('seiten-bilder.json', { cache: 'no-store' }); if (r.ok) S.bilder = await r.json(); } catch (e) { /* dann ohne Bild */ }
+  try { const r = await fetch('seiten-bilder-gross.json', { cache: 'no-store' }); if (r.ok) S.gross = await r.json(); } catch (e) { /* dann die kleine Fassung */ }   /* Robert 10.11.2026: grösste vorhandene Breite, kein 404 (wie im Schäfli) */
   try { await lade(); }
   catch (e) {
     $('#tuer').hidden = false; $('#tuer-t').textContent = e.message; $('#ansicht').innerHTML = '';

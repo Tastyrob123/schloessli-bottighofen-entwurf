@@ -1,4 +1,4 @@
-/* Fehlermelder Das Besucherbuch · Wirtschaft am Schlössli (Kopie des Gasterntal, dort des Doldenhorn und Carlton; Werkzeug-Master R03, vor allem anderen; eigene Datei, weil online eingebettete Skripte ohne Prüfsumme blockiert werden, Fund carlton-maison 16.10.2026): Skriptfehler nach localStorage «bg-registre-fehler» (letzte 20) und an den Dienst;
+/* Fehlermelder Besucher · Wirtschaft am Schlössli (Kopie des Gasterntal, dort des Doldenhorn und Carlton; Werkzeug-Master R03, vor allem anderen; eigene Datei, weil online eingebettete Skripte ohne Prüfsumme blockiert werden, Fund carlton-maison 16.10.2026): Skriptfehler nach localStorage «bg-registre-fehler» (letzte 20) und an den Dienst;
    Netz- und Ladefehler nie melden, höchstens 20 je Seite, ein eigener Fehlschlag wird nie erneut gemeldet. */
 (function () { var n = 0, K = 'schloessli-registre-fehler';
   function melde(t) { if (n >= 20) return; n++; t = String(t).slice(0, 300);

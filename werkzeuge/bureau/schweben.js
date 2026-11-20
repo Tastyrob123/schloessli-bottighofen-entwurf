@@ -1,5 +1,5 @@
-/* Das Schaufenster · Wirtschaft am Schlössli: Kopie von _werkzeuge/carte/schweben.js des Hauses (19.10.2026; dort aus studio/schweben.js des Grand Beau-Rivage). */
-/* Schweben für die Werkzeuge (Gefühl der Carlton-Seiten, wie in Le Registre). Gehört zu schweben.css.
+/* Website bearbeiten · Wirtschaft am Schlössli: Kopie von _werkzeuge/carte/schweben.js des Hauses (19.10.2026; dort aus studio/schweben.js des Grand Beau-Rivage). */
+/* Schweben für die Werkzeuge (Gefühl der Carlton-Seiten, wie in «Besucher»). Gehört zu schweben.css.
    Einbinden am Ende der Seite: <script src="../studio/schweben.js" data-wurzel="#ansicht" data-blaetter="…" data-kacheln="…" data-zeilen="…" data-zahlen="…"></script>
    blaetter: einzelne Blätter, kacheln: Reihen von Kacheln (Staffel), zeilen: viele gleiche Zeilen (nur einblenden), zahlen: grosse Zahlen (Zoom).
    Tut etwas nur kurz nach dem Laden und nach einem Klick (Ansichtswechsel); alles, was beim Tippen oder Neuzeichnen später dazukommt, steht sofort ruhig da. */

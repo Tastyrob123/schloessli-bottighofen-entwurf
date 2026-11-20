@@ -4,14 +4,14 @@
 .wo-rand__wege button:hover,.wo-rand__wege a:hover{color:var(--wo-tinte)}
 @media (min-width:901px){.wo-rand__probe{display:none!important}}
 /* Knöpfe des Pakets: studio.css setzt «.bu button{font:inherit}» und überstimmt sonst die Schrift von .wo-kn */
-.wo-app button.wo-kn{font:400 11px/1 var(--wo-mono);letter-spacing:.16em;text-transform:uppercase}
-.wo-app button.wo-kn--klein{font-size:10.5px}
+.wo-app button.wo-kn{font:400 13px/1 var(--wo-mono);letter-spacing:.16em;text-transform:uppercase}
+.wo-app button.wo-kn--klein{font-size:13px}
 /* Raum: Lage wie .wo-raum des Rahmens «Die Bühne», aber ohne Klasse «wo-» (sonst setzt grund.css die Knöpfe der Arbeitsflächen zurück) */
 .wo-app>.gg-raum{grid-area:raum;min-width:0;margin-left:28px}
 @media (max-width:900px){.wo-app>.gg-raum{margin:0 16px}}
 /* Kacheln als Knopf: «.bu button{color:inherit}» aus studio.css überstimmt sonst die helle Schrift auf der dunklen Kachel */
 .wo-app button.wo-ag{color:var(--wo-weiss);text-align:left;padding:0;border:0;font:inherit}
-.wo-app button.wo-kopf__ber{font:400 10.5px/1 var(--wo-mono);letter-spacing:.16em;text-transform:uppercase}
+.wo-app button.wo-kopf__ber{font:400 13px/1 var(--wo-mono);letter-spacing:.16em;text-transform:uppercase}
 .wo-app button.wo-kn--hell{color:var(--wo-tinte)}
 .wo-app button.wo-kn--gold{color:var(--wo-tief)}
 .wo-app button.wo-kn--dunkel,.wo-app button.wo-kn--glas{color:var(--wo-weiss)}
@@ -19,10 +19,22 @@
 
 /* Werkbank-Chat 18.10.2026 (Kopfleiste 1000–1920 ganz drin): bei schmalem Fenster steht der Titel der Ansicht nicht unter «Chat ausprobieren» */
 @media (max-width:1240px){.wo-kopf__mitte{display:none!important}}
+/* Station 12, 8.11.2026 (Fehlerbuch 65/144): der Titel nimmt nur den freien Platz zwischen Zeichen und Knöpfen, kürzt mit «…», liegt nie unter «Chat ausprobieren» */
+@media (min-width:1241px){.wo-kopf{grid-template-columns:auto minmax(0,1fr) auto!important}.wo-kopf__mitte{min-width:0;max-width:100%;overflow:hidden;justify-self:center}.wo-kopf__mitte b,.wo-kopf__mitte small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 
 /* Endprüfung 19.10.2026: «Alle 10 Fragen ansehen» lag unter der letzten Fragen-Kachel und liess sich nicht anklicken; der Stand «Gesichert» beim Brief
    war mit 9,5 px Beige auf Beige kaum lesbar (1,9:1) */
 .re-mehr{position:relative;z-index:3;margin-top:26px!important}
 .re-qliste{position:relative;z-index:1}
-.gs-hinweis .gs-werk__stand{font-size:11px!important;font-weight:600;letter-spacing:.14em;color:#213f72!important}
+.gs-hinweis .gs-werk__stand{font-size:13px!important;font-weight:600;letter-spacing:.14em;color:#213f72!important}
 .gs-hinweis .gs-werk__stand.laeuft{color:#0d182b!important}
+/* Übersicht: «Zuletzt gefragt» (rechte Spalte, Robert 10.11.2026, Vorlage Monte-Moro) auf eigener Fläche in Nacht, mit Luft zu den Arten darüber; beide Spalten mit gleichem Innenabstand, Titel auf gleicher Höhe */
+.re-start{margin-top:clamp(40px,4vw,64px)}
+.re-start > .re-start__sp{padding:clamp(24px,2.4vw,36px)}
+.re-start > .re-start__sp:last-child{border-radius:var(--wo-r1,26px);background:linear-gradient(180deg,#113D88,#0A234C 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 50px -30px rgba(4,16,35,.6)}
+.re-start > .re-start__sp:last-child .wo-zw{margin-top:0;color:#F3F6F9!important}
+.re-start > .re-start__sp:last-child .wo-zw em{color:#A2B6CF!important}
+.re-start > .re-start__sp:last-child .wo-zw::before{background:#A2B6CF}
+.re-start > .re-start__sp:last-child .re-mehr{color:#F3F6F9}
+.re-start > .re-start__sp:first-child .wo-zw{margin-top:0}
+.re-start > .re-start__sp:last-child .re-q .re-a__n b{display:block;-webkit-line-clamp:unset;overflow:visible}   /* mit dem Innenabstand der Fläche bricht eine Frage auf drei Zeilen um: ganz zeigen statt kappen (Prüfpunkt 21) */

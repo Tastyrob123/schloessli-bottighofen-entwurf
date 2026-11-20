@@ -98,6 +98,13 @@
 .wo-re .wo-zahl{display:block;height:auto;padding:7px;line-height:1;text-align:center;text-box:trim-both cap alphabetic}
 .ansicht>button,.wahl3>button{text-box:trim-both cap alphabetic}
 @supports not (text-box:trim-both cap alphabetic){.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{position:relative;top:.05em}}
+/* 09.11.2026 Raster voll (oberflaeche_pruefen Punkt 13): acht Bereiche: drei je Reihe, die letzten zwei teilen sich die Breite, fünf Aufgaben in fünf Spalten */
+@media (min-width:1101px){
+  .wo-ber:has(> :nth-child(8):last-child){grid-template-columns:repeat(6,minmax(0,1fr))}
+  .wo-ber:has(> :nth-child(8):last-child)>*{grid-column:span 2}
+  .wo-ber:has(> :nth-child(8):last-child)>:nth-last-child(-n+2){grid-column:span 3}
+  .wo-aufg:has(> :nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))}
+}
 
 /* Prüfung 20.11.2026: Hausname im Kopf berührt bei 1280 px die Mitte */
 @media(max-width:1366px){.wo-marke-w small{letter-spacing:.14em}}

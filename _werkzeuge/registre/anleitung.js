@@ -1,4 +1,4 @@
-/* Anleitung Das Besucherbuch · Wirtschaft am Schlössli: Bild gross mit Klick, Esc schliesst; das Zeichen des Hauses (die Zeiger aus dem Logo, assets/svg/zeiger.svg der Website)
+/* Anleitung Besucher · Wirtschaft am Schlössli: Bild gross mit Klick, Esc schliesst; das Zeichen des Hauses (die Zeiger aus dem Logo, assets/svg/zeiger.svg der Website)
    (eigene Datei: online laufen eingebettete Skripte ohne Prüfsumme nicht). */
 (function () {
   var g = document.getElementById('gross'), im = g.querySelector('img');
