@@ -1,5 +1,5 @@
 {
- "reihen": 7,
+ "reihen": 20,
  "stuecke": [
   {
    "id": "dessert",
@@ -171,6 +171,357 @@
    "h": 1,
    "art": "foto",
    "bild": "../_quelle/website/bilder/30467d_Schloessli_August2025-14-7.jpeg"
+  },
+  {
+   "id": "tortelloni",
+   "r": 8,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/website/bilder/88d916_Tortelloni.jpg"
+  },
+  {
+   "id": "haus",
+   "r": 8,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Bar_Wirtschaft_\"Schlössli\"_am_Bodensee_in_Bottighofen_TG_(2016).jpg"
+  },
+  {
+   "id": "saentisdunst",
+   "r": 8,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/alpen/saentis-panorama.jpg"
+  },
+  {
+   "id": "segel",
+   "r": 9,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/13-segel.jpg"
+  },
+  {
+   "id": "schild",
+   "r": 9,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "_werkbank/feed_ausschnitte/schild.jpg"
+  },
+  {
+   "id": "apfelbluete",
+   "r": 9,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/jahreszeiten/fruehling-apfelbluete.jpg"
+  },
+  {
+   "id": "hafenstrasse",
+   "r": 10,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/BottighofenHafenStrasse.jpg"
+  },
+  {
+   "id": "luft1954",
+   "r": 10,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/ETH-BIB-Bottighofen,_Strandhotel_Schlössli-LBS_H1-017018.jpg"
+  },
+  {
+   "id": "romanshorn",
+   "r": 10,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/07-romanshorn-blau.jpg"
+  },
+  {
+   "id": "bootshafen",
+   "r": 11,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "_werkbank/feed_ausschnitte/bootshafen.jpg"
+  },
+  {
+   "id": "ermatingen",
+   "r": 11,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/05-ermatingen.jpg"
+  },
+  {
+   "id": "weinregal",
+   "r": 11,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "_werkbank/feed_ausschnitte/weinregal.jpg"
+  },
+  {
+   "id": "johannisbeeren",
+   "r": 12,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/jahreszeiten/sommer-johannisbeeren.jpg"
+  },
+  {
+   "id": "hagnau",
+   "r": 12,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/alpen/hagnau-alpen.jpg"
+  },
+  {
+   "id": "romanshornnacht",
+   "r": 12,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/08-romanshorn-hafen.jpg"
+  },
+  {
+   "id": "hafenluft",
+   "r": 13,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/2003-07-26_18-12-02_Switzerland_Thurgau_Bottighofen.jpg"
+  },
+  {
+   "id": "hegne",
+   "r": 13,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/12-hegne-2.jpg"
+  },
+  {
+   "id": "schloessli",
+   "r": 13,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/BottghfnSchloessli.jpg"
+  },
+  {
+   "id": "januar",
+   "r": 14,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Bottighofen_-_Willkommen_im_Hafenareal_(2022).jpg"
+  },
+  {
+   "id": "konstanz",
+   "r": 14,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/BottighfnConstance.jpg"
+  },
+  {
+   "id": "hafenbecken",
+   "r": 14,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/BottighofenHafen.jpg"
+  },
+  {
+   "id": "boot",
+   "r": 15,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/14-boot.jpg"
+  },
+  {
+   "id": "hausvorn",
+   "r": 15,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/BottghfnHafenSchloessli.jpg"
+  },
+  {
+   "id": "kiesufer",
+   "r": 15,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Bodensee_Bottighofen_2005.jpg"
+  },
+  {
+   "id": "zwetschgen",
+   "r": 16,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/jahreszeiten/herbst-zwetschgen.jpg"
+  },
+  {
+   "id": "seerhein",
+   "r": 16,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/02-seerhein-taegerwilen.jpg"
+  },
+  {
+   "id": "marina",
+   "r": 16,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/BottighofenMarina.jpg"
+  },
+  {
+   "id": "kanone",
+   "r": 17,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Schiffskanone_am_Bootshafen_Bottighofen.jpg"
+  },
+  {
+   "id": "steglicht",
+   "r": 17,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/10-ueberlingen-steg.jpg"
+  },
+  {
+   "id": "uttwil",
+   "r": 17,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/09-uttwil.jpg"
+  },
+  {
+   "id": "einstieg",
+   "r": 18,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Einstieg_SUP.jpg"
+  },
+  {
+   "id": "morgen",
+   "r": 18,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Morgen_am_Bodensee_mit_Schifflände_Bottighofen_(2012).jpg"
+  },
+  {
+   "id": "luft1924",
+   "r": 18,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/ETH-BIB-Bottighofen_aus_300_m-Inlandflüge-LBS_MH01-004195.jpg"
+  },
+  {
+   "id": "schifflaende",
+   "r": 19,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/bilder/Bottighofen_TG_-_Schifflände_und_Bootstankstelle.jpg"
+  },
+  {
+   "id": "gottlieben",
+   "r": 19,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/04-gottlieben.jpg"
+  },
+  {
+   "id": "kursschiff",
+   "r": 19,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/alpen/konstanz-saentis.jpg"
+  },
+  {
+   "id": "ausblick",
+   "r": 20,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/alpen/saentis-ausblick.jpg"
+  },
+  {
+   "id": "abendschiff",
+   "r": 20,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/01-abendschiff-saentis.jpg"
+  },
+  {
+   "id": "badehaus",
+   "r": 20,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "../_quelle/extern/wikipedia-commons/abend/15-pavillon.jpg"
   }
  ]
 }
